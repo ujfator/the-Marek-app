@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 
 export interface PeriodicElement {
-  main: string;
-  side: string;
-  cook: string;
+  date: string,
+  breakfast: string;
+  lunch: string;
+  dinner: string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {main: 'chicken curry', side: 'kuskus, beans', cook: 'Robotron canteen'},
+  {date: '2.4.2019', breakfast: 'hummus, bread, skyr - me', lunch: 'chicken curry & kuskus, beans - Robotron', dinner: 'hummus & ghirken, pork & veg - me'},
 ];
 
 @Component({
@@ -17,7 +18,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class FoodComponent implements OnInit {
 
-  displayedColumns: string[] = ['main', 'side', 'cook'];
+  displayedColumns: string[] = ['date', 'breakfast', 'lunch', 'dinner'];
   dataSource = ELEMENT_DATA;
 
   constructor() { }
