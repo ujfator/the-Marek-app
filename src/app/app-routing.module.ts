@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { FoodComponent } from './food/food.component';
 
 const routes: Routes = [
-  { path: 'Food', component: FoodComponent },
+  { path: 'food', component: FoodComponent, pathMatch: 'full' },
 ];
 
 @NgModule({

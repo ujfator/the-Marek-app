@@ -1,4 +1,4 @@
-<div class="main-container">
+<div fxFill fxLayout="column" class="main-container">
 	<mat-toolbar class="header">
 		<button mat-icon-button (click)="sideNavigation.toggle()" label="Toggle Menu" class="header-menu-button">
 			<mat-icon>menu</mat-icon>
@@ -10,15 +10,14 @@
 		<button mat-raised-button color="primary" (click)="onSetTheme('dark-theme')">{{theme}}</button>
 	</mat-toolbar>
 	<mat-divider></mat-divider>
-	<mat-sidenav-container class="side-navigation-container">
-		<mat-sidenav #sideNavigation opened mode="side">
+	<mat-sidenav-container class="side-navigation-container" fxFlex>
+		<mat-sidenav class="side-navigation" #sideNavigation opened mode="side">
 			<div fxLayout="column" fxLayoutAlign="start space-between" fxFlex>
 				<mat-nav-list fxLayout="column" fxLayoutAlign="start stretch">
           <a mat-list-item [routerLink]="['/food']">Food</a>
-          <div>prdelásek</div>
-					<!-- <a mat-list-item [routerLink]="['/device-control']">Device Control</a> -->
-					<!-- <a mat-list-item [routerLink]="['/firmware-control']">Firmware Control</a> -->
-					<!-- <a mat-list-item [routerLink]="['/software-center']">Software Control</a> -->
+					<a mat-list-item [routerLink]="['/device-control']">Running & Meditation</a>
+					<a mat-list-item [routerLink]="['/firmware-control']">School & Books</a>
+					<a mat-list-item [routerLink]="['/software-center']">Long term goals</a>
 				</mat-nav-list>
 			</div>
 		</mat-sidenav>
