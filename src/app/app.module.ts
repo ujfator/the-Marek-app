@@ -46,6 +46,7 @@ import {
 	MatTreeModule,
 } from '@angular/material';
 import { FoodComponent } from './food/food.component';
+import { AddEditFoodEntryComponent } from './food/add-edit-food-entry/add-edit-food-entry.component';
 
 const materialModules = [
 	// CdkTableModule,
@@ -91,7 +92,8 @@ const materialModules = [
 @NgModule({
   declarations: [
     AppComponent,
-    FoodComponent
+    FoodComponent,
+    AddEditFoodEntryComponent
   ],
   imports: [
     BrowserModule,
