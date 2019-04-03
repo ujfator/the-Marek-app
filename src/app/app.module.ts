@@ -47,6 +47,7 @@ import {
 	MatTooltipModule,
 	MatTreeModule,
 } from '@angular/material';
+import { RunningMeditationComponent } from './running-meditation/running-meditation.component';
 
 const materialModules = [
 	// CdkTableModule,
@@ -95,6 +96,7 @@ const materialModules = [
     AddEditFoodEntryComponent,
     AppComponent,
     FoodComponent,
+    RunningMeditationComponent,
   ],
   entryComponents: [AddEditFoodEntryComponent],
   imports: [
