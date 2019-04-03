@@ -19,10 +19,10 @@ export class AddEditFoodEntryComponent implements OnInit {
 
   public ngOnInit(): void {
 		this.foodForm = new FormGroup({
-			foodDate: new FormControl((this.data.date ? new Date(this.data.date) : '')),
-			foodBreakfast: new FormControl((this.data.breakfast ? this.data.breakfast : ''), Validators.required),
-			foodLunch: new FormControl((this.data.lunch ? this.data.lunch : ''), ),
-			foodDinner: new FormControl((this.data.dinner ? this.data.dinner : ''), Validators.required)
+			foodDate: new FormControl((this.data && this.data.date ? this.data.date.toISOString().substr(0, 10) : new Date().toISOString().substr(0, 10))),
+			foodBreakfast: new FormControl((this.data && this.data.breakfast ? this.data.breakfast : ''), Validators.required),
+			foodLunch: new FormControl((this.data && this.data.lunch ? this.data.lunch : ''), ),
+			foodDinner: new FormControl((this.data && this.data.dinner ? this.data.dinner : ''), Validators.required)
 		});
 	}
 
@@ -30,7 +30,7 @@ export class AddEditFoodEntryComponent implements OnInit {
 	public onSubmit(): void {
 		if (this.foodForm.valid) {
 			const newOrUpdatedFoodEntry = <FoodEntry>{
-				date: this.foodForm.value.foodDate,
+				date: new Date(this.foodForm.value.foodDate),
 				breakfast: this.foodForm.value.foodBreakfast,
 				lunch: this.foodForm.value.foodLunch,
 				dinner: this.foodForm.value.dinner,

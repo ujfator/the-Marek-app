@@ -11,7 +11,12 @@ export interface FoodEntry {
 }
 
 const ELEMENT_DATA: FoodEntry[] = [
-  {date: new Date(), breakfast: 'hummus, bread, skyr - me', lunch: 'chicken curry & kuskus, beans - Robotron', dinner: 'hummus & ghirken, pork & veg - me'},
+  {
+    date: new Date(),
+    breakfast: 'hummus, bread, skyr - me',
+    lunch: 'chicken curry & kuskus, beans - Robotron',
+    dinner: 'hummus & ghirken, pork & veg - me'
+  },
 ];
 
 @Component({
@@ -31,10 +36,10 @@ export class FoodComponent implements OnInit {
   ngOnInit() {
   }
 
-  public editEntry(entry: FoodEntry) {
+  public addOrEditEntry(entry: FoodEntry) {
     console.log(entry);
     const dialogRef = this.dialog.open(AddEditFoodEntryComponent, {
-			data: entry,
+			data: entry ? entry : null,
 			width: '500px'
 		});
 		dialogRef.afterClosed().subscribe(result => {

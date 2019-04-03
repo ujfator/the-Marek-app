@@ -9,7 +9,6 @@ import { AddEditFoodEntryComponent } from './food/add-edit-food-entry/add-edit-f
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FoodComponent } from './food/food.component';
-import { HumanDatePipe } from '../app/common/pipes/human-date.pipe';
 
 import {
 	MatAutocompleteModule,
@@ -96,7 +95,6 @@ const materialModules = [
     AddEditFoodEntryComponent,
     AppComponent,
     FoodComponent,
-    HumanDatePipe,
   ],
   entryComponents: [AddEditFoodEntryComponent],
   imports: [
