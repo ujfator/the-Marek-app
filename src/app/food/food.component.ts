@@ -1,13 +1,22 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
 
-export interface PeriodicElement {
-  main: string;
-  side: string;
-  cook: string;
+import { AddEditFoodEntryComponent } from '../food/add-edit-food-entry/add-edit-food-entry.component';
+
+export interface FoodEntry {
+  date: Date,
+  breakfast: string;
+  lunch: string;
+  dinner: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {main: 'chicken curry', side: 'kuskus, beans', cook: 'Robotron canteen'},
+const ELEMENT_DATA: FoodEntry[] = [
+  {
+    date: new Date(),
+    breakfast: 'hummus, bread, skyr - me',
+    lunch: 'chicken curry & kuskus, beans - Robotron',
+    dinner: 'hummus & ghirken, pork & veg - me'
+  },
 ];
 
 @Component({
@@ -17,12 +26,24 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class FoodComponent implements OnInit {
 
-  displayedColumns: string[] = ['main', 'side', 'cook'];
+  displayedColumns: string[] = ['date', 'breakfast', 'lunch', 'dinner', 'edit'];
   dataSource = ELEMENT_DATA;
 
-  constructor() { }
+  constructor(
+    public dialog: MatDialog,
+  ) { }
 
   ngOnInit() {
   }
 
+  public addOrEditEntry(entry: FoodEntry) {
+    console.log(entry);
+    const dialogRef = this.dialog.open(AddEditFoodEntryComponent, {
+			data: entry ? entry : null,
+			width: '500px'
+		});
+		dialogRef.afterClosed().subscribe(result => {
+			console.log('The dialog was closed', result);
+		});
+  }
 }
