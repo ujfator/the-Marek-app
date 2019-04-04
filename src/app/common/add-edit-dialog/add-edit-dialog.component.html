@@ -1,0 +1,29 @@
+<form [formGroup]="form" fxLayout="column" fxLayoutAlign="start stretch" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <mat-label>{{capitalizeFirstLetter(this.keys[0])}}</mat-label>
+    <input name="date" type="date" formControlName="date" required matInput placeholder="{{capitalizeFirstLetter(this.keys[0])}}">
+    <mat-error>ERROR</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>{{capitalizeFirstLetter(this.keys[1])}}</mat-label>
+    <input name="column1" type="text" formControlName="column1" required matInput placeholder="{{capitalizeFirstLetter(this.keys[1])}}">
+    <mat-error>ERROR</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>{{capitalizeFirstLetter(this.keys[2])}}</mat-label>
+    <input name="column2" type="text" formControlName="column2" required matInput placeholder="{{capitalizeFirstLetter(this.keys[2])}}">
+    <mat-error>ERROR</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>{{capitalizeFirstLetter(this.keys[3])}}</mat-label>
+    <input name="column3" type="text" formControlName="column3" required matInput placeholder="{{capitalizeFirstLetter(this.keys[3])}}">
+  </mat-form-field>
+
+  <div mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+    <button mat-stroked-button type="reset" color="warn" (click)="dialogRef.close()">Cancel</button>
+    <button mat-stroked-button color="primary" fxFlexOffset="15px" type="submit">Submit</button>
+  </div>
+</form>

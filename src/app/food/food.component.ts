@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material';
 
-import { AddEditFoodEntryComponent } from '../food/add-edit-food-entry/add-edit-food-entry.component';
+import { AddEditDialogComponent } from '../common/add-edit-dialog/add-edit-dialog.component';
 
-export interface FoodEntry {
+interface FoodEntryInterface {
   date: Date,
   breakfast: string;
   lunch: string;
   dinner: string;
 }
 
-const ELEMENT_DATA: FoodEntry[] = [
+const ELEMENT_DATA: FoodEntryInterface[] = [
   {
     date: new Date(),
     breakfast: 'hummus, bread, skyr - me',
@@ -24,22 +24,25 @@ const ELEMENT_DATA: FoodEntry[] = [
   templateUrl: './food.component.html',
   styleUrls: ['./food.component.scss']
 })
-export class FoodComponent implements OnInit {
+export class FoodComponent {
 
-  displayedColumns: string[] = ['date', 'breakfast', 'lunch', 'dinner', 'edit'];
-  dataSource = ELEMENT_DATA;
+  public displayedColumns: string[] = ['date', 'breakfast', 'lunch', 'dinner', 'edit'];
+  public dataSource = ELEMENT_DATA;
+  public keys: FoodEntryInterface = {
+    date: new Date,
+    breakfast: '',
+    lunch: '',
+    dinner: ''
+  }
 
   constructor(
     public dialog: MatDialog,
   ) { }
 
-  ngOnInit() {
-  }
-
-  public addOrEditEntry(entry: FoodEntry) {
+  public addOrEditEntry(entry: FoodEntryInterface) {
     console.log(entry);
-    const dialogRef = this.dialog.open(AddEditFoodEntryComponent, {
-			data: entry ? entry : null,
+    const dialogRef = this.dialog.open(AddEditDialogComponent, {
+			data: entry ? entry : this.keys,
 			width: '500px'
 		});
 		dialogRef.afterClosed().subscribe(result => {

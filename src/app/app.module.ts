@@ -5,9 +5,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { AddEditFoodEntryComponent } from './food/add-edit-food-entry/add-edit-food-entry.component';
-import { AppRoutingModule } from './app-routing.module';
+import { AddEditDialogComponent } from './common/add-edit-dialog/add-edit-dialog.component';
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import { BodyMindComponent } from './body-mind/body-mind.component';
 import { FoodComponent } from './food/food.component';
 
 import {
@@ -92,11 +93,14 @@ const materialModules = [
 @NgModule({
   bootstrap: [AppComponent],
   declarations: [
-    AddEditFoodEntryComponent,
     AppComponent,
     FoodComponent,
+    BodyMindComponent,
+    AddEditDialogComponent,
   ],
-  entryComponents: [AddEditFoodEntryComponent],
+  entryComponents: [
+    AddEditDialogComponent,
+  ],
   imports: [
     AppRoutingModule,
     BrowserModule,
