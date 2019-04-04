@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RunningMeditationComponent } from './running-meditation.component';
+import { BodyMindComponent } from './body-mind.component';
 
-describe('RunningMeditationComponent', () => {
-  let component: RunningMeditationComponent;
-  let fixture: ComponentFixture<RunningMeditationComponent>;
+describe('BodyMindComponent', () => {
+  let component: BodyMindComponent;
+  let fixture: ComponentFixture<BodyMindComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RunningMeditationComponent ]
+      declarations: [ BodyMindComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RunningMeditationComponent);
+    fixture = TestBed.createComponent(BodyMindComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
