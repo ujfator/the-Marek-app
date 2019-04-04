@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BodyMindComponent } from './body-mind/body-mind.component';
 import { FoodComponent } from './food/food.component';
+import { SchoolBooksComponent } from './school-books/school-books.component';
 
 import {
 	MatAutocompleteModule,
@@ -97,6 +98,7 @@ const materialModules = [
     FoodComponent,
     BodyMindComponent,
     AddEditDialogComponent,
+    SchoolBooksComponent,
   ],
   entryComponents: [
     AddEditDialogComponent,
