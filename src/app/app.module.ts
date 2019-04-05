@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { DragAndDropModule } from 'angular-draggable-droppable';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -66,7 +67,7 @@ const materialModules = [
 	MatDialogModule,
 	// MatDividerModule,
 	MatExpansionModule,
-	// MatGridListModule,
+  MatGridListModule,
 	MatIconModule,
 	MatInputModule,
 	MatListModule,
@@ -107,6 +108,7 @@ const materialModules = [
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
+    DragAndDropModule,
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
