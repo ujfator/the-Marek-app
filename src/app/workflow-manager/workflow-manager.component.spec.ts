@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SchoolBooksComponent } from './school-books.component';
+import { WorkflowManagerComponent } from './workflow-manager.component';
 
-describe('SchoolBooksComponent', () => {
-  let component: SchoolBooksComponent;
-  let fixture: ComponentFixture<SchoolBooksComponent>;
+describe('WorkflowManagerComponent', () => {
+  let component: WorkflowManagerComponent;
+  let fixture: ComponentFixture<WorkflowManagerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SchoolBooksComponent ]
+      declarations: [ WorkflowManagerComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SchoolBooksComponent);
+    fixture = TestBed.createComponent(WorkflowManagerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

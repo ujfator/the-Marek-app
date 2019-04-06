@@ -14,6 +14,9 @@
     "typeRoots": [
       "node_modules/@types"
     ],
+    "paths": {
+      "tslib" : ["./node_modules/tslib/tslib.d.ts"]
+    },
     "lib": [
       "es2018",
       "dom"
