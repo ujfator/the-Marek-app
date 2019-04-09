@@ -1,7 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": "src",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
@@ -14,9 +14,6 @@
     "typeRoots": [
       "node_modules/@types"
     ],
-    "paths": {
-      "tslib" : ["./node_modules/tslib/tslib.d.ts"]
-    },
     "lib": [
       "es2018",
       "dom"
