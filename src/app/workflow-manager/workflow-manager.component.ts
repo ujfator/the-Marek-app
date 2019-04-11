@@ -10,20 +10,29 @@ export class WorkflowManagerComponent {
 
   constructor() { }
 
-  todo = [
-    'Get to work',
-    'Pick up groceries',
-    'Go home',
-    'Fall asleep'
+  new = [
+    'MWG - Trello API calls JS -> PHP',
+    'Marek - Money manager tab',
+    'Marek - Create chat app',
   ];
 
-  done = [
-    'Get up',
-    'Brush teeth',
-    'Take a shower',
-    'Check e-mail',
-    'Walk dog'
+  approved = [
+    'Marek - Long Term Goals',
+    'Bachelor - Text Pavel'
   ];
+
+  commited = [
+    'Marek - Workflow Manager',
+    'MWG - PHP MYSQL !'
+  ]
+
+  done = [
+    'Marek - Routing',
+    'Marek - Food Tab',
+    'Marek - Theming',
+    'Marek - Body & Mind Tab',
+    'MWG - Charts'
+  ]
 
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {

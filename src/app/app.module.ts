@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { DragAndDropModule } from 'angular-draggable-droppable';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -108,7 +108,7 @@ const materialModules = [
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
-    DragAndDropModule,
+    DragDropModule,
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
