@@ -1,0 +1,53 @@
+<div fxLayout="row" fxLayoutAlign="space-around">
+  <div>
+    <h2>New</h2>
+    <mat-card
+      cdkDropList
+      #newList="cdkDropList"
+      [cdkDropListData]="new"
+      [cdkDropListConnectedTo]="[newList, approvedList, commitedList, doneList]"
+      class="workflow-manager-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="workflow-manager-box" *ngFor="let item of new" cdkDrag>{{item}}</div>
+    </mat-card>
+  </div>
+
+  <div class="example-container">
+    <h2>Approved</h2>
+    <mat-card
+      cdkDropList
+      #approvedList="cdkDropList"
+      [cdkDropListData]="approved"
+      [cdkDropListConnectedTo]="[newList, approvedList, commitedList, doneList]"
+      class="workflow-manager-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="workflow-manager-box" *ngFor="let item of approved" cdkDrag>{{item}}</div>
+    </mat-card>
+  </div>
+
+  <div class="example-container">
+    <h2>Commited</h2>
+    <mat-card
+      cdkDropList
+      #commitedList="cdkDropList"
+      [cdkDropListData]="commited"
+      [cdkDropListConnectedTo]="[newList, approvedList, commitedList, doneList]"
+      class="workflow-manager-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="workflow-manager-box" *ngFor="let item of commited" cdkDrag>{{item}}</div>
+    </mat-card>
+  </div>
+
+  <div class="example-container">
+    <h2>Done</h2>
+    <mat-card
+      cdkDropList
+      #doneList="cdkDropList"
+      [cdkDropListData]="done"
+      [cdkDropListConnectedTo]="[doneList]"
+      class="workflow-manager-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="workflow-manager-box" *ngFor="let item of done" cdkDrag>{{item}}</div>
+    </mat-card>
+  </div>
+</div>

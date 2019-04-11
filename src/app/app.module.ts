@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -10,6 +11,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BodyMindComponent } from './body-mind/body-mind.component';
 import { FoodComponent } from './food/food.component';
+import { WorkflowManagerComponent } from './workflow-manager/workflow-manager.component';
 
 import {
 	MatAutocompleteModule,
@@ -65,7 +67,7 @@ const materialModules = [
 	MatDialogModule,
 	// MatDividerModule,
 	MatExpansionModule,
-	// MatGridListModule,
+  MatGridListModule,
 	MatIconModule,
 	MatInputModule,
 	MatListModule,
@@ -97,6 +99,7 @@ const materialModules = [
     FoodComponent,
     BodyMindComponent,
     AddEditDialogComponent,
+    WorkflowManagerComponent,
   ],
   entryComponents: [
     AddEditDialogComponent,
@@ -105,6 +108,7 @@ const materialModules = [
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
+    DragDropModule,
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
