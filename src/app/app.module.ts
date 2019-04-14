@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { ChartsModule } from 'ng2-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BodyMindComponent } from './body-mind/body-mind.component';
 import { FoodComponent } from './food/food.component';
+import { MoneyManagerComponent } from './money-manager/money-manager.component';
 import { WorkflowManagerComponent } from './workflow-manager/workflow-manager.component';
 
 import {
@@ -100,6 +101,7 @@ const materialModules = [
     BodyMindComponent,
     AddEditDialogComponent,
     WorkflowManagerComponent,
+    MoneyManagerComponent,
   ],
   entryComponents: [
     AddEditDialogComponent,
@@ -108,6 +110,7 @@ const materialModules = [
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
+    ChartsModule,
     DragDropModule,
     FlexLayoutModule,
     FormsModule,
