@@ -14,6 +14,8 @@ export class WorkflowManagerComponent {
     'MWG - Trello API calls JS -> PHP',
     'Marek - Money manager tab',
     'Marek - Create chat app',
+    'Marek - Dashboard',
+    'joinIt - iDoklad'
   ];
 
   approved = [
