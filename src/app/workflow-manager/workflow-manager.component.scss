@@ -1,9 +1,15 @@
+@import '../app.component.scss';
+
 .workflow-manager-list {
   border: solid 1px #ccc;
   min-height: 60px;
   border-radius: 4px;
   overflow: hidden;
   display: block;
+}
+
+.workflow-manager-toolbar {
+  height: 35px;
 }
 
 .workflow-manager-box {

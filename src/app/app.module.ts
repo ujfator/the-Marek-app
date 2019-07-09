@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AddEditDialogComponent } from './common/add-edit-dialog/add-edit-dialog.component';
 import { AppComponent } from './app.component';
@@ -13,6 +14,8 @@ import { BodyMindComponent } from './body-mind/body-mind.component';
 import { FoodComponent } from './food/food.component';
 import { MoneyManagerComponent } from './money-manager/money-manager.component';
 import { WorkflowManagerComponent } from './workflow-manager/workflow-manager.component';
+import { WorkflowManagerService } from './common/services/workflow-manager.service';
+import { AddEditWorkflowItemComponent } from './workflow-manager/add-edit-workflow-item/add-edit-workflow-item.component';
 
 import {
 	MatAutocompleteModule,
@@ -100,11 +103,13 @@ const materialModules = [
     FoodComponent,
     BodyMindComponent,
     AddEditDialogComponent,
+    AddEditWorkflowItemComponent,
     WorkflowManagerComponent,
     MoneyManagerComponent,
   ],
   entryComponents: [
     AddEditDialogComponent,
+    AddEditWorkflowItemComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -115,8 +120,9 @@ const materialModules = [
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     ...materialModules,
   ],
-  providers: [],
+  providers: [ WorkflowManagerService ],
 })
 export class AppModule { }

@@ -6,7 +6,7 @@
 		<div class="header-menu-breadcrum">
 			<h4>The Marek App</h4>
 		</div>
-		<span class="example-fill-remaining-space"></span>
+		<span class="fill-remaining-space"></span>
 		<button mat-raised-button color="primary" (click)="onSetTheme('dark-theme')">{{theme}}</button>
 	</mat-toolbar>
 	<mat-divider></mat-divider>
@@ -14,11 +14,11 @@
 		<mat-sidenav class="side-navigation" #sideNavigation opened mode="side">
 			<div fxLayout="column" fxLayoutAlign="start space-between" fxFlex>
 				<mat-nav-list fxLayout="column" fxLayoutAlign="start stretch">
-          <a mat-list-item [routerLink]="['/food']">Food</a>
+          <!-- <a mat-list-item [routerLink]="['/food']">Food</a>
           <a mat-list-item [routerLink]="['/body-mind']">Body & Mind</a>
-          <a mat-list-item [routerLink]="['/money-manager']">Money Manager</a>
+          <a mat-list-item [routerLink]="['/money-manager']">Money Manager</a> -->
 					<a mat-list-item [routerLink]="['/workflow-manager']">Workflow Manager</a>
-					<a mat-list-item [routerLink]="['/long-term-goals']">Long Term Goals</a>
+					<!-- <a mat-list-item [routerLink]="['/long-term-goals']">Long Term Goals</a> -->
 				</mat-nav-list>
 			</div>
 		</mat-sidenav>

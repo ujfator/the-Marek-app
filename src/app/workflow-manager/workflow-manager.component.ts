@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { WorkflowManagerService } from '../common/services/workflow-manager.service';
+import { WorkflowItemModel } from 'server/models';
+import { AddEditWorkflowItemComponent } from './add-edit-workflow-item/add-edit-workflow-item.component';
 
 @Component({
   selector: 'app-workflow-manager',
@@ -8,35 +12,18 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 })
 export class WorkflowManagerComponent {
 
-  constructor() { }
+  public workflowItems: WorkflowItemModel[];
 
-  new = [
-    'MWG - Trello API calls JS -> PHP',
-    'Marek - Money manager tab',
-    'Marek - Create chat app',
-    'Marek - Dashboard',
-    'joinIt - iDoklad'
-  ];
+  constructor(
+    public workflowManagerService: WorkflowManagerService,
+    public dialog: MatDialog,
+  ) {
+    this.workflowManagerService.items.subscribe((items) => {
+      this.workflowItems = items;
+    })
+   }
 
-  approved = [
-    'Marek - Long Term Goals',
-    'Bachelor - Text Pavel'
-  ];
-
-  commited = [
-    'Marek - Workflow Manager',
-    'MWG - PHP MYSQL !'
-  ]
-
-  done = [
-    'Marek - Routing',
-    'Marek - Food Tab',
-    'Marek - Theming',
-    'Marek - Body & Mind Tab',
-    'MWG - Charts'
-  ]
-
-  drop(event: CdkDragDrop<string[]>) {
+  public drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -45,5 +32,16 @@ export class WorkflowManagerComponent {
                         event.previousIndex,
                         event.currentIndex);
     }
+  }
+
+  public addEditItem(entry) {
+    console.log(entry);
+    const dialogRef = this.dialog.open(AddEditWorkflowItemComponent, {
+			data: entry,
+			width: '500px'
+		});
+		dialogRef.afterClosed().subscribe(result => {
+			console.log('The dialog was closed', result);
+		});
   }
 }

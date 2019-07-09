@@ -1,0 +1,19 @@
+<form [formGroup]="form" fxLayout="column" fxLayoutAlign="start stretch" (ngSubmit)="onSubmit()">
+
+  <mat-form-field>
+    <mat-label>Title</mat-label>
+    <input name="title" type="text" formControlName="title" required matInput placeholder="title">
+    <mat-error>ERROR</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Content</mat-label>
+    <textarea name="content" type="text" formControlName="content" required matInput placeholder="Content"></textarea>
+    <mat-error>ERROR</mat-error>
+  </mat-form-field>
+
+  <div mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+    <button mat-stroked-button type="reset" color="warn" (click)="dialogRef.close()">Cancel</button>
+    <button mat-stroked-button color="primary" fxFlexOffset="15px" type="submit">Submit</button>
+  </div>
+</form>
