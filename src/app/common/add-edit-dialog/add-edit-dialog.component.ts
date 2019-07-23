@@ -20,7 +20,6 @@ export class AddEditDialogComponent implements OnInit {
 
   public ngOnInit(): void {
     this.keys = Object.keys(this.data);
-    console.log(this.keys);
 		this.form = new FormGroup({
 			date: new FormControl((this.data && this.data[this.keys[0]] ? this.data[this.keys[0]].toISOString().substr(0, 10) : new Date().toISOString().substr(0, 10))),
 			column1: new FormControl((this.data && this.data[this.keys[1]] ? this.data[this.keys[1]] : ''), Validators.required),

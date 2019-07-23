@@ -10,11 +10,11 @@
     <mat-card
       cdkDropList
       #newList="cdkDropList"
-      [cdkDropListData]="new"
+      [cdkDropListData]="columns.new"
       [cdkDropListConnectedTo]="[newList, approvedList, commitedList, doneList]"
       class="workflow-manager-list"
       (cdkDropListDropped)="drop($event)">
-      <div class="workflow-manager-box" *ngFor="let item of new" cdkDrag>{{item}}</div>
+      <div class="workflow-manager-box" *ngFor="let item of columns.new" cdkDrag>{{item.content}}</div>
     </mat-card>
   </div>
 
@@ -23,11 +23,11 @@
     <mat-card
       cdkDropList
       #approvedList="cdkDropList"
-      [cdkDropListData]="approved"
+      [cdkDropListData]="columns.approved"
       [cdkDropListConnectedTo]="[newList, approvedList, commitedList, doneList]"
       class="workflow-manager-list"
       (cdkDropListDropped)="drop($event)">
-      <div class="workflow-manager-box" *ngFor="let item of approved" cdkDrag>{{item}}</div>
+      <div class="workflow-manager-box" *ngFor="let item of columns.approved" cdkDrag>{{item.content}}</div>
     </mat-card>
   </div>
 
@@ -36,11 +36,11 @@
     <mat-card
       cdkDropList
       #commitedList="cdkDropList"
-      [cdkDropListData]="commited"
+      [cdkDropListData]="columns.commited"
       [cdkDropListConnectedTo]="[newList, approvedList, commitedList, doneList]"
       class="workflow-manager-list"
       (cdkDropListDropped)="drop($event)">
-      <div class="workflow-manager-box" *ngFor="let item of commited" cdkDrag>{{item}}</div>
+      <div class="workflow-manager-box" *ngFor="let item of columns.commited" cdkDrag>{{item.content}}</div>
     </mat-card>
   </div>
 
@@ -49,11 +49,11 @@
     <mat-card
       cdkDropList
       #doneList="cdkDropList"
-      [cdkDropListData]="done"
+      [cdkDropListData]="columns.done"
       [cdkDropListConnectedTo]="[doneList]"
       class="workflow-manager-list"
       (cdkDropListDropped)="drop($event)">
-      <div class="workflow-manager-box" *ngFor="let item of done" cdkDrag>{{item}}</div>
+      <div class="workflow-manager-box" *ngFor="let item of columns.done" cdkDrag>{{item.content}}</div>
     </mat-card>
   </div>
 </div>

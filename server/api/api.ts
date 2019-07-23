@@ -16,6 +16,6 @@ export class Api extends BaseController {
 
 		console.warn('register API V1');
 
-    this.__router.use('/workflowManager', this.__init(WorkflowManagerRoutes, args).__router);
+    	this.__router.use('/workflowManager', this.__init(WorkflowManagerRoutes, args).__router);
 	}
 }

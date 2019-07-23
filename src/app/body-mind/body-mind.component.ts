@@ -41,7 +41,6 @@ export class BodyMindComponent {
   ) { }
 
   public addOrEditEntry(entry: BodyMindEntryInterface) {
-    console.log(entry);
     const dialogRef = this.dialog.open(AddEditDialogComponent, {
       data: entry ? entry : this.keys,
 			width: '500px'

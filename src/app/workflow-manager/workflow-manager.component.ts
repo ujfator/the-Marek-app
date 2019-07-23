@@ -5,6 +5,13 @@ import { WorkflowManagerService } from '../common/services/workflow-manager.serv
 import { WorkflowItemModel } from 'server/models';
 import { AddEditWorkflowItemComponent } from './add-edit-workflow-item/add-edit-workflow-item.component';
 
+interface columns {
+  new: WorkflowItemModel[],
+  approved: WorkflowItemModel[],
+  commited: WorkflowItemModel[],
+  done: WorkflowItemModel[]
+}
+
 @Component({
   selector: 'app-workflow-manager',
   templateUrl: './workflow-manager.component.html',
@@ -13,13 +20,36 @@ import { AddEditWorkflowItemComponent } from './add-edit-workflow-item/add-edit-
 export class WorkflowManagerComponent {
 
   public workflowItems: WorkflowItemModel[];
+  public columns: columns = {
+    new: [],
+    approved: [],
+    commited: [],
+    done: []
+  };
 
   constructor(
     public workflowManagerService: WorkflowManagerService,
     public dialog: MatDialog,
   ) {
     this.workflowManagerService.items.subscribe((items) => {
-      this.workflowItems = items;
+      if (items) this.workflowItems = items;
+      this.workflowItems && this.workflowItems.forEach(item => {
+        switch(item.container) {
+          case 'new':
+            this.columns.new.push(item);
+            break;
+          case 'approved':
+            this.columns.approved.push(item);
+            break;
+          case 'commited':
+            this.columns.commited.push(item);
+            break;
+          case 'done':
+            this.columns.done.push(item);
+            break;
+        }
+      });
+      console.log(this.workflowItems, this.columns);
     })
    }
 
@@ -35,7 +65,6 @@ export class WorkflowManagerComponent {
   }
 
   public addEditItem(entry) {
-    console.log(entry);
     const dialogRef = this.dialog.open(AddEditWorkflowItemComponent, {
 			data: entry,
 			width: '500px'

@@ -15,20 +15,22 @@ export class WorkflowManagerService extends BaseService {
 		private http: HttpClient
 	) {
 		super();
+		this.loadItems();
   }
 
   public addItem(item: WorkflowItemModel): void {
+	  console.log(item, environment);
 		this.http.post<WorkflowItemModel>(`${environment.apiHost}/workflowManager`, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems());
 	}
 
 	public loadItems(): void {
-		this.http.get<WorkflowItemModel[]>(`${environment.apiHost}/workflowManager/workflowManager`).subscribe((items) => {
+		this.http.get<WorkflowItemModel[]>(`${environment.apiHost}/workflowManager`).subscribe((items) => {
 			this.items.next(items);
 		});
 	}
 
 	public patchItem(item: WorkflowItemModel): void {
-		this.http.patch<WorkflowItemModel>(`${environment.apiHost}/workflowManager/workflowManager`, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems())
+		this.http.patch<WorkflowItemModel>(`${environment.apiHost}/workflowManager`, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems())
 	}
 
 }

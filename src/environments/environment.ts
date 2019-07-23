@@ -1,9 +1,9 @@
 export const environment = {
-	auth_database: 'marekApp',
-	database: 'marekApp',
+	auth_database: 'marek',
+	database: 'marek',
 	database_passwd: 'marek',
 	database_port: '27017',
 	database_url: '127.0.0.1',
-	database_user: 'marekApp',
+	database_user: 'marek',
 	production: false
 };
