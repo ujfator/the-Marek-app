@@ -16,6 +16,8 @@ export class WorkflowManagerRoutes extends BaseController {
 		this.__router.get('/:workflowItemId', (req: Request, res: Response) => this._get(req, res));
 		this.__router.get('/', (req: Request, res: Response) => this._getAll(req, res));
 		this.__router.post('/', (req: Request, res: Response) => this._set(req, res));
+		this.__router.patch('/', (req: Request, res: Response) => this._patch(req, res));
+
 	}
 
 	private _get = (req: Request, res: Response): void => {
@@ -44,4 +46,13 @@ export class WorkflowManagerRoutes extends BaseController {
 			console.warn(e);
 		});
 	}
+
+	private _patch = (req: Request, res: Response): void => {
+		this._workflowManagerController.patchWorkflowItem(req.body).then((workflowItem: WorkflowItemModel) => {
+			res.jsonp(workflowItem);
+		}).catch((e: any) => {
+			res.status(500).send(e);
+			console.warn(e);
+		});
+	}	
 }

@@ -1,59 +1,127 @@
-<mat-toolbar class="workflow-manager-toolbar">
-    <span class="fill-remaining-space"></span>
-  <button mat-button (click)="addEditItem()">
-    <mat-icon>add</mat-icon>
-  </button>
-</mat-toolbar>
-<div fxLayout="row" fxLayoutAlign="space-around">
+<div fxFill fxLayout="column">
   <div>
-    <h2>New</h2>
-    <mat-card
-      cdkDropList
+    <mat-toolbar class="workflow-manager-toolbar">
+      <span class="fill-remaining-space"></span>
+      <button matTooltip="Create item" mat-button (click)="addEditItem()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </mat-toolbar>
+  </div>
+  <mat-divider horizontal></mat-divider>
+  <div fxLayout="row" fxFlex>
+    <mat-card cdkDropList
       #newList="cdkDropList"
       [cdkDropListData]="columns.new"
       [cdkDropListConnectedTo]="[newList, approvedList, commitedList, doneList]"
       class="workflow-manager-list"
       (cdkDropListDropped)="drop($event)">
-      <div class="workflow-manager-box" *ngFor="let item of columns.new" cdkDrag>{{item.content}}</div>
+      <mat-card-header>
+        <div mat-card-avatar>
+          <mat-icon>forward</mat-icon>
+        </div>
+        <mat-card-title>New</mat-card-title>
+      </mat-card-header>
+      <mat-expansion-panel class="expansion-panel" cdkDrag *ngFor="let item of columns.new">
+        <mat-expansion-panel-header>
+          <mat-panel-title matTooltip="{{item.name}}" class="panel-title">
+            {{item.name}}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div fxLayout="row" fxFlex>
+          <div fxFlex="70" class="content">{{item.content}}</div>
+          <div fxFlex fxFlexAlign="end">
+            <button matTootlip="edit" (click)="addEditItem(item)" mat-raised-button>
+              <mat-icon>edit</mat-icon>
+            </button>
+          </div>
+        </div>
+      </mat-expansion-panel>
     </mat-card>
-  </div>
-
-  <div class="example-container">
-    <h2>Approved</h2>
-    <mat-card
-      cdkDropList
-      #approvedList="cdkDropList"
-      [cdkDropListData]="columns.approved"
-      [cdkDropListConnectedTo]="[newList, approvedList, commitedList, doneList]"
-      class="workflow-manager-list"
-      (cdkDropListDropped)="drop($event)">
-      <div class="workflow-manager-box" *ngFor="let item of columns.approved" cdkDrag>{{item.content}}</div>
-    </mat-card>
-  </div>
-
-  <div class="example-container">
-    <h2>Commited</h2>
-    <mat-card
-      cdkDropList
-      #commitedList="cdkDropList"
-      [cdkDropListData]="columns.commited"
-      [cdkDropListConnectedTo]="[newList, approvedList, commitedList, doneList]"
-      class="workflow-manager-list"
-      (cdkDropListDropped)="drop($event)">
-      <div class="workflow-manager-box" *ngFor="let item of columns.commited" cdkDrag>{{item.content}}</div>
-    </mat-card>
-  </div>
-
-  <div class="example-container">
-    <h2>Done</h2>
-    <mat-card
-      cdkDropList
-      #doneList="cdkDropList"
-      [cdkDropListData]="columns.done"
-      [cdkDropListConnectedTo]="[doneList]"
-      class="workflow-manager-list"
-      (cdkDropListDropped)="drop($event)">
-      <div class="workflow-manager-box" *ngFor="let item of columns.done" cdkDrag>{{item.content}}</div>
-    </mat-card>
+    <mat-card cdkDropList
+    #approvedList="cdkDropList"
+    [cdkDropListData]="columns.approved"
+    [cdkDropListConnectedTo]="[newList, approvedList, commitedList, doneList]"
+    class="workflow-manager-list"
+    (cdkDropListDropped)="drop($event)">
+    <mat-card-header>
+      <div mat-card-avatar>
+          <mat-icon>flight_takeoff</mat-icon>
+        </div>
+      <mat-card-title>Approved</mat-card-title>
+    </mat-card-header>
+    <mat-expansion-panel class="expansion-panel" *ngFor="let item of columns.approved" cdkDrag>
+      <mat-expansion-panel-header>
+        <mat-panel-title matTooltip="{{item.name}}">
+          {{item.name}}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div fxLayout="row" fxFlex>
+        <div fxFlex="70" class="content">{{item.content}}</div>
+        <div fxFlex fxFlexAlign="end">
+          <button matTootlip="edit" (click)="addEditItem(item)" mat-raised-button>
+            <mat-icon>edit</mat-icon>
+          </button>
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </mat-card>
+  <mat-card cdkDropList
+    #commitedList="cdkDropList"
+    [cdkDropListData]="columns.commited"
+    [cdkDropListConnectedTo]="[newList, approvedList, commitedList, doneList]"
+    class="workflow-manager-list"
+    (cdkDropListDropped)="drop($event)">
+    <mat-card-header>
+      <div mat-card-avatar>
+          <mat-icon>rowing</mat-icon>
+        </div>
+      <mat-card-title>Commited</mat-card-title>
+    </mat-card-header>
+    <mat-expansion-panel class="expansion-panel" *ngFor="let item of columns.commited" cdkDrag>
+      <mat-expansion-panel-header>
+        <mat-panel-title matTooltip="{{item.name}}">
+          {{item.name}}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div fxLayout="row" fxFlex>
+        <div fxFlex="70" class="content">{{item.content}}</div>
+        <div fxFlex fxFlexAlign="end">
+          <button matTootlip="edit" (click)="addEditItem(item)" mat-raised-button>
+            <mat-icon>edit</mat-icon>
+          </button>
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </mat-card>
+  <mat-card cdkDropList
+    #doneList="cdkDropList"
+    [cdkDropListData]="columns.done"
+    [cdkDropListConnectedTo]="[newList, approvedList, commitedList, doneList]"
+    class="workflow-manager-list"
+    (cdkDropListDropped)="drop($event)">
+    <mat-card-header>
+      <div mat-card-avatar>
+          <mat-icon>check_circle_outline</mat-icon>
+        </div>
+      <mat-card-title>Done</mat-card-title>
+    </mat-card-header>
+    <mat-expansion-panel class="expansion-panel" *ngFor="let item of columns.done" cdkDrag>
+      <mat-expansion-panel-header>
+        <mat-panel-title matTooltip="{{item.name}}">
+          {{item.name}}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div fxLayout="row" fxFlex>
+        <div fxFlex="70" class="content">{{item.content}}</div>
+        <div fxFlex fxFlexAlign="end">
+          <button matTootlip="edit" (click)="addEditItem(item)" mat-raised-button>
+            <mat-icon>edit</mat-icon>
+          </button>
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </mat-card>
   </div>
 </div>
+
+

@@ -1,7 +1,7 @@
 import { BaseModel } from './base.model';
 
 export class WorkflowItemModel extends BaseModel {
-	public title: string = null;
+	public name: string = null;
   	public content: string = null;
   	public container: string = null;
 

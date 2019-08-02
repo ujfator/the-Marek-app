@@ -14,7 +14,7 @@ import { BodyMindComponent } from './body-mind/body-mind.component';
 import { FoodComponent } from './food/food.component';
 import { MoneyManagerComponent } from './money-manager/money-manager.component';
 import { WorkflowManagerComponent } from './workflow-manager/workflow-manager.component';
-import { WorkflowManagerService } from './common/services/workflow-manager.service';
+import { WorkflowManagerService } from './common/services';
 import { AddEditWorkflowItemComponent } from './workflow-manager/add-edit-workflow-item/add-edit-workflow-item.component';
 
 import {
@@ -62,7 +62,7 @@ const materialModules = [
 	// MatBadgeModule,
 	// MatBottomSheetModule,
 	MatButtonModule,
-	// MatButtonToggleModule,
+	MatButtonToggleModule,
 	MatCardModule,
 	MatCheckboxModule,
 	MatChipsModule,
@@ -71,7 +71,7 @@ const materialModules = [
 	MatDialogModule,
 	// MatDividerModule,
 	MatExpansionModule,
-  MatGridListModule,
+  	MatGridListModule,
 	MatIconModule,
 	MatInputModule,
 	MatListModule,

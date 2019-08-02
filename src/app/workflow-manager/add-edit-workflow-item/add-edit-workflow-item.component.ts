@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { FormControl, Validators, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { WorkflowManagerService } from 'src/app/common/services/workflow-manager.service';
-  import { from } from 'rxjs';
+import { WorkflowItemModel } from '../../../../server/models'
+import { WorkflowManagerService } from 'src/app/common/services';
 
 @Component({
   selector: 'app-add-edit-workflow-item',
@@ -17,12 +17,13 @@ export class AddEditWorkflowItemComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<AddEditWorkflowItemComponent>,
     public workflowManagerService: WorkflowManagerService,
+    @Inject(MAT_DIALOG_DATA) public data: WorkflowItemModel,
   ) { }
 
   public ngOnInit(): void {
 		this.form = new FormGroup({
-      title: new FormControl(),
-      content: new FormControl(),
+      name: new FormControl(this.data ? this.data.name : ''),
+      content: new FormControl(this.data ? this.data.content : ''),
 		});
   }
 
@@ -30,12 +31,13 @@ export class AddEditWorkflowItemComponent implements OnInit {
 	public onSubmit(): void {
 		if (this.form.valid) {
       console.log('new or updated', this.form.value);
-      const newItem = {
-        title: this.form.value.title,
+      const newOrUpdatedItem = {
+        name: this.form.value.name,
         content: this.form.value.content,
-        container: 'new'
+        container: 'new',
+        id: this.data && this.data.id,
       }
-      this.workflowManagerService.addItem(newItem);
+      this.data ? this.workflowManagerService.patchItem(newOrUpdatedItem) : this.workflowManagerService.addItem(newOrUpdatedItem);
 			this.dialogRef.close();
 		}
   }

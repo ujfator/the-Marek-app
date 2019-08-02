@@ -31,8 +31,9 @@ export class WorkflowManagerComponent {
     public workflowManagerService: WorkflowManagerService,
     public dialog: MatDialog,
   ) {
-    this.workflowManagerService.items.subscribe((items) => {
-      if (items) this.workflowItems = items;
+    this.workflowManagerService.items.subscribe(async (items) => {
+      if (this.columns) this.emptyColumns();
+      if (items) this.workflowItems = await items;
       this.workflowItems && this.workflowItems.forEach(item => {
         switch(item.container) {
           case 'new':
@@ -49,28 +50,52 @@ export class WorkflowManagerComponent {
             break;
         }
       });
-      console.log(this.workflowItems, this.columns);
     })
-   }
-
-  public drop(event: CdkDragDrop<string[]>) {
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
-      transferArrayItem(event.previousContainer.data,
-                        event.container.data,
-                        event.previousIndex,
-                        event.currentIndex);
-    }
   }
 
-  public addEditItem(entry) {
+  public changeContainerName (name: string): string {
+    switch (name) {
+      case 'cdk-drop-list-0': return 'new';
+			case 'cdk-drop-list-1': return 'approved';
+			case 'cdk-drop-list-2': return 'commited';
+			case 'cdk-drop-list-3': return 'done';
+    } 
+  }
+
+  public drop(e: CdkDragDrop<string[]>) {
+    //debugger;
+    let newContainer: string;
+    let movedItem: any;
+    if (e.previousContainer === e.container) {
+      moveItemInArray(e.container.data, e.previousIndex, e.currentIndex);
+    } else {
+      transferArrayItem(e.previousContainer.data, e.container.data, e.previousIndex, e.currentIndex);
+      newContainer = this.changeContainerName(e.container.id);
+      e.container.data.forEach((element) => {
+        if (element['container'] === newContainer) {} else {
+          movedItem = element;
+          movedItem.container = newContainer;
+          this.workflowManagerService.patchItem(movedItem);
+        }
+      })
+    }
+
+  }
+
+  public addEditItem(item?: WorkflowItemModel) {
     const dialogRef = this.dialog.open(AddEditWorkflowItemComponent, {
-			data: entry,
+			data: item ? item : '',
 			width: '500px'
 		});
 		dialogRef.afterClosed().subscribe(result => {
 			console.log('The dialog was closed', result);
 		});
   }
+
+  public emptyColumns (): void {
+   this.columns.new = [];
+   this.columns.approved = [];
+   this.columns.commited = [];
+   this.columns.done = [];
+  };
 }
