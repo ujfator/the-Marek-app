@@ -19,7 +19,6 @@ export class WorkflowManagerService extends BaseService {
   }
 
   public addItem(item: WorkflowItemModel): void {
-	  console.log(item, environment);
 		this.http.post<WorkflowItemModel>(`${environment.apiHost}/workflowManager`, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems());
 	}
 
@@ -29,7 +28,8 @@ export class WorkflowManagerService extends BaseService {
 		});
 	}
 
-	public patchItem(item: WorkflowItemModel): void {
+	public async patchItem(item: WorkflowItemModel): Promise<void> {
+		console.log(item);
 		this.http.patch<WorkflowItemModel>(`${environment.apiHost}/workflowManager`, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems())
 	}
 

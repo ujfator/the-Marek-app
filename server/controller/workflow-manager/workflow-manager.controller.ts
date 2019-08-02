@@ -17,9 +17,7 @@ export class WorkflowManagerController extends BaseController {
 	 * Get one WorkflowItem Model object.
 	 */
 	public getWorkflowItem(workflowItemId: string): Promise<WorkflowItemModel> {
-		return this.model.findById(workflowItemId).then((resp) => {
-			return new WorkflowItemModel(resp);
-		});
+		return this.model.findById(workflowItemId).then((resp) => new WorkflowItemModel(resp));
 	}
 
 	/**
@@ -39,5 +37,13 @@ export class WorkflowManagerController extends BaseController {
 		return this.model.insertMany(workflowItems).then((resp) => {
 			return resp.map((row) => new WorkflowItemModel(row));
 		});
+	}
+
+	/**
+	 * Patch WorkflowItem to the Database with the given Data.
+	 * It will return the patched WorkflowItems passed to the WorkflowItem Model object.
+	 */
+	public patchWorkflowItem(workflowItem: WorkflowItemModel): Promise<WorkflowItemModel> {
+		return this.model.findByIdAndUpdate(workflowItem.id, workflowItem).then((resp) => new WorkflowItemModel(resp));
 	}
 }
