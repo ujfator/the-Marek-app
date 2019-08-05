@@ -1,0 +1,31 @@
+<form [formGroup]="form" fxLayout="column" fxLayoutAlign="start stretch" (ngSubmit)="onSubmit()">
+
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input name="title" type="text" formControlName="name" required matInput placeholder="title">
+    <mat-error>ERROR</mat-error>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="data.origin === 'workflow'">
+    <mat-label>Content</mat-label>
+    <textarea name="content" type="text" formControlName="content" required matInput placeholder="Content"></textarea>
+    <mat-error>ERROR</mat-error>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="data.origin === 'money'">
+    <mat-label>Price</mat-label>
+    <input name="price" type="number" formControlName="price" required matInput placeholder="Price">
+    <mat-error>ERROR</mat-error>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="data.origin === 'money'">
+    <mat-label>Savings</mat-label>
+    <input name="savings" type="number" formControlName="savings" required matInput placeholder="Savings">
+    <mat-error>ERROR</mat-error>
+  </mat-form-field>
+
+  <div mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+    <button mat-stroked-button type="reset" color="warn" (click)="dialogRef.close()">Cancel</button>
+    <button mat-stroked-button color="primary" fxFlexOffset="15px" type="submit">Submit</button>
+  </div>
+</form>
