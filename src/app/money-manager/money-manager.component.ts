@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { ChartType } from 'chart.js';
-import { MultiDataSet, Label } from 'ng2-charts';
+import { MoneyItemModel } from 'server/models';
+import { MatDialog } from '@angular/material';
+import { AddEditItemComponent } from '../common/add-edit-item/add-edit-item.component';
+import { MoneyManagerService } from '../common/services';
 
 @Component({
   selector: 'app-money-manager',
@@ -9,21 +11,39 @@ import { MultiDataSet, Label } from 'ng2-charts';
 })
 export class MoneyManagerComponent {
 
-   // Doughnut
-   public doughnutChartLabels: Label[] = ['Saved car money', ' Car money to save'];
-   public doughnutChartData: MultiDataSet = [
-     [0, 100],
-   ];
-   public doughnutChartType: ChartType = 'doughnut';
+  public moneyItems: MoneyItemModel[];
+  public navigationItems;
+  
+  constructor(
+    public dialog: MatDialog,
+    public moneyService: MoneyManagerService,
+  ) {
+    this.moneyService.items.subscribe(async (items) => {
+      if (items) {
+        this.moneyItems = await items;
+        this._buildItems(items);
+      }
+    });
+  }
 
-   constructor() { }
+  public addEditItem(item?: MoneyItemModel) {
+    const dialogRef = this.dialog.open(AddEditItemComponent, {
+      data: {
+        item:item ? item : '',
+        origin: 'money'
+      },
+      width: '500px',
+		});
+		dialogRef.afterClosed().subscribe(result => {
+      result && (result.id ? this.moneyService.patchItem(result) : this.moneyService.addItem(result));
+			console.log('The dialog was closed', result ? result : 'by clicking on cancel');
+		});
+  }
 
-   // events
-   public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
-     console.log(event, active);
-   }
-
-   public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
-     console.log(event, active);
-   }
+  private async _buildItems (items) {
+    this.navigationItems = items.map((item: MoneyItemModel) => {
+      const obj = { route: `./item/${item.id}`, name: item.name, data: { item } };
+      return obj;
+		});
+  }
 }

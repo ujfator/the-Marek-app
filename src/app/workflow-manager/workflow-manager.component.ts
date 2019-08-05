@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { WorkflowManagerService } from '../common/services/workflow-manager.service';
 import { WorkflowItemModel } from 'server/models';
-import { AddEditWorkflowItemComponent } from './add-edit-workflow-item/add-edit-workflow-item.component';
+import { AddEditItemComponent } from '../common/add-edit-item/add-edit-item.component';
 
 interface columns {
   new: WorkflowItemModel[],
@@ -28,10 +28,10 @@ export class WorkflowManagerComponent {
   };
 
   constructor(
-    public workflowManagerService: WorkflowManagerService,
+    public workflowService: WorkflowManagerService,
     public dialog: MatDialog,
   ) {
-    this.workflowManagerService.items.subscribe(async (items) => {
+    this.workflowService.items.subscribe(async (items) => {
       if (this.columns) this.emptyColumns();
       if (items) this.workflowItems = await items;
       this.workflowItems && this.workflowItems.forEach(item => {
@@ -62,8 +62,11 @@ export class WorkflowManagerComponent {
     } 
   }
 
+  public delete (id: string): void {
+    this.workflowService.deleteItem(id);
+  }
+
   public drop(e: CdkDragDrop<string[]>) {
-    //debugger;
     let newContainer: string;
     let movedItem: any;
     if (e.previousContainer === e.container) {
@@ -75,7 +78,7 @@ export class WorkflowManagerComponent {
         if (element['container'] === newContainer) {} else {
           movedItem = element;
           movedItem.container = newContainer;
-          this.workflowManagerService.patchItem(movedItem);
+          this.workflowService.patchItem(movedItem);
         }
       })
     }
@@ -83,12 +86,16 @@ export class WorkflowManagerComponent {
   }
 
   public addEditItem(item?: WorkflowItemModel) {
-    const dialogRef = this.dialog.open(AddEditWorkflowItemComponent, {
-			data: item ? item : '',
+    const dialogRef = this.dialog.open(AddEditItemComponent, {
+			data: {
+        item: item ? item : '',
+        origin: 'workflow',
+      },
 			width: '500px'
 		});
 		dialogRef.afterClosed().subscribe(result => {
-			console.log('The dialog was closed', result);
+      result && (result.id ? this.workflowService.patchItem(result) : this.workflowService.addItem(result));
+			console.log('The dialog was closed', result ? result : 'by clicking on cancel');
 		});
   }
 

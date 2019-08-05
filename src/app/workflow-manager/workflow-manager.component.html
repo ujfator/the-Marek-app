@@ -1,6 +1,6 @@
 <div fxFill fxLayout="column">
   <div>
-    <mat-toolbar class="workflow-manager-toolbar">
+    <mat-toolbar class="manager-toolbar">
       <span class="fill-remaining-space"></span>
       <button matTooltip="Create item" mat-button (click)="addEditItem()">
         <mat-icon>add</mat-icon>
@@ -32,6 +32,9 @@
           <div fxFlex fxFlexAlign="end">
             <button matTootlip="edit" (click)="addEditItem(item)" mat-raised-button>
               <mat-icon>edit</mat-icon>
+            </button>
+            <button matTootlip="edit" (click)="delete(item.id)" mat-raised-button>
+              <mat-icon>delete</mat-icon>
             </button>
           </div>
         </div>

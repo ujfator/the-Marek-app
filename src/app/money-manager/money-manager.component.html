@@ -1,11 +1,21 @@
-<div style="width: 600px; height: 600px">
-  <div>
-    <div style="display: block">
-      <canvas baseChart
-        [data]="doughnutChartData"
-        [labels]="doughnutChartLabels"
-        [chartType]="doughnutChartType">
-      </canvas>
-    </div>
-  </div>
+<div fxFill fxLayout="column" class="main-container">
+  <mat-toolbar class="manager-toolbar">
+      <span class="fill-remaining-space"></span>
+      <button matTooltip="Create item" mat-button (click)="addEditItem()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </mat-toolbar>
+  <mat-divider></mat-divider>
+  <mat-sidenav-container class="side-navigation-container" fxFlex>
+    <mat-sidenav class="side-navigation" #sideNavigation opened mode="side">
+      <div fxFlex>
+        <mat-nav-list *ngFor="let item of navigationItems" fxLayout="column" fxLayoutAlign="center stretch">
+          <a mat-list-item [routerLink]="[item.route]">{{ item.name }}</a>
+        </mat-nav-list>
+      </div>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 </div>
