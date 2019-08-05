@@ -40,9 +40,13 @@ export class MoneyManagerComponent {
 		});
   }
 
+  public deleteItem(id: string) {
+    this.moneyService.deleteItem(id);
+  }
+
   private async _buildItems (items) {
     this.navigationItems = items.map((item: MoneyItemModel) => {
-      const obj = { route: `./item/${item.id}`, name: item.name, data: { item } };
+      const obj = { route: `./item/${item.id}`, name: item.name, id: item.id, data: { item } };
       return obj;
 		});
   }

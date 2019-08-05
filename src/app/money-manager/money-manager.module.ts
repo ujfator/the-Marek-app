@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { ChartsModule } from 'ng2-charts';
 import { Routes, RouterModule } from '@angular/router';
 import { MoneyItemComponent } from './money-item/money-item.component';
 import { MoneyManagerService } from '../common/services';
-import { MaterialModule } from '../common/material.module';
+import { CoreModule } from '../common/core.module';
 
 export const moneyRoutes: Routes = [
 	{ path: '', redirectTo: './', pathMatch: 'full' },
@@ -22,8 +23,9 @@ export const moneyRoutes: Routes = [
 	],
 	imports: [
 		RouterModule,
-		MaterialModule,
-		ChartsModule
+		CoreModule,
+		ChartsModule,
+		CommonModule
 	],
 	providers: [
 		MoneyManagerService

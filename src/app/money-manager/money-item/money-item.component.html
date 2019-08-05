@@ -1,16 +1,20 @@
-<div fxLayout="row" fxFill fxLayoutAlign="space-around center" >
-  <div fxFlex="600px">
-    <div style="display: block; width: 600px; height: 600px;">
-      <canvas 
-        baseChart
-        [data]="pieChartData" 
-        [labels]="pieChartLabels" 
-        [chartType]="pieChartType"
-        [options]="pieChartOptions"
-        [plugins]="pieChartPlugins"
-        [legend]="pieChartLegend">
-      </canvas>
-    </div>
-  </div>
-  <div fxFlex>hej</div>
+<div fxLayout="row" fxFill fxLayoutAlign="space-around center" *ngIf="moneyItems">
+  <mat-grid-list fxFlex cols="2" rowHeight="100%">
+    <mat-grid-tile fxFlex>
+      <div fxFill>
+        <canvas 
+          baseChart
+          [data]="pieChartData" 
+          [labels]="pieChartLabels" 
+          [chartType]="pieChartType"
+          [options]="pieChartOptions"
+          [plugins]="pieChartPlugins"
+          [legend]="pieChartLegend">
+        </canvas>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div fxFlex>hej</div>
+    </mat-grid-tile>
+  </mat-grid-list>
 </div>

@@ -28,14 +28,16 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <div fxLayout="row" fxFlex>
-          <div fxFlex="70" class="content">{{item.content}}</div>
-          <div fxFlex fxFlexAlign="end">
-            <button matTootlip="edit" (click)="addEditItem(item)" mat-raised-button>
-              <mat-icon>edit</mat-icon>
-            </button>
-            <button matTootlip="edit" (click)="delete(item.id)" mat-raised-button>
-              <mat-icon>delete</mat-icon>
-            </button>
+          <div fxLayout="column">
+            <div fxFlex class="content">{{item.content}}</div>
+            <div fxFlex fxFlexAlign="end">
+              <button matTooltip="Edit item" (click)="addEditItem(item)" mat-raised-button>
+                <mat-icon>edit</mat-icon>
+              </button>
+              <!-- <button matTooltip="Delete item" (click)="delete(item.id)" mat-raised-button>
+                <mat-icon>delete</mat-icon>
+              </button> -->
+            </div>
           </div>
         </div>
       </mat-expansion-panel>
@@ -59,11 +61,16 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
       <div fxLayout="row" fxFlex>
-        <div fxFlex="70" class="content">{{item.content}}</div>
-        <div fxFlex fxFlexAlign="end">
-          <button matTootlip="edit" (click)="addEditItem(item)" mat-raised-button>
-            <mat-icon>edit</mat-icon>
-          </button>
+        <div fxLayout="column">
+          <div fxFlex class="content">{{item.content}}</div>
+          <div fxFlex fxFlexAlign="end">
+            <button matTooltip="Edit item" (click)="addEditItem(item)" mat-raised-button>
+              <mat-icon>edit</mat-icon>
+            </button>
+            <!-- <button matTooltip="Delete item" (click)="delete(item.id)" mat-raised-button>
+              <mat-icon>delete</mat-icon>
+            </button> -->
+          </div>
         </div>
       </div>
     </mat-expansion-panel>
@@ -87,11 +94,16 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
       <div fxLayout="row" fxFlex>
-        <div fxFlex="70" class="content">{{item.content}}</div>
-        <div fxFlex fxFlexAlign="end">
-          <button matTootlip="edit" (click)="addEditItem(item)" mat-raised-button>
-            <mat-icon>edit</mat-icon>
-          </button>
+        <div fxLayout="column">
+          <div fxFlex class="content">{{item.content}}</div>
+          <div fxFlex fxFlexAlign="end">
+            <button matTooltip="Edit item" (click)="addEditItem(item)" mat-raised-button>
+              <mat-icon>edit</mat-icon>
+            </button>
+            <!-- <button matTooltip="Delete item" (click)="delete(item.id)" mat-raised-button>
+              <mat-icon>delete</mat-icon>
+            </button> -->
+          </div>
         </div>
       </div>
     </mat-expansion-panel>
@@ -115,11 +127,16 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
       <div fxLayout="row" fxFlex>
-        <div fxFlex="70" class="content">{{item.content}}</div>
-        <div fxFlex fxFlexAlign="end">
-          <button matTootlip="edit" (click)="addEditItem(item)" mat-raised-button>
-            <mat-icon>edit</mat-icon>
-          </button>
+        <div fxLayout="column">
+          <div fxFlex class="content">{{item.content}}</div>
+          <div fxFlex fxFlexAlign="end">
+            <button matTooltip="Edit item" (click)="addEditItem(item)" mat-raised-button>
+              <mat-icon>edit</mat-icon>
+            </button>
+            <!-- <button matTooltip="Delete item" (click)="delete(item.id)" mat-raised-button>
+              <mat-icon>delete</mat-icon>
+            </button> -->
+          </div>
         </div>
       </div>
     </mat-expansion-panel>

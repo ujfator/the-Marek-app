@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { A11yModule } from '@angular/cdk/a11y';
 import {
@@ -46,10 +48,10 @@ const materialModules = [
 	// CdkTreeModule,
 	// DragDropModule,
 	MatAutocompleteModule,
-	// MatBadgeModule,
+	MatBadgeModule,
 	// MatBottomSheetModule,
 	MatButtonModule,
-	// MatButtonToggleModule,
+	MatButtonToggleModule,
 	MatCardModule,
 	MatCheckboxModule,
 	MatChipsModule,
@@ -58,7 +60,7 @@ const materialModules = [
 	MatDialogModule,
 	MatDividerModule,
 	MatExpansionModule,
-	// MatGridListModule,
+	MatGridListModule,
 	MatIconModule,
 	MatInputModule,
 	MatListModule,
@@ -89,13 +91,17 @@ const materialModules = [
 	entryComponents: [],
 	exports: [
 		...materialModules,
+		FlexLayoutModule,
 	],
 	imports: [
 		CommonModule,
-		...materialModules
+		...materialModules,
+		FlexLayoutModule,
+		FormsModule,
+		ReactiveFormsModule
 	],
 	providers: [
 	]
 })
-export class MaterialModule {
+export class CoreModule {
 }

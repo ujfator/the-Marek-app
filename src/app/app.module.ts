@@ -1,10 +1,9 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AddEditItemComponent } from './common/add-edit-item/add-edit-item.component';
 import { AppComponent } from './app.component';
@@ -14,7 +13,18 @@ import { FoodComponent } from './food/food.component';
 import { MoneyManagerComponent } from './money-manager/money-manager.component';
 import { WorkflowManagerComponent } from './workflow-manager/workflow-manager.component';
 import { WorkflowManagerService, MoneyManagerService } from './common/services';
-import { MaterialModule } from './common/material.module';
+import { CoreModule } from './common/core.module';
+
+const imports =  [
+  AppRoutingModule,
+  DragDropModule,
+  FormsModule,
+  ReactiveFormsModule,
+  HttpClientModule,
+  CoreModule,
+  BrowserModule,
+  BrowserAnimationsModule
+]
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -29,17 +39,7 @@ import { MaterialModule } from './common/material.module';
   entryComponents: [
     AddEditItemComponent,
   ],
-  imports: [
-    AppRoutingModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    DragDropModule,
-    FlexLayoutModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    MaterialModule
-  ],
+  imports,
   providers: [ WorkflowManagerService, MoneyManagerService ],
 })
 export class AppModule { }
