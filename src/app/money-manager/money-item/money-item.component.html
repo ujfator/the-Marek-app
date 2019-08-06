@@ -1,14 +1,5 @@
 <div fxLayout="row" fxFill fxLayoutAlign="space-around center" *ngIf="moneyItems">
-  <div fxFlex *ngIf="!id">
-    <mat-list>
-      <mat-list-item>Item 1</mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item>Item 2</mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item>Item 3</mat-list-item>
-    </mat-list>
-  </div>
-  <div fxFlex="70" *ngIf="id">
+  <div fxFlex="70">
     <canvas 
       baseChart
       [data]="pieChartData" 
