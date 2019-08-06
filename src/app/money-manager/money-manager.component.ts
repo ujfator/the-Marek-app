@@ -46,7 +46,7 @@ export class MoneyManagerComponent {
 
   private async _buildItems (items) {
     this.navigationItems = items.map((item: MoneyItemModel) => {
-      const obj = { route: `./item/${item.id}`, name: item.name, id: item.id, data: { item } };
+      const obj = { route: `./moneyItem/${item.id}`, name: item.name, id: item.id, data: { item } };
       return obj;
 		});
   }

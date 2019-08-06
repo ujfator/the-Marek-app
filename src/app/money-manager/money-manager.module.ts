@@ -8,9 +8,9 @@ import { CoreModule } from '../common/core.module';
 
 export const moneyRoutes: Routes = [
 	{ path: '', redirectTo: './', pathMatch: 'full' },
-	{ path: 'item', component: MoneyItemComponent },
-	{ path: 'item/:id', component: MoneyItemComponent },
-	{ path: '**', redirectTo: 'item' }
+	{ path: 'moneyItem', component: MoneyItemComponent },
+	{ path: 'moneyItem/:id', component: MoneyItemComponent },
+	{ path: '**', redirectTo: 'moneyItem' }
 ];
 @NgModule({
 	declarations: [

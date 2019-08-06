@@ -10,11 +10,15 @@
     <mat-sidenav class="side-navigation" #sideNavigation opened mode="side">
       <div fxFlex>
         <mat-nav-list *ngFor="let item of navigationItems" fxLayout="column" fxLayoutAlign="center stretch">
-          <div fxLayout="row">
-              <a mat-list-item [routerLink]="[item.route]">{{ item.name }}</a> 
-              <button matTooltip="Delete item" mat-button (click)="deleteItem(item.id)"> 
-                <mat-icon>delete</mat-icon> 
-              </button>
+          <div fxLayout="column">
+              <a mat-list-item [routerLink]="'./moneyItem'">Budget</a>
+              <mat-divider horizontal></mat-divider>
+              <div fxLayout="row">
+                <a mat-list-item [routerLink]="[item.route]">{{ item.name }}</a> 
+                <button matTooltip="Delete item" mat-button (click)="deleteItem(item.id)"> 
+                  <mat-icon>delete</mat-icon> 
+                </button>
+              </div>
           </div>
         </mat-nav-list>
       </div>
