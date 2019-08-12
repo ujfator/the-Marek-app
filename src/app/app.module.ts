@@ -12,7 +12,7 @@ import { BodyMindComponent } from './body-mind/body-mind.component';
 import { FoodComponent } from './food/food.component';
 import { MoneyManagerComponent } from './money-manager/money-manager.component';
 import { WorkflowManagerComponent } from './workflow-manager/workflow-manager.component';
-import { WorkflowManagerService, MoneyManagerService } from './common/services';
+import { WorkflowManagerService, MoneyManagerService, DialogService, BudgetService } from './common/services';
 import { CoreModule } from './common/core.module';
 
 const imports =  [
@@ -40,6 +40,6 @@ const imports =  [
     AddEditItemComponent,
   ],
   imports,
-  providers: [ WorkflowManagerService, MoneyManagerService ],
+  providers: [ WorkflowManagerService, MoneyManagerService, BudgetService, DialogService ],
 })
 export class AppModule { }

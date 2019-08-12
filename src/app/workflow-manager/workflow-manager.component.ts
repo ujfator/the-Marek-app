@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { WorkflowManagerService } from '../common/services/workflow-manager.service';
 import { WorkflowItemModel } from 'server/models';
 import { AddEditItemComponent } from '../common/add-edit-item/add-edit-item.component';
+import { DialogService, WorkflowManagerService } from '../common/services';
 
 interface columns {
   new: WorkflowItemModel[],
@@ -29,7 +29,7 @@ export class WorkflowManagerComponent {
 
   constructor(
     public workflowService: WorkflowManagerService,
-    public dialog: MatDialog,
+    public dialogService: DialogService,
   ) {
     this.workflowService.items.subscribe(async (items) => {
       if (this.columns) this.emptyColumns();
@@ -50,6 +50,13 @@ export class WorkflowManagerComponent {
             break;
         }
       });
+    });
+    this.dialogService.data.subscribe((data: WorkflowItemModel) => {
+      if (data) {
+        if (data.id) {
+          this.workflowService.patchItem(data);
+        } else this.workflowService.addItem(data);
+      }
     })
   }
 
@@ -86,17 +93,7 @@ export class WorkflowManagerComponent {
   }
 
   public addEditItem(item?: WorkflowItemModel) {
-    const dialogRef = this.dialog.open(AddEditItemComponent, {
-			data: {
-        item: item ? item : '',
-        origin: 'workflow',
-      },
-			width: '500px'
-		});
-		dialogRef.afterClosed().subscribe(result => {
-      result && (result.id ? this.workflowService.patchItem(result) : this.workflowService.addItem(result));
-			console.log('The dialog was closed', result ? result : 'by clicking on cancel');
-		});
+    this.dialogService.addEditItem('workflow', item);
   }
 
   public emptyColumns (): void {

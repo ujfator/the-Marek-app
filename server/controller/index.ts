@@ -3,3 +3,4 @@ export * from './base.interface';
 
 export * from './workflow-manager/workflow-manager.controller';
 export * from './money-manager/money-manager.controller';
+export * from './money-manager/budget/budget.controller';

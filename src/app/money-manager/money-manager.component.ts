@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MoneyItemModel } from 'server/models';
 import { MatDialog } from '@angular/material';
 import { AddEditItemComponent } from '../common/add-edit-item/add-edit-item.component';
-import { MoneyManagerService } from '../common/services';
+import { MoneyManagerService, DialogService } from '../common/services';
 
 @Component({
   selector: 'app-money-manager',
@@ -15,8 +15,8 @@ export class MoneyManagerComponent {
   public navigationItems;
   
   constructor(
-    public dialog: MatDialog,
     public moneyService: MoneyManagerService,
+    public dialogService: DialogService,
   ) {
     this.moneyService.items.subscribe(async (items) => {
       if (items) {
@@ -24,20 +24,17 @@ export class MoneyManagerComponent {
         this._buildItems(items);
       }
     });
+    this.dialogService.data.subscribe((data: MoneyItemModel) => {
+      if (data) {
+        if (data.id) {
+          this.moneyService.patchItem(data);
+        } else this.moneyService.addItem(data);
+      }
+    })
   }
 
   public addEditItem(item?: MoneyItemModel) {
-    const dialogRef = this.dialog.open(AddEditItemComponent, {
-      data: {
-        item:item ? item : '',
-        origin: 'money'
-      },
-      width: '500px',
-		});
-		dialogRef.afterClosed().subscribe(result => {
-      result && (result.id ? this.moneyService.patchItem(result) : this.moneyService.addItem(result));
-			console.log('The dialog was closed', result ? result : 'by clicking on cancel');
-		});
+    this.dialogService.addEditItem('money', item);
   }
 
   public deleteItem(id: string) {

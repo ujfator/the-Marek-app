@@ -1,8 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { WorkflowItemModel } from '../../../../server/models'
-import { WorkflowManagerService } from 'src/app/common/services';
+import { WorkflowItemModel, MoneyItemModel, BudgetItemModel } from '../../../../server/models';
 
 @Component({
   selector: 'app-add-edit-item',
@@ -15,9 +14,8 @@ export class AddEditItemComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<AddEditItemComponent>,
-    public workflowManagerService: WorkflowManagerService,
     @Inject(MAT_DIALOG_DATA) public data: { 
-      item: WorkflowItemModel, origin: string
+      item: any, origin: string
     },
   ) { }
 
@@ -32,7 +30,7 @@ export class AddEditItemComponent implements OnInit {
 
 	public onSubmit(): void {
 		if (this.form.valid) {
-      const newOrUpdatedItem = this.data.origin === 'money' ? {
+      const newOrUpdatedItem = this.data.origin === ('money' || 'budget') ? {
         name: this.form.value.name,
         price: this.form.value.price,
         savings: this.form.value.savings,

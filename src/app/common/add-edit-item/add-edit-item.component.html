@@ -12,7 +12,7 @@
     <mat-error>ERROR</mat-error>
   </mat-form-field>
 
-  <mat-form-field *ngIf="data.origin === 'money'">
+  <mat-form-field *ngIf="data.origin === ('money' || 'budget')">
     <mat-label>Price</mat-label>
     <input name="price" type="number" formControlName="price" required matInput placeholder="Price">
     <mat-error>ERROR</mat-error>
