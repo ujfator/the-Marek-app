@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
+
 import { MoneyItemModel } from 'server/models';
-import { MatDialog } from '@angular/material';
-import { AddEditItemComponent } from '../common/add-edit-item/add-edit-item.component';
 import { MoneyManagerService, DialogService } from '../common/services';
 
 @Component({

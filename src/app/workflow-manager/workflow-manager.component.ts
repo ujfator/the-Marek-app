@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+
 import { WorkflowItemModel } from 'server/models';
-import { AddEditItemComponent } from '../common/add-edit-item/add-edit-item.component';
 import { DialogService, WorkflowManagerService } from '../common/services';
 
 interface columns {
