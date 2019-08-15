@@ -36,7 +36,7 @@ export class AddEditItemComponent implements OnInit {
       } : {
         name: this.form.value.name,
         content: this.form.value.content,
-        container: this.data.item.container || 'new',
+        container: (this.data.item && this.data.item.container) || 'new',
         id: this.data.item && this.data.item.id,
       }
 			this.dialogRef.close(newOrUpdatedItem);

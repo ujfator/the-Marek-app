@@ -3,14 +3,14 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "cd ./server node app.ts",
+    "start": "node server",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build:server": "cd ./server && tsc --watch",
     "run:server": "nodemon --watch ./dist/out-tsc/server --ext js ./dist/out-tsc/server/app.js",
-    "run:webapp": "ng serve --open --proxy-config proxy.conf.json",
+    "webapp": "ng serve --open --proxy-config proxy.conf.json",
     "postinstall": "ng build --output-path dist"
   },
   "engines" : {
