@@ -1,6 +1,7 @@
 {
   "name": "marek-app",
   "version": "0.0.0",
+  "main": "server/app.ts",
   "scripts": {
     "ng": "ng",
     "start": "node server",
