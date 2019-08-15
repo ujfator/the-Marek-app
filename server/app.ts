@@ -30,4 +30,5 @@ server.set('port', PORT);
 server.listen(PORT, () => console.log(`Server started on port ${PORT} with user ${process.env.USERNAME}`))
 
 const api: Api = new Api({ server });
-api.server.use(express.static('dist'));
+const distDir = __dirname + "/dist/";
+api.server.use(express.static(distDir));
