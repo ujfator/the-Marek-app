@@ -19,7 +19,7 @@
           "options": {
             "outputPath": "dist/marekApp",
             "index": "src/index.html",
-            "main": "src/main.ts",
+            "main": "server/app.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
