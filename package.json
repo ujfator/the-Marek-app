@@ -1,10 +1,10 @@
 {
   "name": "marek-app",
   "version": "0.0.0",
-  "main": "dist/out-tsc/app.js",
+  "main": "dist/out-tsc/server/app.js",
   "scripts": {
     "ng": "ng",
-    "start": "node dist/out-tsc/app.js",
+    "start": "npm run build:server && node dist/out-tsc/server/app.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
