@@ -4,7 +4,7 @@
   "main": "server/app.ts",
   "scripts": {
     "ng": "ng",
-    "start": "node server",
+    "start": "node dist/out-tsc/app.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
