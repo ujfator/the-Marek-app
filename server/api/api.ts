@@ -1,5 +1,5 @@
 import * as express from 'express';
-import { BaseController, BaseInterface } from '../../server/controller';
+import { BaseController, BaseInterface } from '../controller';
 import { WorkflowManagerRoutes, MoneyManagerRoutes } from './';
 
 const BASE_ROUTE: string = '/v1';

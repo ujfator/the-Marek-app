@@ -1,6 +1,6 @@
 import { Request, Response } from 'express-serve-static-core';
 
-import { MoneyItemModel } from 'server/models'
+import { MoneyItemModel } from '../../../server/models'
 
 import { MoneyManagerController, BaseController, BaseInterface } from '../../controller';
 

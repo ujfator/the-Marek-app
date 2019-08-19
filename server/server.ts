@@ -1,9 +1,8 @@
 import * as express from 'express';
-import * as path from 'path';
 import * as bodyParser from 'body-parser';
 import * as commandLineArgs from 'command-line-args';
 
-import { Api } from '../server/api';
+import { Api } from './api';
 
 const server = express();
 
@@ -30,5 +29,4 @@ server.set('port', PORT);
 server.listen(PORT, () => console.log(`Server started on port ${PORT} with user ${process.env.USERNAME}`))
 
 const api: Api = new Api({ server });
-const distDir = __dirname + "/dist/";
-api.server.use(express.static(distDir));
+api.server.use(express.static(__dirname));

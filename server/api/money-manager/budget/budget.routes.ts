@@ -1,6 +1,6 @@
 import { Request, Response } from 'express-serve-static-core';
 
-import { BudgetItemModel } from 'server/models'
+import { BudgetItemModel } from '../../../../server/models'
 
 import { BudgetController, BaseController, BaseInterface } from '../../../controller';
 

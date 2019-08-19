@@ -1,6 +1,6 @@
 import { Request, Response } from 'express-serve-static-core';
 
-import { WorkflowItemModel } from 'server/models'
+import { WorkflowItemModel } from '../../../server/models'
 
 import { WorkflowManagerController, BaseController, BaseInterface } from '../../controller';
 
