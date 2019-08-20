@@ -26,6 +26,7 @@ export class WorkflowManagerService extends BaseService {
 	}
 
 	public loadItems(): void {
+		console.log(environment);
 		this.http.get<WorkflowItemModel[]>(this.route).subscribe((items) => this.items.next(items));
 	}
 
