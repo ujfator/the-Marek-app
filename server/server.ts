@@ -23,10 +23,9 @@ const optionDefinitions = [
 ];
 const options = commandLineArgs(optionDefinitions);
 
-const PORT = process.env.PORT || options[ 'port' ] || 3000;
-server.set('port', PORT);
-
-server.listen(PORT, () => console.log(`Server started on port ${PORT} with user ${process.env.USERNAME}`))
+const port = process.env.port || options[ 'port' ] || 3000;
+server.set('port', port);
+server.listen(port, () => console.log(`Server started on port ${port} with user ${process.env.USERNAME}`))
 
 const api: Api = new Api({ server });
 api.server.use(express.static(__dirname));

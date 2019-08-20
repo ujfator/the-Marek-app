@@ -1,5 +1,4 @@
 import * as express from 'express';
-// import * as https from 'https';
 import { Connection, Document, Model, Schema } from 'mongoose';
 
 import { BaseInterface } from './base.interface';
@@ -24,6 +23,7 @@ export class BaseController {
 	 * Get the model handler.
 	 * If there is no existing handler it will create a new handler.
 	 */
+	
 	public get model(): Model<Document> {
 		if (!this._model && this.__dbh && this.modelName && this.schema && this.collection) {
 			this._model = this.__dbh.model<Document>(this.modelName, this.schema, this.collection);
@@ -58,25 +58,4 @@ export class BaseController {
 			server: this.__server
 		});
 	}
-
-	// protected __proxyGet(url: string, params: Object = {}): Promise<any> {
-	// 	return new Promise((resolve, reject) => {
-	// 		https.get(url, (resp) => {
-	// 			let data = '';
-	//
-	// 			// A chunk of data has been received.
-	// 			resp.on('data', (chunk) => {
-	// 				data += chunk;
-	// 			});
-	//
-	// 			// The whole response has been received. Print out the result.
-	// 			resp.on('end', () => {
-	// 				resolve(JSON.parse(data));
-	// 			});
-	//
-	// 		}).on('error', (err) => {
-	// 			reject(`Error: ${err.message}`);
-	// 		});
-	// 	});
-	// }
 }
