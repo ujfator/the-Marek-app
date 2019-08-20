@@ -2,8 +2,6 @@ import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import * as commandLineArgs from 'command-line-args';
 
-import { WorkflowManagerRoutes } from 'api/index';
-
 import { Api } from './api';
 
 const server = express();
@@ -30,4 +28,4 @@ server.set('port', port);
 server.listen(port, () => console.log(`Server started on port ${port} with user ${process.env.USERNAME}`))
 
 const api: Api = new Api({ server });
-api.server.use('/', express.static('/dist'));
+api.server.use(express.static(__dirname + '/dist'));
