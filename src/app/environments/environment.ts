@@ -4,7 +4,7 @@
 
 export const environment = {
 	// apiHost: 'https://localhost:5001/api/v1',
-	apiHost: '/api/v1', //@TODO reactivate me for api
+	apiHost: '/api', //@TODO reactivate me for api
 	localStorageVersion: 1,
 	production: false,
 };

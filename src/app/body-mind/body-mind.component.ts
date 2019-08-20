@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material';
 
-import { AddEditDialogComponent } from '../common/add-edit-dialog/add-edit-dialog.component';
+import { AddEditItemComponent } from '../common/add-edit-item/add-edit-item.component';
 
 export interface BodyMindEntryInterface {
   date: Date,
@@ -41,7 +41,7 @@ export class BodyMindComponent {
   ) { }
 
   public addOrEditEntry(entry: BodyMindEntryInterface) {
-    const dialogRef = this.dialog.open(AddEditDialogComponent, {
+    const dialogRef = this.dialog.open(AddEditItemComponent, {
       data: entry ? entry : this.keys,
 			width: '500px'
 		});

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { ChartType } from 'chart.js';
-import { MultiDataSet, Label } from 'ng2-charts';
+
+import { MoneyItemModel } from 'server/models';
+import { MoneyManagerService, DialogService } from '../common/services';
 
 @Component({
   selector: 'app-money-manager',
@@ -9,21 +10,40 @@ import { MultiDataSet, Label } from 'ng2-charts';
 })
 export class MoneyManagerComponent {
 
-   // Doughnut
-   public doughnutChartLabels: Label[] = ['Saved car money', ' Car money to save'];
-   public doughnutChartData: MultiDataSet = [
-     [0, 100],
-   ];
-   public doughnutChartType: ChartType = 'doughnut';
+  public moneyItems: MoneyItemModel[];
+  public navigationItems;
+  
+  constructor(
+    public moneyService: MoneyManagerService,
+    public dialogService: DialogService,
+  ) {
+    this.moneyService.items.subscribe(async (items) => {
+      if (items) {
+        this.moneyItems = await items;
+        this._buildItems(items);
+      }
+    });
+    this.dialogService.data.subscribe((data: MoneyItemModel) => {
+      if (data) {
+        if (data.id) {
+          this.moneyService.patchItem(data);
+        } else this.moneyService.addItem(data);
+      }
+    })
+  }
 
-   constructor() { }
+  public addEditItem(item?: MoneyItemModel) {
+    this.dialogService.addEditItem('money', item);
+  }
 
-   // events
-   public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
-     console.log(event, active);
-   }
+  public deleteItem(id: string) {
+    this.moneyService.deleteItem(id);
+  }
 
-   public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
-     console.log(event, active);
-   }
+  private async _buildItems (items) {
+    this.navigationItems = items.map((item: MoneyItemModel) => {
+      const obj = { route: `./moneyItem/${item.id}`, name: item.name, id: item.id, data: { item } };
+      return obj;
+		});
+  }
 }

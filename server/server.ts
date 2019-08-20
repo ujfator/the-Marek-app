@@ -2,7 +2,7 @@ import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import * as commandLineArgs from 'command-line-args';
 
-import { Api } from '../server/api';
+import { Api } from './api';
 
 const server = express();
 
@@ -23,10 +23,9 @@ const optionDefinitions = [
 ];
 const options = commandLineArgs(optionDefinitions);
 
-const PORT = process.env.PORT || options[ 'port' ] || 3000;
-server.set('port', PORT);
-
-server.listen(PORT, () => console.log(`Server started on port ${PORT} with user ${process.env.USERNAME}`))
+const port = process.env.PORT || options[ 'port' ] || 3000;
+server.set('port', port);
+server.listen(port, () => console.log(`Server started on port ${port} with user ${process.env.USERNAME}`))
 
 const api: Api = new Api({ server });
-api.server.use(express.static('dist'));
+api.server.use(express.static(__dirname));

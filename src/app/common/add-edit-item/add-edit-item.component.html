@@ -6,9 +6,21 @@
     <mat-error>ERROR</mat-error>
   </mat-form-field>
 
-  <mat-form-field>
+  <mat-form-field *ngIf="data.origin === 'workflow'">
     <mat-label>Content</mat-label>
     <textarea name="content" type="text" formControlName="content" required matInput placeholder="Content"></textarea>
+    <mat-error>ERROR</mat-error>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="data.origin === ('money' || 'budget')">
+    <mat-label>Price</mat-label>
+    <input name="price" type="number" formControlName="price" required matInput placeholder="Price">
+    <mat-error>ERROR</mat-error>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="data.origin === 'money'">
+    <mat-label>Savings</mat-label>
+    <input name="savings" type="number" formControlName="savings" required matInput placeholder="Savings">
     <mat-error>ERROR</mat-error>
   </mat-form-field>
 

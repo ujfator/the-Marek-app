@@ -12,6 +12,14 @@ export class WorkflowManagerController extends BaseController {
 		this.modelName = 'workflowItem';
 		this.schema = WorkflowItemSchema;
 	}
+	
+	/**
+	 * Delete one WorkflowItem Model object.
+	 */
+	public deleteWorkflowItem(workflowItemId: string): Promise<WorkflowItemModel> {
+		return this.model.findByIdAndDelete(workflowItemId).then((resp) => resp);
+	}
+
 
 	/**
 	 * Get one WorkflowItem Model object.

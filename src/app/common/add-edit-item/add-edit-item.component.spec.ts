@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { AddEditWorkflowItemComponent } from './add-edit-workflow-item.component';
+import { AddEditItemComponent } from './add-edit-item.component';
 import { MAT_DIALOG_DATA } from '@angular/material';
 
-describe('AddEditWorkflowItemComponent', () => {
-  let component: AddEditWorkflowItemComponent;
-  let fixture: ComponentFixture<AddEditWorkflowItemComponent>;
+describe('AddEditItemComponent', () => {
+  let component: AddEditItemComponent;
+  let fixture: ComponentFixture<AddEditItemComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddEditWorkflowItemComponent ]
+      declarations: [ AddEditItemComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddEditWorkflowItemComponent);
+    fixture = TestBed.createComponent(AddEditItemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
