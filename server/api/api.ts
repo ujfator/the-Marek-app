@@ -14,7 +14,7 @@ export class Api extends BaseController {
 
 		console.warn('register API');
 
-		this.__router.use('api/workflowManager', this.__init(WorkflowManagerRoutes, args).__router);
-		this.__router.use('api/moneyManager', this.__init(MoneyManagerRoutes, args).__router);
+		this.__router.use('/workflowManager', this.__init(WorkflowManagerRoutes, args).__router);
+		this.__router.use('/moneyManager', this.__init(MoneyManagerRoutes, args).__router);
 	}
 }
