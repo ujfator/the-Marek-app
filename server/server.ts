@@ -23,7 +23,7 @@ const optionDefinitions = [
 ];
 const options = commandLineArgs(optionDefinitions);
 
-const port = process.env.port || options[ 'port' ] || 3000;
+const port = process.env.PORT || options[ 'port' ] || 3000;
 server.set('port', port);
 server.listen(port, () => console.log(`Server started on port ${port} with user ${process.env.USERNAME}`))
 
