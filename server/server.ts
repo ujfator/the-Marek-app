@@ -9,10 +9,6 @@ const server = express();
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(bodyParser.json());
 
-server.get('/', (req, res) => {
-	res.send('hallo')
-})
-
 const optionDefinitions = [
 	{
 		alias: 'c',
