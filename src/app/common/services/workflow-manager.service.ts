@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment';
 @Injectable()
 export class WorkflowManagerService extends BaseService {
 
-	public route = `${environment.apiHost}/workflowManager`;
+	public route = `/workflowManager`;
  	public items: Subject<WorkflowItemModel[]> = new BehaviorSubject<WorkflowItemModel[]>(null);
 
 	constructor(private http: HttpClient) {
@@ -27,7 +27,7 @@ export class WorkflowManagerService extends BaseService {
 
 	public loadItems(): void {
 		console.log(environment);
-		this.http.get<WorkflowItemModel[]>('/workflowManager').subscribe((items) => this.items.next(items));
+		this.http.get<WorkflowItemModel[]>(this.route).subscribe((items) => this.items.next(items));
 	}
 
 	public patchItem(item: WorkflowItemModel): void {
