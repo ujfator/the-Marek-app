@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment';
 @Injectable()
 export class WorkflowManagerService extends BaseService {
 
-	public route = `/workflowManager`;
+	public route = `${environment.apiHost}/workflowManager`;
  	public items: Subject<WorkflowItemModel[]> = new BehaviorSubject<WorkflowItemModel[]>(null);
 
 	constructor(private http: HttpClient) {
