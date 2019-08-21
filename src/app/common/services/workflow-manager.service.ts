@@ -15,6 +15,7 @@ export class WorkflowManagerService extends BaseService {
 	constructor(private http: HttpClient) {
 		super();
 		this.loadItems();
+		console.log(('b' + 'a' + + 'a' + 'a').toLowerCase(), environment);
 	}
 
 	public deleteItem (id: string): void {
