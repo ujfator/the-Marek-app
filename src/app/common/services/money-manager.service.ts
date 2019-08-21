@@ -19,11 +19,11 @@ export class MoneyManagerService extends BaseService {
 	}
 
 	public addItem(item: MoneyItemModel): void {
-		this.http.post<MoneyItemModel>(`${environment.apiHost}/moneyManager`, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems());
+		this.http.post<MoneyItemModel>(`${environment.apiHost || ''}/moneyManager`, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems());
 	}
 
 	public deleteItem(id: string): void {
-		this.http.delete<MoneyItemModel>(`${environment.apiHost}/moneyManager/${id}`, this.jsonHeaders).subscribe(() => this.loadItems());
+		this.http.delete<MoneyItemModel>(`${environment.apiHost|| '' }/moneyManager/${id}`, this.jsonHeaders).subscribe(() => this.loadItems());
 	}
 
 	public getMoneyItemById(id: string): MoneyItemModel {
@@ -33,14 +33,14 @@ export class MoneyManagerService extends BaseService {
 	}
 
 	public loadItems(): void {
-		this.http.get<MoneyItemModel[]>(`${environment.apiHost}/moneyManager`).subscribe((items) => {
+		this.http.get<MoneyItemModel[]>(`${environment.apiHost || ''}/moneyManager`).subscribe((items) => {
 			this.items.next(items);
 			this._buildIndex(items);
 		});
 	}
 
 	public patchItem(item: MoneyItemModel): void {
-		this.http.patch<MoneyItemModel>(`${environment.apiHost}/moneyManager`, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems())
+		this.http.patch<MoneyItemModel>(`${environment.apiHost || ''}/moneyManager`, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems())
 	}
 
 	private _buildIndex(items: MoneyItemModel[]): void {
