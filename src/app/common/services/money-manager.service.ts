@@ -15,6 +15,7 @@ export class MoneyManagerService extends BaseService {
 	constructor(private http: HttpClient) {
 		super();
 		this.loadItems();
+		console.log(environment);
 	}
 
 	public addItem(item: MoneyItemModel): void {
