@@ -5,6 +5,7 @@ export class WorkflowItemModel extends BaseModel {
   	public content: string = null;
 	public container: string = null;
 	public author: string = null;
+	public dueDate: Date = null;
 	  
 
 	constructor(args: any) {

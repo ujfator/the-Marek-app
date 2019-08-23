@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Development server
 
-Run `npm run build:server` to build server, then `npm run run:server` to run server from dist, and finally `npm run web:app` to run web app (inluding proxy that directs http calls to api)
+Run `npm run watch-ts` to build server, then `npm run watch-node` to run server from dist, and finally `npm run web-app` to run web app (inluding proxy that directs http calls to api)
 
 ## Code scaffolding
 

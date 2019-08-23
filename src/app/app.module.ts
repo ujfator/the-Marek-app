@@ -12,6 +12,7 @@ import { BodyMindComponent } from './body-mind/body-mind.component';
 import { FoodComponent } from './food/food.component';
 import { MoneyManagerComponent } from './money-manager/money-manager.component';
 import { WorkflowManagerComponent } from './workflow-manager/workflow-manager.component';
+import { AddEditWorkflowItemComponent } from './workflow-manager/add-edit-workflow-item/add-edit-workflow-item.component'
 import { WorkflowManagerService, MoneyManagerService, DialogService, BudgetService } from './common/services';
 import { CoreModule } from './common/core.module';
 
@@ -33,11 +34,13 @@ const imports =  [
     FoodComponent,
     BodyMindComponent,
     AddEditItemComponent,
+    AddEditWorkflowItemComponent,
     WorkflowManagerComponent,
     MoneyManagerComponent,
   ],
   entryComponents: [
     AddEditItemComponent,
+    AddEditWorkflowItemComponent,
   ],
   imports,
   providers: [ WorkflowManagerService, MoneyManagerService, BudgetService, DialogService ],

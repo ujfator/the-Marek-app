@@ -4,6 +4,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
 
 import { MoneyItemModel, BudgetItemModel, WorkflowItemModel } from 'server/models';
 import { AddEditItemComponent } from '../add-edit-item/add-edit-item.component';
+import { AddEditWorkflowItemComponent } from '../../workflow-manager/add-edit-workflow-item/add-edit-workflow-item.component'
 
 @Injectable()
 export class DialogService {
@@ -15,7 +16,7 @@ export class DialogService {
     ) {}
 
 	public addEditItem(origin: string, item?: MoneyItemModel|BudgetItemModel|WorkflowItemModel) {
-		const dialogRef = this.dialog.open(AddEditItemComponent, {
+		const dialogRef = this.dialog.open(origin === 'workflow' ? AddEditWorkflowItemComponent : AddEditItemComponent, {
 		  data: {
 			item: item ? item : null,
 			origin: origin,

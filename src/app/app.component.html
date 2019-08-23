@@ -1,13 +1,15 @@
 <div fxFill fxLayout="column" class="main-container">
-	<mat-toolbar class="header">
+	<mat-toolbar color="primary" class="header">
 		<button mat-icon-button (click)="sideNavigation.toggle()" label="Toggle Menu" class="header-menu-button">
 			<mat-icon>menu</mat-icon>
 		</button>
 		<div class="header-menu-breadcrum">
-			<h4>The Marek App</h4>
+			<h4>The You App</h4>
 		</div>
 		<span class="fill-remaining-space"></span>
-		<button mat-raised-button color="primary" (click)="onSetTheme('dark-theme')">{{theme}}</button>
+		<button mat-button (click)="onSetTheme('dark-theme')" matTooltip="Select a theme">
+			<mat-icon>format_color_fill</mat-icon>
+		</button>
 	</mat-toolbar>
 	<mat-divider></mat-divider>
 	<mat-sidenav-container class="side-navigation-container" fxFlex>

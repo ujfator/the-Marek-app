@@ -1,5 +1,5 @@
 <div fxFill fxLayout="column">
-  <div>
+  <!-- <div>
     <mat-toolbar class="manager-toolbar">
       <span class="fill-remaining-space"></span>
       <button matTooltip="Create item" mat-button (click)="addEditItem()">
@@ -7,24 +7,32 @@
       </button>
     </mat-toolbar>
   </div>
-  <mat-divider horizontal></mat-divider>
+  <mat-divider horizontal></mat-divider>  -->
   <div fxLayout="row" fxFlex>
     <mat-card cdkDropList
       #newList="cdkDropList"
       [cdkDropListData]="columns.new"
       [cdkDropListConnectedTo]="[newList, approvedList, commitedList, doneList]"
       class="workflow-manager-list"
-      (cdkDropListDropped)="drop($event)">
+      (cdkDropListDropped)="drop($event)"
+      fxLayout="column">
       <mat-card-header>
         <div mat-card-avatar>
           <mat-icon>forward</mat-icon>
         </div>
         <mat-card-title>New</mat-card-title>
+        <div fxFlex dir="rtl" style="margin-right: 6px">
+          <button matTooltip="Create item" mat-raised-button (click)="addEditItem()">
+              <mat-icon>add</mat-icon>
+          </button>          
+        </div>
       </mat-card-header>
       <mat-expansion-panel class="expansion-panel" cdkDrag *ngFor="let item of columns.new">
         <mat-expansion-panel-header>
           <mat-panel-title matTooltip="{{item.name}}" class="panel-title">
-            {{item.name}}
+            <div>{{item.name}}</div> <div fxFlex dir="rtl" 
+            [ngClass]="{'blue-text': item.author === 'Marek', 'red-text' : item.author === 'Terezka' }" 
+            style="font-style: italic">{{item.author}}</div>
           </mat-panel-title>
         </mat-expansion-panel-header>
         <div fxLayout="row" fxFlex>
@@ -57,7 +65,9 @@
     <mat-expansion-panel class="expansion-panel" *ngFor="let item of columns.approved" cdkDrag>
       <mat-expansion-panel-header>
         <mat-panel-title matTooltip="{{item.name}}" class="panel-title">
-          {{item.name}}
+          <div>{{item.name}}</div> <div fxFlex dir="rtl" 
+            [ngClass]="{'blue-text': item.author === 'Marek', 'red-text' : item.author === 'Terezka' }" 
+            style="font-style: italic">{{item.author}}</div>
         </mat-panel-title>
       </mat-expansion-panel-header>
       <div fxLayout="row" fxFlex>
@@ -90,7 +100,9 @@
     <mat-expansion-panel class="expansion-panel" *ngFor="let item of columns.commited" cdkDrag>
       <mat-expansion-panel-header>
         <mat-panel-title matTooltip="{{item.name}}" class="panel-title">
-          {{item.name}}
+          <div>{{item.name}}</div> <div fxFlex dir="rtl" 
+            [ngClass]="{'blue-text': item.author === 'Marek', 'red-text' : item.author === 'Terezka' }" 
+            style="font-style: italic">{{item.author}}</div>
         </mat-panel-title>
       </mat-expansion-panel-header>
       <div fxLayout="row" fxFlex>
@@ -123,7 +135,9 @@
     <mat-expansion-panel class="expansion-panel" *ngFor="let item of columns.done" cdkDrag>
       <mat-expansion-panel-header>
         <mat-panel-title matTooltip="{{item.name}}" class="panel-title">
-          {{item.name}}
+          <div>{{item.name}}</div> <div fxFlex dir="rtl" 
+            [ngClass]="{'blue-text': item.author === 'Marek', 'red-text' : item.author === 'Terezka' }" 
+            style="font-style: italic">{{item.author}}</div>
         </mat-panel-title>
       </mat-expansion-panel-header>
       <div fxLayout="row" fxFlex>
