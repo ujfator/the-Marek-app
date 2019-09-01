@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
+
 import { WorkflowItemModel } from 'server/models';
-import { DialogService, WorkflowManagerService } from '../common/services';
+import { DialogService, WorkflowManagerService, AuthorService } from '../common/services';
 
 interface columns {
   new: WorkflowItemModel[],
@@ -18,6 +19,7 @@ interface columns {
 })
 export class WorkflowManagerComponent {
 
+  public selectedAuthor: string = '';
   public workflowItems: WorkflowItemModel[];
   public columns: columns = {
     new: [],
@@ -29,26 +31,11 @@ export class WorkflowManagerComponent {
   constructor(
     public workflowService: WorkflowManagerService,
     public dialogService: DialogService,
+    public authorService: AuthorService,
   ) {
     this.workflowService.items.subscribe(async (items) => {
-      if (this.columns) this.emptyColumns();
       if (items) this.workflowItems = await items;
-      this.workflowItems && this.workflowItems.forEach(item => {
-        switch(item.container) {
-          case 'new':
-            this.columns.new.push(item);
-            break;
-          case 'approved':
-            this.columns.approved.push(item);
-            break;
-          case 'commited':
-            this.columns.commited.push(item);
-            break;
-          case 'done':
-            this.columns.done.push(item);
-            break;
-        }
-      });
+      this.createDataSource();
     });
     this.dialogService.data.subscribe((data: WorkflowItemModel) => {
       if (data) {
@@ -57,6 +44,38 @@ export class WorkflowManagerComponent {
         } else this.workflowService.addItem(data);
       }
     })
+    this.authorService.author.subscribe(async (author) => {
+      this.selectedAuthor = await author;
+      this.createDataSource(author);
+    })
+  }
+
+  public filler(item: WorkflowItemModel) {
+    switch(item.container) {
+      case 'new':
+        this.columns.new.push(item);
+        break;
+      case 'approved':
+        this.columns.approved.push(item);
+        break;
+      case 'commited':
+        this.columns.commited.push(item);
+        break;
+      case 'done':
+        this.columns.done.push(item);
+        break;
+    }
+  }
+
+  public async createDataSource (author?: string) {
+    if (this.columns) await this.emptyColumns();
+    this.workflowItems && this.workflowItems.forEach(item => {
+      if (author) {
+        if (item.author === author) {
+          this.filler(item);
+        }
+      } else this.filler(item);
+    });
   }
 
   public changeContainerName (name: string): string {

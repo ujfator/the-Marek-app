@@ -3,11 +3,11 @@
     <mat-toolbar class="manager-toolbar">
       <span class="fill-remaining-space"></span>
       <button matTooltip="Create item" mat-button (click)="addEditItem()">
-        <mat-icon>add</mat-icon>
+        <mat-icon>face</mat-icon>
       </button>
     </mat-toolbar>
-  </div>
-  <mat-divider horizontal></mat-divider>  -->
+  </div> -->
+  <mat-divider horizontal></mat-divider>
   <div fxLayout="row" fxFlex>
     <mat-card cdkDropList
       #newList="cdkDropList"
@@ -42,9 +42,6 @@
               <button matTooltip="Edit item" (click)="addEditItem(item)" mat-raised-button>
                 <mat-icon>edit</mat-icon>
               </button>
-              <!-- <button matTooltip="Delete item" (click)="delete(item.id)" mat-raised-button>
-                <mat-icon>delete</mat-icon>
-              </button> -->
             </div>
           </div>
         </div>
@@ -77,9 +74,6 @@
             <button matTooltip="Edit item" (click)="addEditItem(item)" mat-raised-button>
               <mat-icon>edit</mat-icon>
             </button>
-            <!-- <button matTooltip="Delete item" (click)="delete(item.id)" mat-raised-button>
-              <mat-icon>delete</mat-icon>
-            </button> -->
           </div>
         </div>
       </div>
@@ -112,9 +106,6 @@
             <button matTooltip="Edit item" (click)="addEditItem(item)" mat-raised-button>
               <mat-icon>edit</mat-icon>
             </button>
-            <!-- <button matTooltip="Delete item" (click)="delete(item.id)" mat-raised-button>
-              <mat-icon>delete</mat-icon>
-            </button> -->
           </div>
         </div>
       </div>
@@ -144,12 +135,9 @@
         <div fxLayout="column" fxFill>
           <div fxFlex class="content">{{item.content}}</div>
           <div fxFlex fxFlexAlign="end">
-            <button matTooltip="Edit item" (click)="addEditItem(item)" mat-raised-button>
-              <mat-icon>edit</mat-icon>
-            </button>
-            <!-- <button matTooltip="Delete item" (click)="delete(item.id)" mat-raised-button>
+            <button matTooltip="Delete item" (click)="delete(item.id)" mat-raised-button>
               <mat-icon>delete</mat-icon>
-            </button> -->
+            </button>
           </div>
         </div>
       </div>

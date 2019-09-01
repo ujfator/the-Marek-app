@@ -13,13 +13,23 @@
 	</mat-toolbar>
 	<mat-divider></mat-divider>
 	<mat-sidenav-container class="side-navigation-container" fxFlex>
-		<mat-sidenav class="side-navigation" #sideNavigation opened mode="side">
+		<mat-sidenav #sideNavigation opened mode="side">
 			<div fxLayout="column" fxLayoutAlign="start space-between" fxFlex>
 				<mat-nav-list fxLayout="column" fxLayoutAlign="start stretch">
 					<!-- <a mat-list-item [routerLink]="['/food']">Food</a>
 					<a mat-list-item [routerLink]="['/body-mind']">Body & Mind</a>
 					<a mat-list-item [routerLink]="['/money-manager']">Money Manager</a>-->
-					<a mat-list-item [routerLink]="['/workflow-manager']">Workflow Manager</a>
+					<a mat-list-item [routerLink]="['/workflow-manager']">
+						<div>Workflow Manager</div>
+						<button class="navigation-button" mat-button [matMenuTriggerFor]="menu" matTooltip="Toggle user">
+							<mat-icon>face</mat-icon>
+						</button>
+						<mat-menu #menu="matMenu">
+							<button mat-menu-item (click)="chooseAuthor('Marek')">Marek</button>
+							<button mat-menu-item (click)="chooseAuthor('Terezka')">Terezka</button>
+							<button mat-menu-item (click)="chooseAuthor(null)">Oba</button>
+						</mat-menu>
+					</a>
 					<!-- <a mat-list-item [routerLink]="['/long-term-goals']">Long Term Goals</a> -->
 				</mat-nav-list>
 			</div>

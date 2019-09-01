@@ -3,3 +3,4 @@ export * from './budget.service';
 export * from './dialog.service';
 export * from './workflow-manager.service';
 export * from './money-manager.service';
+export * from './author.service';

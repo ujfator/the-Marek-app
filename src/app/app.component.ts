@@ -1,5 +1,7 @@
 import { Component, HostBinding  } from '@angular/core';
 import { OverlayContainer } from '@angular/cdk/overlay';
+import { Subject, BehaviorSubject } from 'rxjs';
+import { AuthorService } from './common/services';
 
 @Component({
 	selector: 'app-root',
@@ -10,7 +12,14 @@ export class AppComponent {
 	@HostBinding('class') public componentCssClass;
 	public theme: string = 'Dark';
 
-	constructor(public overlayContainer: OverlayContainer) {}
+	constructor(
+		public overlayContainer: OverlayContainer,
+		public authorService: AuthorService,
+		) {}
+
+	public chooseAuthor(author: string): void{
+		this.authorService.author.next(author);
+	}
 
 
 	public onSetTheme(theme: any): void {
