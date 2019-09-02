@@ -15,7 +15,10 @@ export class AppComponent {
 	constructor(
 		public overlayContainer: OverlayContainer,
 		public authorService: AuthorService,
-		) {}
+		) {
+			console.log(localStorage, this.componentCssClass);
+			if (localStorage.getItem('theme')) this.onSetTheme(localStorage.getItem('theme'));
+		}
 
 	public chooseAuthor(author: string): void{
 		this.authorService.author.next(author);
@@ -23,16 +26,16 @@ export class AppComponent {
 
 
 	public onSetTheme(theme: any): void {
-		if (this.componentCssClass === 'dark-theme') {
+		if (theme === 'Light') {
 			this.overlayContainer.getContainerElement().classList.add('light-theme');
 			this.overlayContainer.getContainerElement().classList.remove('dark-theme');
 			this.componentCssClass = 'light-theme';
-			this.theme = 'Dark';
+			localStorage.setItem('theme', theme);
 		} else {
 			this.overlayContainer.getContainerElement().classList.add('dark-theme');
 			this.overlayContainer.getContainerElement().classList.remove('light-theme');
-			this.componentCssClass = 'dark-theme';
-			this.theme = 'Light';
+			this.componentCssClass = 'dark-theme';	
+			localStorage.setItem('theme', theme);
 		}
 	}
 }

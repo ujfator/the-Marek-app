@@ -7,9 +7,13 @@
 			<h4>The You App</h4>
 		</div>
 		<span class="fill-remaining-space"></span>
-		<button mat-button (click)="onSetTheme('dark-theme')" matTooltip="Select a theme">
+		<button class="navigation-button" mat-button [matMenuTriggerFor]="themes" matTooltip="Toggle theme">
 			<mat-icon>format_color_fill</mat-icon>
 		</button>
+		<mat-menu #themes="matMenu">
+			<button mat-menu-item (click)="onSetTheme('Dark')">Dark</button>
+			<button mat-menu-item (click)="onSetTheme('Light')">Light</button>
+		</mat-menu>
 	</mat-toolbar>
 	<mat-divider></mat-divider>
 	<mat-sidenav-container class="side-navigation-container" fxFlex>
@@ -27,7 +31,7 @@
 						<mat-menu #menu="matMenu">
 							<button mat-menu-item (click)="chooseAuthor('Marek')">Marek</button>
 							<button mat-menu-item (click)="chooseAuthor('Terezka')">Terezka</button>
-							<button mat-menu-item (click)="chooseAuthor(null)">Oba</button>
+							<button mat-menu-item (click)="chooseAuthor('Oba')">Oba</button>
 						</mat-menu>
 					</a>
 					<!-- <a mat-list-item [routerLink]="['/long-term-goals']">Long Term Goals</a> -->

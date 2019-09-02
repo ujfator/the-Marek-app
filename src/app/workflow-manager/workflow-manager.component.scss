@@ -1,13 +1,14 @@
 @import '../app.component.scss';
 
-
 .add-button {
   height: 40px;
   margin: 6px;
 }
+
 .expansion-panel {
   margin: 6px;
 }
+
 .panel-header{
   text-align: center;
 }
@@ -26,6 +27,7 @@
   text-overflow: ellipsis;
   width: 30px;
 }
+
 .content {
   color: #9a9494;
 }

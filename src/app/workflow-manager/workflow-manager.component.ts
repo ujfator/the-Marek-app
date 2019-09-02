@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
-
 import { WorkflowItemModel } from 'server/models';
 import { DialogService, WorkflowManagerService, AuthorService } from '../common/services';
 
-interface columns {
+interface Columns {
   new: WorkflowItemModel[],
   approved: WorkflowItemModel[],
   commited: WorkflowItemModel[],
@@ -19,9 +18,8 @@ interface columns {
 })
 export class WorkflowManagerComponent {
 
-  public selectedAuthor: string = '';
   public workflowItems: WorkflowItemModel[];
-  public columns: columns = {
+  public columns: Columns = {
     new: [],
     approved: [],
     commited: [],
@@ -35,19 +33,30 @@ export class WorkflowManagerComponent {
   ) {
     this.workflowService.items.subscribe(async (items) => {
       if (items) this.workflowItems = await items;
-      this.createDataSource();
+      if (!localStorage.getItem('author')) {
+        this.createDataSource();
+      } else {
+        this.createDataSource(localStorage.getItem('author'));
+      }
     });
+
     this.dialogService.data.subscribe((data: WorkflowItemModel) => {
       if (data) {
         if (data.id) {
           this.workflowService.patchItem(data);
         } else this.workflowService.addItem(data);
       }
-    })
-    this.authorService.author.subscribe(async (author) => {
-      this.selectedAuthor = await author;
-      this.createDataSource(author);
-    })
+    });
+
+    this.authorService.author.subscribe((author) => {
+      if (author && author !== 'Oba') {
+        localStorage.setItem('author', author);
+        this.createDataSource(author);
+      } else if (author === 'Oba') {
+        localStorage.removeItem('author');
+        this.createDataSource();
+      }
+    });
   }
 
   public filler(item: WorkflowItemModel) {
@@ -70,10 +79,8 @@ export class WorkflowManagerComponent {
   public async createDataSource (author?: string) {
     if (this.columns) await this.emptyColumns();
     this.workflowItems && this.workflowItems.forEach(item => {
-      if (author) {
-        if (item.author === author) {
-          this.filler(item);
-        }
+      if (author && author !== 'Oba') {
+        if (item.author === author) this.filler(item);
       } else this.filler(item);
     });
   }
