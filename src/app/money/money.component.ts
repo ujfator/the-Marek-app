@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { MoneyModel } from 'server/models';
+import { MoneyModel, BudgetItemModel } from 'server/models';
 import { MoneyService, DialogService } from '../common/services';
 
 @Component({
@@ -30,7 +30,7 @@ export class MoneyComponent {
     })
   }
 
-  public addEditItem(item?: MoneyModel) {
+  public addBudgetItem(item?: BudgetItemModel) {
     this.dialogService.addEditItem('money', item);
   }
 

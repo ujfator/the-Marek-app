@@ -1,9 +1,15 @@
 <mat-grid-list cols="2" rowHeight="2:1">
   <mat-grid-tile>
     <mat-card style="margin: 5px; height: 70%; width: 90%">
-      <mat-card-header>
+      <mat-card-header class="header">
         <div mat-card-avatar class="header-image"></div>
-        <mat-card-title>Fixed expenses</mat-card-title>
+        <mat-card-title class="title" fxLayout="row">
+          <div>Fixed expenses</div>
+          <span class="fill-remaining-space"></span>
+          <button matTooltip="Add item" dir="rtl" mat-raised-button (click)="addBudgetItem()">
+            <mat-icon>add</mat-icon>
+          </button>
+        </mat-card-title>
         <mat-card-subtitle>List of monthly expenses</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
