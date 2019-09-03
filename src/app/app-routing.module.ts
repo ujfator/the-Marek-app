@@ -9,9 +9,9 @@ import { WorkflowComponent } from './workflow/workflow.component';
 
 const routes: Routes = [
   { path: 'food', component: FoodComponent },
-  { path: 'sport', component: SportComponent },
-  { path: 'money', component: MoneyComponent, children: moneyRoutes },
-  { path: 'workflow', component: WorkflowComponent },
+  { path: 'sport-tab', component: SportComponent },
+  { path: 'money-tab', component: MoneyComponent, children: moneyRoutes },
+  { path: 'workflow-tab', component: WorkflowComponent },
   { path: 'long-term-goals', component: WorkflowComponent },
 ];
 

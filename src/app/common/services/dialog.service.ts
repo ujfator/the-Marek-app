@@ -7,7 +7,7 @@ import { AddEditItemComponent } from '../add-edit-item/add-edit-item.component';
 import { AddEditWorkflowItemComponent } from '../../workflow/add-edit-workflow-item/add-edit-workflow-item.component'
 import { AddEditSportItemComponent } from '../../sport/add-edit-sport-item/add-edit-item.component';
 
-export interface ComponentType<T = any> {
+interface ComponentType<T = any> {
   new (...args: any[]): T;
 }
 
