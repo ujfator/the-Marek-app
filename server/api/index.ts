@@ -1,3 +1,4 @@
 export * from './api';
-export * from './money-manager/money-manager.routes';
-export * from './workflow-manager/workflow-manager.routes';
+export * from './money/money.routes';
+export * from './workflow/workflow.routes';
+export * from './sport/sport-routes';

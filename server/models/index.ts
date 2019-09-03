@@ -1,3 +1,4 @@
-export * from './workflow-manager.model';
-export * from './money-manager.model';
+export * from './workflow.model';
+export * from './money.model';
 export * from './budget.model';
+export * from './sport.model';

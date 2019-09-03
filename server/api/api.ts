@@ -1,6 +1,6 @@
 import * as express from 'express';
 import { BaseController, BaseInterface } from '../controller';
-import { WorkflowManagerRoutes, MoneyManagerRoutes } from './';
+import { WorkflowRoutes, MoneyRoutes, SportRoutes } from './';
 
 export class Api extends BaseController {
 	public get server(): express.Express {
@@ -14,7 +14,8 @@ export class Api extends BaseController {
 
 		console.warn('register API');
 
-		this.__router.use('/workflowManager', this.__init(WorkflowManagerRoutes, args).__router);
-		this.__router.use('/moneyManager', this.__init(MoneyManagerRoutes, args).__router);
+		this.__router.use('/workflow', this.__init(WorkflowRoutes, args).__router);
+		this.__router.use('/money', this.__init(MoneyRoutes, args).__router);
+		this.__router.use('/sport', this.__init(SportRoutes, args).__router);
 	}
 }

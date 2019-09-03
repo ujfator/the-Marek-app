@@ -5,15 +5,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
+
 import { AddEditItemComponent } from './common/add-edit-item/add-edit-item.component';
+import { AddEditSportItemComponent } from './sport/add-edit-sport-item/add-edit-item.component';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { BodyMindComponent } from './body-mind/body-mind.component';
+import { SportComponent } from './sport/sport.component';
 import { FoodComponent } from './food/food.component';
-import { MoneyManagerComponent } from './money-manager/money-manager.component';
-import { WorkflowManagerComponent } from './workflow-manager/workflow-manager.component';
-import { AddEditWorkflowItemComponent } from './workflow-manager/add-edit-workflow-item/add-edit-workflow-item.component'
-import { WorkflowManagerService, MoneyManagerService, DialogService, BudgetService, AuthorService } from './common/services';
+import { MoneyComponent } from './money/money.component';
+import { WorkflowComponent } from './workflow/workflow.component';
+import { AddEditWorkflowItemComponent } from './workflow/add-edit-workflow-item/add-edit-workflow-item.component'
+import { WorkflowService, MoneyService, DialogService, BudgetService, AuthorService, SportService } from './common/services';
 import { CoreModule } from './common/core.module';
 
 const imports =  [
@@ -32,17 +35,19 @@ const imports =  [
   declarations: [
     AppComponent,
     FoodComponent,
-    BodyMindComponent,
+    SportComponent,
     AddEditItemComponent,
     AddEditWorkflowItemComponent,
-    WorkflowManagerComponent,
-    MoneyManagerComponent,
+    AddEditSportItemComponent,
+    WorkflowComponent,
+    MoneyComponent,
   ],
   entryComponents: [
     AddEditItemComponent,
     AddEditWorkflowItemComponent,
+    AddEditSportItemComponent
   ],
   imports,
-  providers: [ WorkflowManagerService, MoneyManagerService, BudgetService, DialogService, AuthorService ],
+  providers: [ WorkflowService, MoneyService, BudgetService, DialogService, AuthorService, SportService ],
 })
 export class AppModule { }

@@ -1,0 +1,38 @@
+<form [formGroup]="form" fxLayout="column" fxLayoutAlign="start stretch" (ngSubmit)="onSubmit()">
+
+  <mat-form-field>
+    <mat-label>Date</mat-label>
+    <input name="date" [matDatepicker]="picker" formControlName="date" matInput placeholder="Choose date">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <mat-error>ERROR</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Sport</mat-label>
+    <textarea name="sport" type="text" formControlName="sport" required matInput placeholder="Sport"></textarea>
+    <mat-error>ERROR</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Difficulty</mat-label>
+    <input name="difficulty" type="string" formControlName="difficulty" 
+      required matInput [matAutocomplete]="difficulty" placeholder="Difficulty">
+    <mat-error>ERROR</mat-error>
+  </mat-form-field>
+  
+  <mat-autocomplete #difficulty="matAutocomplete">
+    <mat-option *ngFor="let difficulty of difficulties" [value]="difficulty">{{difficulty}}</mat-option>
+  </mat-autocomplete>
+
+  <mat-form-field>
+    <mat-label>Duration</mat-label>
+    <input name="duration" type="number" formControlName="duration" required matInput placeholder="Duration">
+    <mat-error>ERROR</mat-error>
+  </mat-form-field>
+
+  <div mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+    <button mat-stroked-button type="reset" color="warn" (click)="dialogRef.close()">Cancel</button>
+    <button mat-stroked-button color="primary" fxFlexOffset="15px" type="submit">Submit</button>
+  </div>
+</form>

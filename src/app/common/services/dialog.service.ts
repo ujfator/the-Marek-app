@@ -2,31 +2,42 @@ import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { BehaviorSubject, Subject } from 'rxjs';
 
-import { MoneyItemModel, BudgetItemModel, WorkflowItemModel } from 'server/models';
+import { MoneyModel, BudgetItemModel, WorkflowModel, SportItemModel } from 'server/models';
 import { AddEditItemComponent } from '../add-edit-item/add-edit-item.component';
-import { AddEditWorkflowItemComponent } from '../../workflow-manager/add-edit-workflow-item/add-edit-workflow-item.component'
+import { AddEditWorkflowItemComponent } from '../../workflow/add-edit-workflow-item/add-edit-workflow-item.component'
+import { AddEditSportItemComponent } from '../../sport/add-edit-sport-item/add-edit-item.component';
 
 @Injectable()
 export class DialogService {
 
-    public data: Subject<BudgetItemModel|MoneyItemModel|WorkflowItemModel> = new BehaviorSubject<BudgetItemModel|MoneyItemModel|WorkflowItemModel>(null);
+    public data: Subject<
+    BudgetItemModel|MoneyModel|WorkflowModel|SportItemModel> = new BehaviorSubject<
+    BudgetItemModel|MoneyModel|WorkflowModel|SportItemModel>(null);
 
     constructor(
         public dialog: MatDialog,
     ) {}
 
-	public addEditItem(origin: string, item?: MoneyItemModel|BudgetItemModel|WorkflowItemModel) {
-		const dialogRef = this.dialog.open(origin === 'workflow' ? AddEditWorkflowItemComponent : AddEditItemComponent, {
+	public addEditItem(origin: string, item?: MoneyModel|BudgetItemModel|WorkflowModel|SportItemModel) {
+    console.log(origin, item);
+		const dialogRef = this.dialog.open(this.pickDialog(origin), {
 		  data: {
-			item: item ? item : null,
-			origin: origin,
+        item: item ? item : null,
+        origin: origin,
 		  },
 		  width: '500px',
-			});
-        dialogRef.afterClosed().subscribe(result => {
-            this.data.next(result);
-            console.log('The dialog was closed', result ? result : 'by clicking on cancel');
-        });
-      }
+		});
+    dialogRef.afterClosed().subscribe(result => {
+        this.data.next(result);
+        console.log('The dialog was closed', result ? result : 'by clicking on cancel');
+    });
+  }
+
+  public pickDialog(origin: string) {
+    switch (origin) {
+      case 'workflow': return AddEditWorkflowItemComponent;
+      case 'sport': return AddEditSportItemComponent;
+    }
+  }
       
 }
