@@ -1,1 +1,6 @@
 @import '../app.component.scss';
+
+.header-image {
+    background-image: src('./bill.png');
+    background-size: cover;
+}

@@ -11,7 +11,6 @@ import { MoneyService, DialogService } from '../common/services';
 export class MoneyComponent {
 
   public moneyItems: MoneyModel[];
-  public navigationItems;
   
   constructor(
     public moneyService: MoneyService,
@@ -20,7 +19,6 @@ export class MoneyComponent {
     this.moneyService.items.subscribe(async (items) => {
       if (items) {
         this.moneyItems = await items;
-        this._buildItems(items);
       }
     });
     this.dialogService.data.subscribe((data: MoneyModel) => {
@@ -38,12 +36,5 @@ export class MoneyComponent {
 
   public deleteItem(id: string) {
     this.moneyService.deleteItem(id);
-  }
-
-  private async _buildItems (items) {
-    this.navigationItems = items.map((item: MoneyModel) => {
-      const obj = { route: `./moneyItem/${item.id}`, name: item.name, id: item.id, data: { item } };
-      return obj;
-		});
   }
 }
