@@ -32,10 +32,10 @@ export class AddEditSportItemComponent implements OnInit {
 
   public ngOnInit(): void {
 		this.form = new FormGroup({
-      date: new FormControl(this.data ? this.data.item.date : new Date()),
-      sport: new FormControl(this.data ? this.data.item.sport : ''),
-      difficulty: new FormControl(this.data ? this.data.item.difficulty : ''),
-      duration: new FormControl(this.data ? this.data.item.duration : 0)
+      date: new FormControl(this.data.item ? this.data.item.date : new Date()),
+      sport: new FormControl(this.data.item ? this.data.item.sport : ''),
+      difficulty: new FormControl(this.data.item ? this.data.item.difficulty : ''),
+      duration: new FormControl(this.data.item ? this.data.item.duration : 0)
 		});
   }
 
