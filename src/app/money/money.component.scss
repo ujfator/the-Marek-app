@@ -1,1 +1,24 @@
 @import '../app.component.scss';
+
+.header-image {
+    background-image: url('../pics/bill.png');
+    background-size: cover;
+}
+
+:host::ng-deep .mat-card-header-text {
+    width: 100% !important;
+}
+
+:host::ng-deep .mat-list-item-content {
+    width: 100% !important;
+}
+
+.header {
+    width: 100%;
+}
+
+.title {
+    width: 100%;
+    margin: 0px !important;
+}
+

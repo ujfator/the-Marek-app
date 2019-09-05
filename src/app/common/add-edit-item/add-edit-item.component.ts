@@ -19,25 +19,21 @@ export class AddEditItemComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
+    console.log(this.data.origin === 'budget');
 		this.form = new FormGroup({
       name: new FormControl(this.data.item ? this.data.item.name : ''),
       content: new FormControl(this.data.item ? this.data.item.content : ''),
-      price: new FormControl(),
+      amount: new FormControl(),
       savings: new FormControl()
 		});
   }
 
 	public onSubmit(): void {
 		if (this.form.valid) {
-      const newOrUpdatedItem = this.data.origin === ('money' || 'budget') ? {
+      const newOrUpdatedItem = {
         name: this.form.value.name,
-        price: this.form.value.price,
+        amount: this.form.value.amount,
         savings: this.form.value.savings,
-      } : {
-        name: this.form.value.name,
-        content: this.form.value.content,
-        container: (this.data.item && this.data.item.container) || 'new',
-        id: this.data.item && this.data.item.id,
       }
 			this.dialogRef.close(newOrUpdatedItem);
 		}

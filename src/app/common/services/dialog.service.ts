@@ -40,6 +40,7 @@ export class DialogService {
         switch (origin) {
           case 'workflow': return AddEditWorkflowItemComponent;
           case 'sport': return AddEditSportItemComponent;
+          case 'budget': return AddEditItemComponent;
         }
     }
       
