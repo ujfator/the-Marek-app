@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
-import { MoneyModel } from 'server/models';
-import { MoneyService, DialogService } from '../common/services';
+import { MoneyModel, BudgetItemModel } from 'server/models';
+import { MoneyService, DialogService, BudgetService } from '../common/services';
 
 @Component({
   selector: 'app-money',
@@ -11,39 +11,51 @@ import { MoneyService, DialogService } from '../common/services';
 export class MoneyComponent {
 
   public moneyItems: MoneyModel[];
-  public navigationItems;
+  public budgetItems: BudgetItemModel[];
   
   constructor(
     public moneyService: MoneyService,
     public dialogService: DialogService,
+    public budgetService: BudgetService,
   ) {
-    this.moneyService.items.subscribe(async (items) => {
-      if (items) {
-        this.moneyItems = await items;
-        this._buildItems(items);
-      }
+    this.moneyService.items.subscribe((items) => {
+      if (items) this.moneyItems = [...items];
     });
-    this.dialogService.data.subscribe((data: MoneyModel) => {
+
+    this.budgetService.items.subscribe(async (items) => {
+      if (items) {
+        this.budgetItems = await [...items];
+        this.allExpenses();
+      };
+    });
+
+    this.dialogService.data.subscribe((data: any) => {
       if (data) {
-        if (data.id) {
-          this.moneyService.patchItem(data);
-        } else this.moneyService.addItem(data);
+        if (data.savings) {
+          if (data.id) {
+            this.moneyService.patchItem(data);
+          } else this.moneyService.addItem(data);
+        } else if (data.amount) {
+          if (data.id) {
+            this.budgetService.patchItem(data);
+          } else this.budgetService.addItem(data);
+        }
       }
     })
   }
 
-  public addEditItem(item?: MoneyModel) {
-    this.dialogService.addEditItem('money', item);
+  public allExpenses(): number {
+    return this.budgetItems.reduce((acc, item) => {
+      acc = acc + item.amount;
+      return acc;
+    }, 0)
   }
 
-  public deleteItem(id: string) {
-    this.moneyService.deleteItem(id);
+  public addBudgetItem(item?: BudgetItemModel) {
+    this.dialogService.addEditItem('budget', item);
   }
 
-  private async _buildItems (items) {
-    this.navigationItems = items.map((item: MoneyModel) => {
-      const obj = { route: `./moneyItem/${item.id}`, name: item.name, id: item.id, data: { item } };
-      return obj;
-		});
+  public delete(id: string) {
+    this.budgetService.deleteItem(id);
   }
 }

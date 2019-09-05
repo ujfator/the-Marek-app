@@ -29,13 +29,21 @@ export class SportComponent {
       if (data) {
         if (data.id) {
           this.sportService.patchItem(data);
-        } else this.sportService.addItem(data);
-      }
+          this.dialogService.data.next(null);
+        } else {
+          this.sportService.addItem(data);
+          this.dialogService.data.next(null);
+        };
+      };
     });
    }
 
   public addOrEditEntry(entry?: SportItemModel) {
    this.dialogService.addEditItem('sport', entry);
+  }
+
+  public delete(entry: SportItemModel) {
+    this.sportService.deleteItem(entry.id);
   }
 
 }
