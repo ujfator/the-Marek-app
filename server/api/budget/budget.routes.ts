@@ -1,8 +1,8 @@
 import { Request, Response } from 'express-serve-static-core';
 
-import { BudgetItemModel } from '../../../models'
+import { BudgetItemModel } from '../../models'
 
-import { BudgetController, BaseController, BaseInterface } from '../../../controller';
+import { BudgetController, BaseController, BaseInterface } from '../../controller';
 
 export class BudgetRoutes extends BaseController {
 	private _budgetController: BudgetController;

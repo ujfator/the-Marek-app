@@ -9,6 +9,10 @@
     width: 100% !important;
 }
 
+:host::ng-deep .mat-list-item-content {
+    width: 100% !important;
+}
+
 .header {
     width: 100%;
 }
@@ -17,3 +21,4 @@
     width: 100%;
     margin: 0px !important;
 }
+
