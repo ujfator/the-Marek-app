@@ -119,6 +119,7 @@ export class WorkflowComponent {
 
   public addEditItem(item?: WorkflowModel) {
     this.dialogService.addEditItem('workflow', item);
+    this.dialogService.data.next(null);
   }
 
   public emptyColumns (): void {

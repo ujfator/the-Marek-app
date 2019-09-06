@@ -12,12 +12,6 @@
     <mat-error>ERROR</mat-error>
   </mat-form-field>
 
-  <mat-form-field *ngIf="data.origin === 'money'">
-    <mat-label>Savings</mat-label>
-    <input name="savings" type="number" formControlName="savings" required matInput placeholder="Savings">
-    <mat-error>ERROR</mat-error>
-  </mat-form-field>
-
   <div mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
     <button mat-stroked-button type="reset" color="warn" (click)="dialogRef.close()">Cancel</button>
     <button mat-stroked-button color="primary" fxFlexOffset="15px" type="submit">Submit</button>

@@ -23,6 +23,7 @@ export class DialogService {
     ) {}
 
     public addEditItem(origin: string, item?: MoneyModel|BudgetItemModel|WorkflowModel|SportItemModel) {
+      console.log(origin);
         const dialogRef = this.dialog.open(this.pickDialog(origin), {
           data: {
             item: item ? item : null,
@@ -40,7 +41,9 @@ export class DialogService {
         switch (origin) {
           case 'workflow': return AddEditWorkflowItemComponent;
           case 'sport': return AddEditSportItemComponent;
-          case 'budget': return AddEditItemComponent;
+          case 'asset': return AddEditItemComponent;
+          case 'expense': return AddEditItemComponent;
+          case 'loan': return AddEditItemComponent;
         }
     }
       

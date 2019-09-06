@@ -19,12 +19,9 @@ export class AddEditItemComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
-    console.log(this.data.origin === 'budget');
 		this.form = new FormGroup({
       name: new FormControl(this.data.item ? this.data.item.name : ''),
-      content: new FormControl(this.data.item ? this.data.item.content : ''),
       amount: new FormControl(),
-      savings: new FormControl()
 		});
   }
 
@@ -33,7 +30,7 @@ export class AddEditItemComponent implements OnInit {
       const newOrUpdatedItem = {
         name: this.form.value.name,
         amount: this.form.value.amount,
-        savings: this.form.value.savings,
+        nature: this.data.origin,
       }
 			this.dialogRef.close(newOrUpdatedItem);
 		}

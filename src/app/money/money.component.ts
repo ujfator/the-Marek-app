@@ -11,7 +11,9 @@ import { MoneyService, DialogService, BudgetService } from '../common/services';
 export class MoneyComponent {
 
   public moneyItems: MoneyModel[];
-  public budgetItems: BudgetItemModel[];
+  public expenses: BudgetItemModel[] = [];
+  public assets: BudgetItemModel[] = [];
+  public loans: BudgetItemModel[] = [];
   
   constructor(
     public moneyService: MoneyService,
@@ -22,40 +24,54 @@ export class MoneyComponent {
       if (items) this.moneyItems = [...items];
     });
 
-    this.budgetService.items.subscribe(async (items) => {
+    this.budgetService.items.subscribe(async(items) => {
+      await this.emptyColumns();
       if (items) {
-        this.budgetItems = await [...items];
-        this.allExpenses();
+        items.forEach(item => {
+          switch(item.nature) {
+            case 'expense':
+              this.expenses.push(item);
+              break;
+            case 'asset':
+              this.assets.push(item);
+              break;
+            case 'loan':
+              this.loans.push(item);
+              break;
+          }
+        });
+        console.log(this.expenses);
       };
     });
 
     this.dialogService.data.subscribe((data: any) => {
       if (data) {
-        if (data.savings) {
-          if (data.id) {
-            this.moneyService.patchItem(data);
-          } else this.moneyService.addItem(data);
-        } else if (data.amount) {
           if (data.id) {
             this.budgetService.patchItem(data);
           } else this.budgetService.addItem(data);
         }
-      }
     })
   }
 
-  public allExpenses(): number {
-    return this.budgetItems.reduce((acc, item) => {
+  public accumulator(source: BudgetItemModel[]): number {
+    return source.reduce((acc, item) => {
       acc = acc + item.amount;
       return acc;
     }, 0)
   }
 
-  public addBudgetItem(item?: BudgetItemModel) {
-    this.dialogService.addEditItem('budget', item);
+  public addBudgetItem(origin: string) {
+    this.dialogService.addEditItem(origin);
+    this.dialogService.data.next(null);
   }
 
   public delete(id: string) {
     this.budgetService.deleteItem(id);
   }
+
+  public emptyColumns (): void {
+    this.expenses = [];
+    this.assets = [];
+    this.loans = [];
+   };
 }

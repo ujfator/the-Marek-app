@@ -27,7 +27,6 @@ export class AddEditSportItemComponent implements OnInit {
           items.forEach((item) => this.difficulties.push(item.difficulty));
           this.difficulties = Array.from(new Set(this.difficulties));
         }
-        console.log(this.difficulties);
       })
    }
 
@@ -47,6 +46,7 @@ export class AddEditSportItemComponent implements OnInit {
         sport: this.form.value.sport,
         difficulty: this.form.value.difficulty,
         duration: this.form.value.duration,
+        id: this.data.item ? this.data.item.id : ''
       }
 			this.dialogRef.close(newOrUpdatedItem);
 		}
