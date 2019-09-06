@@ -25,6 +25,7 @@ export class AddEditSportItemComponent implements OnInit {
       this.sportService.items.subscribe((items)=>{
         if (items) {
           items.forEach((item) => this.difficulties.push(item.difficulty));
+          this.difficulties = Array.from(new Set(this.difficulties));
         }
         console.log(this.difficulties);
       })
