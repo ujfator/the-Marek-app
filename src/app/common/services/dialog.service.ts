@@ -28,6 +28,7 @@ export class DialogService {
           data: {
             item: item ? item : null,
             origin: origin,
+            authors: ['Terezka', 'Marek'],
           },
           width: '500px',
       });

@@ -9,7 +9,7 @@ export class WorkflowRoutes extends BaseController {
 
 	constructor(args: BaseInterface) {
 		super(args);
-		console.warn('register route', 'workflowItemsRoutes');
+		console.warn('register route', 'workflowRoutes');
 
 		this._workflowController = new WorkflowController(args);
 

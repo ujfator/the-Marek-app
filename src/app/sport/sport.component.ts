@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material';
 
-import { SportService, DialogService } from '../common/services';
+import { SportService, DialogService, AuthorService } from '../common/services';
 import { SportItemModel } from 'server/models';
 
 
@@ -13,16 +13,23 @@ import { SportItemModel } from 'server/models';
 
 export class SportComponent {
 
-  public displayedColumns: string[] = ['date', 'running', 'meditation', 'emotion', 'edit'];
-  public dataSource;
+  public displayedColumns: string[] = ['date', 'sport', 'difficulty', 'author', 'edit'];
+  public sportItems: SportItemModel[] = [];
+  public allItems: SportItemModel[] = [];
 
   constructor(
     public dialog: MatDialog,
     public sportService: SportService,
     public dialogService: DialogService,
+    public authorService: AuthorService,
   ) {
-    this.sportService.items.subscribe((items) => {
-      if (items) this.dataSource = [...items];
+    this.sportService.items.subscribe(async (items) => {
+      if (items) {
+        this.allItems = await [...items];
+        if (localStorage.getItem('author')) {
+          this.createDataSource(localStorage.getItem('author'))
+        } else this.sportItems = [...items];
+      }
     });
     
     this.dialogService.data.subscribe((data: SportItemModel) => {
@@ -32,11 +39,24 @@ export class SportComponent {
         } else this.sportService.addItem(data);
       };
     });
-   }
+
+    this.authorService.author.subscribe((author) => {
+      if (author && author !== 'Oba') {
+        this.createDataSource(author);
+      } else if (author === 'Oba') this.sportItems = [...this.allItems];
+    });
+  }
 
   public addOrEditEntry(entry?: SportItemModel) {
     this.dialogService.data.next(null);
     this.dialogService.addEditItem('sport', entry);
+  }
+
+  public createDataSource (author?: string) {
+    this.sportItems = [];
+    this.allItems && this.allItems.forEach(element => {
+      if (element.author === author) this.sportItems.push(element);
+    });
   }
 
   public delete(entry: SportItemModel) {

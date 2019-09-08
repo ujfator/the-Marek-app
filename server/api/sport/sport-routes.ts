@@ -9,7 +9,7 @@ export class SportRoutes extends BaseController {
 
 	constructor(args: BaseInterface) {
 		super(args);
-		console.warn('register route', 'moneyItemsRoutes');
+		console.warn('register route', 'sportRoutes');
 
 		this._sportController = new SportController(args);
 

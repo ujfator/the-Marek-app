@@ -19,9 +19,11 @@ export class AddEditItemComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
+    console.log(localStorage.getItem('author'));
 		this.form = new FormGroup({
       name: new FormControl(this.data.item ? this.data.item.name : ''),
       amount: new FormControl(),
+      author: new FormControl(this.data.item ? this.data.item.author : localStorage.getItem('author')),
 		});
   }
 
@@ -31,6 +33,7 @@ export class AddEditItemComponent implements OnInit {
         name: this.form.value.name,
         amount: this.form.value.amount,
         nature: this.data.origin,
+        author: this.form.value.author,
       }
 			this.dialogRef.close(newOrUpdatedItem);
 		}

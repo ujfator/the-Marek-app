@@ -35,9 +35,7 @@ export class WorkflowComponent {
       if (items) this.workflowItems = await items;
       if (!localStorage.getItem('author')) {
         this.createDataSource();
-      } else {
-        this.createDataSource(localStorage.getItem('author'));
-      }
+      } else this.createDataSource(localStorage.getItem('author'))
     });
 
     this.dialogService.data.subscribe((data: WorkflowModel) => {
@@ -50,12 +48,8 @@ export class WorkflowComponent {
 
     this.authorService.author.subscribe((author) => {
       if (author && author !== 'Oba') {
-        localStorage.setItem('author', author);
         this.createDataSource(author);
-      } else if (author === 'Oba') {
-        localStorage.removeItem('author');
-        this.createDataSource();
-      }
+      } else if (author === 'Oba') this.createDataSource()
     });
   }
 
@@ -112,7 +106,7 @@ export class WorkflowComponent {
           movedItem.container = newContainer;
           this.workflowService.patchItem(movedItem);
         }
-      })
+      });
     }
 
   }

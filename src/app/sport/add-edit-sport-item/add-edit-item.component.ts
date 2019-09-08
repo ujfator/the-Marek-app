@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { SportItemModel } from 'server/models';
-import { SportService } from 'src/app/common/services';
+import { SportService, AuthorService } from 'src/app/common/services';
 
 @Component({
   selector: 'app-add-edit-item',
@@ -27,7 +27,7 @@ export class AddEditSportItemComponent implements OnInit {
           items.forEach((item) => this.difficulties.push(item.difficulty));
           this.difficulties = Array.from(new Set(this.difficulties));
         }
-      })
+      });
    }
 
   public ngOnInit(): void {
@@ -35,7 +35,8 @@ export class AddEditSportItemComponent implements OnInit {
       date: new FormControl(this.data.item ? this.data.item.date : new Date()),
       sport: new FormControl(this.data.item ? this.data.item.sport : ''),
       difficulty: new FormControl(this.data.item ? this.data.item.difficulty : ''),
-      duration: new FormControl(this.data.item ? this.data.item.duration : 0)
+      duration: new FormControl(this.data.item ? this.data.item.duration : 0),
+      author: new FormControl(this.data.item ? this.data.item.author : ''),
 		});
   }
 
@@ -46,7 +47,8 @@ export class AddEditSportItemComponent implements OnInit {
         sport: this.form.value.sport,
         difficulty: this.form.value.difficulty,
         duration: this.form.value.duration,
-        id: this.data.item ? this.data.item.id : ''
+        id: this.data.item ? this.data.item.id : '',
+        author: this.form.value.author ? this.form.value.author : '',
       }
 			this.dialogRef.close(newOrUpdatedItem);
 		}

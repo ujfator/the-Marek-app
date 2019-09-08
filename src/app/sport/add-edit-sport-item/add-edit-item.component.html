@@ -31,6 +31,15 @@
     <mat-error>ERROR</mat-error>
   </mat-form-field>
 
+  <mat-form-field>
+      <mat-label>Author</mat-label>
+      <input type="text" matInput formControlName="author" [matAutocomplete]="author">
+  </mat-form-field>
+  
+  <mat-autocomplete #author="matAutocomplete">
+    <mat-option *ngFor="let author of data.authors" [value]="author">{{author}}</mat-option>
+  </mat-autocomplete>
+
   <div mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
     <button mat-stroked-button type="reset" color="warn" (click)="dialogRef.close()">Cancel</button>
     <button mat-stroked-button color="primary" fxFlexOffset="15px" type="submit">Submit</button>

@@ -11,17 +11,24 @@ import { AuthorService } from './common/services';
 export class AppComponent {
 	@HostBinding('class') public componentCssClass;
 	public theme: string = 'Dark';
+	public author: string;
 
 	constructor(
 		public overlayContainer: OverlayContainer,
 		public authorService: AuthorService,
 		) {
-			console.log(localStorage, this.componentCssClass);
 			if (localStorage.getItem('theme')) this.onSetTheme(localStorage.getItem('theme'));
+			this.authorService.author.subscribe((author) =>  {
+				if (author) { 
+					if (author !== 'Oba') { 
+						this.author = author;
+					} else this.author = null;
+				};
+			});
 		}
 
 	public chooseAuthor(author: string): void{
-		this.authorService.author.next(author);
+		this.authorService.selectAuthor(author);
 	}
 
 

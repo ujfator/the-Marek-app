@@ -4,7 +4,19 @@
 			<mat-icon>menu</mat-icon>
 		</button>
 		<div class="header-menu-breadcrum">
-			<h4>The You App</h4>
+				<div fxLayout="row" fxLayoutAlign="space-around center" >
+					<button *ngIf="author" mat-button class="navigation-button" [matMenuTriggerFor]="menu" matTooltip="Toggle user">
+						The {{ author }} App
+					</button>
+					<button *ngIf="!author" mat-button class="navigation-button" [matMenuTriggerFor]="menu" matTooltip="Toggle user">
+						Pick user
+					</button>
+					<mat-menu #menu="matMenu">
+						<button mat-menu-item (click)="chooseAuthor('Marek')">Marek</button>
+						<button mat-menu-item (click)="chooseAuthor('Terezka')">Terezka</button>
+						<button mat-menu-item (click)="chooseAuthor('Oba')">Oba</button>
+					</mat-menu>
+				</div>
 		</div>
 		<span class="fill-remaining-space"></span>
 		<button class="navigation-button" mat-button [matMenuTriggerFor]="themes" matTooltip="Toggle theme">
@@ -19,22 +31,12 @@
 	<mat-sidenav-container class="side-navigation-container" fxFlex>
 		<mat-sidenav #sideNavigation opened mode="side">
 			<div fxLayout="column" fxLayoutAlign="start space-between" fxFlex>
-				<mat-nav-list fxLayout="column" fxLayoutAlign="start stretch">
-					<!-- <a mat-list-item [routerLink]="['/food-tab']">Food</a> -->
+				<mat-nav-list fxLayout="column" fxLayoutAlign="start stretch" fxFill>
 					<a mat-list-item [routerLink]="['/sport-tab']">Sport</a>
 					<a mat-list-item [routerLink]="['/money-tab']">Money</a>
 					<a mat-list-item [routerLink]="['/workflow-tab']">
 						<div>Workflow</div>
-						<button class="navigation-button" mat-button [matMenuTriggerFor]="menu" matTooltip="Toggle user">
-							<mat-icon>face</mat-icon>
-						</button>
-						<mat-menu #menu="matMenu">
-							<button mat-menu-item (click)="chooseAuthor('Marek')">Marek</button>
-							<button mat-menu-item (click)="chooseAuthor('Terezka')">Terezka</button>
-							<button mat-menu-item (click)="chooseAuthor('Oba')">Oba</button>
-						</mat-menu>
 					</a>
-					<!-- <a mat-list-item [routerLink]="['/long-term-goals']">Long Term Goals</a> -->
 				</mat-nav-list>
 			</div>
 		</mat-sidenav>

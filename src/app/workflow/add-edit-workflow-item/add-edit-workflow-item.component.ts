@@ -2,6 +2,9 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
+import { AuthorService } from '../../common/services';
+
+
 @Component({
   selector: 'app-add-edit-workflow-item',
   templateUrl: './add-edit-workflow-item.component.html',
@@ -10,16 +13,13 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 export class AddEditWorkflowItemComponent implements OnInit {
 
   public form: FormGroup;
-  public authors: String[] = [
-    'Marek', 'Terezka', 'Sunéčko'
-  ]
 
   constructor(
     public dialogRef: MatDialogRef<AddEditWorkflowItemComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { 
       item: any, origin: string
     },
-  ) { }
+  ) {}
 
   public ngOnInit(): void {
 		this.form = new FormGroup({

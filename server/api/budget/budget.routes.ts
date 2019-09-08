@@ -9,7 +9,7 @@ export class BudgetRoutes extends BaseController {
 
 	constructor(args: BaseInterface) {
 		super(args);
-		console.warn('register route', 'budgetItemsRoutes');
+		console.warn('register route', 'budgetRoutes');
 
 		this._budgetController = new BudgetController(args);
 
