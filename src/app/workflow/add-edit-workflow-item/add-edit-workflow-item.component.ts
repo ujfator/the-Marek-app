@@ -19,7 +19,7 @@ export class AddEditWorkflowItemComponent implements OnInit {
     public dialogRef: MatDialogRef<AddEditWorkflowItemComponent>,
     public difficultyService: DifficultyService,
     @Inject(MAT_DIALOG_DATA) public data: { 
-      item: any, origin: string, author: string[],
+      item: any, origin: string, authors: string[],
     },
   ) {
     this.difficultyService.difficulties.subscribe((items)=>{
