@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
-import { AuthorService } from '../../common/services';
+import { DifficultyService } from '../../common/services/difficulty.service';
 
 
 @Component({
@@ -13,20 +13,27 @@ import { AuthorService } from '../../common/services';
 export class AddEditWorkflowItemComponent implements OnInit {
 
   public form: FormGroup;
+  public difficulties: string[] = [];
 
   constructor(
     public dialogRef: MatDialogRef<AddEditWorkflowItemComponent>,
+    public difficultyService: DifficultyService,
     @Inject(MAT_DIALOG_DATA) public data: { 
-      item: any, origin: string
+      item: any, origin: string, author: string[],
     },
-  ) {}
+  ) {
+    this.difficultyService.difficulties.subscribe((items)=>{
+      if (items) this.difficulties = [...items];
+    });
+  }
 
   public ngOnInit(): void {
 		this.form = new FormGroup({
       name: new FormControl(this.data.item ? this.data.item.name : ''),
       content: new FormControl(this.data.item ? this.data.item.content : ''),
       author: new FormControl(this.data.item ? this.data.item.author : ''),
-      dueDate: new FormControl(this.data.item ? this.data.item.dueDate : '')
+      dueDate: new FormControl(this.data.item ? this.data.item.dueDate : ''),
+      difficulty: new FormControl(this.data.item ? this.data.item.difficulty : ''),
 		});
   }
 
@@ -34,11 +41,12 @@ export class AddEditWorkflowItemComponent implements OnInit {
 		if (this.form.valid) {
       const newOrUpdatedItem =  {
         name: this.form.value.name,
+        author: this.form.value.author,
         content: this.form.value.content,
         container: (this.data.item && this.data.item.container) || 'new',
-        author: this.form.value.author,
         dueDate: this.form.value.dueDate,
         id: this.data.item && this.data.item.id,
+        difficulty: this.form.value.difficulty,
       }
 			this.dialogRef.close(newOrUpdatedItem);
 		}

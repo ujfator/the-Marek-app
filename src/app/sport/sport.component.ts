@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material';
 
-import { SportService, DialogService, AuthorService } from '../common/services';
+import { SportService, DialogService, AuthorService, DifficultyService } from '../common/services';
 import { SportItemModel } from 'server/models';
 
 
@@ -22,6 +22,7 @@ export class SportComponent {
     public sportService: SportService,
     public dialogService: DialogService,
     public authorService: AuthorService,
+    public difficultyService: DifficultyService,
   ) {
     this.sportService.items.subscribe(async (items) => {
       if (items) {
@@ -37,6 +38,7 @@ export class SportComponent {
         if (data.id) {
           this.sportService.patchItem(data);
         } else this.sportService.addItem(data);
+        if (data.difficulty) this.difficultyService.addDifficulty(data.difficulty);
       };
     });
 

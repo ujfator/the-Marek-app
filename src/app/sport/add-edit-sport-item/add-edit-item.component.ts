@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { SportItemModel } from 'server/models';
-import { SportService, AuthorService } from 'src/app/common/services';
+import { SportService, AuthorService, DifficultyService } from 'src/app/common/services';
 
 @Component({
   selector: 'app-add-edit-item',
@@ -17,16 +17,13 @@ export class AddEditSportItemComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<AddEditSportItemComponent>,
     public sportService: SportService,
+    public difficultyService: DifficultyService,
     @Inject(MAT_DIALOG_DATA) public data: {
-      item: SportItemModel,
-      origin: string,
+      item: SportItemModel, origin: string, authors: string[],
     },
   ) {
-      this.sportService.items.subscribe((items)=>{
-        if (items) {
-          items.forEach((item) => this.difficulties.push(item.difficulty));
-          this.difficulties = Array.from(new Set(this.difficulties));
-        }
+      this.difficultyService.difficulties.subscribe((items)=>{
+        if (items) this.difficulties = [...items];
       });
    }
 

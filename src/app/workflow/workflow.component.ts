@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 import { WorkflowModel } from 'server/models';
-import { DialogService, WorkflowService, AuthorService } from '../common/services';
+import { DialogService, WorkflowService, AuthorService, DifficultyService } from '../common/services';
 
 interface Columns {
   new: WorkflowModel[],
@@ -30,6 +30,7 @@ export class WorkflowComponent {
     public workflowService: WorkflowService,
     public dialogService: DialogService,
     public authorService: AuthorService,
+    public difficultyService: DifficultyService,
   ) {
     this.workflowService.items.subscribe(async (items) => {
       if (items) this.workflowItems = await items;
@@ -43,6 +44,7 @@ export class WorkflowComponent {
         if (data.id) {
           this.workflowService.patchItem(data);
         } else this.workflowService.addItem(data);
+        if (data.difficulty) this.difficultyService.addDifficulty(data.difficulty);
       }
     });
 

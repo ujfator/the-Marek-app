@@ -1,5 +1,7 @@
 import * as mongo from 'mongoose';
 
+import  { MongoClient } from 'mongodb';
+
 export class DbiController {
 
 	public uri: string = "mongodb+srv://marek:marek@cluster0-jkdd5.azure.mongodb.net/marekApp?retryWrites=true&w=majority";
@@ -19,21 +21,10 @@ export class DbiController {
 	private _connect(): void {
 		this._connectionInitiated = true;
 		console.log(`Initiating connection to Database...`);
-		
-		// try {
-		// 	MongoClient.connect(this.uri, function(err, db) {
-		// 		if (err) throw err;
-		// 		const data = { name: "Company Inc", description: "..." };
-			  
-		// 		db.collection("datas").insertOne(data, function(err, res) {
-		// 		  if (err) throw err;
-		// 		  console.log("1 document inserted");
-		// 		  db.close();
-		// 		});
-		// 	  }); 
-		// } catch(e) {
-		// 	console.log(e);
-		// }
+
+		// MongoClient.connect(this.uri, (err, connection)=> {
+		// 	this._dbh = <mongo.Connection>connection;
+		// });
 	
 		mongo.createConnection(this.uri).then(
 		(connection: any) => {

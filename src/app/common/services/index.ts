@@ -5,3 +5,4 @@ export * from './workflow.service';
 export * from './money.service';
 export * from './author.service';
 export * from './sport.service';
+export * from './difficulty.service';

@@ -6,6 +6,7 @@ export class WorkflowModel extends BaseModel {
 	public container: string = null;
 	public author: string = null;
 	public dueDate: Date = null;
+	public difficulty: string = null;
 	  
 
 	constructor(args: any) {

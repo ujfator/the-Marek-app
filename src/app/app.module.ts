@@ -16,7 +16,7 @@ import { FoodComponent } from './food/food.component';
 import { MoneyComponent } from './money/money.component';
 import { WorkflowComponent } from './workflow/workflow.component';
 import { AddEditWorkflowItemComponent } from './workflow/add-edit-workflow-item/add-edit-workflow-item.component'
-import { WorkflowService, MoneyService, DialogService, BudgetService, AuthorService, SportService } from './common/services';
+import { WorkflowService, MoneyService, DialogService, BudgetService, AuthorService, SportService, DifficultyService } from './common/services';
 import { CoreModule } from './common/core.module';
 
 const imports =  [
@@ -48,6 +48,6 @@ const imports =  [
     AddEditSportItemComponent
   ],
   imports,
-  providers: [ WorkflowService, MoneyService, BudgetService, DialogService, AuthorService, SportService ],
+  providers: [ WorkflowService, MoneyService, BudgetService, DialogService, AuthorService, SportService, DifficultyService ],
 })
 export class AppModule { }
