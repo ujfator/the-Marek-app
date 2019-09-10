@@ -34,8 +34,10 @@ export class SportComponent {
     });
     
     this.dialogService.data.subscribe((data: SportItemModel) => {
-      if (data) {
-        if (data.id) {
+      let item;
+      item = !item ? {...data} : null;
+      if (item) {
+        if (item.id) {
           this.sportService.patchItem(data);
         } else this.sportService.addItem(data);
         if (data.difficulty) this.difficultyService.addDifficulty(data.difficulty);
