@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 import { DifficultyService } from '../../common/services/difficulty.service';
+import { DifficultyModel } from 'server/models';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { DifficultyService } from '../../common/services/difficulty.service';
 export class AddEditWorkflowItemComponent implements OnInit {
 
   public form: FormGroup;
-  public difficulties: string[] = [];
+  public difficulties: DifficultyModel[] = [];
 
   constructor(
     public dialogRef: MatDialogRef<AddEditWorkflowItemComponent>,

@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { SportItemModel } from 'server/models';
+import { SportItemModel, DifficultyModel } from 'server/models';
 import { SportService, AuthorService, DifficultyService } from 'src/app/common/services';
 
 @Component({
@@ -12,7 +12,7 @@ import { SportService, AuthorService, DifficultyService } from 'src/app/common/s
 export class AddEditSportItemComponent implements OnInit {
 
   public form: FormGroup;
-  public difficulties: string[] = [];
+  public difficulties: DifficultyModel[] = [];
 
   constructor(
     public dialogRef: MatDialogRef<AddEditSportItemComponent>,

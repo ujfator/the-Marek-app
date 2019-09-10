@@ -22,7 +22,7 @@
   </mat-form-field>
   
   <mat-autocomplete #difficulty="matAutocomplete">
-    <mat-option *ngFor="let difficulty of difficulties" [value]="difficulty">{{difficulty}}</mat-option>
+    <mat-option *ngFor="let difficulty of difficulties" [value]="difficulty.difficulty">{{difficulty.difficulty}}</mat-option>
   </mat-autocomplete>
 
   <mat-form-field>
