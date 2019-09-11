@@ -26,9 +26,7 @@ export class BudgetService extends BaseService {
 	}
 
 	public getBudgetItemById(id: string): BudgetItemModel {
-		if (this._index) {
-			return this._index[id];
-		}
+		if (this._index) return this._index[id];
 	}
 
 	public loadItems(): void {

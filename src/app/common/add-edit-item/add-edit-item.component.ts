@@ -19,7 +19,6 @@ export class AddEditItemComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
-    console.log(localStorage.getItem('author'));
 		this.form = new FormGroup({
       name: new FormControl(this.data.item ? this.data.item.name : ''),
       amount: new FormControl(),
@@ -30,10 +29,13 @@ export class AddEditItemComponent implements OnInit {
 	public onSubmit(): void {
 		if (this.form.valid) {
       const newOrUpdatedItem = {
-        name: this.form.value.name,
-        amount: this.form.value.amount,
-        nature: this.data.origin,
-        author: this.form.value.author,
+        item: {
+          name: this.form.value.name,
+          amount: this.form.value.amount,
+          nature: this.data.origin,
+          author: this.form.value.author,
+        },
+        origin: 'money',
       }
 			this.dialogRef.close(newOrUpdatedItem);
 		}

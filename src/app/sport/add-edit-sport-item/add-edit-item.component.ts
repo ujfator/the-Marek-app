@@ -40,12 +40,15 @@ export class AddEditSportItemComponent implements OnInit {
 	public onSubmit(): void {
 		if (this.form.valid) {
       const newOrUpdatedItem =  {
-        date: this.form.value.date,
-        sport: this.form.value.sport,
-        difficulty: this.form.value.difficulty,
-        duration: this.form.value.duration,
-        id: this.data.item ? this.data.item.id : '',
-        author: this.form.value.author ? this.form.value.author : '',
+        item: {
+          date: this.form.value.date,
+          sport: this.form.value.sport,
+          difficulty: this.form.value.difficulty,
+          duration: this.form.value.duration,
+          id: this.data.item ? this.data.item.id : '',
+          author: this.form.value.author ? this.form.value.author : '',
+        },
+        origin: this.data.origin,
       }
 			this.dialogRef.close(newOrUpdatedItem);
 		}

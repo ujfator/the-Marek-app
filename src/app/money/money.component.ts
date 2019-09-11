@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 import { MoneyModel, BudgetItemModel } from 'server/models';
 import { MoneyService, DialogService, BudgetService } from '../common/services';
+import { ItemToSave } from '../common/interfaces';
 
 @Component({
   selector: 'app-money',
@@ -40,16 +41,16 @@ export class MoneyComponent {
               break;
           }
         });
-        console.log(this.expenses);
       };
     });
 
     this.dialogService.data.subscribe((data: any) => {
-      if (data) {
-          if (data.id) {
-            this.budgetService.patchItem(data);
-          } else this.budgetService.addItem(data);
-        }
+      if (data && data.origin === 'money') {
+        const item = {...data.item};
+        if (item.id) {
+          this.budgetService.patchItem(item);
+        } else this.budgetService.addItem(item);
+      }   
     })
   }
 

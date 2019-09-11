@@ -41,13 +41,16 @@ export class AddEditWorkflowItemComponent implements OnInit {
 	public onSubmit(): void {
 		if (this.form.valid) {
       const newOrUpdatedItem =  {
-        name: this.form.value.name,
-        author: this.form.value.author,
-        content: this.form.value.content,
-        container: (this.data.item && this.data.item.container) || 'new',
-        dueDate: this.form.value.dueDate,
-        id: this.data.item && this.data.item.id,
-        difficulty: this.form.value.difficulty,
+        item: {
+          name: this.form.value.name,
+          author: this.form.value.author,
+          content: this.form.value.content,
+          container: (this.data.item && this.data.item.container) || 'new',
+          dueDate: this.form.value.dueDate,
+          id: this.data.item && this.data.item.id,
+          difficulty: this.form.value.difficulty,
+        },
+        origin: this.data.origin,
       }
 			this.dialogRef.close(newOrUpdatedItem);
 		}

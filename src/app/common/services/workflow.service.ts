@@ -15,7 +15,7 @@ export class WorkflowService extends BaseService {
 	constructor(private http: HttpClient) {
 		super();
 		this.loadItems();
-		console.log(('b' + 'a' + + 'a' + 'a').toLowerCase(), environment);
+		console.log(('b' + 'a' + + 'a' + 'a').toLowerCase());
 	}
 
 	public deleteItem (id: string): void {
@@ -27,7 +27,6 @@ export class WorkflowService extends BaseService {
 	}
 
 	public loadItems(): void {
-		console.log(environment);
 		this.http.get<WorkflowModel[]>(this.route).subscribe((items) => this.items.next(items));
 	}
 

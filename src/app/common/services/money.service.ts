@@ -15,7 +15,6 @@ export class MoneyService extends BaseService {
 	constructor(private http: HttpClient) {
 		super();
 		this.loadItems();
-		console.log(environment);
 	}
 
 	public addItem(item: MoneyModel): void {
@@ -27,9 +26,7 @@ export class MoneyService extends BaseService {
 	}
 
 	public getMoneyItemById(id: string): MoneyModel {
-		if (this._index) {
-			return this._index[id];
-		}
+		if (this._index) return this._index[id];
 	}
 
 	public loadItems(): void {

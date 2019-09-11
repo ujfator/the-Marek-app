@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material';
 
 import { SportService, DialogService, AuthorService, DifficultyService } from '../common/services';
 import { SportItemModel } from 'server/models';
+import { ItemToSave } from '../common/interfaces';
 
 
 @Component({
@@ -33,13 +34,14 @@ export class SportComponent {
       }
     });
     
-    this.dialogService.data.subscribe((data: SportItemModel) => {
-      if (data) {
-        if (data.id) {
-          this.sportService.patchItem(data);
-        } else this.sportService.addItem(data);
-        if (data.difficulty) this.difficultyService.addDifficulty(data.difficulty);
-      };
+    this.dialogService.data.subscribe((data: any) => {
+      if (data && data.origin === 'sport') {
+        const item = {...data.item};
+        if (item.id) {
+          this.sportService.patchItem(item);
+        } else this.sportService.addItem(item);
+        if (item['difficulty']) this.difficultyService.addDifficulty(item['difficulty']);
+      };     
     });
 
     this.authorService.author.subscribe((author) => {

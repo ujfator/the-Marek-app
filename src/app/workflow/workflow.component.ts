@@ -3,6 +3,7 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 
 import { WorkflowModel } from 'server/models';
 import { DialogService, WorkflowService, AuthorService, DifficultyService } from '../common/services';
+import { ItemToSave } from '../common/interfaces';
 
 interface Columns {
   new: WorkflowModel[],
@@ -39,12 +40,15 @@ export class WorkflowComponent {
       } else this.createDataSource(localStorage.getItem('author'))
     });
 
-    this.dialogService.data.subscribe((data: WorkflowModel) => {
+    this.dialogService.data.subscribe((data: any) => {
       if (data) {
-        if (data.id) {
-          this.workflowService.patchItem(data);
-        } else this.workflowService.addItem(data);
-        if (data.difficulty) this.difficultyService.addDifficulty(data.difficulty);
+        if (data.origin === 'workflow') {
+          const item = {...data.item};
+          if (item.id) {
+            this.workflowService.patchItem(item);
+          } else this.workflowService.addItem(item);
+          if (item['difficulty']) this.difficultyService.addDifficulty(item['difficulty']);
+        }
       }
     });
 

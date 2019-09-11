@@ -26,9 +26,7 @@ export class SportService extends BaseService {
 	}
 
 	public getMoneyItemById(id: string): SportItemModel {
-		if (this._index) {
-			return this._index[id];
-		}
+		if (this._index) return this._index[id];
 	}
 
 	public loadItems(): void {

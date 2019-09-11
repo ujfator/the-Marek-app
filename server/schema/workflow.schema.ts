@@ -6,5 +6,5 @@ export const WorkflowSchema = new Schema({
   container: { required: true, type: String },
   author: { required: false, type: String },
   dueDate: { required: false, type: Date},
-  difficulty: { required: false, type: Date}
+  difficulty: { required: false, type: String}
 });

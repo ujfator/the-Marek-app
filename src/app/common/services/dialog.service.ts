@@ -6,6 +6,7 @@ import { MoneyModel, BudgetItemModel, WorkflowModel, SportItemModel } from 'serv
 import { AddEditItemComponent } from '../add-edit-item/add-edit-item.component';
 import { AddEditWorkflowItemComponent } from '../../workflow/add-edit-workflow-item/add-edit-workflow-item.component'
 import { AddEditSportItemComponent } from '../../sport/add-edit-sport-item/add-edit-item.component';
+import { ItemToSave } from '../interfaces';
 
 interface ComponentType<T = any> {
   new (...args: any[]): T;
@@ -14,16 +15,13 @@ interface ComponentType<T = any> {
 @Injectable()
 export class DialogService {
 
-    public data: Subject<
-    BudgetItemModel|MoneyModel|WorkflowModel|SportItemModel> = new BehaviorSubject<
-    BudgetItemModel|MoneyModel|WorkflowModel|SportItemModel>(null);
+    public data: Subject<ItemToSave> = new BehaviorSubject<ItemToSave>(null);
 
     constructor(
         public dialog: MatDialog,
     ) {}
 
     public addEditItem(origin: string, item?: MoneyModel|BudgetItemModel|WorkflowModel|SportItemModel) {
-      console.log(origin);
         const dialogRef = this.dialog.open(this.pickDialog(origin), {
           data: {
             item: item ? item : null,
