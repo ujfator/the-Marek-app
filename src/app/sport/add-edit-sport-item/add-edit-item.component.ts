@@ -12,7 +12,7 @@ import { SportService, AuthorService, DifficultyService } from 'src/app/common/s
 export class AddEditSportItemComponent implements OnInit {
 
   public form: FormGroup;
-  public difficulties: DifficultyModel[] = [];
+  public difficulties: string[] = [];
 
   constructor(
     public dialogRef: MatDialogRef<AddEditSportItemComponent>,
