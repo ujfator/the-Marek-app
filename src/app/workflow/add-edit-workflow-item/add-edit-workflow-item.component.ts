@@ -14,7 +14,7 @@ import { DifficultyModel } from 'server/models';
 export class AddEditWorkflowItemComponent implements OnInit {
 
   public form: FormGroup;
-  public difficulties: DifficultyModel[] = [];
+  public difficulties: string[] = [];
 
   constructor(
     public dialogRef: MatDialogRef<AddEditWorkflowItemComponent>,

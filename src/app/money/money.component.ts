@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 
 import { MoneyModel, BudgetItemModel } from 'server/models';
 import { MoneyService, DialogService, BudgetService } from '../common/services';
-import { ItemToSave } from '../common/interfaces';
 
 @Component({
   selector: 'app-money',
@@ -44,9 +43,10 @@ export class MoneyComponent {
       };
     });
 
-    this.dialogService.data.subscribe((data: any) => {
+    this.dialogService.data.subscribe(async(data: any) => {
       if (data && data.origin === 'money') {
-        const item = {...data.item};
+        const item = await {...data.item};
+        this.dialogService.data.next(null);
         if (item.id) {
           this.budgetService.patchItem(item);
         } else this.budgetService.addItem(item);
@@ -56,14 +56,13 @@ export class MoneyComponent {
 
   public accumulator(source: BudgetItemModel[]): number {
     return source.reduce((acc, item) => {
-      acc = acc + item.amount;
-      return acc;
+      acc = Math.round((acc + item.amount)*100) / 100;
+      return acc;;
     }, 0)
   }
 
   public addBudgetItem(origin: string) {
     this.dialogService.addEditItem(origin);
-    this.dialogService.data.next(null);
   }
 
   public delete(id: string) {
