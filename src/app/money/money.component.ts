@@ -56,8 +56,8 @@ export class MoneyComponent {
 
   public accumulator(source: BudgetItemModel[]): number {
     return source.reduce((acc, item) => {
-      acc = acc + item.amount;
-      return acc;
+      acc = Math.round((acc + item.amount)*100) / 100;
+      return acc;;
     }, 0)
   }
 
