@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 import { WorkflowModel } from 'server/models';
@@ -20,7 +20,7 @@ interface Columns {
   templateUrl: './workflow.component.html',
   styleUrls: ['./workflow.component.scss']
 })
-export class WorkflowComponent {
+export class WorkflowComponent implements OnInit{
 
   workflowItems: WorkflowModel[];
   columns: Columns = {
@@ -60,6 +60,12 @@ export class WorkflowComponent {
         this.createDataSource(author);
       } else if (author === 'Oba') this.createDataSource()
     });
+  }
+
+  ngOnInit(): void {
+    if (!localStorage.getItem('author')) {
+      this.createDataSource();
+    } else this.createDataSource(localStorage.getItem('author'))
   }
 
   filler(item: WorkflowModel) {
