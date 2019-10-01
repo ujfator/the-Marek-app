@@ -1,6 +1,6 @@
-import { BudgetItemModel, MoneyModel, WorkflowModel, SportItemModel } from '../../../server/models';
+import { BudgetItemModel, MoneyModel, WorkflowModel, SportModel } from '../../../server/models';
 
 export interface ItemToSave {
-    item: BudgetItemModel|MoneyModel|WorkflowModel|SportItemModel,
+    item: BudgetItemModel|MoneyModel|WorkflowModel|SportModel,
     origin: string,
 }

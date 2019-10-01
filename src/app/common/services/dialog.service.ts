@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { BehaviorSubject, Subject } from 'rxjs';
 
-import { MoneyModel, BudgetItemModel, WorkflowModel, SportItemModel, FoodModel } from 'server/models';
+import { MoneyModel, BudgetItemModel, WorkflowModel, SportModel, FoodModel } from 'server/models';
 import { AddEditItemComponent } from '../add-edit-item/add-edit-item.component';
 import { AddEditWorkflowItemComponent } from '../../workflow/add-edit-workflow-item/add-edit-workflow-item.component'
 import { AddEditSportItemComponent } from '../../sport/add-edit-sport-item/add-edit-item.component';
@@ -20,7 +20,7 @@ export class DialogService {
 
     constructor(public dialog: MatDialog) {}
 
-    public addEditItem(origin: string, item?: MoneyModel|BudgetItemModel|WorkflowModel|SportItemModel|FoodModel) {
+    public addEditItem(origin: string, item?: MoneyModel|BudgetItemModel|WorkflowModel|SportModel|FoodModel) {
         const dialogRef = this.dialog.open(this.pickDialog(origin), {
           data: {
             item: item ? item : null,

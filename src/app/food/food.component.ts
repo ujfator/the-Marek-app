@@ -26,7 +26,6 @@ export class FoodComponent {
     public authorService: AuthorService,
   ) {
     this.foodService.items.subscribe(async (items) => {
-      console.log(items);
       if (items) {
         this.allItems = await [...items];
         if (localStorage.getItem('author')) {

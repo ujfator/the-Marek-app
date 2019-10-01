@@ -1,6 +1,6 @@
 import { BaseModel } from './base.model';
 
-export class SportItemModel extends BaseModel {
+export class SportModel extends BaseModel {
 	public date: Date = null;
 	public sport: string = null;
     public difficulty: string = null;

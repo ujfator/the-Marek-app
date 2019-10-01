@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material';
 
-import { SportItemModel } from 'server/models';
-import { ItemToSave } from '../common/interfaces';
+import { SportModel } from 'server/models';
 import { SportService } from '../common/services/sport.service';
 import { DialogService } from '../common/services/dialog.service';
 import { AuthorService } from '../common/services/author.service';
@@ -17,19 +16,18 @@ import { DifficultyService } from '../common/services/difficulty.service';
 
 export class SportComponent {
 
-  public displayedColumns: string[] = ['date', 'sport', 'difficulty', 'duration', 'author', 'edit'];
-  public sportItems: SportItemModel[] = [];
-  public allItems: SportItemModel[] = [];
+  displayedColumns: string[] = ['date', 'sport', 'difficulty', 'duration', 'author', 'edit'];
+  sportItems: SportModel[] = [];
+  allItems: SportModel[] = [];
 
   constructor(
-    public dialog: MatDialog,
-    public sportService: SportService,
-    public dialogService: DialogService,
-    public authorService: AuthorService,
-    public difficultyService: DifficultyService,
+    protected dialog: MatDialog,
+    protected sportService: SportService,
+    protected dialogService: DialogService,
+    protected authorService: AuthorService,
+    protected difficultyService: DifficultyService,
   ) {
     this.sportService.items.subscribe(async (items) => {
-      console.log(items);
       if (items) {
         this.allItems = await [...items];
         if (localStorage.getItem('author')) {
@@ -55,20 +53,28 @@ export class SportComponent {
     });
   }
 
-  public addOrEditEntry(entry?: SportItemModel) {
+  addOrEditEntry(entry?: SportModel) {
     this.dialogService.data.next(null);
     this.dialogService.addEditItem('sport', entry);
   }
 
-  public createDataSource (author?: string) {
+  createDataSource (author?: string) {
     this.sportItems = [];
     this.allItems && this.allItems.forEach(element => {
       if (element.author === author) this.sportItems.push(element);
     });
   }
 
-  public delete(entry: SportItemModel) {
+  delete(entry: SportModel) {
     this.sportService.deleteItem(entry.id);
+  }
+
+  minutes(element): string {
+    if (element) {
+      if (element.duration > 1) {
+        return 'minutes'
+      } else return 'minute'
+    }
   }
 
 }

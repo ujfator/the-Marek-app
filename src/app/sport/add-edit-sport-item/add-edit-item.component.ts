@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { SportItemModel } from 'server/models';
+import { SportModel } from 'server/models';
 import { DifficultyService } from 'src/app/common/services/difficulty.service';
 
 @Component({
@@ -18,7 +18,7 @@ export class AddEditSportItemComponent implements OnInit {
     public dialogRef: MatDialogRef<AddEditSportItemComponent>,
     public difficultyService: DifficultyService,
     @Inject(MAT_DIALOG_DATA) public data: {
-      item: SportItemModel, origin: string, authors: string[],
+      item: SportModel, origin: string, authors: string[],
     },
   ) {
       this.difficultyService.difficulties.subscribe((items)=>{

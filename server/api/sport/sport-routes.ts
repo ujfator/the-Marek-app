@@ -1,6 +1,6 @@
 import { Request, Response } from 'express-serve-static-core';
 
-import { SportItemModel } from '../../../server/models'
+import { SportModel } from '../../../server/models'
 
 import { SportController, BaseController, BaseInterface } from '../../controller';
 
@@ -30,7 +30,7 @@ export class SportRoutes extends BaseController {
 		});
 	}
 	private _get = (req: Request, res: Response): void => {
-		this._sportController.getSportItem(req.params.itemId).then((moneyItem: SportItemModel) => {
+		this._sportController.getSportItem(req.params.itemId).then((moneyItem: SportModel) => {
 			res.jsonp(moneyItem);
 		}).catch((e: any) => {
 			res.status(500).send(e);
@@ -39,7 +39,7 @@ export class SportRoutes extends BaseController {
 	}
 
 	private _getAll = (req: Request, res: Response): void => {
-		this._sportController.getSportItems().then((moneyItems: SportItemModel[]) => {
+		this._sportController.getSportItems().then((moneyItems: SportModel[]) => {
 			res.jsonp(moneyItems);
 		}).catch((e: any) => {
 			res.status(500).send(e);
@@ -48,7 +48,7 @@ export class SportRoutes extends BaseController {
 	}
 
 	private _set = (req: Request, res: Response): void => {
-		this._sportController.setSportItems(req.body).then((moneyItems: SportItemModel[]) => {
+		this._sportController.setSportItems(req.body).then((moneyItems: SportModel[]) => {
 			res.jsonp(moneyItems);
 		}).catch((e: any) => {
 			res.status(500).send(e);
@@ -57,7 +57,7 @@ export class SportRoutes extends BaseController {
 	}
 
 	private _patch = (req: Request, res: Response): void => {
-		this._sportController.patchSportItem(req.body).then((moneyItem: SportItemModel) => {
+		this._sportController.patchSportItem(req.body).then((moneyItem: SportModel) => {
 			res.jsonp(moneyItem);
 		}).catch((e: any) => {
 			res.status(500).send(e);

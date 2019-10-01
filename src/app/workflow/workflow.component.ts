@@ -22,8 +22,8 @@ interface Columns {
 })
 export class WorkflowComponent {
 
-  public workflowItems: WorkflowModel[];
-  public columns: Columns = {
+  workflowItems: WorkflowModel[];
+  columns: Columns = {
     new: [],
     thisWeek: [],
     today: [],
@@ -31,10 +31,10 @@ export class WorkflowComponent {
   };
 
   constructor(
-    public workflowService: WorkflowService,
-    public dialogService: DialogService,
-    public authorService: AuthorService,
-    public difficultyService: DifficultyService,
+    protected workflowService: WorkflowService,
+    protected dialogService: DialogService,
+    protected authorService: AuthorService,
+    protected difficultyService: DifficultyService,
   ) {
     this.workflowService.items.subscribe(async (items) => {
       if (items) this.workflowItems = await items;
@@ -62,7 +62,7 @@ export class WorkflowComponent {
     });
   }
 
-  public filler(item: WorkflowModel) {
+  filler(item: WorkflowModel) {
     switch(item.container) {
       case 'new':
         this.columns.new.push(item);
@@ -79,8 +79,8 @@ export class WorkflowComponent {
     }
   }
 
-  public async createDataSource (author?: string) {
-    if (this.columns) await this.emptyColumns();
+  async createDataSource (author?: string) {
+    await this.emptyColumns();
     this.workflowItems && this.workflowItems.forEach(item => {
       if (author && author !== 'Oba') {
         if (item.author === author) this.filler(item);
@@ -88,7 +88,7 @@ export class WorkflowComponent {
     });
   }
 
-  public changeContainerName (name: string): string {
+  changeContainerName (name: string): string {
     switch (name) {
       case 'cdk-drop-list-0': return 'new';
 			case 'cdk-drop-list-1': return 'thisWeek';
@@ -97,11 +97,11 @@ export class WorkflowComponent {
     } 
   }
 
-  public delete (id: string): void {
+  delete (id: string): void {
     this.workflowService.deleteItem(id);
   }
 
-  public drop(e: CdkDragDrop<string[]>) {
+  drop(e: CdkDragDrop<string[]>) {
     let newContainer: string;
     let movedItem: any;
     if (e.previousContainer === e.container) {
@@ -120,15 +120,15 @@ export class WorkflowComponent {
 
   }
 
-  public addEditItem(item?: WorkflowModel) {
+  addEditItem(item?: WorkflowModel) {
     this.dialogService.addEditItem('workflow', item);
     this.dialogService.data.next(null);
   }
 
-  public emptyColumns (): void {
-   this.columns.new = [];
-   this.columns.thisWeek = [];
-   this.columns.today = [];
-   this.columns.done = [];
+  emptyColumns (): void {
+    this.columns.new = [];
+    this.columns.thisWeek = [];
+    this.columns.today = [];
+    this.columns.done = [];
   };
 }
