@@ -1,6 +1,6 @@
 import * as express from 'express';
 import { BaseController, BaseInterface } from '../controller';
-import { WorkflowRoutes, MoneyRoutes, SportRoutes, BudgetRoutes, DifficultyRoutes } from './';
+import { WorkflowRoutes, MoneyRoutes, SportRoutes, BudgetRoutes, DifficultyRoutes, FoodRoutes } from './';
 
 export class Api extends BaseController {
 	public get server(): express.Express {
@@ -19,5 +19,6 @@ export class Api extends BaseController {
 		this.__router.use('/budget', this.__init(BudgetRoutes, args).__router);
 		this.__router.use('/sport', this.__init(SportRoutes, args).__router);
 		this.__router.use('/difficulty', this.__init(DifficultyRoutes, args).__router);
+		this.__router.use('/food', this.__init(FoodRoutes, args).__router);
 	}
 }

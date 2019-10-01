@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'sport-tab', component: SportComponent },
   { path: 'money-tab', component: MoneyComponent },
   { path: 'workflow-tab', component: WorkflowComponent },
-  { path: 'long-term-goals', component: WorkflowComponent },
+  { path: 'food-tab', component: FoodComponent },
 ];
 
 @NgModule({

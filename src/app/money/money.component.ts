@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 
 import { MoneyModel, BudgetItemModel } from 'server/models';
-import { MoneyService, DialogService, BudgetService } from '../common/services';
+import { MoneyService } from '../common/services/money.service';
+import { DialogService } from '../common/services/dialog.service';
+import { BudgetService } from '../common/services/budget.service';
 
 @Component({
   selector: 'app-money',

@@ -1,7 +1,7 @@
 import { Component, HostBinding  } from '@angular/core';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { Subject, BehaviorSubject } from 'rxjs';
-import { AuthorService } from './common/services';
+import { AuthorService } from './common/services/author.service';
 
 @Component({
 	selector: 'app-root',

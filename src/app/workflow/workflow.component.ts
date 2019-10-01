@@ -2,13 +2,16 @@ import { Component } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 import { WorkflowModel } from 'server/models';
-import { DialogService, WorkflowService, AuthorService, DifficultyService } from '../common/services';
 import { ItemToSave } from '../common/interfaces';
+import { WorkflowService } from '../common/services/workflow.service';
+import { DialogService } from '../common/services/dialog.service';
+import { AuthorService } from '../common/services/author.service';
+import { DifficultyService } from '../common/services/difficulty.service';
 
 interface Columns {
   new: WorkflowModel[],
-  approved: WorkflowModel[],
-  commited: WorkflowModel[],
+  thisWeek: WorkflowModel[],
+  today: WorkflowModel[],
   done: WorkflowModel[]
 }
 
@@ -22,8 +25,8 @@ export class WorkflowComponent {
   public workflowItems: WorkflowModel[];
   public columns: Columns = {
     new: [],
-    approved: [],
-    commited: [],
+    thisWeek: [],
+    today: [],
     done: []
   };
 
@@ -64,11 +67,11 @@ export class WorkflowComponent {
       case 'new':
         this.columns.new.push(item);
         break;
-      case 'approved':
-        this.columns.approved.push(item);
+      case 'thisWeek':
+        this.columns.thisWeek.push(item);
         break;
-      case 'commited':
-        this.columns.commited.push(item);
+      case 'today':
+        this.columns.today.push(item);
         break;
       case 'done':
         this.columns.done.push(item);
@@ -88,8 +91,8 @@ export class WorkflowComponent {
   public changeContainerName (name: string): string {
     switch (name) {
       case 'cdk-drop-list-0': return 'new';
-			case 'cdk-drop-list-1': return 'approved';
-			case 'cdk-drop-list-2': return 'commited';
+			case 'cdk-drop-list-1': return 'thisWeek';
+			case 'cdk-drop-list-2': return 'today';
 			case 'cdk-drop-list-3': return 'done';
     } 
   }
@@ -124,8 +127,8 @@ export class WorkflowComponent {
 
   public emptyColumns (): void {
    this.columns.new = [];
-   this.columns.approved = [];
-   this.columns.commited = [];
+   this.columns.thisWeek = [];
+   this.columns.today = [];
    this.columns.done = [];
   };
 }

@@ -4,13 +4,13 @@
     <mat-card cdkDropList
       #newList="cdkDropList"
       [cdkDropListData]="columns.new"
-      [cdkDropListConnectedTo]="[newList, approvedList, commitedList, doneList]"
+      [cdkDropListConnectedTo]="[newList, thisWeekList, todayList, doneList]"
       class="workflow-manager-list"
       (cdkDropListDropped)="drop($event)"
       fxLayout="column">
       <mat-card-header>
         <div mat-card-avatar>
-          <mat-icon>forward</mat-icon>
+          <mat-icon>hourglass_full</mat-icon>
         </div>
         <mat-card-title>New</mat-card-title>
         <div fxFlex dir="rtl" style="margin-right: 6px">
@@ -40,18 +40,18 @@
       </mat-expansion-panel>
     </mat-card>
     <mat-card cdkDropList
-    #approvedList="cdkDropList"
-    [cdkDropListData]="columns.approved"
-    [cdkDropListConnectedTo]="[newList, approvedList, commitedList, doneList]"
+    #thisWeekList="cdkDropList"
+    [cdkDropListData]="columns.thisWeek"
+    [cdkDropListConnectedTo]="[newList, thisWeekList, todayList, doneList]"
     class="workflow-manager-list"
     (cdkDropListDropped)="drop($event)">
     <mat-card-header>
       <div mat-card-avatar>
-          <mat-icon>flight_takeoff</mat-icon>
+          <mat-icon>home_work</mat-icon>
         </div>
-      <mat-card-title>Approved</mat-card-title>
+      <mat-card-title>This week</mat-card-title>
     </mat-card-header>
-    <mat-expansion-panel class="expansion-panel" *ngFor="let item of columns.approved" cdkDrag>
+    <mat-expansion-panel class="expansion-panel" *ngFor="let item of columns.thisWeek" cdkDrag>
       <mat-expansion-panel-header>
         <mat-panel-title matTooltip="{{item.name}}" class="panel-title">
           <div>{{item.name}}</div> <div fxFlex dir="rtl" 
@@ -72,18 +72,18 @@
     </mat-expansion-panel>
   </mat-card>
   <mat-card cdkDropList
-    #commitedList="cdkDropList"
-    [cdkDropListData]="columns.commited"
-    [cdkDropListConnectedTo]="[newList, approvedList, commitedList, doneList]"
+    #todayList="cdkDropList"
+    [cdkDropListData]="columns.today"
+    [cdkDropListConnectedTo]="[newList, thisWeekList, todayList, doneList]"
     class="workflow-manager-list"
     (cdkDropListDropped)="drop($event)">
     <mat-card-header>
       <div mat-card-avatar>
-          <mat-icon>rowing</mat-icon>
+          <mat-icon>alarm</mat-icon>
         </div>
-      <mat-card-title>Commited</mat-card-title>
+      <mat-card-title>Today</mat-card-title>
     </mat-card-header>
-    <mat-expansion-panel class="expansion-panel" *ngFor="let item of columns.commited" cdkDrag>
+    <mat-expansion-panel class="expansion-panel" *ngFor="let item of columns.today" cdkDrag>
       <mat-expansion-panel-header>
         <mat-panel-title matTooltip="{{item.name}}" class="panel-title">
           <div>{{item.name}}</div> <div fxFlex dir="rtl" 
@@ -106,7 +106,7 @@
   <mat-card cdkDropList
     #doneList="cdkDropList"
     [cdkDropListData]="columns.done"
-    [cdkDropListConnectedTo]="[newList, approvedList, commitedList, doneList]"
+    [cdkDropListConnectedTo]="[newList, thisWeekList, todayList, doneList]"
     class="workflow-manager-list"
     (cdkDropListDropped)="drop($event)">
     <mat-card-header>

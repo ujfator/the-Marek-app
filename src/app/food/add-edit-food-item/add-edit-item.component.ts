@@ -1,37 +1,31 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { SportItemModel } from 'server/models';
-import { DifficultyService } from 'src/app/common/services/difficulty.service';
+import { FoodModel } from 'server/models';
 
 @Component({
   selector: 'app-add-edit-item',
   templateUrl: './add-edit-item.component.html',
   styleUrls: ['./add-edit-item.component.scss']
 })
-export class AddEditSportItemComponent implements OnInit {
+export class AddEditFoodItemComponent implements OnInit {
 
   public form: FormGroup;
-  public difficulties: string[] = [];
 
   constructor(
-    public dialogRef: MatDialogRef<AddEditSportItemComponent>,
-    public difficultyService: DifficultyService,
+    public dialogRef: MatDialogRef<AddEditFoodItemComponent>,
     @Inject(MAT_DIALOG_DATA) public data: {
-      item: SportItemModel, origin: string, authors: string[],
+      item: FoodModel, origin: string, authors: string[],
     },
-  ) {
-      this.difficultyService.difficulties.subscribe((items)=>{
-        if (items) this.difficulties = [...items];
-      });
-   }
+  ) {}
 
   public ngOnInit(): void {
 		this.form = new FormGroup({
       date: new FormControl(this.data.item ? this.data.item.date : new Date()),
-      sport: new FormControl(this.data.item ? this.data.item.sport : ''),
-      difficulty: new FormControl(this.data.item ? this.data.item.difficulty : ''),
-      duration: new FormControl(this.data.item ? this.data.item.duration : 0),
+      breakfast: new FormControl(this.data.item ? this.data.item.breakfast : ''),
+      lunch: new FormControl(this.data.item ? this.data.item.lunch : ''),
+      dinner: new FormControl(this.data.item ? this.data.item.dinner : ''),
+      junkFood: new FormControl(this.data.item ? this.data.item.junkFood : ''),
       author: new FormControl(this.data.item ? this.data.item.author : ''),
 		});
   }
@@ -41,10 +35,11 @@ export class AddEditSportItemComponent implements OnInit {
       const newOrUpdatedItem =  {
         item: {
           date: this.form.value.date,
-          sport: this.form.value.sport,
-          difficulty: this.form.value.difficulty,
-          duration: this.form.value.duration,
+          breakfast: this.form.value.breakfast,
+          lunch: this.form.value.lunch,
+          dinner: this.form.value.dinner,
           id: this.data.item ? this.data.item.id : '',
+          junkFood: this.form.value.junkFood,
           author: this.form.value.author ? this.form.value.author : '',
         },
         origin: this.data.origin,

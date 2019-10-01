@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material';
 
-import { SportService, DialogService, AuthorService, DifficultyService } from '../common/services';
 import { SportItemModel } from 'server/models';
 import { ItemToSave } from '../common/interfaces';
+import { SportService } from '../common/services/sport.service';
+import { DialogService } from '../common/services/dialog.service';
+import { AuthorService } from '../common/services/author.service';
+import { DifficultyService } from '../common/services/difficulty.service';
 
 
 @Component({
@@ -14,7 +17,7 @@ import { ItemToSave } from '../common/interfaces';
 
 export class SportComponent {
 
-  public displayedColumns: string[] = ['date', 'sport', 'difficulty', 'author', 'edit'];
+  public displayedColumns: string[] = ['date', 'sport', 'difficulty', 'duration', 'author', 'edit'];
   public sportItems: SportItemModel[] = [];
   public allItems: SportItemModel[] = [];
 
@@ -26,6 +29,7 @@ export class SportComponent {
     public difficultyService: DifficultyService,
   ) {
     this.sportService.items.subscribe(async (items) => {
+      console.log(items);
       if (items) {
         this.allItems = await [...items];
         if (localStorage.getItem('author')) {
