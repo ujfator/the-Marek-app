@@ -26,6 +26,7 @@ import { AuthorService } from './common/services/author.service';
 import { SportService } from './common/services/sport.service';
 import { DifficultyService } from './common/services/difficulty.service';
 import { FoodService } from './common/services/food.service';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 const imports =  [
   AppRoutingModule,
@@ -59,6 +60,6 @@ const imports =  [
   ],
   imports,
   providers: [ WorkflowService, MoneyService, BudgetService, DialogService, AuthorService, 
-    SportService, DifficultyService, FoodService ],
+    SportService, DifficultyService, FoodService, { provide: LocationStrategy, useClass: HashLocationStrategy } ],
 })
 export class AppModule { }

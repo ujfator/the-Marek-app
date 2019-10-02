@@ -39,6 +39,7 @@ export class SportComponent {
     this.dialogService.data.subscribe((data: any) => {
       if (data && data.origin === 'sport') {
         const item = {...data.item};
+        this.dialogService.data.next(null);
         if (item.id) {
           this.sportService.patchItem(item);
         } else this.sportService.addItem(item);

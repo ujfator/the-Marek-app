@@ -37,6 +37,7 @@ export class FoodComponent {
     this.dialogService.data.subscribe((data: any) => {
       if (data && data.origin === 'food') {
         const item = {...data.item};
+        this.dialogService.data.next(null);
         if (item.id) {
           this.foodService.patchItem(item);
         } else this.foodService.addItem(item);
