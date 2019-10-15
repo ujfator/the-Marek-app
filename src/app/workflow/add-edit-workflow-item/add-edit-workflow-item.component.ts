@@ -33,7 +33,6 @@ export class AddEditWorkflowItemComponent implements OnInit {
       name: new FormControl(this.data.item ? this.data.item.name : ''),
       content: new FormControl(this.data.item ? this.data.item.content : ''),
       author: new FormControl(this.data.item ? this.data.item.author : ''),
-      dueDate: new FormControl(this.data.item ? this.data.item.dueDate : ''),
       difficulty: new FormControl(this.data.item ? this.data.item.difficulty : ''),
 		});
   }
@@ -46,7 +45,6 @@ export class AddEditWorkflowItemComponent implements OnInit {
           author: this.form.value.author,
           content: this.form.value.content,
           container: (this.data.item && this.data.item.container) || 'new',
-          dueDate: this.form.value.dueDate,
           id: this.data.item && this.data.item.id,
           difficulty: this.form.value.difficulty,
         },

@@ -36,8 +36,8 @@ export class WorkflowComponent implements OnInit{
     protected authorService: AuthorService,
     protected difficultyService: DifficultyService,
   ) {
-    this.workflowService.items.subscribe(async (items) => {
-      if (items) this.workflowItems = await items;
+    this.workflowService.items.subscribe((items) => {
+      if (items) this.workflowItems = items;
       if (!localStorage.getItem('author')) {
         this.createDataSource();
       } else this.createDataSource(localStorage.getItem('author'))

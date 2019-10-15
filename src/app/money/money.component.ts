@@ -14,7 +14,8 @@ export class MoneyComponent {
 
   public moneyItems: MoneyModel[];
   public expenses: BudgetItemModel[] = [];
-  public assets: BudgetItemModel[] = [];
+  public savings: BudgetItemModel[] = [];
+  public toSpend: BudgetItemModel[] = [];
   public loans: BudgetItemModel[] = [];
   
   constructor(
@@ -26,19 +27,22 @@ export class MoneyComponent {
       if (items) this.moneyItems = [...items];
     });
 
-    this.budgetService.items.subscribe(async(items) => {
-      await this.emptyColumns();
+    this.budgetService.items.subscribe((items) => {
+      this.emptyColumns();
       if (items) {
         items.forEach(item => {
           switch(item.nature) {
             case 'expense':
               this.expenses.push(item);
               break;
-            case 'asset':
-              this.assets.push(item);
+            case 'savings':
+              this.savings.push(item);
               break;
             case 'loan':
               this.loans.push(item);
+              break;
+            case 'toSpend':
+              this.toSpend.push(item);
               break;
           }
         });
@@ -73,7 +77,8 @@ export class MoneyComponent {
 
   public emptyColumns (): void {
     this.expenses = [];
-    this.assets = [];
+    this.savings = [];
+    this.toSpend = [];
     this.loans = [];
    };
 }
