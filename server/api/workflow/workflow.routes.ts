@@ -1,6 +1,6 @@
 import { Request, Response } from 'express-serve-static-core';
 
-import { WorkflowModel } from '../../models'
+import { Workflow } from '../../models'
 
 import { WorkflowController, BaseController, BaseInterface } from '../../controller';
 
@@ -31,7 +31,7 @@ export class WorkflowRoutes extends BaseController {
 	}
 
 	private _get = (req: Request, res: Response): void => {
-		this._workflowController.getWorkflowItem(req.params.workflowItemId).then((workflowItem: WorkflowModel) => {
+		this._workflowController.getWorkflowItem(req.params.workflowItemId).then((workflowItem: Workflow) => {
 			res.jsonp(workflowItem);
 		}).catch((e: any) => {
 			res.status(500).send(e);
@@ -40,7 +40,7 @@ export class WorkflowRoutes extends BaseController {
 	}
 
 	private _getAll = (req: Request, res: Response): void => {
-		this._workflowController.getWorkflowItems().then((workflowItems: WorkflowModel[]) => {
+		this._workflowController.getWorkflowItems().then((workflowItems: Workflow[]) => {
 			res.jsonp(workflowItems);
 		}).catch((e: any) => {
 			res.status(500).send(e);
@@ -49,7 +49,7 @@ export class WorkflowRoutes extends BaseController {
 	}
 
 	private _set = (req: Request, res: Response): void => {
-		this._workflowController.setWorkflowItems(req.body).then((workflowItems: WorkflowModel[]) => {
+		this._workflowController.setWorkflowItems(req.body).then((workflowItems: Workflow[]) => {
 			res.jsonp(workflowItems);
 		}).catch((e: any) => {
 			res.status(500).send(e);
@@ -58,7 +58,7 @@ export class WorkflowRoutes extends BaseController {
 	}
 
 	private _patch = (req: Request, res: Response): void => {
-		this._workflowController.patchWorkflowItem(req.body).then((workflowItem: WorkflowModel) => {
+		this._workflowController.patchWorkflowItem(req.body).then((workflowItem: Workflow) => {
 			res.jsonp(workflowItem);
 		}).catch((e: any) => {
 			res.status(500).send(e);

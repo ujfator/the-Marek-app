@@ -1,10 +1,10 @@
-import { BaseModel } from './base.model';
+import { Base } from './base.model';
 
-export class SportModel extends BaseModel {
+export class School extends Base {
 	public date: Date = null;
-	public sport: string = null;
+	public subject: string = null;
     public difficulty: string = null;
-	public duration: number = null;
+	public typeOfTest: string = null;
 	public author: string = null;
 
 	constructor(args: any) {

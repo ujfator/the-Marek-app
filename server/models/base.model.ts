@@ -1,4 +1,4 @@
-export class BaseModel {
+export class Base {
 	public created?: string;
 	public id?: any;
 

@@ -1,4 +1,4 @@
-import { FoodModel } from '../../models';
+import { Food } from '../../models';
 
 import { FoodSchema } from '../../schema/food.schema';
 import { BaseController } from '../base.controller';
@@ -14,42 +14,42 @@ export class FoodController extends BaseController {
 	}
 	
 	/**
-	 * Delete one Food Model object.
+	 * Delete one Food  object.
 	 */
-	public deleteFood(foodItemId: string): Promise<FoodModel> {
+	public deleteFood(foodItemId: string): Promise<Food> {
 		return this.model.findByIdAndDelete(foodItemId).then((resp) => resp);
 	}
 
 
 	/**
-	 * Get one Food Model object.
+	 * Get one Food  object.
 	 */
-	public getFood(foodItemId: string): Promise<FoodModel> {
-		return this.model.findById(foodItemId).then((resp) => new FoodModel(resp));
+	public getFood(foodItemId: string): Promise<Food> {
+		return this.model.findById(foodItemId).then((resp) => new Food(resp));
 	}
 
 	/**
-	 * Get all Foods as Food Model objects.
+	 * Get all Foods as Food  objects.
 	 */
-	public getFoods(): Promise<FoodModel[]> {
+	public getFoods(): Promise<Food[]> {
 		return this.model.find().then((resp) => {
-			return resp.map((row) => new FoodModel(row));
+			return resp.map((row) => new Food(row));
 		});
 	}
 
 	/**
 	 * Add a new Food to the Database by the given Data object list.
-	 * It will return the added Foods passed to the Food Model object.
+	 * It will return the added Foods passed to the Food  object.
 	 */
-	public setFood(foodItem: FoodModel): Promise<FoodModel> {
-		return this.model.insertMany(foodItem).then((resp) =>  new FoodModel(resp));
+	public setFood(foodItem: Food): Promise<Food> {
+		return this.model.insertMany(foodItem).then((resp) =>  new Food(resp));
 	}
 
 	/**
 	 * Patch Food to the Database with the given Data.
-	 * It will return the patched Foods passed to the Food Model object.
+	 * It will return the patched Foods passed to the Food  object.
 	 */
-	public patchFood(foodItem: FoodModel): Promise<FoodModel> {
-		return this.model.findByIdAndUpdate(foodItem.id, foodItem).then((resp) => new FoodModel(resp));
+	public patchFood(foodItem: Food): Promise<Food> {
+		return this.model.findByIdAndUpdate(foodItem.id, foodItem).then((resp) => new Food(resp));
 	}
 }

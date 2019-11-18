@@ -5,7 +5,7 @@
       <mat-card-title class="title" fxLayout="row">
         <div *ngIf="expenses">Fixed expenses: {{accumulator(expenses)}} CZK</div>
         <span class="fill-remaining-space"></span>
-        <button matTooltip="Add item" dir="rtl" mat-raised-button (click)="addBudgetItem('expense')">
+        <button matTooltip="Add item" dir="rtl" mat-raised-button (click)="addBudget('expense')">
           <mat-icon>add</mat-icon>
         </button>
       </mat-card-title>
@@ -32,7 +32,7 @@
             <mat-card-title class="title" fxLayout="row">
               <div *ngIf="savings">Savings: {{accumulator(savings)}} CZK</div>
               <span class="fill-remaining-space"></span>
-              <button matTooltip="Add item" dir="rtl" mat-raised-button (click)="addBudgetItem('savings')">
+              <button matTooltip="Add item" dir="rtl" mat-raised-button (click)="addBudget('savings')">
                 <mat-icon>add</mat-icon>
               </button>
             </mat-card-title>
@@ -57,7 +57,7 @@
             <mat-card-title class="title" fxLayout="row">
               <div *ngIf="toSpend">To spend: {{accumulator(toSpend)}} CZK</div>
               <span class="fill-remaining-space"></span>
-              <button matTooltip="Add item" dir="rtl" mat-raised-button (click)="addBudgetItem('toSpend')">
+              <button matTooltip="Add item" dir="rtl" mat-raised-button (click)="addBudget('toSpend')">
                 <mat-icon>add</mat-icon>
               </button>
             </mat-card-title>
@@ -83,7 +83,7 @@
         <mat-card-title class="title" fxLayout="row">
           <div *ngIf="loans">Loans: {{accumulator(loans)}} CZK</div>
           <span class="fill-remaining-space"></span>
-          <button matTooltip="Add item" dir="rtl" mat-raised-button (click)="addBudgetItem('loan')">
+          <button matTooltip="Add item" dir="rtl" mat-raised-button (click)="addBudget('loan')">
             <mat-icon>add</mat-icon>
           </button>
         </mat-card-title>

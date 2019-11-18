@@ -1,28 +1,28 @@
 import { Request, Response } from 'express-serve-static-core';
 
-import { SportModel } from '../../../server/models'
+import { Quality } from '../../models'
 
-import { SportController, BaseController, BaseInterface } from '../../controller';
+import { QualityController, BaseController, BaseInterface } from '../../controller';
 
-export class SportRoutes extends BaseController {
-	private _sportController: SportController;
+export class QualityRoutes extends BaseController {
+	private _qualityController: QualityController;
 
 	constructor(args: BaseInterface) {
 		super(args);
-		console.warn('register route', 'sportRoutes');
+		console.warn('register route', 'qualityRoutes');
 
-		this._sportController = new SportController(args);
+		this._qualityController = new QualityController(args);
 
-		this.__router.get('/:itemId', (req: Request, res: Response) => this._get(req, res));
+		this.__router.get('/:id', (req: Request, res: Response) => this._get(req, res));
 		this.__router.get('/', (req: Request, res: Response) => this._getAll(req, res));
 		this.__router.post('/', (req: Request, res: Response) => this._set(req, res));
 		this.__router.patch('/', (req: Request, res: Response) => this._patch(req, res));
-		this.__router.delete('/:itemId', (req: Request, res: Response) => this._delete(req, res));
+		this.__router.delete('/:id', (req: Request, res: Response) => this._delete(req, res));
 
 	}
 
 	private _delete = (req: Request, res: Response): void => {
-		this._sportController.deleteSportItem(req.params.itemId).then((resp: any) => {
+		this._qualityController.deleteItem(req.params.id).then((resp: any) => {
 			res.jsonp(resp);
 		}).catch((e: any) => {
 			res.status(500).send(e);
@@ -30,8 +30,8 @@ export class SportRoutes extends BaseController {
 		});
 	}
 	private _get = (req: Request, res: Response): void => {
-		this._sportController.getSportItem(req.params.itemId).then((moneyItem: SportModel) => {
-			res.jsonp(moneyItem);
+		this._qualityController.getItem(req.params.id).then((item: Quality) => {
+			res.jsonp(item);
 		}).catch((e: any) => {
 			res.status(500).send(e);
 			console.warn(e);
@@ -39,8 +39,8 @@ export class SportRoutes extends BaseController {
 	}
 
 	private _getAll = (req: Request, res: Response): void => {
-		this._sportController.getSportItems().then((moneyItems: SportModel[]) => {
-			res.jsonp(moneyItems);
+		this._qualityController.getItems().then((items: Quality[]) => {
+			res.jsonp(items);
 		}).catch((e: any) => {
 			res.status(500).send(e);
 			console.warn(e);
@@ -48,8 +48,8 @@ export class SportRoutes extends BaseController {
 	}
 
 	private _set = (req: Request, res: Response): void => {
-		this._sportController.setSportItems(req.body).then((moneyItems: SportModel[]) => {
-			res.jsonp(moneyItems);
+		this._qualityController.setItems(req.body).then((items: Quality[]) => {
+			res.jsonp(items);
 		}).catch((e: any) => {
 			res.status(500).send(e);
 			console.warn(e);
@@ -57,8 +57,8 @@ export class SportRoutes extends BaseController {
 	}
 
 	private _patch = (req: Request, res: Response): void => {
-		this._sportController.patchSportItem(req.body).then((moneyItem: SportModel) => {
-			res.jsonp(moneyItem);
+		this._qualityController.patchItem(req.body).then((item: Quality) => {
+			res.jsonp(item);
 		}).catch((e: any) => {
 			res.status(500).send(e);
 			console.warn(e);

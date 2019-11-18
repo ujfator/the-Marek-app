@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material';
 import { FoodService } from '../common/services/food.service';
 import { AuthorService } from '../common/services/author.service'
 import { DialogService } from '../common/services/dialog.service';
-import { FoodModel } from 'server/models';
+import { Food } from 'server/models';
 
 
 @Component({
@@ -16,8 +16,8 @@ import { FoodModel } from 'server/models';
 export class FoodComponent {
 
   public displayedColumns: string[] = ['date', 'breakfast', 'lunch', 'dinner', 'junkFood', 'author', 'edit'];
-  public foodItems: FoodModel[] = [];
-  public allItems: FoodModel[] = [];
+  public foodItems: Food[] = [];
+  public allItems: Food[] = [];
 
   constructor(
     public dialog: MatDialog,
@@ -51,7 +51,7 @@ export class FoodComponent {
     });
   }
 
-  public addOrEditEntry(entry?: FoodModel) {
+  public addOrEditEntry(entry?: Food) {
     this.dialogService.data.next(null);
     this.dialogService.addEditItem('food', entry);
   }
@@ -63,7 +63,7 @@ export class FoodComponent {
     });
   }
 
-  public delete(entry: FoodModel) {
+  public delete(entry: Food) {
     this.foodService.deleteItem(entry.id);
   }
 

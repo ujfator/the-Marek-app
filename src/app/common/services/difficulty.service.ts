@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { DifficultyModel } from 'server/models';
+import { Difficulty } from 'server/models';
 
 @Injectable()
 export class DifficultyService {
@@ -21,13 +21,13 @@ export class DifficultyService {
     }
     
     public loadDifficulties(): void {
-		    this.http.get<DifficultyModel[]>(`${environment.apiHost}/difficulty`).subscribe((items: DifficultyModel[]) => {
+		    this.http.get<Difficulty[]>(`${environment.apiHost}/difficulty`).subscribe((items: Difficulty[]) => {
           this.buildIndex(items);
         });
     }
 
-    private buildIndex(items: DifficultyModel[]): void {
-      const flattenHelper = (array: DifficultyModel[]) => {
+    private buildIndex(items: Difficulty[]): void {
+      const flattenHelper = (array: Difficulty[]) => {
         return array.reduce((acc, difficulty) => {
           if (difficulty.difficulty) acc.push(difficulty.difficulty);
           return acc;

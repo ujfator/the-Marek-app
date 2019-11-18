@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { FoodModel } from 'server/models';
+import { Food } from 'server/models';
 
 @Component({
   selector: 'app-add-edit-item',
@@ -15,7 +15,7 @@ export class AddEditFoodItemComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<AddEditFoodItemComponent>,
     @Inject(MAT_DIALOG_DATA) public data: {
-      item: FoodModel, origin: string, authors: string[],
+      item: Food, origin: string, authors: string[],
     },
   ) {}
 

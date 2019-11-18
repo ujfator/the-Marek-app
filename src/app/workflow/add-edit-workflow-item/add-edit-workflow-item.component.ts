@@ -3,7 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 import { DifficultyService } from '../../common/services/difficulty.service';
-import { DifficultyModel } from 'server/models';
+import { Difficulty } from 'server/models';
 
 
 @Component({

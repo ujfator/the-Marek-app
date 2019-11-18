@@ -1,7 +1,7 @@
 import { Request, Response } from 'express-serve-static-core';
 
 import { FoodController, BaseController, BaseInterface } from '../../controller';
-import { FoodModel } from 'models';
+import { Food } from 'models';
 
 export class FoodRoutes extends BaseController {
 	private _foodController: FoodController;
@@ -20,7 +20,7 @@ export class FoodRoutes extends BaseController {
 
 
 	private _getAll = (req: Request, res: Response): void => {
-		this._foodController.getFoods().then((foods: FoodModel[]) => {
+		this._foodController.getFoods().then((foods: Food[]) => {
 			res.jsonp(foods);
 		}).catch((e: any) => {
 			res.status(500).send(e);
@@ -29,7 +29,7 @@ export class FoodRoutes extends BaseController {
 	}
 
 	private _set = (req: Request, res: Response): void => {
-		this._foodController.setFood(req.body).then((food: FoodModel) => {
+		this._foodController.setFood(req.body).then((food: Food) => {
 			res.jsonp(food);
 		}).catch((e: any) => {
 			res.status(500).send(e);

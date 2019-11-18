@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { BehaviorSubject, Subject } from 'rxjs';
 
-import { MoneyModel, BudgetItemModel, WorkflowModel, SportModel, FoodModel } from 'server/models';
+import { Money, Budget, Workflow, Quality, Food, School } from 'server/models';
 import { AddEditItemComponent } from '../add-edit-item/add-edit-item.component';
 import { AddEditWorkflowItemComponent } from '../../workflow/add-edit-workflow-item/add-edit-workflow-item.component'
-import { AddEditSportItemComponent } from '../../sport/add-edit-sport-item/add-edit-item.component';
+import { AddEditQualityItemComponent } from '../../sport/add-edit-quality-item/add-edit-item.component';
 import { ItemToSave } from '../interfaces';
 import { AddEditFoodItemComponent } from '../../food/add-edit-food-item/add-edit-item.component';
+import { AddEditSchoolItemComponent } from 'src/app/school/add-edit-school-item/add-edit-item.component';
 
 interface ComponentType<T = any> {
   new (...args: any[]): T;
@@ -20,7 +21,7 @@ export class DialogService {
 
     constructor(public dialog: MatDialog) {}
 
-    public addEditItem(origin: string, item?: MoneyModel|BudgetItemModel|WorkflowModel|SportModel|FoodModel) {
+    public addEditItem(origin: string, item?: Money|Budget|Workflow|Quality|Food|School) {
         const dialogRef = this.dialog.open(this.pickDialog(origin), {
           data: {
             item: item ? item : null,
@@ -38,12 +39,13 @@ export class DialogService {
     public pickDialog(origin: string): ComponentType {
         switch (origin) {
           case 'workflow': return AddEditWorkflowItemComponent;
-          case 'sport': return AddEditSportItemComponent;
+          case 'sport': return AddEditQualityItemComponent;
           case 'savings': return AddEditItemComponent;
           case 'toSpend': return AddEditItemComponent;
           case 'expense': return AddEditItemComponent;
           case 'loan': return AddEditItemComponent;
           case 'food': return AddEditFoodItemComponent;
+          case 'school': return AddEditSchoolItemComponent;
         }
     }
       

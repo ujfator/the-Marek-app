@@ -1,6 +1,6 @@
-import { BudgetItemModel } from '../../../models';
+import { Budget } from '../../../models';
 
-import { BudgetItemSchema } from '../../../schema/budget.schema';
+import { BudgetSchema } from '../../../schema/budget.schema';
 import { BaseController } from '../../base.controller';
 import { BaseInterface } from '../../base.interface';
 
@@ -10,48 +10,48 @@ export class BudgetController extends BaseController {
 
 		this.collection = 'budgetItems';
 		this.modelName = 'budgetItem';
-		this.schema = BudgetItemSchema;
+		this.schema = BudgetSchema;
 	}
 
 	
 	/**
-	 * Delete one BudgetItem Model object.
+	 * Delete one Budget  object.
 	 */
-	public deleteBudgetItem(budgetItemId: string): Promise<BudgetItemModel> {
-		return this.model.findByIdAndDelete(budgetItemId).then((resp) => resp);
+	public deleteBudget(id: string): Promise<Budget> {
+		return this.model.findByIdAndDelete(id).then((resp) => resp);
 	}
 
 	/**
-	 * Get one BudgetItem Model object.
+	 * Get one Budget  object.
 	 */
-	public getBudgetItem(budgetItemId: string): Promise<BudgetItemModel> {
-		return this.model.findById(budgetItemId).then((resp) => new BudgetItemModel(resp));
+	public getBudget(id: string): Promise<Budget> {
+		return this.model.findById(id).then((resp) => new Budget(resp));
 	}
 
 	/**
-	 * Get all BudgetItems as BudgetItem Model objects.
+	 * Get all Budgets as Budget  objects.
 	 */
-	public getBudgetItems(): Promise<BudgetItemModel[]> {
+	public getBudgets(): Promise<Budget[]> {
 		return this.model.find().then((resp) => {
-			return resp.map((row) => new BudgetItemModel(row));
+			return resp.map((row) => new Budget(row));
 		});
 	}
 
 	/**
-	 * Add a new BudgetItem to the Database by the given Data object list.
-	 * It will return the added BudgetItems passed to the BudgetItem Model object.
+	 * Add a new Budget to the Database by the given Data object list.
+	 * It will return the added Budgets passed to the Budget  object.
 	 */
-	public setBudgetItems(budgetItems: BudgetItemModel[]): Promise<BudgetItemModel[]> {
+	public setBudgets(budgetItems: Budget[]): Promise<Budget[]> {
 		return this.model.insertMany(budgetItems).then((resp) => {
-			return resp.map((row) => new BudgetItemModel(row));
+			return resp.map((row) => new Budget(row));
 		});
 	}
 
 	/**
-	 * Patch BudgetItem to the Database with the given Data.
-	 * It will return the patched BudgetItems passed to the BudgetItem Model object.
+	 * Patch Budget to the Database with the given Data.
+	 * It will return the patched Budgets passed to the Budget  object.
 	 */
-	public patchBudgetItem(budgetItem: BudgetItemModel): Promise<BudgetItemModel> {
-		return this.model.findByIdAndUpdate(budgetItem.id, budgetItem).then((resp) => new BudgetItemModel(resp));
+	public patchBudget(budgetItem: Budget): Promise<Budget> {
+		return this.model.findByIdAndUpdate(budgetItem.id, budgetItem).then((resp) => new Budget(resp));
 	}
 }

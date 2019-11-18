@@ -1,48 +1,49 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material';
 
-import { SportModel } from 'server/models';
-import { SportService } from '../common/services/sport.service';
+import { Quality } from 'server/models';
+import { QualityService } from '../common/services/quality.service';
 import { DialogService } from '../common/services/dialog.service';
 import { AuthorService } from '../common/services/author.service';
 import { DifficultyService } from '../common/services/difficulty.service';
+import { AddEditQualityItemComponent } from './add-edit-quality-item/add-edit-item.component';
 
 
 @Component({
-  selector: 'app-sport',
-  templateUrl: './sport.component.html',
-  styleUrls: ['./sport.component.scss']
+  selector: 'app-quality',
+  templateUrl: './quality.component.html',
+  styleUrls: ['./quality.component.scss']
 })
 
-export class SportComponent {
+export class QualityComponent {
 
-  displayedColumns: string[] = ['date', 'sport', 'difficulty', 'duration', 'author', 'edit'];
-  sportItems: SportModel[] = [];
-  allItems: SportModel[] = [];
+  displayedColumns: string[] = ['date', 'dayQuality', 'wakeUp', 'goToBed', 'sleepTime', 'mt', 'excercise', 'deepWorkTime' ,'author', 'edit'];
+  qualities: Quality[] = [];
+  allItems: Quality[] = [];
 
   constructor(
     protected dialog: MatDialog,
-    protected sportService: SportService,
+    protected qualityService: QualityService,
     protected dialogService: DialogService,
     protected authorService: AuthorService,
     protected difficultyService: DifficultyService,
   ) {
-    this.sportService.items.subscribe(async (items) => {
+    this.qualityService.items.subscribe(async (items) => {
       if (items) {
         this.allItems = await [...items];
         if (localStorage.getItem('author')) {
           this.createDataSource(localStorage.getItem('author'))
-        } else this.sportItems = [...items];
+        } else this.qualities = [...items];
       }
     });
     
     this.dialogService.data.subscribe((data: any) => {
-      if (data && data.origin === 'sport') {
+      if (data && data.origin === 'quality') {
         const item = {...data.item};
         this.dialogService.data.next(null);
         if (item.id) {
-          this.sportService.patchItem(item);
-        } else this.sportService.addItem(item);
+          this.qualityService.patchItem(item);
+        } else this.qualityService.addItem(item);
         if (item['difficulty']) this.difficultyService.addDifficulty(item['difficulty']);
       };     
     });
@@ -50,24 +51,30 @@ export class SportComponent {
     this.authorService.author.subscribe((author) => {
       if (author && author !== 'Oba') {
         this.createDataSource(author);
-      } else if (author === 'Oba') this.sportItems = [...this.allItems];
+      } else if (author === 'Oba') this.qualities = [...this.allItems];
     });
   }
 
-  addOrEditEntry(entry?: SportModel) {
-    this.dialogService.data.next(null);
-    this.dialogService.addEditItem('sport', entry);
+  addOrEditEntry(entry?: Quality) {
+    const dialogRef = this.dialog.open(AddEditQualityItemComponent, {
+      width: '500px',
+      data: entry || null,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    });
   }
 
   createDataSource (author?: string) {
-    this.sportItems = [];
+    this.qualities = [];
     this.allItems && this.allItems.forEach(element => {
-      if (element.author === author) this.sportItems.push(element);
+      if (element.author === author) this.qualities.push(element);
     });
   }
 
-  delete(entry: SportModel) {
-    this.sportService.deleteItem(entry.id);
+  delete(entry: Quality) {
+    this.qualityService.deleteItem(entry.id);
   }
 
   minutes(element): string {

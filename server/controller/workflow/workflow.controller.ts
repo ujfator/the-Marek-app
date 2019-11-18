@@ -1,4 +1,4 @@
-import { WorkflowModel } from '../../models';
+import { Workflow } from '../../models';
 
 import { WorkflowSchema } from '../../schema/workflow.schema';
 import { BaseController } from '../base.controller';
@@ -14,44 +14,44 @@ export class WorkflowController extends BaseController {
 	}
 	
 	/**
-	 * Delete one WorkflowItem Model object.
+	 * Delete one WorkflowItem  object.
 	 */
-	public deleteWorkflowItem(workflowItemId: string): Promise<WorkflowModel> {
+	public deleteWorkflowItem(workflowItemId: string): Promise<Workflow> {
 		return this.model.findByIdAndDelete(workflowItemId).then((resp) => resp);
 	}
 
 
 	/**
-	 * Get one WorkflowItem Model object.
+	 * Get one WorkflowItem  object.
 	 */
-	public getWorkflowItem(workflowItemId: string): Promise<WorkflowModel> {
-		return this.model.findById(workflowItemId).then((resp) => new WorkflowModel(resp));
+	public getWorkflowItem(workflowItemId: string): Promise<Workflow> {
+		return this.model.findById(workflowItemId).then((resp) => new Workflow(resp));
 	}
 
 	/**
-	 * Get all WorkflowItems as WorkflowItem Model objects.
+	 * Get all WorkflowItems as WorkflowItem  objects.
 	 */
-	public getWorkflowItems(): Promise<WorkflowModel[]> {
+	public getWorkflowItems(): Promise<Workflow[]> {
 		return this.model.find().then((resp) => {
-			return resp.map((row) => new WorkflowModel(row));
+			return resp.map((row) => new Workflow(row));
 		});
 	}
 
 	/**
 	 * Add a new WorkflowItem to the Database by the given Data object list.
-	 * It will return the added WorkflowItems passed to the WorkflowItem Model object.
+	 * It will return the added WorkflowItems passed to the WorkflowItem  object.
 	 */
-	public setWorkflowItems(workflowItems: WorkflowModel[]): Promise<WorkflowModel[]> {
+	public setWorkflowItems(workflowItems: Workflow[]): Promise<Workflow[]> {
 		return this.model.insertMany(workflowItems).then((resp) => {
-			return resp.map((row) => new WorkflowModel(row));
+			return resp.map((row) => new Workflow(row));
 		});
 	}
 
 	/**
 	 * Patch WorkflowItem to the Database with the given Data.
-	 * It will return the patched WorkflowItems passed to the WorkflowItem Model object.
+	 * It will return the patched WorkflowItems passed to the WorkflowItem  object.
 	 */
-	public patchWorkflowItem(workflowItem: WorkflowModel): Promise<WorkflowModel> {
-		return this.model.findByIdAndUpdate(workflowItem.id, workflowItem).then((resp) => new WorkflowModel(resp));
+	public patchWorkflowItem(workflowItem: Workflow): Promise<Workflow> {
+		return this.model.findByIdAndUpdate(workflowItem.id, workflowItem).then((resp) => new Workflow(resp));
 	}
 }

@@ -3,13 +3,13 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 
 import { BaseService } from './base.service';
-import { BudgetItemModel } from 'server/models';
+import { Budget } from 'server/models';
 import { environment } from '../../environments/environment';
 
 @Injectable()
 export class BudgetService extends BaseService {
 
-	public items: Subject<BudgetItemModel[]> = new BehaviorSubject<BudgetItemModel[]>(null);
+	public items: Subject<Budget[]> = new BehaviorSubject<Budget[]>(null);
 	private _index: object;
 
 	constructor(private http: HttpClient) {
@@ -17,33 +17,33 @@ export class BudgetService extends BaseService {
 		this.loadItems();
 	}
 
-	public addItem(item: BudgetItemModel): void {
-		this.http.post<BudgetItemModel>(`${environment.apiHost}/budget`, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems());
+	public addItem(item: Budget): void {
+		this.http.post<Budget>(`${environment.apiHost}/budget`, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems());
 	}
 
 	public deleteItem(id: string): void {
-		this.http.delete<BudgetItemModel>(`${environment.apiHost}/budget/${id}`, this.jsonHeaders).subscribe(() => this.loadItems());
+		this.http.delete<Budget>(`${environment.apiHost}/budget/${id}`, this.jsonHeaders).subscribe(() => this.loadItems());
 	}
 
-	public getBudgetItemById(id: string): BudgetItemModel {
+	public getBudgetById(id: string): Budget {
 		if (this._index) return this._index[id];
 	}
 
 	public loadItems(): void {
-		this.http.get<BudgetItemModel[]>(`${environment.apiHost}/budget`).subscribe((items) => {
+		this.http.get<Budget[]>(`${environment.apiHost}/budget`).subscribe((items) => {
 			this.items.next(items);
 			this._buildIndex(items);
 		});
 	}
 
-	public patchItem(item: BudgetItemModel): void {
-		this.http.patch<BudgetItemModel>(`${environment.apiHost}/budget`, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems())
+	public patchItem(item: Budget): void {
+		this.http.patch<Budget>(`${environment.apiHost}/budget`, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems())
 	}
 
-	private _buildIndex(items: BudgetItemModel[]): void {
-		const flattenHelper = (array: BudgetItemModel[]) => {
-			return array.reduce((acc, BudgetItem) => {
-				acc[BudgetItem.id] = BudgetItem;
+	private _buildIndex(items: Budget[]): void {
+		const flattenHelper = (array: Budget[]) => {
+			return array.reduce((acc, Budget) => {
+				acc[Budget.id] = Budget;
 
 				return acc;
 			}, {});

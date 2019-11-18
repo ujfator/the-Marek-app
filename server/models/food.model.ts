@@ -1,6 +1,6 @@
-import { BaseModel } from './base.model';
+import { Base } from './base.model';
 
-export class FoodModel extends BaseModel {
+export class Food extends Base {
     public date: Date = null;
     public breakfast: string = null;
     public lunch: string = null;

@@ -1,6 +1,6 @@
-import { BaseModel } from './base.model';
+import { Base } from './base.model';
 
-export class BudgetItemModel extends BaseModel {
+export class Budget extends Base {
 	public name: string = null;
 	public amount: number = null;
 	public nature: string = null;

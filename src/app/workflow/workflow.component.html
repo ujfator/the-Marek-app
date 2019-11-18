@@ -28,8 +28,12 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <div fxLayout="row" fxFlex>
-          <div fxLayout="column" fxFill>
-            <div fxFlex class="content">{{item.content}}</div>
+          <div fxLayout="column" fxFill class="content">
+            <div fxFlex>
+              {{item.content}}
+            </div>
+            <hr>
+            <div class="date"> Created on: {{item.created | date: 'dd.MM.yyyy'}}</div>
             <div fxFlex fxFlexAlign="end">
               <button matTooltip="Edit item" (click)="addEditItem(item)" mat-raised-button>
                 <mat-icon>edit</mat-icon>
@@ -60,8 +64,10 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
       <div fxLayout="row" fxFlex>
-        <div fxLayout="column" fxFill>
-          <div fxFlex class="content">{{item.content}}</div>
+        <div fxLayout="column" fxFill class="content">
+          <div fxFlex>{{item.content}}</div>
+          <hr>
+          <div class="date"> Created on: {{item.created | date: 'dd.MM.yyyy'}}</div>
           <div fxFlex fxFlexAlign="end">
             <button matTooltip="Edit item" (click)="addEditItem(item)" mat-raised-button>
               <mat-icon>edit</mat-icon>
@@ -92,8 +98,10 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
       <div fxLayout="row" fxFlex>
-        <div fxLayout="column" fxFill>
-          <div fxFlex class="content">{{item.content}}</div>
+        <div fxLayout="column" fxFill class="content">
+          <div fxFlex>{{item.content}}</div>
+          <hr>
+          <div class="date"> Created on: {{item.created | date: 'dd.MM.yyyy'}}</div>
           <div fxFlex fxFlexAlign="end">
             <button matTooltip="Edit item" (click)="addEditItem(item)" mat-raised-button>
               <mat-icon>edit</mat-icon>
@@ -124,8 +132,10 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
       <div fxLayout="row" fxFlex>
-        <div fxLayout="column" fxFill>
-          <div fxFlex class="content">{{item.content}}</div>
+        <div fxLayout="column" fxFill class="content">
+          <div fxFlex>{{item.content}}</div>
+          <hr>
+          <div class="date"> Finished on: {{item.finished | date: 'dd.MM.yyyy'}}</div>
           <div fxFlex fxFlexAlign="end">
             <button matTooltip="Delete item" (click)="delete(item.id)" mat-raised-button>
               <mat-icon>delete</mat-icon>

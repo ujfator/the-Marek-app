@@ -1,4 +1,4 @@
-import { MoneyModel } from '../../models';
+import { Money } from '../../models';
 
 import { MoneySchema } from '../../schema/money.schema';
 import { BaseController } from '../base.controller';
@@ -15,43 +15,43 @@ export class MoneyController extends BaseController {
 
 	
 	/**
-	 * Delete one MoneyItem Model object.
+	 * Delete one MoneyItem  object.
 	 */
-	public deleteMoneyItem(itemId: string): Promise<MoneyModel> {
-		return this.model.findByIdAndDelete(itemId).then((resp) => resp);
+	public deleteMoneyItem(id: string): Promise<Money> {
+		return this.model.findByIdAndDelete(id).then((resp) => resp);
 	}
 
 	/**
-	 * Get one MoneyItem Model object.
+	 * Get one MoneyItem  object.
 	 */
-	public getMoneyItem(itemId: string): Promise<MoneyModel> {
-		return this.model.findById(itemId).then((resp) => new MoneyModel(resp));
+	public getMoneyItem(id: string): Promise<Money> {
+		return this.model.findById(id).then((resp) => new Money(resp));
 	}
 
 	/**
-	 * Get all MoneyItems as MoneyItem Model objects.
+	 * Get all MoneyItems as MoneyItem  objects.
 	 */
-	public getMoneyItems(): Promise<MoneyModel[]> {
+	public getMoneyItems(): Promise<Money[]> {
 		return this.model.find().then((resp) => {
-			return resp.map((row) => new MoneyModel(row));
+			return resp.map((row) => new Money(row));
 		});
 	}
 
 	/**
 	 * Add a new MoneyItem to the Database by the given Data object list.
-	 * It will return the added MoneyItems passed to the MoneyItem Model object.
+	 * It will return the added MoneyItems passed to the MoneyItem  object.
 	 */
-	public setMoneyItems(items: MoneyModel[]): Promise<MoneyModel[]> {
+	public setMoneyItems(items: Money[]): Promise<Money[]> {
 		return this.model.insertMany(items).then((resp) => {
-			return resp.map((row) => new MoneyModel(row));
+			return resp.map((row) => new Money(row));
 		});
 	}
 
 	/**
 	 * Patch MoneyItem to the Database with the given Data.
-	 * It will return the patched MoneyItems passed to the MoneyItem Model object.
+	 * It will return the patched MoneyItems passed to the MoneyItem  object.
 	 */
-	public patchMoneyItem(item: MoneyModel): Promise<MoneyModel> {
-		return this.model.findByIdAndUpdate(item.id, item).then((resp) => new MoneyModel(resp));
+	public patchMoneyItem(item: Money): Promise<Money> {
+		return this.model.findByIdAndUpdate(item.id, item).then((resp) => new Money(resp));
 	}
 }

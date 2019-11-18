@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { MoneyModel, BudgetItemModel } from 'server/models';
+import { Money, Budget } from 'server/models';
 import { MoneyService } from '../common/services/money.service';
 import { DialogService } from '../common/services/dialog.service';
 import { BudgetService } from '../common/services/budget.service';
@@ -12,11 +12,11 @@ import { BudgetService } from '../common/services/budget.service';
 })
 export class MoneyComponent {
 
-  public moneyItems: MoneyModel[];
-  public expenses: BudgetItemModel[] = [];
-  public savings: BudgetItemModel[] = [];
-  public toSpend: BudgetItemModel[] = [];
-  public loans: BudgetItemModel[] = [];
+  public moneyItems: Money[];
+  public expenses: Budget[] = [];
+  public savings: Budget[] = [];
+  public toSpend: Budget[] = [];
+  public loans: Budget[] = [];
   
   constructor(
     public moneyService: MoneyService,
@@ -60,14 +60,14 @@ export class MoneyComponent {
     })
   }
 
-  public accumulator(source: BudgetItemModel[]): number {
+  public accumulator(source: Budget[]): number {
     return source.reduce((acc, item) => {
       acc = Math.round((acc + item.amount)*100) / 100;
       return acc;;
     }, 0)
   }
 
-  public addBudgetItem(origin: string) {
+  public addBudget(origin: string) {
     this.dialogService.addEditItem(origin);
   }
 

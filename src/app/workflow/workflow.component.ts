@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
-import { WorkflowModel } from 'server/models';
+import { Workflow } from 'server/models';
 import { ItemToSave } from '../common/interfaces';
 import { WorkflowService } from '../common/services/workflow.service';
 import { DialogService } from '../common/services/dialog.service';
@@ -9,10 +9,10 @@ import { AuthorService } from '../common/services/author.service';
 import { DifficultyService } from '../common/services/difficulty.service';
 
 interface Columns {
-  new: WorkflowModel[],
-  thisWeek: WorkflowModel[],
-  today: WorkflowModel[],
-  done: WorkflowModel[]
+  new: Workflow[],
+  thisWeek: Workflow[],
+  today: Workflow[],
+  done: Workflow[]
 }
 
 @Component({
@@ -22,7 +22,7 @@ interface Columns {
 })
 export class WorkflowComponent implements OnInit{
 
-  workflowItems: WorkflowModel[];
+  workflowItems: Workflow[];
   columns: Columns = {
     new: [],
     thisWeek: [],
@@ -67,7 +67,7 @@ export class WorkflowComponent implements OnInit{
     } else this.createDataSource(localStorage.getItem('author'))
   }
 
-  filler(item: WorkflowModel) {
+  filler(item: Workflow) {
     switch(item.container) {
       case 'new':
         this.columns.new.push(item);
@@ -125,7 +125,7 @@ export class WorkflowComponent implements OnInit{
 
   }
 
-  addEditItem(item?: WorkflowModel) {
+  addEditItem(item?: Workflow) {
     this.dialogService.addEditItem('workflow', item);
     this.dialogService.data.next(null);
   }

@@ -3,13 +3,13 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 
 import { BaseService } from './base.service';
-import { FoodModel } from 'server/models';
+import { Food } from 'server/models';
 import { environment } from '../../environments/environment';
 
 @Injectable()
 export class FoodService extends BaseService {
 
-	public items: Subject<FoodModel[]> = new BehaviorSubject<FoodModel[]>(null);
+	public items: Subject<Food[]> = new BehaviorSubject<Food[]>(null);
 	private _index: object;
 
 	constructor(private http: HttpClient) {
@@ -17,31 +17,31 @@ export class FoodService extends BaseService {
 		this.loadItems();
 	}
 
-	public addItem(item: FoodModel): void {
-		this.http.post<FoodModel>(`${environment.apiHost || ''}/food`, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems());
+	public addItem(item: Food): void {
+		this.http.post<Food>(`${environment.apiHost || ''}/food`, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems());
 	}
 
 	public deleteItem(id: string): void {
-		this.http.delete<FoodModel>(`${environment.apiHost|| '' }/food/${id}`, this.jsonHeaders).subscribe(() => this.loadItems());
+		this.http.delete<Food>(`${environment.apiHost|| '' }/food/${id}`, this.jsonHeaders).subscribe(() => this.loadItems());
 	}
 
-	public getItemById(id: string): FoodModel {
+	public getItemById(id: string): Food {
 		if (this._index) return this._index[id];
 	}
 
 	public loadItems(): void {
-		this.http.get<FoodModel[]>(`${environment.apiHost || ''}/food`).subscribe((items) => {
+		this.http.get<Food[]>(`${environment.apiHost || ''}/food`).subscribe((items) => {
 			this.items.next(items);
 			this._buildIndex(items);
 		});
 	}
 
-	public patchItem(item: FoodModel): void {
-		this.http.patch<FoodModel>(`${environment.apiHost || ''}/food`, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems())
+	public patchItem(item: Food): void {
+		this.http.patch<Food>(`${environment.apiHost || ''}/food`, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems())
 	}
 
-	private _buildIndex(items: FoodModel[]): void {
-		const flattenHelper = (array: FoodModel[]) => {
+	private _buildIndex(items: Food[]): void {
+		const flattenHelper = (array: Food[]) => {
 			return array.reduce((acc, item) => {
 				acc[item.id] = item;
 

@@ -1,6 +1,6 @@
-import { BaseModel } from './base.model';
+import { Base } from './base.model';
 
-export class DifficultyModel extends BaseModel {
+export class Difficulty extends Base {
 	public difficulty: string = null;
 
 	constructor(args: any) {

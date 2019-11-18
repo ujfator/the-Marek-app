@@ -2,7 +2,7 @@
 import { BaseController } from '../base.controller';
 import { BaseInterface } from '../base.interface';
 import { DifficultySchema } from '../../schema/difficulty.schema';
-import { DifficultyModel } from '../../models';
+import { Difficulty } from '../../models';
 
 export class DifficultyController extends BaseController {
 	constructor(args: BaseInterface) {
@@ -14,21 +14,21 @@ export class DifficultyController extends BaseController {
 	}
 
 	/**
-	 * Get all DifficultyItems as Difficulties Model objects.
+	 * Get all DifficultyItems as Difficulties  objects.
 	 */
 	public getDifficulties(): Promise<[]> {
 		return this.model.find().then((resp) => {
 			{
-				return resp.map((row) => new DifficultyModel(row));
+				return resp.map((row) => new Difficulty(row));
 			}
 		});
 	}
 
 	/**
 	 * Add a new DifficultyItem to the Database by the given Data object list.
-	 * It will return the added DifficultyItems passed to the DifficultyItem Model object.
+	 * It will return the added DifficultyItems passed to the DifficultyItem  object.
 	 */
 	public setDifficulty(items: string): Promise<string> {
-		return this.model.insertMany(items).then((resp) => new DifficultyModel(resp));
+		return this.model.insertMany(items).then((resp) => new Difficulty(resp));
 	}
 }

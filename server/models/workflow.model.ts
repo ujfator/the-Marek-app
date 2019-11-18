@@ -1,6 +1,6 @@
-import { BaseModel } from './base.model';
+import { Base } from './base.model';
 
-export class WorkflowModel extends BaseModel {
+export class Workflow extends Base {
 	public name: string = null;
   	public content: string = null;
 	public container: string = null;

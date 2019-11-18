@@ -1,6 +1,6 @@
 import { Request, Response } from 'express-serve-static-core';
 
-import { BudgetItemModel } from '../../models'
+import { Budget } from '../../models'
 
 import { BudgetController, BaseController, BaseInterface } from '../../controller';
 
@@ -22,7 +22,7 @@ export class BudgetRoutes extends BaseController {
 	}
 
 	private _delete = (req: Request, res: Response): void => {
-		this._budgetController.deleteBudgetItem(req.params.budgetItemId).then((resp: any) => {
+		this._budgetController.deleteBudget(req.params.budgetItemId).then((resp: any) => {
 			res.jsonp(resp);
 		}).catch((e: any) => {
 			res.status(500).send(e);
@@ -30,7 +30,7 @@ export class BudgetRoutes extends BaseController {
 		});
 	}
 	private _get = (req: Request, res: Response): void => {
-		this._budgetController.getBudgetItem(req.params.budgetItemId).then((budgetItem: BudgetItemModel) => {
+		this._budgetController.getBudget(req.params.budgetItemId).then((budgetItem: Budget) => {
 			res.jsonp(budgetItem);
 		}).catch((e: any) => {
 			res.status(500).send(e);
@@ -39,7 +39,7 @@ export class BudgetRoutes extends BaseController {
 	}
 
 	private _getAll = (req: Request, res: Response): void => {
-		this._budgetController.getBudgetItems().then((budgetItems: BudgetItemModel[]) => {
+		this._budgetController.getBudgets().then((budgetItems: Budget[]) => {
 			res.jsonp(budgetItems);
 		}).catch((e: any) => {
 			res.status(500).send(e);
@@ -48,7 +48,7 @@ export class BudgetRoutes extends BaseController {
 	}
 
 	private _set = (req: Request, res: Response): void => {
-		this._budgetController.setBudgetItems(req.body).then((budgetItems: BudgetItemModel[]) => {
+		this._budgetController.setBudgets(req.body).then((budgetItems: Budget[]) => {
 			res.jsonp(budgetItems);
 		}).catch((e: any) => {
 			res.status(500).send(e);
@@ -57,7 +57,7 @@ export class BudgetRoutes extends BaseController {
 	}
 
 	private _patch = (req: Request, res: Response): void => {
-		this._budgetController.patchBudgetItem(req.body).then((budgetItem: BudgetItemModel) => {
+		this._budgetController.patchBudget(req.body).then((budgetItem: Budget) => {
 			res.jsonp(budgetItem);
 		}).catch((e: any) => {
 			res.status(500).send(e);

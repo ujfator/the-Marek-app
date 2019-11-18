@@ -5,13 +5,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
-
 import { AddEditItemComponent } from './common/add-edit-item/add-edit-item.component';
-import { AddEditSportItemComponent } from './sport/add-edit-sport-item/add-edit-item.component';
+import { AddEditQualityItemComponent } from './sport/add-edit-quality-item/add-edit-item.component';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { SportComponent } from './sport/sport.component';
+import { QualityComponent } from './sport/quality.component';
 import { FoodComponent } from './food/food.component';
 import { MoneyComponent } from './money/money.component';
 import { WorkflowComponent } from './workflow/workflow.component';
@@ -23,10 +21,13 @@ import { MoneyService } from './common/services/money.service';
 import { BudgetService } from './common/services/budget.service';
 import { DialogService } from './common/services/dialog.service';
 import { AuthorService } from './common/services/author.service';
-import { SportService } from './common/services/sport.service';
+import { QualityService } from './common/services/quality.service';
 import { DifficultyService } from './common/services/difficulty.service';
 import { FoodService } from './common/services/food.service';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { SchoolComponent } from './school/school.component';
+import { SchoolService } from './common/services/school.service';
+import { AddEditSchoolItemComponent } from './school/add-edit-school-item/add-edit-item.component';
 
 const imports =  [
   AppRoutingModule,
@@ -44,22 +45,25 @@ const imports =  [
   declarations: [
     AppComponent,
     FoodComponent,
-    SportComponent,
+    SchoolComponent,
+    QualityComponent,
     AddEditItemComponent,
     AddEditWorkflowItemComponent,
-    AddEditSportItemComponent,
+    AddEditQualityItemComponent,
     AddEditFoodItemComponent,
+    AddEditSchoolItemComponent,
     WorkflowComponent,
     MoneyComponent,
   ],
   entryComponents: [
     AddEditItemComponent,
     AddEditWorkflowItemComponent,
-    AddEditSportItemComponent,
-    AddEditFoodItemComponent
+    AddEditQualityItemComponent,
+    AddEditFoodItemComponent,
+    AddEditSchoolItemComponent,
   ],
   imports,
   providers: [ WorkflowService, MoneyService, BudgetService, DialogService, AuthorService, 
-    SportService, DifficultyService, FoodService, { provide: LocationStrategy, useClass: HashLocationStrategy } ],
+    QualityService, DifficultyService, FoodService, SchoolService, { provide: LocationStrategy, useClass: HashLocationStrategy } ],
 })
 export class AppModule { }
