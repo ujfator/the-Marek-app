@@ -5,7 +5,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
 import { Money, Budget, Workflow, Quality, Food, School } from 'server/models';
 import { AddEditItemComponent } from '../add-edit-item/add-edit-item.component';
 import { AddEditWorkflowItemComponent } from '../../workflow/add-edit-workflow-item/add-edit-workflow-item.component'
-import { AddEditQualityItemComponent } from '../../sport/add-edit-quality-item/add-edit-item.component';
+import { AddEditQualityItemComponent } from '../../quality/add-edit-quality-item/add-edit-item.component';
 import { ItemToSave } from '../interfaces';
 import { AddEditFoodItemComponent } from '../../food/add-edit-food-item/add-edit-item.component';
 import { AddEditSchoolItemComponent } from 'src/app/school/add-edit-school-item/add-edit-item.component';

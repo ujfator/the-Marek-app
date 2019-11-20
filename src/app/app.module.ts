@@ -6,10 +6,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AddEditItemComponent } from './common/add-edit-item/add-edit-item.component';
-import { AddEditQualityItemComponent } from './sport/add-edit-quality-item/add-edit-item.component';
+import { AddEditQualityItemComponent } from './quality/add-edit-quality-item/add-edit-item.component';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { QualityComponent } from './sport/quality.component';
+import { QualityComponent } from './quality/quality.component';
 import { FoodComponent } from './food/food.component';
 import { MoneyComponent } from './money/money.component';
 import { WorkflowComponent } from './workflow/workflow.component';

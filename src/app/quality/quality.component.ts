@@ -36,17 +36,6 @@ export class QualityComponent {
         } else this.qualities = [...items];
       }
     });
-    
-    this.dialogService.data.subscribe((data: any) => {
-      if (data && data.origin === 'quality') {
-        const item = {...data.item};
-        this.dialogService.data.next(null);
-        if (item.id) {
-          this.qualityService.patchItem(item);
-        } else this.qualityService.addItem(item);
-        if (item['difficulty']) this.difficultyService.addDifficulty(item['difficulty']);
-      };     
-    });
 
     this.authorService.author.subscribe((author) => {
       if (author && author !== 'Oba') {
@@ -63,6 +52,7 @@ export class QualityComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
+      result.id ? this.qualityService.patchItem(result) : this.qualityService.addItem(result);
     });
   }
 

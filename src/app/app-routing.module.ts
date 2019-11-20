@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { QualityComponent } from './sport/quality.component';
+import { QualityComponent } from './quality/quality.component';
 import { FoodComponent } from './food/food.component';
 import { MoneyComponent } from './money/money.component';
 import { WorkflowComponent } from './workflow/workflow.component';
