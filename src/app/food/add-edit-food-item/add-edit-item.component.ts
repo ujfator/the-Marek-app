@@ -13,8 +13,8 @@ export class AddEditFoodItemComponent implements OnInit {
 	form: FormGroup;
 
 	constructor(
-		private dialogRef: MatDialogRef<AddEditFoodItemComponent>,
-		@Inject(MAT_DIALOG_DATA) private data: {
+		public dialogRef: MatDialogRef<AddEditFoodItemComponent>,
+		@Inject(MAT_DIALOG_DATA) public data: {
 		item: Food, origin: string, authors: string[],
 		},
 	) {}
