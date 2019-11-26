@@ -4,11 +4,11 @@ import  { MongoClient } from 'mongodb';
 
 export class DbiController {
 
-	public uri: string = "mongodb+srv://marek:marek@cluster0-jkdd5.azure.mongodb.net/marekApp?retryWrites=true&w=majority";
-	public get dbh(): mongo.Connection {
+	uri: string = "mongodb+srv://marek:marek@cluster0-jkdd5.azure.mongodb.net/marekApp?retryWrites=true&w=majority";
+	get dbh(): mongo.Connection {
 		return this._dbh;
 	}
-	public client: mongo.MongoClient;
+	client: mongo.MongoClient;
 	private _dbh: mongo.Connection;
 	private _connectionInitiated: boolean = false;
 
@@ -25,7 +25,7 @@ export class DbiController {
 		// MongoClient.connect(this.uri, (err, connection)=> {
 		// 	this._dbh = <mongo.Connection>connection;
 		// });
-	
+
 		mongo.createConnection(this.uri).then(
 		(connection: any) => {
 			console.log(

@@ -1,10 +1,10 @@
 import { Base } from './base.model';
 
 export class Budget extends Base {
-	public name: string = null;
-	public amount: number = null;
-	public nature: string = null;
-	public author: string = null;
+	name: string = null;
+	amount: number = null;
+	nature: string = null;
+	author: string = null;
 
 	constructor(args: any) {
 		super();

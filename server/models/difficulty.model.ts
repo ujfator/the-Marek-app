@@ -1,7 +1,7 @@
 import { Base } from './base.model';
 
 export class Difficulty extends Base {
-	public difficulty: string = null;
+	difficulty: string = null;
 
 	constructor(args: any) {
 		super();

@@ -1,13 +1,13 @@
 import { Base } from './base.model';
 
 export class Workflow extends Base {
-	public name: string = null;
-  	public content: string = null;
-	public container: string = null;
-	public author: string = null;
-	public finished: Date = null;
-	public difficulty: string = null;
-	  
+	name: string = null;
+  	content: string = null;
+	container: string = null;
+	author: string = null;
+	finished: Date = null;
+	difficulty: string = null;
+
 
 	constructor(args: any) {
 		super();

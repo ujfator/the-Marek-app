@@ -1,16 +1,16 @@
 import { Base } from './base.model';
 
 export class Quality extends Base {
-	public date: Date = null;
-	public dayQuality: number = null;
-	public wakeUp: string = null;
-	public goToBed: string = null;
-	public sleepTime: number = null;
-	public mt: boolean = null;
-	public excercise: boolean = null;
-  public deepWorkTime: string = null;
-  public meaningfulActivity: string = null;
-	public author: string = null;
+	date: Date = null;
+	dayQuality: number = null;
+	wakeUp: string = null;
+	goToBed: string = null;
+	sleepTime: number = null;
+	mt: boolean = null;
+	excercise: boolean = null;
+	deepWorkTime: string = null;
+	meaningfulActivity: string = null;
+	author: string = null;
 
 	constructor(args: any) {
 		super();

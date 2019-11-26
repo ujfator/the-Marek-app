@@ -1,6 +1,5 @@
 import * as express from 'express';
 import { Connection, Document, Model, Schema } from 'mongoose';
-
 import { BaseInterface } from './base.interface';
 import { DbiController } from './dbi/dbi.controller';
 
@@ -23,8 +22,8 @@ export class BaseController {
 	 * Get the model handler.
 	 * If there is no existing handler it will create a new handler.
 	 */
-	
-	public get model(): Model<Document> {
+
+	get model(): Model<Document> {
 		if (!this._model && this.__dbh && this.modelName && this.schema && this.collection) {
 			this._model = this.__dbh.model<Document>(this.modelName, this.schema, this.collection);
 		}
@@ -32,9 +31,9 @@ export class BaseController {
 		return this._model;
 	}
 
-	public collection: string;
-	public modelName: string;
-	public schema: Schema;
+	collection: string;
+	modelName: string;
+	schema: Schema;
 
 	protected readonly __args: any;
 

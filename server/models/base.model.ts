@@ -1,6 +1,6 @@
 export class Base {
-	public created?: string;
-	public id?: any;
+	created?: string;
+	id?: any;
 
 	protected __init?: (args: any) => void = (args: any): void => {
 		if (args._id) {
