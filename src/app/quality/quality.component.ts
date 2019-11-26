@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material';
-
 import { Quality } from 'server/models';
 import { QualityService } from '../common/services/quality.service';
 import { DialogService } from '../common/services/dialog.service';
@@ -17,7 +16,8 @@ import { AddEditQualityItemComponent } from './add-edit-quality-item/add-edit-it
 
 export class QualityComponent {
 
-	displayedColumns: string[] = ['date', 'dayQuality', 'wakeUp', 'goToBed', 'sleepTime', 'mt', 'excercise', 'deepWorkTime' ,'author', 'edit'];
+	displayedColumns: string[] = ['date', 'dayQuality', 'wakeUp', 'goToBed', 'sleepTime', 'mt',
+	'excercise', 'deepWorkTime', 'meaningfulActivity' ,'author', 'edit'];
 	qualities: Quality[] = [];
 	allItems: Quality[] = [];
 
