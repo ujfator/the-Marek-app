@@ -28,6 +28,7 @@ export class AddEditQualityItemComponent implements OnInit {
       mt: new FormControl(this.data ? this.data.mt : ''),
       excercise: new FormControl(this.data ? this.data.excercise : ''),
       deepWorkTime: new FormControl(this.data ? this.data.deepWorkTime : ''),
+      meaningfulActivity: new FormControl(this.data ? this.data.meaningfulActivity : ''),
       author: new FormControl(this.data ? this.data.author : ''),
 		});
   }
@@ -43,6 +44,7 @@ export class AddEditQualityItemComponent implements OnInit {
         sleepTime: this.form.value.sleepTime,
         mt: this.form.value.mt,
         excercise: this.form.value.excercise,
+        meaningfulActivity: this.form.value.meaningfulActivity,
         deepWorkTime: this.form.value.deepWorkTime,
         author: this.form.value.author ? this.form.value.author : '',
       }

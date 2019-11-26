@@ -8,7 +8,8 @@ export class Quality extends Base {
 	public sleepTime: number = null;
 	public mt: boolean = null;
 	public excercise: boolean = null;
-	public deepWorkTime: string = null;
+  public deepWorkTime: string = null;
+  public meaningfulActivity: string = null;
 	public author: string = null;
 
 	constructor(args: any) {

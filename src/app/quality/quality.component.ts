@@ -51,7 +51,6 @@ export class QualityComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
       result.id ? this.qualityService.patchItem(result) : this.qualityService.addItem(result);
     });
   }
