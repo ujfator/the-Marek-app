@@ -12,7 +12,7 @@ export class FoodService extends BaseService {
 	public items: Subject<Food[]> = new BehaviorSubject<Food[]>(null);
 	private _index: object;
 
-	constructor(private http: HttpClient) {
+	constructor() {
 		super();
 		this.loadItems();
 	}

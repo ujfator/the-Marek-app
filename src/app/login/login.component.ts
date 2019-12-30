@@ -22,7 +22,7 @@ export class LoginComponent {
 				username: this.form.value.username,
 				login: this.form.value.login
 			};
-			this.loginService.login(login)
+			// this.loginService.login(login)
 		}
 	}
 

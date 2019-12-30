@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Difficulty } from 'server/models';
+import { BaseService } from './base.service';
 
 @Injectable({ providedIn: 'root' })
-export class DifficultyService {
+export class DifficultyService extends BaseService {
 
     public difficulties: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
     public index: string[] = [];
 
-    constructor(private http: HttpClient) {
+    constructor() {
+		super();
         this.loadDifficulties();
     }
 

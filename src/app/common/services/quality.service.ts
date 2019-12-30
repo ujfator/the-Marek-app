@@ -12,7 +12,7 @@ export class QualityService extends BaseService {
 	public items: Subject<Quality[]> = new BehaviorSubject<Quality[]>(null);
 	private _index: object;
 
-	constructor(private http: HttpClient) {
+	constructor() {
 		super();
 		this.loadItems();
 	}

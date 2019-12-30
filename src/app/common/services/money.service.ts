@@ -12,7 +12,7 @@ export class MoneyService extends BaseService {
 	public items: Subject<Money[]> = new BehaviorSubject<Money[]>(null);
 	private _index: object;
 
-	constructor(private http: HttpClient) {
+	constructor() {
 		super();
 		this.loadItems();
 	}

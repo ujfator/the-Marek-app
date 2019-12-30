@@ -12,7 +12,7 @@ export class WorkflowService extends BaseService {
 	public route = `${environment.apiHost || ''}/workflow`;
  	public items: Subject<Workflow[]> = new BehaviorSubject<Workflow[]>(null);
 
-	constructor(private http: HttpClient) {
+	constructor() {
 		super();
 		this.loadItems();
 		console.log(('b' + 'a' + + 'a' + 'a').toLowerCase());

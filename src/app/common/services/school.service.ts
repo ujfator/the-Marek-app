@@ -12,7 +12,7 @@ export class SchoolService extends BaseService {
 	public items: Subject<School[]> = new BehaviorSubject<School[]>(null);
 	private _index: object;
 
-	constructor(private http: HttpClient) {
+	constructor() {
 		super();
 		this.loadItems();
 	}
