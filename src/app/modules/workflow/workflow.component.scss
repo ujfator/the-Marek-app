@@ -1,4 +1,4 @@
-@import '../app.component.scss';
+@import '../../app.component';
 
 .add-button {
   height: 40px;
@@ -14,8 +14,8 @@
 }
 
 .panel-title {
-  overflow: hidden; 
-  white-space: nowrap; 
+  overflow: hidden;
+  white-space: nowrap;
   text-overflow: ellipsis;
   width: 30px;
 }
@@ -25,7 +25,7 @@
 }
 
 .date {
-  border-top: 1px solid #9a9494; 
+  border-top: 1px solid #9a9494;
   padding-top: 10px
 }
 

@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 
 import { Money, Budget } from 'server/models';
-import { MoneyService } from '../common/services/money.service';
-import { DialogService } from '../common/services/dialog.service';
-import { BudgetService } from '../common/services/budget.service';
+import { MoneyService } from '../../common/services/money.service';
+import { DialogService } from '../../common/services/dialog.service';
+import { BudgetService } from '../../common/services/budget.service';
 
 @Component({
   selector: 'app-money',
@@ -17,7 +17,7 @@ export class MoneyComponent {
   public savings: Budget[] = [];
   public toSpend: Budget[] = [];
   public loans: Budget[] = [];
-  
+
   constructor(
     public moneyService: MoneyService,
     public dialogService: DialogService,
@@ -56,7 +56,7 @@ export class MoneyComponent {
         if (item.id) {
           this.budgetService.patchItem(item);
         } else this.budgetService.addItem(item);
-      }   
+      }
     })
   }
 

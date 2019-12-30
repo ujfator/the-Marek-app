@@ -6,7 +6,7 @@ import { BaseService } from './base.service';
 import { Quality } from 'server/models';
 import { environment } from '../../environments/environment';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class QualityService extends BaseService {
 
 	public items: Subject<Quality[]> = new BehaviorSubject<Quality[]>(null);

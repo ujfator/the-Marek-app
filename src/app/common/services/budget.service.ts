@@ -6,7 +6,7 @@ import { BaseService } from './base.service';
 import { Budget } from 'server/models';
 import { environment } from '../../environments/environment';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class BudgetService extends BaseService {
 
 	public items: Subject<Budget[]> = new BehaviorSubject<Budget[]>(null);

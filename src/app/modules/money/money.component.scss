@@ -1,17 +1,17 @@
-@import '../app.component.scss';
+@import '../../app.component';
 
 .expense-image {
-    background-image: url('../pics/bill.png');
+    background-image: url('../../pics/bill.png');
     background-size: cover;
 }
 
 .asset-image {
-    background-image: url('../pics/car.jpg');
+    background-image: url('../../pics/car.jpg');
     background-size: cover;
 }
 
 .loan-image {
-    background-image: url('../pics/loan.jpg');
+    background-image: url('../../pics/loan.jpg');
     background-size: cover;
 }
 

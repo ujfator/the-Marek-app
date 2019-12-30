@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { Quality } from 'server/models';
-import { QualityService } from '../common/services/quality.service';
-import { DialogService } from '../common/services/dialog.service';
-import { AuthorService } from '../common/services/author.service';
-import { DifficultyService } from '../common/services/difficulty.service';
+import { QualityService } from '../../common/services/quality.service';
+import { DialogService } from '../../common/services/dialog.service';
+import { AuthorService } from '../../common/services/author.service';
+import { DifficultyService } from '../../common/services/difficulty.service';
 import { AddEditQualityItemComponent } from './add-edit-quality-item/add-edit-item.component';
 
 

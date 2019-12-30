@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material';
 
-import { SchoolService } from '../common/services/school.service';
-import { AuthorService } from '../common/services/author.service'
-import { DialogService } from '../common/services/dialog.service';
+import { SchoolService } from '../../common/services/school.service';
+import { AuthorService } from '../../common/services/author.service'
+import { DialogService } from '../../common/services/dialog.service';
 import { School } from 'server/models';
 
 
@@ -34,7 +34,7 @@ export class SchoolComponent {
         } else this.dataSource = [...items];
       }
     });
-    
+
     this.dialogService.data.subscribe((data: any) => {
       if (data && data.origin === 'school') {
         const item = {...data.item};
@@ -42,7 +42,7 @@ export class SchoolComponent {
         if (item.id) {
           this.schoolService.patchItem(item);
         } else this.schoolService.addItem(item);
-      };     
+      };
     });
 
     this.authorService.author.subscribe((author) => {

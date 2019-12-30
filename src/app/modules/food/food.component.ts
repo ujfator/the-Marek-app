@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material';
 
-import { FoodService } from '../common/services/food.service';
-import { AuthorService } from '../common/services/author.service'
-import { DialogService } from '../common/services/dialog.service';
+import { FoodService } from '../../common/services/food.service';
+import { AuthorService } from '../../common/services/author.service'
+import { DialogService } from '../../common/services/dialog.service';
 import { Food } from 'server/models';
 
 
@@ -33,7 +33,7 @@ export class FoodComponent {
         } else this.foodItems = [...items];
       }
     });
-    
+
     this.dialogService.data.subscribe((data: any) => {
       if (data && data.origin === 'food') {
         const item = {...data.item};
@@ -41,7 +41,7 @@ export class FoodComponent {
         if (item.id) {
           this.foodService.patchItem(item);
         } else this.foodService.addItem(item);
-      };     
+      };
     });
 
     this.authorService.author.subscribe((author) => {

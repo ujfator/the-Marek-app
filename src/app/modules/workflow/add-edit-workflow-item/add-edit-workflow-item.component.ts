@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
-import { DifficultyService } from '../../common/services/difficulty.service';
+import { DifficultyService } from '../../../common/services/difficulty.service';
 import { Difficulty } from 'server/models';
 
 
@@ -19,7 +19,7 @@ export class AddEditWorkflowItemComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<AddEditWorkflowItemComponent>,
     public difficultyService: DifficultyService,
-    @Inject(MAT_DIALOG_DATA) public data: { 
+    @Inject(MAT_DIALOG_DATA) public data: {
       item: any, origin: string, authors: string[],
     },
   ) {

@@ -1,0 +1,24 @@
+<div fxFill fxLayout="row" fxLayoutAlign="center center" fxFlexAlign="center">
+	<mat-card class="loginCard" fxLayout="column">
+		<mat-card-header>
+			<mat-card-title>Hi</mat-card-title>
+			<mat-card-subtitle>Login</mat-card-subtitle>
+		</mat-card-header>
+		<mat-card-content fxLayout="column">
+			<form [formGroup]="form"  fxLayout="column" (ngSubmit)="onSubmit()">
+				<mat-form-field>
+					<mat-label>Username</mat-label>
+					<input required matInput placeholder="username">
+				</mat-form-field>
+				<mat-form-field>
+					<mat-label>Login</mat-label>
+					<input required matInput placeholder="login">
+				</mat-form-field>
+			</form>
+		</mat-card-content>
+		<mat-card-actions>
+			<button mat-button>LIKE</button>
+			<button mat-button>SHARE</button>
+		</mat-card-actions>
+	</mat-card>
+</div>

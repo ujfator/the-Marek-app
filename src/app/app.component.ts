@@ -8,9 +8,13 @@ import { AuthorService } from './common/services/author.service';
 	templateUrl: './app.component.html'
 })
 export class AppComponent {
-	@HostBinding('class') public componentCssClass;
-	public theme: string = 'Dark';
-	public author: string;
+
+	@HostBinding('class') componentCssClass;
+	theme: string = 'Dark';
+	author: string;
+	loggedIn: boolean = false;
+	heslo: string;
+
 
 	constructor(
 		public overlayContainer: OverlayContainer,
@@ -18,20 +22,23 @@ export class AppComponent {
 		) {
 			if (localStorage.getItem('theme')) this.onSetTheme(localStorage.getItem('theme'));
 			this.authorService.author.subscribe((author) =>  {
-				if (author) { 
-					if (author !== 'Oba') { 
+				if (author) {
+					if (author !== 'Oba') {
 						this.author = author;
 					} else this.author = null;
 				};
 			});
 		}
 
-	public chooseAuthor(author: string): void{
+ 	chooseAuthor(author: string): void{
 		this.authorService.selectAuthor(author);
 	}
 
+	login() {
+		if (this.heslo.toLowerCase() === 'sumpene' || this.heslo.toLowerCase() === 'pumpene') this.loggedIn = true;
+	}
 
-	public onSetTheme(theme: any): void {
+ 	onSetTheme(theme: any): void {
 		if (theme === 'Light') {
 			this.overlayContainer.getContainerElement().classList.add('light-theme');
 			this.overlayContainer.getContainerElement().classList.remove('dark-theme');
@@ -40,7 +47,7 @@ export class AppComponent {
 		} else {
 			this.overlayContainer.getContainerElement().classList.add('dark-theme');
 			this.overlayContainer.getContainerElement().classList.remove('light-theme');
-			this.componentCssClass = 'dark-theme';	
+			this.componentCssClass = 'dark-theme';
 			localStorage.setItem('theme', theme);
 		}
 	}

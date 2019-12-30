@@ -40,6 +40,7 @@
     "angular-draggable-droppable": "^4.2.0",
     "chart.js": "^2.8.0",
     "command-line-args": "^5.1.1",
+    "concurrent": "^0.3.2",
     "core-js": "^2.5.4",
     "express": "^4.16.4",
     "hammerjs": "^2.0.8",
@@ -50,7 +51,8 @@
     "request": "^2.88.0",
     "rxjs": "~6.3.3",
     "tslib": "^1.10.0",
-    "typescript": "^3.2.4",
+    "typescript": "^3.1.1",
+    "yarn": "^1.21.0",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {

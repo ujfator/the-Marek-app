@@ -4,17 +4,17 @@ import { BehaviorSubject, Subject } from 'rxjs';
 
 import { Money, Budget, Workflow, Quality, Food, School } from 'server/models';
 import { AddEditItemComponent } from '../add-edit-item/add-edit-item.component';
-import { AddEditWorkflowItemComponent } from '../../workflow/add-edit-workflow-item/add-edit-workflow-item.component'
-import { AddEditQualityItemComponent } from '../../quality/add-edit-quality-item/add-edit-item.component';
+import { AddEditWorkflowItemComponent } from '../../modules/workflow/add-edit-workflow-item/add-edit-workflow-item.component'
+import { AddEditQualityItemComponent } from '../../modules/quality/add-edit-quality-item/add-edit-item.component';
 import { ItemToSave } from '../interfaces';
-import { AddEditFoodItemComponent } from '../../food/add-edit-food-item/add-edit-item.component';
-import { AddEditSchoolItemComponent } from 'src/app/school/add-edit-school-item/add-edit-item.component';
+import { AddEditFoodItemComponent } from '../../modules/food/add-edit-food-item/add-edit-item.component';
+import { AddEditSchoolItemComponent } from 'src/app/modules/school/add-edit-school-item/add-edit-item.component';
 
 interface ComponentType<T = any> {
   new (...args: any[]): T;
 }
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class DialogService {
 
     public data: Subject<ItemToSave> = new BehaviorSubject<ItemToSave>(null);
@@ -48,5 +48,5 @@ export class DialogService {
           case 'school': return AddEditSchoolItemComponent;
         }
     }
-      
+
 }

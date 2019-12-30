@@ -6,28 +6,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AddEditItemComponent } from './common/add-edit-item/add-edit-item.component';
-import { AddEditQualityItemComponent } from './quality/add-edit-quality-item/add-edit-item.component';
+import { AddEditQualityItemComponent } from './modules/quality/add-edit-quality-item/add-edit-item.component';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { QualityComponent } from './quality/quality.component';
-import { FoodComponent } from './food/food.component';
-import { MoneyComponent } from './money/money.component';
-import { WorkflowComponent } from './workflow/workflow.component';
-import { AddEditWorkflowItemComponent } from './workflow/add-edit-workflow-item/add-edit-workflow-item.component'
+import { QualityComponent } from './modules/quality/quality.component';
+import { FoodComponent } from './modules/food/food.component';
+import { WorkflowComponent } from './modules/workflow/workflow.component';
+import { AddEditWorkflowItemComponent } from './modules/workflow/add-edit-workflow-item/add-edit-workflow-item.component'
 import { CoreModule } from './common/core.module';
-import { AddEditFoodItemComponent } from './food/add-edit-food-item/add-edit-item.component';
-import { WorkflowService } from './common/services/workflow.service';
-import { MoneyService } from './common/services/money.service';
-import { BudgetService } from './common/services/budget.service';
-import { DialogService } from './common/services/dialog.service';
-import { AuthorService } from './common/services/author.service';
-import { QualityService } from './common/services/quality.service';
-import { DifficultyService } from './common/services/difficulty.service';
-import { FoodService } from './common/services/food.service';
+import { AddEditFoodItemComponent } from './modules/food/add-edit-food-item/add-edit-item.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { SchoolComponent } from './school/school.component';
-import { SchoolService } from './common/services/school.service';
-import { AddEditSchoolItemComponent } from './school/add-edit-school-item/add-edit-item.component';
+import { SchoolComponent } from './modules/school/school.component';
+import { AddEditSchoolItemComponent } from './modules/school/add-edit-school-item/add-edit-item.component';
+import { LoginComponent } from './login/login.component';
+import { MoneyComponent } from './modules/money/money.component';
 
 const imports =  [
   AppRoutingModule,
@@ -38,22 +30,23 @@ const imports =  [
   CoreModule,
   BrowserModule,
   BrowserAnimationsModule
-]
+];
 
 @NgModule({
   bootstrap: [AppComponent],
   declarations: [
-    AppComponent,
-    FoodComponent,
-    SchoolComponent,
-    QualityComponent,
-    AddEditItemComponent,
-    AddEditWorkflowItemComponent,
-    AddEditQualityItemComponent,
-    AddEditFoodItemComponent,
-    AddEditSchoolItemComponent,
-    WorkflowComponent,
-    MoneyComponent,
+	AppComponent,
+	FoodComponent,
+	SchoolComponent,
+	QualityComponent,
+	AddEditItemComponent,
+	AddEditWorkflowItemComponent,
+	AddEditQualityItemComponent,
+	AddEditFoodItemComponent,
+	AddEditSchoolItemComponent,
+	WorkflowComponent,
+	MoneyComponent,
+	LoginComponent,
   ],
   entryComponents: [
     AddEditItemComponent,
@@ -63,7 +56,6 @@ const imports =  [
     AddEditSchoolItemComponent,
   ],
   imports,
-  providers: [ WorkflowService, MoneyService, BudgetService, DialogService, AuthorService, 
-    QualityService, DifficultyService, FoodService, SchoolService, { provide: LocationStrategy, useClass: HashLocationStrategy } ],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
 })
 export class AppModule { }

@@ -6,7 +6,7 @@ import { BaseService } from './base.service';
 import { Workflow } from 'server/models';
 import { environment } from '../../environments/environment';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class WorkflowService extends BaseService {
 
 	public route = `${environment.apiHost || ''}/workflow`;
@@ -43,7 +43,7 @@ export class WorkflowService extends BaseService {
 	}
 
 	public patchItem(item: Workflow): void {
-		if (item.container === 'done') { 
+		if (item.container === 'done') {
 			item.finished = new Date()
 		} else item.finished = null;
 		this.http.patch<Workflow>(this.route, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems())

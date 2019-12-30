@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 import { Workflow } from 'server/models';
-import { ItemToSave } from '../common/interfaces';
-import { WorkflowService } from '../common/services/workflow.service';
-import { DialogService } from '../common/services/dialog.service';
-import { AuthorService } from '../common/services/author.service';
-import { DifficultyService } from '../common/services/difficulty.service';
+import { ItemToSave } from '../../common/interfaces';
+import { WorkflowService } from '../../common/services/workflow.service';
+import { DialogService } from '../../common/services/dialog.service';
+import { AuthorService } from '../../common/services/author.service';
+import { DifficultyService } from '../../common/services/difficulty.service';
 
 interface Columns {
   new: Workflow[],
@@ -99,7 +99,7 @@ export class WorkflowComponent implements OnInit{
 			case 'cdk-drop-list-1': return 'thisWeek';
 			case 'cdk-drop-list-2': return 'today';
 			case 'cdk-drop-list-3': return 'done';
-    } 
+    }
   }
 
   delete (id: string): void {
