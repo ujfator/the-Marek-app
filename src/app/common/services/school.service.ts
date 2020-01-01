@@ -1,42 +1,42 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 
 import { BaseService } from './base.service';
 import { School } from 'server/models';
 import { environment } from '../../environments/environment';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
 export class SchoolService extends BaseService {
 
-	public items: Subject<School[]> = new BehaviorSubject<School[]>(null);
+	items: Subject<School[]> = new BehaviorSubject<School[]>(null);
 	private _index: object;
 
-	constructor() {
+	constructor(private http: HttpClient) {
 		super();
 		this.loadItems();
 	}
 
-	public addItem(item: School): void {
+	addItem(item: School): void {
 		this.http.post<School>(`${environment.apiHost || ''}/school`, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems());
 	}
 
-	public deleteItem(id: string): void {
+	deleteItem(id: string): void {
 		this.http.delete<School>(`${environment.apiHost|| '' }/school/${id}`, this.jsonHeaders).subscribe(() => this.loadItems());
 	}
 
-	public getItemById(id: string): School {
+	getItemById(id: string): School {
 		if (this._index) return this._index[id];
 	}
 
-	public loadItems(): void {
+	loadItems(): void {
 		this.http.get<School[]>(`${environment.apiHost || ''}/school`).subscribe((items) => {
 			this.items.next(items);
 			this._buildIndex(items);
 		});
 	}
 
-	public patchItem(item: School): void {
+	patchItem(item: School): void {
 		this.http.patch<School>(`${environment.apiHost || ''}/school`, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems())
 	}
 

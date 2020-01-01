@@ -20,6 +20,7 @@ export class AppComponent {
 		public overlayContainer: OverlayContainer,
 		public authorService: AuthorService,
 		) {
+			if (sessionStorage.getItem('loggedIn')) this.loggedIn = true;
 			if (localStorage.getItem('theme')) this.onSetTheme(localStorage.getItem('theme'));
 			this.authorService.author.subscribe((author) =>  {
 				if (author) {
@@ -35,7 +36,10 @@ export class AppComponent {
 	}
 
 	login() {
-		if (this.heslo.toLowerCase() === 'sumpene' || this.heslo.toLowerCase() === 'pumpene') this.loggedIn = true;
+		if (this.heslo.toLowerCase() === 'sumpene' || this.heslo.toLowerCase() === 'pumpene') {
+			sessionStorage.setItem('loggedIn', 'hej');
+			this.loggedIn = true;
+		};
 	}
 
  	onSetTheme(theme: any): void {

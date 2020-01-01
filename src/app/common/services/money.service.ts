@@ -1,42 +1,44 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 
 import { BaseService } from './base.service';
 import { Money } from 'server/models';
 import { environment } from '../../environments/environment';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
 export class MoneyService extends BaseService {
 
-	public items: Subject<Money[]> = new BehaviorSubject<Money[]>(null);
+	items: Subject<Money[]> = new BehaviorSubject<Money[]>(null);
 	private _index: object;
 
-	constructor() {
+	constructor( private http: HttpClient) {
 		super();
 		this.loadItems();
 	}
 
-	public addItem(item: Money): void {
+	addItem(item: Money): void {
 		this.http.post<Money>(`${environment.apiHost || ''}/money`, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems());
 	}
 
-	public deleteItem(id: string): void {
+	deleteItem(id: string): void {
 		this.http.delete<Money>(`${environment.apiHost|| '' }/money/${id}`, this.jsonHeaders).subscribe(() => this.loadItems());
 	}
 
-	public getMoneyItemById(id: string): Money {
+	getMoneyItemById(id: string): Money {
 		if (this._index) return this._index[id];
 	}
 
-	public loadItems(): void {
+	loadItems(): void {
+		console.log('hej')
 		this.http.get<Money[]>(`${environment.apiHost || ''}/money`).subscribe((items) => {
+			console.log(items);
 			this.items.next(items);
 			this._buildIndex(items);
 		});
 	}
 
-	public patchItem(item: Money): void {
+	patchItem(item: Money): void {
 		this.http.patch<Money>(`${environment.apiHost || ''}/money`, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems())
 	}
 

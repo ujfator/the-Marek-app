@@ -1,42 +1,42 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 
 import { BaseService } from './base.service';
 import { Food } from 'server/models';
 import { environment } from '../../environments/environment';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
 export class FoodService extends BaseService {
 
-	public items: Subject<Food[]> = new BehaviorSubject<Food[]>(null);
+	items: Subject<Food[]> = new BehaviorSubject<Food[]>(null);
 	private _index: object;
 
-	constructor() {
+	constructor(private http: HttpClient) {
 		super();
 		this.loadItems();
 	}
 
-	public addItem(item: Food): void {
+	addItem(item: Food): void {
 		this.http.post<Food>(`${environment.apiHost || ''}/food`, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems());
 	}
 
-	public deleteItem(id: string): void {
+	deleteItem(id: string): void {
 		this.http.delete<Food>(`${environment.apiHost|| '' }/food/${id}`, this.jsonHeaders).subscribe(() => this.loadItems());
 	}
 
-	public getItemById(id: string): Food {
+	getItemById(id: string): Food {
 		if (this._index) return this._index[id];
 	}
 
-	public loadItems(): void {
+	loadItems(): void {
 		this.http.get<Food[]>(`${environment.apiHost || ''}/food`).subscribe((items) => {
 			this.items.next(items);
 			this._buildIndex(items);
 		});
 	}
 
-	public patchItem(item: Food): void {
+	patchItem(item: Food): void {
 		this.http.patch<Food>(`${environment.apiHost || ''}/food`, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems())
 	}
 

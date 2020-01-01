@@ -17,11 +17,11 @@ interface ComponentType<T = any> {
 @Injectable({ providedIn: 'root' })
 export class DialogService {
 
-    public data: Subject<ItemToSave> = new BehaviorSubject<ItemToSave>(null);
+    data: Subject<ItemToSave> = new BehaviorSubject<ItemToSave>(null);
 
     constructor(public dialog: MatDialog) {}
 
-    public addEditItem(origin: string, item?: Money|Budget|Workflow|Quality|Food|School) {
+    addEditItem(origin: string, item?: Money|Budget|Workflow|Quality|Food|School) {
         const dialogRef = this.dialog.open(this.pickDialog(origin), {
           data: {
             item: item ? item : null,
@@ -36,7 +36,7 @@ export class DialogService {
         });
     }
 
-    public pickDialog(origin: string): ComponentType {
+    pickDialog(origin: string): ComponentType {
         switch (origin) {
           case 'workflow': return AddEditWorkflowItemComponent;
           case 'sport': return AddEditQualityItemComponent;
