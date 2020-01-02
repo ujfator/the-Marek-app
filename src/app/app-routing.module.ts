@@ -7,15 +7,21 @@ import { MoneyComponent } from './modules/money/money.component';
 import { WorkflowComponent } from './modules/workflow/workflow.component';
 import { SchoolComponent } from './modules/school/school.component';
 import { LoginComponent } from './login/login.component';
+import { LoginGuard } from './common/guards/login-guard';
 
 const routes: Routes = [
 	{ path: 'login', component: LoginComponent },
-	{ path: 'food', component: FoodComponent },
-	{ path: 'day-quality-tab', component: QualityComponent },
-	{ path: 'money-tab', component: MoneyComponent },
-	{ path: 'workflow-tab', component: WorkflowComponent },
-	{ path: 'food-tab', component: FoodComponent },
-	{ path: 'school-tab', component: SchoolComponent },
+	{ path: 'food', component: FoodComponent, canActivate: [LoginGuard] },
+	{ path: 'day-quality-tab', component: QualityComponent, canActivate: [LoginGuard] },
+	{ path: 'money-tab', component: MoneyComponent, canActivate: [LoginGuard] },
+	{ path: 'workflow-tab', component: WorkflowComponent, canActivate: [LoginGuard] },
+	{ path: 'food-tab', component: FoodComponent, canActivate: [LoginGuard] },
+	{ path: 'school-tab', component: SchoolComponent, canActivate: [LoginGuard] },
+	{
+		redirectTo: 'login',
+		path: '',
+		pathMatch: 'full'
+	},
 ];
 
 @NgModule({

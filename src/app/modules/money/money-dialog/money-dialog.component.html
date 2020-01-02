@@ -11,6 +11,16 @@
 		<mat-error>ERROR</mat-error>
 	</mat-form-field>
 
+	<mat-form-field>
+		<mat-label>Nature</mat-label>
+		<mat-select name="nature" formControlName="nature" required matInput placeholder="Nature">
+			<mat-option *ngFor="let nature of natures" [value]="nature">
+			  {{nature}}
+			</mat-option>
+		</mat-select>
+		<mat-error>ERROR</mat-error>
+	</mat-form-field>
+
 	<div mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
 		<button mat-stroked-button type="reset" color="warn" (click)="dialogRef.close()">Cancel</button>
 		<button mat-stroked-button color="primary" fxFlexOffset="15px" type="submit">Submit</button>

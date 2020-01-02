@@ -2,8 +2,16 @@ import { Component } from '@angular/core';
 
 import { Money, Budget } from 'server/models';
 import { MoneyService } from '../../common/services/money.service';
-import { DialogService } from '../../common/services/dialog.service';
 import { BudgetService } from '../../common/services/budget.service';
+import { MatDialog } from '@angular/material';
+import { MoneyDialogComponent } from './money-dialog/money-dialog.component';
+
+interface Items {
+	expenses: Budget[],
+	savings: Budget[],
+	properties: Budget[],
+	loans: Budget[],
+}
 
 @Component({
   selector: 'app-money',
@@ -12,73 +20,52 @@ import { BudgetService } from '../../common/services/budget.service';
 })
 export class MoneyComponent {
 
-  public moneyItems: Money[];
-  public expenses: Budget[] = [];
-  public savings: Budget[] = [];
-  public toSpend: Budget[] = [];
-  public loans: Budget[] = [];
+	moneyItems: Money[];
+	items: Items = {
+		expenses: [],
+		savings: [],
+		properties: [],
+		loans: [],
+	};
+	objectKeys = Object.keys;
 
-  constructor(
-    public moneyService: MoneyService,
-    public dialogService: DialogService,
-    public budgetService: BudgetService,
-  ) {
-    this.moneyService.items.subscribe((items) => {
-      if (items) this.moneyItems = [...items];
-    });
+	constructor(
+		public dialog: MatDialog,
+		private service: BudgetService,
+	) {
 
-    this.budgetService.items.subscribe((items) => {
-      this.emptyColumns();
-      if (items) {
-        items.forEach(item => {
-          switch(item.nature) {
-            case 'expense':
-              this.expenses.push(item);
-              break;
-            case 'savings':
-              this.savings.push(item);
-              break;
-            case 'loan':
-              this.loans.push(item);
-              break;
-            case 'toSpend':
-              this.toSpend.push(item);
-              break;
-          }
+		this.service.items.subscribe((items) => {
+			this.emptyColumns();
+			if (items) {
+				items.forEach(item => {
+					switch(item.nature) {
+						case 'expenses':
+							this.items.expenses.push(item);
+							break;
+						case 'savings':
+							this.items.savings.push(item);
+							break;
+						case 'loans':
+							this.items.loans.push(item);
+							break;
+						case 'properties':
+							this.items.properties.push(item);
+							break;
+					}
+				});
+			};
+		});
+	}
+
+
+	add() {
+		const dialogRef = this.dialog.open(MoneyDialogComponent);
+		dialogRef.afterClosed().subscribe(result => {
+            if (result) this.service.addItem(result);
         });
-      };
-    });
+	}
 
-    this.dialogService.data.subscribe(async(data: any) => {
-      if (data && data.origin === 'money') {
-        const item = await {...data.item};
-        this.dialogService.data.next(null);
-        if (item.id) {
-          this.budgetService.patchItem(item);
-        } else this.budgetService.addItem(item);
-      }
-    })
-  }
-
-  public accumulator(source: Budget[]): number {
-    return source.reduce((acc, item) => {
-      acc = Math.round((acc + item.amount)*100) / 100;
-      return acc;;
-    }, 0)
-  }
-
-  public addBudget(origin: string) {
-    this.dialogService.addEditItem(origin);
-  }
-
-  public delete(id: string) {
-    this.budgetService.deleteItem(id);
-  }
-
-  public emptyColumns (): void {
-    this.expenses = [];
-    this.savings = [];
-    this.toSpend = [];
-    this.loans = [];
-   };
+	emptyColumns (): void {
+		for (const key in this.items) this.items[key] = [];
+	};
 }

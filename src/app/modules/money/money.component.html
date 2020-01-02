@@ -1,110 +1,13 @@
-<div fxLayout="row" fxFill>
-  <mat-card fxFlex="35" class="money-card">
-    <mat-card-header class="header">
-      <div mat-card-avatar class="expense-image"></div>
-      <mat-card-title class="title" fxLayout="row">
-        <div *ngIf="expenses">Fixed expenses: {{accumulator(expenses)}} CZK</div>
-        <span class="fill-remaining-space"></span>
-        <button matTooltip="Add item" dir="rtl" mat-raised-button (click)="addBudget('expense')">
-          <mat-icon>add</mat-icon>
-        </button>
-      </mat-card-title>
-      <mat-card-subtitle>List of monthly expenses</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      <mat-list *ngFor="let item of expenses">
-        <mat-list-item fxLayout="row">
-          <div>{{item.name}} {{item.amount}}</div>
-          <span class="fill-remaining-space"></span>
-          <button dir="rtl" matTooltip="Delete item" mat-button (click)="delete(item.id)">
-            <mat-icon>delete</mat-icon>
-          </button>
-        </mat-list-item>
-        <mat-divider></mat-divider>
-      </mat-list>
-    </mat-card-content>
-  </mat-card>
-  <div fxFlex fxLayout="column">
-    <div fxFlex="50" fxLayout="row">
-        <mat-card fxFlex class="money-card">
-          <mat-card-header class="header">
-            <div mat-card-avatar class="asset-image"></div>
-            <mat-card-title class="title" fxLayout="row">
-              <div *ngIf="savings">Savings: {{accumulator(savings)}} CZK</div>
-              <span class="fill-remaining-space"></span>
-              <button matTooltip="Add item" dir="rtl" mat-raised-button (click)="addBudget('savings')">
-                <mat-icon>add</mat-icon>
-              </button>
-            </mat-card-title>
-            <mat-card-subtitle>List of savings</mat-card-subtitle>
-          </mat-card-header>
-          <mat-card-content>
-            <mat-list *ngFor="let item of savings">
-              <mat-list-item fxLayout="row">
-                <div>{{item.name}} {{item.amount}}</div>
-                <span class="fill-remaining-space"></span>
-                <button dir="rtl" matTooltip="Delete item" mat-button (click)="delete(item.id)">
-                  <mat-icon>delete</mat-icon>
-                </button>
-              </mat-list-item>
-              <mat-divider></mat-divider>
-            </mat-list>
-          </mat-card-content>
-        </mat-card> 
-        <mat-card fxFlex class="money-card">
-          <mat-card-header class="header">
-            <div mat-card-avatar class="asset-image"></div>
-            <mat-card-title class="title" fxLayout="row">
-              <div *ngIf="toSpend">To spend: {{accumulator(toSpend)}} CZK</div>
-              <span class="fill-remaining-space"></span>
-              <button matTooltip="Add item" dir="rtl" mat-raised-button (click)="addBudget('toSpend')">
-                <mat-icon>add</mat-icon>
-              </button>
-            </mat-card-title>
-            <mat-card-subtitle>List of accounts & cash</mat-card-subtitle>
-          </mat-card-header>
-          <mat-card-content>
-            <mat-list *ngFor="let item of toSpend">
-              <mat-list-item fxLayout="row">
-                <div>{{item.name}} {{item.amount}}</div>
-                <span class="fill-remaining-space"></span>
-                <button dir="rtl" matTooltip="Delete item" mat-button (click)="delete(item.id)">
-                  <mat-icon>delete</mat-icon>
-                </button>
-              </mat-list-item>
-              <mat-divider></mat-divider>
-            </mat-list>
-          </mat-card-content>
-        </mat-card> 
-    </div> 
-    <mat-card fxFlex class="money-card">
-      <mat-card-header class="header">
-        <div mat-card-avatar class="loan-image"></div>
-        <mat-card-title class="title" fxLayout="row">
-          <div *ngIf="loans">Loans: {{accumulator(loans)}} CZK</div>
-          <span class="fill-remaining-space"></span>
-          <button matTooltip="Add item" dir="rtl" mat-raised-button (click)="addBudget('loan')">
-            <mat-icon>add</mat-icon>
-          </button>
-        </mat-card-title>
-        <mat-card-subtitle>List of loans</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        <mat-list *ngFor="let item of loans">
-          <mat-list-item fxLayout="row">
-            <div>{{item.name}} {{item.amount}}</div>
-            <span class="fill-remaining-space"></span>
-            <button dir="rtl" matTooltip="Delete item" mat-button (click)="delete(item.id)">
-              <mat-icon>delete</mat-icon>
-            </button>
-          </mat-list-item>
-          <mat-divider></mat-divider>
-        </mat-list>
-      </mat-card-content>
-      <!-- <mat-card-actions>
-        <button mat-button>LIKE</button>
-        <button mat-button>SHARE</button>
-      </mat-card-actions> -->
-    </mat-card>    
-  </div>
+<div fxLayout="column" fxFill>
+	<mat-toolbar>
+		<span class="fill-remaining-space"></span>
+		<button matTooltip="Add item" dir="rtl" mat-raised-button (click)="add()">
+			<mat-icon>add</mat-icon>
+		</button>
+	</mat-toolbar>
+	<div fxLayout="row" fxLayoutAlign="space-around center">
+		<div *ngFor="let key of objectKeys(items)">
+			<app-money-tile [items]="items[key]" *ngIf="items[key].length"></app-money-tile>
+		</div>
+	</div>
 </div>

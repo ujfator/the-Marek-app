@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {FormGroup} from '@angular/forms';
-import {User} from '../../../server/models/user.model';
-import {LoginService} from '../common/services/login.service';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-login',
@@ -11,18 +10,17 @@ import {LoginService} from '../common/services/login.service';
 export class LoginComponent {
 
 	form: FormGroup;
+	heslo: string;
 
 	constructor(
-		private loginService: LoginService
+		private router: Router,
 	) { }
 
-	onSubmit(): void {
-		if (this.form.valid) {
-			const login: User = {
-				username: this.form.value.username,
-				login: this.form.value.login
-			};
-			// this.loginService.login(login)
+	login(): void {
+		if (this.heslo.toLowerCase() === 'sumpene' ||
+		this.heslo.toLowerCase() === 'pumpene') {
+			sessionStorage.setItem('sumpene', 'ahoj');
+			this.router.navigate(['workflow-tab'])
 		}
 	}
 

@@ -1,14 +1,4 @@
-<div *ngIf="!loggedIn">
-	<mat-form-field>
-		<mat-label>Heslo</mat-label>
-		<input name="heslo" type="text" required matInput placeholder="Heslo" [(ngModel)]="heslo">
-		<mat-error>ERROR</mat-error>
-	</mat-form-field>
-	<button mat-button (click)="login()">
-		Login
-	</button>
-</div>
-<div *ngIf="loggedIn" fxFill fxLayout="column" class="main-container">
+<div fxFill fxLayout="column" class="main-container">
 	<mat-toolbar color="primary" class="header">
 		<button mat-icon-button (click)="sideNavigation.toggle()" label="Toggle Menu" class="header-menu-button">
 			<mat-icon>menu</mat-icon>
@@ -39,7 +29,7 @@
 	</mat-toolbar>
 	<mat-divider></mat-divider>
 	<mat-sidenav-container class="side-navigation-container" fxFlex>
-		<mat-sidenav #sideNavigation opened mode="side">
+		<mat-sidenav #sideNavigation opened="authorized" mode="side">
 			<div fxLayout="column" fxLayoutAlign="start space-between" fxFlex>
 				<mat-nav-list fxLayout="column" fxLayoutAlign="start stretch" fxFill>
 					<a mat-list-item [routerLink]="['/day-quality-tab']">Day Quality</a>
@@ -54,7 +44,4 @@
 			<router-outlet></router-outlet>
 		</mat-sidenav-content>
 	</mat-sidenav-container>
-</div>
-<div fxFill>
-	<router-outlet></router-outlet>
 </div>

@@ -9,35 +9,35 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 })
 export class AddEditItemComponent implements OnInit {
 
-  public form: FormGroup;
+	form: FormGroup;
 
-  constructor(
-    public dialogRef: MatDialogRef<AddEditItemComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { 
-      item: any, origin: string
-    },
-  ) { }
+	constructor(
+		public dialogRef: MatDialogRef<AddEditItemComponent>,
+		@Inject(MAT_DIALOG_DATA) public data: {
+			item: any, origin: string
+		},
+	) { }
 
-  public ngOnInit(): void {
+	ngOnInit(): void {
 		this.form = new FormGroup({
-      name: new FormControl(this.data.item ? this.data.item.name : ''),
-      amount: new FormControl(),
-      author: new FormControl(this.data.item ? this.data.item.author : localStorage.getItem('author')),
+			name: new FormControl(this.data.item ? this.data.item.name : ''),
+			amount: new FormControl(),
+			author: new FormControl(this.data.item ? this.data.item.author : localStorage.getItem('author')),
 		});
-  }
+	}
 
-	public onSubmit(): void {
+	onSubmit(): void {
 		if (this.form.valid) {
-      const newOrUpdatedItem = {
-        item: {
-          name: this.form.value.name,
-          amount: this.form.value.amount,
-          nature: this.data.origin,
-          author: this.form.value.author,
-        },
-        origin: 'money',
-      }
+			const newOrUpdatedItem = {
+				item: {
+					name: this.form.value.name,
+					amount: this.form.value.amount,
+					nature: this.data.origin,
+					author: this.form.value.author,
+				},
+				origin: 'money',
+			}
 			this.dialogRef.close(newOrUpdatedItem);
 		}
-  }
+	}
 }

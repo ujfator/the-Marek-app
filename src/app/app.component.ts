@@ -13,14 +13,14 @@ export class AppComponent {
 	theme: string = 'Dark';
 	author: string;
 	loggedIn: boolean = false;
-	heslo: string;
+	authorized: boolean = false;
 
 
 	constructor(
 		public overlayContainer: OverlayContainer,
 		public authorService: AuthorService,
 		) {
-			if (sessionStorage.getItem('loggedIn')) this.loggedIn = true;
+			if (sessionStorage.getItem('loggedIn')) this.authorized = true;
 			if (localStorage.getItem('theme')) this.onSetTheme(localStorage.getItem('theme'));
 			this.authorService.author.subscribe((author) =>  {
 				if (author) {
@@ -33,13 +33,6 @@ export class AppComponent {
 
  	chooseAuthor(author: string): void{
 		this.authorService.selectAuthor(author);
-	}
-
-	login() {
-		if (this.heslo.toLowerCase() === 'sumpene' || this.heslo.toLowerCase() === 'pumpene') {
-			sessionStorage.setItem('loggedIn', 'hej');
-			this.loggedIn = true;
-		};
 	}
 
  	onSetTheme(theme: any): void {

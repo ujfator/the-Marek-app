@@ -20,6 +20,8 @@ import { SchoolComponent } from './modules/school/school.component';
 import { AddEditSchoolItemComponent } from './modules/school/add-edit-school-item/add-edit-item.component';
 import { LoginComponent } from './login/login.component';
 import { MoneyComponent } from './modules/money/money.component';
+import { MoneyTileComponent } from './modules/money/money-tile/money-tile.component';
+import { MoneyDialogComponent } from './modules/money/money-dialog/money-dialog.component';
 
 const imports =  [
   AppRoutingModule,
@@ -47,13 +49,16 @@ const imports =  [
 	WorkflowComponent,
 	MoneyComponent,
 	LoginComponent,
+	MoneyTileComponent,
+	MoneyDialogComponent,
   ],
   entryComponents: [
     AddEditItemComponent,
     AddEditWorkflowItemComponent,
     AddEditQualityItemComponent,
     AddEditFoodItemComponent,
-    AddEditSchoolItemComponent,
+	AddEditSchoolItemComponent,
+	MoneyDialogComponent
   ],
   imports,
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
