@@ -17,9 +17,8 @@ export class LoginComponent {
 	) { }
 
 	login(): void {
-		if (this.heslo.toLowerCase() === 'sumpene' ||
-		this.heslo.toLowerCase() === 'pumpene') {
-			sessionStorage.setItem('sumpene', 'ahoj');
+		if (this.heslo.toLowerCase() === 'alza') {
+			sessionStorage.setItem('alza', 'ahoj');
 			this.router.navigate(['workflow-tab'])
 		}
 	}
