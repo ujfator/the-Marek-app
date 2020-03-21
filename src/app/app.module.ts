@@ -22,45 +22,47 @@ import { LoginComponent } from './login/login.component';
 import { MoneyComponent } from './modules/money/money.component';
 import { MoneyTileComponent } from './modules/money/money-tile/money-tile.component';
 import { MoneyDialogComponent } from './modules/money/money-dialog/money-dialog.component';
+import { DxGanttModule } from 'devextreme-angular';
 
 const imports =  [
-  AppRoutingModule,
-  DragDropModule,
-  FormsModule,
-  ReactiveFormsModule,
-  HttpClientModule,
-  CoreModule,
-  BrowserModule,
-  BrowserAnimationsModule
+	AppRoutingModule,
+	DragDropModule,
+	FormsModule,
+	ReactiveFormsModule,
+	HttpClientModule,
+	CoreModule,
+	BrowserModule,
+	BrowserAnimationsModule,
+	DxGanttModule,
 ];
 
 @NgModule({
-  bootstrap: [AppComponent],
-  declarations: [
-	AppComponent,
-	FoodComponent,
-	SchoolComponent,
-	QualityComponent,
-	AddEditItemComponent,
-	AddEditWorkflowItemComponent,
-	AddEditQualityItemComponent,
-	AddEditFoodItemComponent,
-	AddEditSchoolItemComponent,
-	WorkflowComponent,
-	MoneyComponent,
-	LoginComponent,
-	MoneyTileComponent,
-	MoneyDialogComponent,
-  ],
-  entryComponents: [
-    AddEditItemComponent,
-    AddEditWorkflowItemComponent,
-    AddEditQualityItemComponent,
-    AddEditFoodItemComponent,
-	AddEditSchoolItemComponent,
-	MoneyDialogComponent
-  ],
-  imports,
-  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
+	bootstrap: [AppComponent],
+	declarations: [
+		AppComponent,
+		FoodComponent,
+		SchoolComponent,
+		QualityComponent,
+		AddEditItemComponent,
+		AddEditWorkflowItemComponent,
+		AddEditQualityItemComponent,
+		AddEditFoodItemComponent,
+		AddEditSchoolItemComponent,
+		WorkflowComponent,
+		MoneyComponent,
+		LoginComponent,
+		MoneyTileComponent,
+		MoneyDialogComponent,
+	],
+	entryComponents: [
+		AddEditItemComponent,
+		AddEditWorkflowItemComponent,
+		AddEditQualityItemComponent,
+		AddEditFoodItemComponent,
+		AddEditSchoolItemComponent,
+		MoneyDialogComponent
+	],
+	imports,
+	providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
 })
 export class AppModule { }

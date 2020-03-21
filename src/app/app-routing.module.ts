@@ -8,15 +8,16 @@ import { WorkflowComponent } from './modules/workflow/workflow.component';
 import { SchoolComponent } from './modules/school/school.component';
 import { LoginComponent } from './login/login.component';
 import { LoginGuard } from './common/guards/login-guard';
+import { AuthorizationGuard } from './common/guards/authorization-guard';
 
 const routes: Routes = [
-	{ path: 'login', component: LoginComponent },
-	{ path: 'food', component: FoodComponent, canActivate: [LoginGuard] },
-	{ path: 'day-quality-tab', component: QualityComponent, canActivate: [LoginGuard] },
-	{ path: 'money-tab', component: MoneyComponent, canActivate: [LoginGuard] },
-	{ path: 'workflow-tab', component: WorkflowComponent, canActivate: [LoginGuard] },
-	{ path: 'food-tab', component: FoodComponent, canActivate: [LoginGuard] },
-	{ path: 'school-tab', component: SchoolComponent, canActivate: [LoginGuard] },
+	{ path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
+	{ path: 'food', component: FoodComponent, canActivate: [AuthorizationGuard] },
+	{ path: 'day-quality-tab', component: QualityComponent, canActivate: [AuthorizationGuard] },
+	{ path: 'money-tab', component: MoneyComponent, canActivate: [AuthorizationGuard] },
+	{ path: 'workflow-tab', component: WorkflowComponent, canActivate: [AuthorizationGuard] },
+	{ path: 'food-tab', component: FoodComponent, canActivate: [AuthorizationGuard] },
+	{ path: 'school-tab', component: SchoolComponent, canActivate: [AuthorizationGuard] },
 	{
 		redirectTo: 'login',
 		path: '',
@@ -25,9 +26,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes),
-  ],
-  exports: [RouterModule]
+	imports: [
+		RouterModule.forRoot(routes),
+	],
+  	exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -10,7 +10,7 @@ import { AuthorizationQuery } from 'src/app/state-management/query/authorization
 @Injectable({
   providedIn: 'root'
 })
-export class LoginGuard implements CanActivate {
+export class AuthorizationGuard implements CanActivate {
 
 	isAuthorized: boolean = false;
 
@@ -22,10 +22,10 @@ export class LoginGuard implements CanActivate {
 	}
 
 	canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-		if (this.isAuthorized) {
-			this.router.navigate(['workflow-tab']);
+		if (!this.isAuthorized) {
+			this.router.navigate(['login']);
 			return false;
-		};
+		}
 		return true;
 	}
 }

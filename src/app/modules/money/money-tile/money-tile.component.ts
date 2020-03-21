@@ -1,7 +1,7 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
 import { Budget } from 'server/models';
 import { MatDialog } from '@angular/material';
-import { BudgetService } from 'src/app/common/services/budget.service';
+import { BudgetService } from 'src/app/common/services/api-calls/budget.service';
 import { MoneyDialogComponent } from '../money-dialog/money-dialog.component';
 
 @Component({

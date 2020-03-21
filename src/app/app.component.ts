@@ -1,6 +1,8 @@
-import { Component, HostBinding  } from '@angular/core';
+import { Component, HostBinding, NgZone  } from '@angular/core';
 import { OverlayContainer } from '@angular/cdk/overlay';
-import { AuthorService } from './common/services/author.service';
+import { AuthorService } from './common/services/local-services/author.service';
+import { AuthorizationQuery } from './state-management/query/authorization.query';
+import { akitaDevtools } from '@datorama/akita';
 
 @Component({
 	selector: 'app-root',
@@ -12,15 +14,20 @@ export class AppComponent {
 	@HostBinding('class') componentCssClass;
 	theme: string = 'Dark';
 	author: string;
-	loggedIn: boolean = false;
-	authorized: boolean = false;
-
+	isAuthorized: boolean = false;
 
 	constructor(
-		public overlayContainer: OverlayContainer,
-		public authorService: AuthorService,
+		private overlayContainer: OverlayContainer,
+		private authorService: AuthorService,
+		private authorizationQuery: AuthorizationQuery,
+		private ngZone: NgZone,
 		) {
-			if (sessionStorage.getItem('loggedIn')) this.authorized = true;
+			akitaDevtools(this.ngZone); // this makes the store available
+			this.authorizationQuery.isAuthorized.subscribe((isAuthorized) => {
+
+				console.log(isAuthorized)
+				this.isAuthorized = isAuthorized});
+			console.log(this.isAuthorized)
 			if (localStorage.getItem('theme')) this.onSetTheme(localStorage.getItem('theme'));
 			this.authorService.author.subscribe((author) =>  {
 				if (author) {

@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { School } from 'server/models';
-import { DifficultyService } from 'src/app/common/services/difficulty.service';
+import { DifficultyService } from 'src/app/common/services/api-calls/difficulty.service';
 
 @Component({
   selector: 'app-add-edit-item',

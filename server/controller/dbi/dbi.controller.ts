@@ -22,10 +22,6 @@ export class DbiController {
 		this._connectionInitiated = true;
 		console.log(`Initiating connection to Database...`);
 
-		// MongoClient.connect(this.uri, (err, connection)=> {
-		// 	this._dbh = <mongo.Connection>connection;
-		// });
-
 		mongo.createConnection(this.uri).then(
 		(connection: any) => {
 			console.log(

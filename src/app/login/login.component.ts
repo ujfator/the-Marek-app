@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {FormGroup} from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormGroup } from '@angular/forms';
+import { AuthorizationService } from '../common/services/local-services/authorization.service';
 
 @Component({
 	selector: 'app-login',
@@ -13,13 +13,13 @@ export class LoginComponent {
 	heslo: string;
 
 	constructor(
-		private router: Router,
-	) { }
+		private authorizationService: AuthorizationService,
+	) {
+	}
 
 	login(): void {
 		if (this.heslo.toLowerCase() === 'alza') {
-			sessionStorage.setItem('alza', 'ahoj');
-			this.router.navigate(['workflow-tab'])
+			this.authorizationService.authorizeOrInvalidateSession(true);
 		}
 	}
 

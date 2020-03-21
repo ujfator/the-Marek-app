@@ -3,7 +3,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
 
 import { BaseService } from './base.service';
 import { Workflow } from 'server/models';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
@@ -15,7 +15,6 @@ export class WorkflowService extends BaseService {
 	constructor(private http: HttpClient) {
 		super();
 		this.loadItems();
-		console.log(('b' + 'a' + + 'a' + 'a'));
 	}
 
 	deleteOldDoneItems(item: Workflow) {

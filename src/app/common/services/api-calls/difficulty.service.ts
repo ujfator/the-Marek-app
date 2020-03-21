@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 import { Difficulty } from 'server/models';
 import { BaseService } from './base.service';
 import { HttpClient } from '@angular/common/http';

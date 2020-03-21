@@ -1,5 +1,5 @@
 <div fxFill fxLayout="column" class="main-container">
-	<mat-toolbar color="primary" class="header">
+	<mat-toolbar color="primary" class="header" *ngIf="isAuthorized">
 		<button mat-icon-button (click)="sideNavigation.toggle()" label="Toggle Menu" class="header-menu-button">
 			<mat-icon>menu</mat-icon>
 		</button>
@@ -29,7 +29,7 @@
 	</mat-toolbar>
 	<mat-divider></mat-divider>
 	<mat-sidenav-container class="side-navigation-container" fxFlex>
-		<mat-sidenav #sideNavigation opened="authorized" mode="side">
+		<mat-sidenav #sideNavigation opened mode="side" *ngIf="isAuthorized">
 			<div fxLayout="column" fxLayoutAlign="start space-between" fxFlex>
 				<mat-nav-list fxLayout="column" fxLayoutAlign="start stretch" fxFill>
 					<a mat-list-item [routerLink]="['/day-quality-tab']">Day Quality</a>
