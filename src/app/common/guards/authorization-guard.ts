@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import {
-  ActivatedRouteSnapshot,
-  CanActivate,
-  Router,
-  RouterStateSnapshot
+	ActivatedRouteSnapshot,
+	CanActivate,
+	Router,
+	RouterStateSnapshot
 } from '@angular/router';
 import { AuthorizationQuery } from 'src/app/state-management/query/authorization.query';
 
 @Injectable({
-  providedIn: 'root'
+  	providedIn: 'root'
 })
 export class AuthorizationGuard implements CanActivate {
 
