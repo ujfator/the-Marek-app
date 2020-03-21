@@ -15,6 +15,7 @@ export class AppComponent {
 	theme: string = 'Dark';
 	author: string;
 	isAuthorized: boolean = false;
+	opened: boolean = true;
 
 	constructor(
 		private overlayContainer: OverlayContainer,
@@ -23,11 +24,7 @@ export class AppComponent {
 		private ngZone: NgZone,
 		) {
 			akitaDevtools(this.ngZone); // this makes the store available
-			this.authorizationQuery.isAuthorized.subscribe((isAuthorized) => {
-
-				console.log(isAuthorized)
-				this.isAuthorized = isAuthorized});
-			console.log(this.isAuthorized)
+			this.authorizationQuery.isAuthorized.subscribe((isAuthorized) => this.isAuthorized = isAuthorized);
 			if (localStorage.getItem('theme')) this.onSetTheme(localStorage.getItem('theme'));
 			this.authorService.author.subscribe((author) =>  {
 				if (author) {
@@ -36,7 +33,11 @@ export class AppComponent {
 					} else this.author = null;
 				};
 			});
-		}
+	}
+
+	toggleSidenav() {
+		this.opened = !this.opened;
+	}
 
  	chooseAuthor(author: string): void{
 		this.authorService.selectAuthor(author);
