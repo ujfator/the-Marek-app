@@ -129,8 +129,8 @@ export class WorkflowComponent implements OnInit{
 		dialogRef.afterClosed().subscribe(result => {
             console.log('The dialog was closed', result ? result : 'by clicking on cancel');
 			if (result.id) {
-				this.workflowService.addItem(result);
-			} else this.workflowService.patchItem(result);
+				this.workflowService.patchItem(result);
+			} else this.workflowService.addItem(result);
         });
 	}
 

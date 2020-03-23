@@ -1,7 +1,7 @@
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -23,6 +23,7 @@ import { MoneyComponent } from './modules/money/money.component';
 import { MoneyTileComponent } from './modules/money/money-tile/money-tile.component';
 import { MoneyDialogComponent } from './modules/money/money-dialog/money-dialog.component';
 import { DxGanttModule } from 'devextreme-angular';
+import { HttpCallsInterceptor } from './common/http-interceptor/http-interceptor';
 
 const imports =  [
 	AppRoutingModule,
@@ -63,6 +64,9 @@ const imports =  [
 		MoneyDialogComponent
 	],
 	imports,
-	providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
+	providers: [
+		{ provide: LocationStrategy, useClass: HashLocationStrategy },
+		{ provide: HTTP_INTERCEPTORS, useClass: HttpCallsInterceptor, multi: true },
+	],
 })
 export class AppModule { }
