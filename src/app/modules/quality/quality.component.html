@@ -24,11 +24,6 @@
 		<td mat-cell *matCellDef="let element"> {{element.sleepTime}} </td>
 	</ng-container>
 
-	<ng-container matColumnDef="mt">
-		<th mat-header-cell *matHeaderCellDef> mt </th>
-		<td mat-cell *matCellDef="let element"> {{booleanTranslator(element.mt)}} </td>
-	</ng-container>
-
 	<ng-container matColumnDef="excercise">
 		<th mat-header-cell *matHeaderCellDef> Excercise </th>
 		<td mat-cell *matCellDef="let element"> {{booleanTranslator(element.excercise)}} </td>

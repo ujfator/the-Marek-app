@@ -6,7 +6,6 @@ export class Quality extends Base {
 	wakeUp: string = null;
 	goToBed: string = null;
 	sleepTime: number = null;
-	mt: boolean = null;
 	excercise: boolean = null;
 	deepWorkTime: string = null;
 	meaningfulActivity: string = null;

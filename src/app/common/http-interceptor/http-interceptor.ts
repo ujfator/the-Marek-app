@@ -33,8 +33,6 @@ export class HttpCallsInterceptor implements HttpInterceptor {
 						width: 450,
 					});
 					return throwError(errorMessage);
-
-
 			})
 		);
  	}
