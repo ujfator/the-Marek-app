@@ -16,7 +16,7 @@ import { AuthorService } from 'src/app/common/services/local-services/author.ser
 
 export class QualityComponent {
 
-	displayedColumns: string[] = ['date', 'dayQuality', 'wakeUp', 'goToBed', 'sleepTime', 'mt',
+	displayedColumns: string[] = ['date', 'dayQuality', 'wakeUp', 'goToBed', 'sleepTime',
 	'excercise', 'deepWorkTime', 'meaningfulActivity' ,'author', 'edit'];
 	qualities: Quality[] = [];
 	allItems: Quality[] = [];
@@ -28,9 +28,9 @@ export class QualityComponent {
 		protected authorService: AuthorService,
 		protected difficultyService: DifficultyService,
 	) {
-		this.qualityService.items.subscribe(async (items) => {
+		this.qualityService.items.subscribe((items) => {
 		if (items) {
-			this.allItems = await [...items];
+			this.allItems = items;
 			if (localStorage.getItem('author')) {
 				this.createDataSource(localStorage.getItem('author'))
 			} else this.qualities = [...items];
