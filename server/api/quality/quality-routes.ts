@@ -29,6 +29,7 @@ export class QualityRoutes extends BaseController {
 			console.warn(e);
 		});
 	}
+	
 	private _get = (req: Request, res: Response): void => {
 		this._qualityController.getItem(req.params.id).then((item: Quality) => {
 			res.jsonp(item);
@@ -63,5 +64,5 @@ export class QualityRoutes extends BaseController {
 			res.status(500).send(e);
 			console.warn(e);
 		});
-	}	
+	}
 }

@@ -51,19 +51,19 @@ export class SchoolComponent {
 		});
   	}
 
-	private addOrEditEntry(entry?: School) {
+	addOrEditEntry(entry?: School) {
 		this.dialogService.data.next(null);
 		this.dialogService.addEditItem('school', entry);
 	}
 
-	private createDataSource (author?: string) {
+	createDataSource (author?: string) {
 		this.dataSource = [];
 		this.allItems && this.allItems.forEach(element => {
 			if (element.author === author) this.dataSource.push(element);
 		});
 	}
 
-	private delete(entry: School) {
+	delete(entry: School) {
 		this.schoolService.deleteItem(entry.id);
 	}
 

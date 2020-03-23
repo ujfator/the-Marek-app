@@ -18,7 +18,14 @@ export class SchoolRoutes extends BaseController {
 
 	}
 
-
+	private _delete = (req: Request, res: Response): void => {
+		this._schoolController.deleteItem(req.params.id).then((resp: any) => {
+			res.jsonp(resp);
+		}).catch((e: any) => {
+			res.status(500).send(e);
+			console.warn(e);
+		});
+	}
 
 	private _getAll = (req: Request, res: Response): void => {
 		this._schoolController.getItems().then((schools: School[]) => {

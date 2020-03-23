@@ -9,9 +9,9 @@ import { AuthorService } from 'src/app/common/services/local-services/author.ser
 
 
 @Component({
-  selector: 'app-quality',
-  templateUrl: './quality.component.html',
-  styleUrls: ['./quality.component.scss']
+	selector: 'app-quality',
+	templateUrl: './quality.component.html',
+	styleUrls: ['./quality.component.scss']
 })
 
 export class QualityComponent {
