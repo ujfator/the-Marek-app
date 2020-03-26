@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 import { DifficultyService } from '../../../common/services/api-calls/difficulty.service';
+import { WorkflowService } from 'src/app/common/services/api-calls/workflow.service';
 
 @Component({
 	selector: 'app-add-edit-workflow-item',
@@ -17,9 +18,8 @@ export class AddEditWorkflowItemComponent implements OnInit {
 	constructor(
 		public dialogRef: MatDialogRef<AddEditWorkflowItemComponent>,
 		public difficultyService: DifficultyService,
-		@Inject(MAT_DIALOG_DATA) public data: {
-			item: any, authors: string[],
-		},
+		private workflowService: WorkflowService,
+		@Inject(MAT_DIALOG_DATA) public data: any,
 	) {
 		this.difficultyService.difficulties.subscribe((items)=>{
 			if (items) this.difficulties = [...items];
@@ -28,10 +28,10 @@ export class AddEditWorkflowItemComponent implements OnInit {
 
 	public ngOnInit(): void {
 		this.form = new FormGroup({
-			name: new FormControl(this.data.item ? this.data.item.name : ''),
-			content: new FormControl(this.data.item ? this.data.item.content : ''),
-			author: new FormControl(this.data.item ? this.data.item.author : ''),
-			difficulty: new FormControl(this.data.item ? this.data.item.difficulty : ''),
+			name: new FormControl(this.data ? this.data.name : ''),
+			content: new FormControl(this.data ? this.data.content : ''),
+			author: new FormControl(this.data ? this.data.author : ''),
+			difficulty: new FormControl(this.data ? this.data.difficulty : ''),
 		});
 	}
 
@@ -41,11 +41,11 @@ export class AddEditWorkflowItemComponent implements OnInit {
 				name: this.form.value.name,
 				author: this.form.value.author,
 				content: this.form.value.content,
-				container: (this.data.item && this.data.item.container) ? this.data.item.container : 'new',
-				id: this.data.item && this.data.item.id,
+				container: (this.data && this.data.container) ? this.data.container : 'new',
+				id: this.data && this.data.id,
 				difficulty: this.form.value.difficulty,
-      		}
-			this.dialogRef.close(newOrUpdatedItem);
+			  };
+			  newOrUpdatedItem.id ? this.workflowService.patchItem(newOrUpdatedItem) : this.workflowService.addItem(newOrUpdatedItem);
 		}
   	}
 }

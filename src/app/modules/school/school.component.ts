@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material';
 
 import { SchoolService } from '../../common/services/api-calls/school.service';
-import { DialogService } from '../../common/services/api-calls/dialog.service';
 import { School } from 'server/models';
 import { AuthorService } from 'src/app/common/services/local-services/author.service';
+import { AddEditSchoolItemComponent } from './add-edit-school-item/add-edit-item.component';
 
 
 @Component({
@@ -22,7 +22,6 @@ export class SchoolComponent {
 	constructor(
 		public dialog: MatDialog,
 		private schoolService: SchoolService,
-		private dialogService: DialogService,
 		private authorService: AuthorService,
 	) {
 		this.schoolService.items.subscribe((items) => {
@@ -34,16 +33,6 @@ export class SchoolComponent {
 			}
 		});
 
-		this.dialogService.data.subscribe((data: any) => {
-			if (data && data.origin === 'school') {
-				const item = {...data.item};
-				this.dialogService.data.next(null);
-				if (item.id) {
-					this.schoolService.patchItem(item);
-				} else this.schoolService.addItem(item);
-			};
-		});
-
 		this.authorService.author.subscribe((author) => {
 			if (author && author !== 'Oba') {
 				this.createDataSource(author);
@@ -52,8 +41,7 @@ export class SchoolComponent {
   	}
 
 	addOrEditEntry(entry?: School) {
-		this.dialogService.data.next(null);
-		this.dialogService.addEditItem('school', entry);
+		const dialogRef = this.dialog.open(AddEditSchoolItemComponent);
 	}
 
 	createDataSource (author?: string) {

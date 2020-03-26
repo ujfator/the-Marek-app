@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { Quality } from 'server/models';
 import { QualityService } from '../../common/services/api-calls/quality.service';
-import { DialogService } from '../../common/services/api-calls/dialog.service';
-import { DifficultyService } from '../../common/services/api-calls/difficulty.service';
 import { AddEditQualityItemComponent } from './add-edit-quality-item/add-edit-item.component';
 import { AuthorService } from 'src/app/common/services/local-services/author.service';
 
@@ -22,11 +20,9 @@ export class QualityComponent {
 	allItems: Quality[] = [];
 
 	constructor(
-		protected dialog: MatDialog,
-		protected qualityService: QualityService,
-		protected dialogService: DialogService,
-		protected authorService: AuthorService,
-		protected difficultyService: DifficultyService,
+		public dialog: MatDialog,
+		private qualityService: QualityService,
+		private authorService: AuthorService,
 	) {
 		this.qualityService.items.subscribe((items) => {
 		if (items) {
@@ -48,10 +44,6 @@ export class QualityComponent {
 		const dialogRef = this.dialog.open(AddEditQualityItemComponent, {
 			width: '500px',
 			data: entry || null,
-		});
-
-		dialogRef.afterClosed().subscribe(result => {
-			result.id ? this.qualityService.patchItem(result) : this.qualityService.addItem(result);
 		});
 	}
 

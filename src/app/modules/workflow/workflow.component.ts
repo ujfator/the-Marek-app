@@ -4,7 +4,6 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 import { Workflow } from 'server/models';
 import { ItemToSave } from '../../common/interfaces';
 import { WorkflowService } from '../../common/services/api-calls/workflow.service';
-import { DialogService } from '../../common/services/api-calls/dialog.service';
 import { DifficultyService } from '../../common/services/api-calls/difficulty.service';
 import { MatDialog } from '@angular/material';
 import { AddEditWorkflowItemComponent } from './add-edit-workflow-item/add-edit-workflow-item.component';
@@ -34,7 +33,6 @@ export class WorkflowComponent implements OnInit{
 
 	constructor(
 		protected workflowService: WorkflowService,
-		protected dialogService: DialogService,
 		protected authorService: AuthorService,
 		protected difficultyService: DifficultyService,
 		public dialog: MatDialog,
@@ -119,19 +117,9 @@ export class WorkflowComponent implements OnInit{
 
 	addEditItem(item?: Workflow): void {
 		const dialogRef = this.dialog.open(AddEditWorkflowItemComponent, {
-			data: {
-			  item: item ? item : null,
-			  origin: origin,
-			  authors: ['Terezka', 'Marek'],
-			},
+			data: item,
 			width: '500px',
 		});
-		dialogRef.afterClosed().subscribe(result => {
-            console.log('The dialog was closed', result ? result : 'by clicking on cancel');
-			if (result.id) {
-				this.workflowService.patchItem(result);
-			} else this.workflowService.addItem(result);
-        });
 	}
 
 	emptyColumns (): void {

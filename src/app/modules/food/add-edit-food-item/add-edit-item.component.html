@@ -37,7 +37,7 @@
 	</mat-form-field>
 
 	<mat-autocomplete #author="matAutocomplete">
-		<mat-option *ngFor="let author of data.authors" [value]="author">{{author}}</mat-option>
+		<mat-option *ngFor="let author of authors" [value]="author">{{author}}</mat-option>
 	</mat-autocomplete>
 
 	<div mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">

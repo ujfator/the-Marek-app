@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material';
+import { BudgetService } from 'src/app/common/services/api-calls/budget.service';
 
 @Component({
   selector: 'app-money-dialog',
@@ -14,6 +15,7 @@ export class MoneyDialogComponent implements OnInit {
 
 	constructor(
 		public dialogRef: MatDialogRef<MoneyDialogComponent>,
+		private budgetService: BudgetService,
 	) { }
 
 	ngOnInit(): void {
@@ -26,13 +28,13 @@ export class MoneyDialogComponent implements OnInit {
 
 	onSubmit(): void {
 		if (this.form.valid) {
-			const newOrUpdatedItem = {
+			const newItem = {
 				name: this.form.value.name,
 				amount: this.form.value.amount,
 				nature: this.form.value.nature,
 				author: localStorage.getItem('author'),
-			}
-			this.dialogRef.close(newOrUpdatedItem);
+			};
+			this.budgetService.addItem(newItem);
 		}
 	}
 }

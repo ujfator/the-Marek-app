@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material';
 
 import { FoodService } from '../../common/services/api-calls/food.service';
-import { DialogService } from '../../common/services/api-calls/dialog.service';
 import { Food } from 'server/models';
 import { AuthorService } from 'src/app/common/services/local-services/author.service';
+import { AddEditFoodItemComponent } from './add-edit-food-item/add-edit-item.component';
 
 
 @Component({
@@ -22,7 +22,6 @@ export class FoodComponent {
 	constructor(
 		public dialog: MatDialog,
 		private foodService: FoodService,
-		private dialogService: DialogService,
 		private authorService: AuthorService,
 	) {
 		this.foodService.items.subscribe(async (items) => {
@@ -34,26 +33,19 @@ export class FoodComponent {
 			}
 		});
 
-		this.dialogService.data.subscribe((data: any) => {
-			if (data && data.origin === 'food') {
-				const item = {...data.item};
-				this.dialogService.data.next(null);
-				if (item.id) {
-					this.foodService.patchItem(item);
-				} else this.foodService.addItem(item);
-			};
-		});
-
 		this.authorService.author.subscribe((author) => {
 			if (author && author !== 'Oba') {
 				this.createDataSource(author);
 			} else if (author === 'Oba') this.foodItems = [...this.allItems];
 		});
-  	}
+	  }
 
-	addOrEditEntry(entry?: Food) {
-		this.dialogService.data.next(null);
-		this.dialogService.addEditItem('food', entry);
+
+	addOrEditEntry(item: Food) {
+		const dialogRef = this.dialog.open(AddEditFoodItemComponent, {
+			data: item,
+			width: '500px',
+		});
 	}
 
 	createDataSource (author?: string) {

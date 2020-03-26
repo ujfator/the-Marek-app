@@ -2,6 +2,8 @@ import { Component, OnInit, Inject, Optional } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { Quality } from 'server/models';
+import { AuthorQuery } from 'src/app/state-management/authors/author.query';
+import { QualityService } from 'src/app/common/services/api-calls/quality.service';
 
 @Component({
 	selector: 'app-add-edit-item',
@@ -11,12 +13,16 @@ import { Quality } from 'server/models';
 export class AddEditQualityItemComponent implements OnInit {
 
 	form: FormGroup;
-	authors = ['Tereza', 'Marek']
+	authors: string[];
 
 	constructor(
 		public dialogRef: MatDialogRef<AddEditQualityItemComponent>,
+		private authorQuery: AuthorQuery,
+		private qualityService: QualityService,
 		@Optional() @Inject(MAT_DIALOG_DATA) public data: Quality,
-	) {}
+	) {
+		this.authorQuery.authors.subscribe((authors) => this.authors = authors);
+	}
 
 	ngOnInit(): void {
 		this.form = new FormGroup({
@@ -45,8 +51,8 @@ export class AddEditQualityItemComponent implements OnInit {
 				meaningfulActivity: this.form.value.meaningfulActivity,
 				deepWorkTime: this.form.value.deepWorkTime,
 				author: this.form.value.author ? this.form.value.author : '',
-      		}
-			this.dialogRef.close(newOrUpdatedItem);
+      		};
+			newOrUpdatedItem.id ? this.qualityService.patchItem(newOrUpdatedItem) : this.qualityService.addItem(newOrUpdatedItem);
 		}
   	}
 }

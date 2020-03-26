@@ -5,7 +5,7 @@ import {
 	Router,
 	RouterStateSnapshot
 } from '@angular/router';
-import { AuthorizationQuery } from 'src/app/state-management/query/authorization.query';
+import { AuthorizationQuery } from 'src/app/state-management/authotization/authorization.query';
 
 @Injectable({
   	providedIn: 'root'

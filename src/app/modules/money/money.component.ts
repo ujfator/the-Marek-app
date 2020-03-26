@@ -14,9 +14,9 @@ interface Items {
 }
 
 @Component({
-  selector: 'app-money',
-  templateUrl: './money.component.html',
-  styleUrls: ['./money.component.scss']
+	selector: 'app-money',
+	templateUrl: './money.component.html',
+	styleUrls: ['./money.component.scss']
 })
 export class MoneyComponent {
 
@@ -33,7 +33,6 @@ export class MoneyComponent {
 		public dialog: MatDialog,
 		private service: BudgetService,
 	) {
-
 		this.service.items.subscribe((items) => {
 			this.emptyColumns();
 			if (items) {
@@ -51,21 +50,17 @@ export class MoneyComponent {
 						case 'properties':
 							this.items.properties.push(item);
 							break;
-					}
+					};
 				});
 			};
 		});
 	}
 
-
 	add() {
 		const dialogRef = this.dialog.open(MoneyDialogComponent);
-		dialogRef.afterClosed().subscribe(result => {
-            if (result) this.service.addItem(result);
-        });
 	}
 
-	emptyColumns (): void {
+	emptyColumns(): void {
 		for (const key in this.items) this.items[key] = [];
 	};
 }

@@ -5,7 +5,7 @@ export class Workflow extends Base {
   	content: string = null;
 	container: string = null;
 	author: string = null;
-	finished: Date = null;
+	finished?: Date = null;
 	difficulty: string = null;
 
 
