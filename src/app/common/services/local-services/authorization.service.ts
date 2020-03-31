@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthorizationStore } from 'src/app/state-management/authotization/authorization.store';
+import { AuthorizationStore } from 'src/app/state-management/authorization/authorization.store';
 
 @Injectable({ providedIn: 'root' })
 export class AuthorizationService {

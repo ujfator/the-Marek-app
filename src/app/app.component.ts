@@ -2,7 +2,7 @@ import { Component, HostBinding, NgZone  } from '@angular/core';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { AuthorService } from './common/services/local-services/author.service';
 import { akitaDevtools } from '@datorama/akita';
-import { AuthorizationQuery } from './state-management/authotization/authorization.query';
+import { AuthorizationQuery } from './state-management/authorization/authorization.query';
 
 @Component({
 	selector: 'app-root',
