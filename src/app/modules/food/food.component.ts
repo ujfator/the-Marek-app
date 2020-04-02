@@ -3,8 +3,8 @@ import { MatDialog } from '@angular/material';
 
 import { FoodService } from '../../common/services/api-calls/food.service';
 import { Food } from 'server/models';
-import { AuthorService } from 'src/app/common/services/local-services/author.service';
 import { AddEditFoodItemComponent } from './add-edit-food-item/add-edit-item.component';
+import { AuthorizationQuery } from 'src/app/state-management/authorization/authorization.query';
 
 
 @Component({
@@ -22,7 +22,7 @@ export class FoodComponent {
 	constructor(
 		public dialog: MatDialog,
 		private foodService: FoodService,
-		private authorService: AuthorService,
+		private authorizationQuery: AuthorizationQuery,
 	) {
 		this.foodService.items.subscribe(async (items) => {
 			if (items) {
@@ -33,7 +33,7 @@ export class FoodComponent {
 			}
 		});
 
-		this.authorService.author.subscribe((author) => {
+		this.authorizationQuery.selectedUser.subscribe((author) => {
 			if (author && author !== 'Oba') {
 				this.createDataSource(author);
 			} else if (author === 'Oba') this.foodItems = [...this.allItems];

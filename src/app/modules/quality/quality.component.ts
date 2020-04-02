@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material';
 import { Quality } from 'server/models';
 import { QualityService } from '../../common/services/api-calls/quality.service';
 import { AddEditQualityItemComponent } from './add-edit-quality-item/add-edit-item.component';
-import { AuthorService } from 'src/app/common/services/local-services/author.service';
+import { AuthorizationQuery } from 'src/app/state-management/authorization/authorization.query';
 
 
 @Component({
@@ -22,7 +22,7 @@ export class QualityComponent {
 	constructor(
 		public dialog: MatDialog,
 		private qualityService: QualityService,
-		private authorService: AuthorService,
+		private authorizationQuery: AuthorizationQuery,
 	) {
 		this.qualityService.items.subscribe((items) => {
 		if (items) {
@@ -33,7 +33,7 @@ export class QualityComponent {
 		}
 		});
 
-		this.authorService.author.subscribe((author) => {
+		this.authorizationQuery.selectedUser.subscribe((author) => {
 			if (author && author !== 'Oba') {
 				this.createDataSource(author);
 			} else if (author === 'Oba') this.qualities = [...this.allItems];

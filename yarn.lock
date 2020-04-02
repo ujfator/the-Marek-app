@@ -364,6 +364,11 @@
   dependencies:
     tslib "^1.9.0"
 
+"@ngrx/store@^9.0.0":
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/@ngrx/store/-/store-9.0.0.tgz#ef45e241ba9cf401d5280fa99b09f2fb3fc3278d"
+  integrity sha512-QnmfXJ4G2jp+vFaqT5Qfp6h0J9OHxfDKI2RbnMU93Tq1Xd/WVPzXnOQGjILBjwwWI6RFkSdIpUoQONr7VOW63g==
+
 "@ngtools/webpack@7.3.9":
   version "7.3.9"
   resolved "https://registry.yarnpkg.com/@ngtools/webpack/-/webpack-7.3.9.tgz#db115dba8cc0886d8d822723be4119d3849fb4e3"

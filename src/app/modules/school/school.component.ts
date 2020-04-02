@@ -3,8 +3,8 @@ import { MatDialog } from '@angular/material';
 
 import { SchoolService } from '../../common/services/api-calls/school.service';
 import { School } from 'server/models';
-import { AuthorService } from 'src/app/common/services/local-services/author.service';
 import { AddEditSchoolItemComponent } from './add-edit-school-item/add-edit-item.component';
+import { AuthorizationQuery } from 'src/app/state-management/authorization/authorization.query';
 
 
 @Component({
@@ -22,7 +22,7 @@ export class SchoolComponent {
 	constructor(
 		public dialog: MatDialog,
 		private schoolService: SchoolService,
-		private authorService: AuthorService,
+		private authorizationQuery: AuthorizationQuery,
 	) {
 		this.schoolService.items.subscribe((items) => {
 			if (items) {
@@ -33,10 +33,9 @@ export class SchoolComponent {
 			}
 		});
 
-		this.authorService.author.subscribe((author) => {
-			if (author && author !== 'Oba') {
-				this.createDataSource(author);
-			} else if (author === 'Oba') this.dataSource = [...this.allItems];
+		this.authorizationQuery.selectedUser.subscribe((author) => {
+			this.createDataSource(author);
+			// this.dataSource = [...this.allItems];
 		});
   	}
 

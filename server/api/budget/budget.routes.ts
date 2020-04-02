@@ -29,6 +29,7 @@ export class BudgetRoutes extends BaseController {
 			console.warn(e);
 		});
 	}
+	
 	private _get = (req: Request, res: Response): void => {
 		this._budgetController.getBudget(req.params.budgetItemId).then((budgetItem: Budget) => {
 			res.jsonp(budgetItem);
@@ -63,5 +64,5 @@ export class BudgetRoutes extends BaseController {
 			res.status(500).send(e);
 			console.warn(e);
 		});
-	}	
+	}
 }

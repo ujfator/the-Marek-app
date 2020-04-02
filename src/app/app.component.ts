@@ -1,8 +1,8 @@
 import { Component, HostBinding, NgZone  } from '@angular/core';
 import { OverlayContainer } from '@angular/cdk/overlay';
-import { AuthorService } from './common/services/local-services/author.service';
 import { akitaDevtools } from '@datorama/akita';
 import { AuthorizationQuery } from './state-management/authorization/authorization.query';
+import { AuthorizationService } from './common/services/api-calls/authorization.service';
 
 @Component({
 	selector: 'app-root',
@@ -16,23 +16,19 @@ export class AppComponent {
 	author: string;
 	isAuthorized: boolean = false;
 	opened: boolean = true;
+	users: string[];
 
 	constructor(
 		private overlayContainer: OverlayContainer,
-		private authorService: AuthorService,
 		private authorizationQuery: AuthorizationQuery,
+		private authorizationService: AuthorizationService,
 		private ngZone: NgZone,
 		) {
 			akitaDevtools(this.ngZone); // this makes the store available
 			this.authorizationQuery.isAuthorized.subscribe((isAuthorized) => this.isAuthorized = isAuthorized);
 			if (localStorage.getItem('theme')) this.onSetTheme(localStorage.getItem('theme'));
-			this.authorService.author.subscribe((author) =>  {
-				if (author) {
-					if (author !== 'Oba') {
-						this.author = author;
-					} else this.author = null;
-				};
-			});
+			this.authorizationQuery.selectedUser.subscribe((author) =>  this.author = author);
+			this.authorizationQuery.users.subscribe((users) => this.users = users);
 	}
 
 	toggleSidenav() {
@@ -40,7 +36,8 @@ export class AppComponent {
 	}
 
  	chooseAuthor(author: string): void{
-		this.authorService.selectAuthor(author);
+		const user = author === 'Oba' ? null : author;
+		this.authorizationService.selectAuthor(user);
 	}
 
  	onSetTheme(theme: any): void {

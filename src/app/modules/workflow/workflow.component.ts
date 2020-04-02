@@ -7,7 +7,7 @@ import { WorkflowService } from '../../common/services/api-calls/workflow.servic
 import { DifficultyService } from '../../common/services/api-calls/difficulty.service';
 import { MatDialog } from '@angular/material';
 import { AddEditWorkflowItemComponent } from './add-edit-workflow-item/add-edit-workflow-item.component';
-import { AuthorService } from 'src/app/common/services/local-services/author.service';
+import { AuthorizationQuery } from 'src/app/state-management/authorization/authorization.query';
 
 interface Columns {
 	new: Workflow[],
@@ -33,7 +33,7 @@ export class WorkflowComponent implements OnInit{
 
 	constructor(
 		protected workflowService: WorkflowService,
-		protected authorService: AuthorService,
+		protected authorizationQuery: AuthorizationQuery,
 		protected difficultyService: DifficultyService,
 		public dialog: MatDialog,
 	) {
@@ -44,11 +44,7 @@ export class WorkflowComponent implements OnInit{
 			} else this.createDataSource(localStorage.getItem('author'));
 		});
 
-		this.authorService.author.subscribe((author) => {
-			if (author && author !== 'Oba') {
-				this.createDataSource(author);
-			} else if (author === 'Oba') this.createDataSource()
-		});
+		this.authorizationQuery.selectedUser.subscribe((author) => this.createDataSource(author));
 	}
 
 	ngOnInit(): void {

@@ -2,8 +2,8 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { Food } from 'server/models';
-import { AuthorQuery } from 'src/app/state-management/authors/author.query';
 import { FoodService } from 'src/app/common/services/api-calls/food.service';
+import { AuthorizationQuery } from 'src/app/state-management/authorization/authorization.query';
 
 @Component({
   selector: 'app-add-edit-item',
@@ -17,11 +17,11 @@ export class AddEditFoodItemComponent implements OnInit {
 
 	constructor(
 		public dialogRef: MatDialogRef<AddEditFoodItemComponent>,
-		private authorQuery: AuthorQuery,
+		private authorizationQuery: AuthorizationQuery,
 		private foodService: FoodService,
 		@Inject(MAT_DIALOG_DATA) public data: Food,
 	) {
-		this.authorQuery.authors.subscribe((authors) => this.authors = authors)
+		this.authorizationQuery.users.subscribe((authors) => this.authors = authors)
 	}
 
 	ngOnInit(): void {

@@ -1,13 +1,18 @@
 import { Store, StoreConfig } from '@datorama/akita';
 import { Injectable } from '@angular/core';
+import { User } from 'server/models/user.model';
 
 export interface AuthorizationState {
-   	isAuthorized: boolean;
+	   isAuthorized: boolean;
+	   users: string[];
+	   selectedUser: string;
 }
 
 export function createInitialState(): AuthorizationState {
 	return {
 		isAuthorized: false,
+		users: [],
+		selectedUser: null,
 	};
 }
 

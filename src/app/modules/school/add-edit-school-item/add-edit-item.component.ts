@@ -4,7 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { School } from 'server/models';
 import { DifficultyService } from 'src/app/common/services/api-calls/difficulty.service';
 import { SchoolService } from 'src/app/common/services/api-calls/school.service';
-import { AuthorQuery } from 'src/app/state-management/authors/author.query';
+import { AuthorizationQuery } from 'src/app/state-management/authorization/authorization.query';
 
 @Component({
   selector: 'app-add-edit-item',
@@ -20,14 +20,14 @@ export class AddEditSchoolItemComponent implements OnInit {
   constructor(
 		public dialogRef: MatDialogRef<AddEditSchoolItemComponent>,
 		@Inject(MAT_DIALOG_DATA) public data: School,
-		private authorQuery: AuthorQuery,
+		private authorizationQuery: AuthorizationQuery,
 		private difficultyService: DifficultyService,
 		private schoolService: SchoolService,
   	) {
 		this.difficultyService.difficulties.subscribe((items)=>{
 			if (items) this.difficulties = [...items];
 		});
-		this.authorQuery.authors.subscribe((authors) => this.authors = authors);
+		this.authorizationQuery.users.subscribe((authors) => this.authors = authors);
  	}
 
 	ngOnInit(): void {

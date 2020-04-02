@@ -6,6 +6,8 @@ import { Injectable } from '@angular/core';
 export class AuthorizationQuery extends Query<AuthorizationState> {
 
 	isAuthorized = this.select('isAuthorized');
+	users = this.select('users');
+	selectedUser = this.select('selectedUser');
 
 	constructor(protected store: AuthorizationStore) {
 		super(store);

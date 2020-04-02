@@ -5,15 +5,15 @@
 				I, Narvi, made them. <br> Celebrimbor of Hollin drew these signs.</mat-card-title>
 		</mat-card-header>
 		<mat-card-content fxLayout="column">
-
 				<mat-form-field>
 					<mat-label>Login</mat-label>
-					<input [(ngModel)]="heslo" required matInput placeholder="login">
+					<input [(ngModel)]="login" required matInput placeholder="login" (ngModelChange)="checkForUser($event)">
+					<mat-label *ngIf="showPassword">Password</mat-label>
+					<input *ngIf="showPassword" [(ngModel)]="password" required matInput placeholder="password" (ngModelChange)="checkForUser($event)">
 				</mat-form-field>
-
 		</mat-card-content>
 		<mat-card-actions>
-			<button mat-button (click)="login()" *ngIf="heslo === 'alza'">Mellon</button>
+			<button mat-button (click)="logIn()" *ngIf="showPassword">Mellon</button>
 			<button mat-button>Gate of the Elves, open now for me</button>
 		</mat-card-actions>
 	</mat-card>

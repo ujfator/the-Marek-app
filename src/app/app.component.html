@@ -11,10 +11,8 @@
 					<button *ngIf="!author" mat-button class="navigation-button" [matMenuTriggerFor]="menu" matTooltip="Toggle user">
 						Pick user
 					</button>
-					<mat-menu #menu="matMenu">
-						<button mat-menu-item (click)="chooseAuthor('Marek')">Marek</button>
-						<button mat-menu-item (click)="chooseAuthor('Terezka')">Terezka</button>
-						<button mat-menu-item (click)="chooseAuthor('Oba')">Oba</button>
+					<mat-menu #menu="matMenu" *ngFor="let user of users">
+						<button mat-menu-item (click)="chooseAuthor(user)">{{user}}</button>
 					</mat-menu>
 				</div>
 		</div>

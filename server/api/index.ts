@@ -5,3 +5,4 @@ export * from './quality/quality-routes';
 export * from './budget/budget.routes';
 export * from './difficulty/difficulty.routes';
 export * from './food/food.routes';
+export * from './user/user.routes';

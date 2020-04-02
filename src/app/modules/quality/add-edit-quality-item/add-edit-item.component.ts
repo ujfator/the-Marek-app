@@ -2,8 +2,8 @@ import { Component, OnInit, Inject, Optional } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { Quality } from 'server/models';
-import { AuthorQuery } from 'src/app/state-management/authors/author.query';
 import { QualityService } from 'src/app/common/services/api-calls/quality.service';
+import { AuthorizationQuery } from 'src/app/state-management/authorization/authorization.query';
 
 @Component({
 	selector: 'app-add-edit-item',
@@ -17,11 +17,11 @@ export class AddEditQualityItemComponent implements OnInit {
 
 	constructor(
 		public dialogRef: MatDialogRef<AddEditQualityItemComponent>,
-		private authorQuery: AuthorQuery,
+		private authorizationQuery: AuthorizationQuery,
 		private qualityService: QualityService,
 		@Optional() @Inject(MAT_DIALOG_DATA) public data: Quality,
 	) {
-		this.authorQuery.authors.subscribe((authors) => this.authors = authors);
+		this.authorizationQuery.users.subscribe((authors) => this.authors = authors);
 	}
 
 	ngOnInit(): void {
