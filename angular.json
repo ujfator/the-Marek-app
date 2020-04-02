@@ -27,9 +27,9 @@
               "src/assets"
             ],
             "styles": [
-				"node_modules/devextreme/dist/css/dx.common.css",
-				"node_modules/devextreme/dist/css/dx.light.css",
-             	"src/styles.scss"
+              "node_modules/devextreme/dist/css/dx.common.css",
+              "node_modules/devextreme/dist/css/dx.light.css",
+              "src/styles.scss"
             ],
             "scripts": []
           },
@@ -141,5 +141,8 @@
       }
     }
   },
-  "defaultProject": "marekApp"
+  "defaultProject": "marekApp",
+  "cli": {
+    "analytics": "96df5619-5026-4df5-a9d9-57fa90940291"
+  }
 }

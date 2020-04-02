@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, Optional } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Quality } from 'server/models';
 import { QualityService } from 'src/app/common/services/api-calls/quality.service';
 import { AuthorizationQuery } from 'src/app/state-management/authorization/authorization.query';

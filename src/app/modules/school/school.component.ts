@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material';
-
+import { MatDialog } from '@angular/material/dialog';
 import { SchoolService } from '../../common/services/api-calls/school.service';
 import { School } from 'server/models';
 import { AddEditSchoolItemComponent } from './add-edit-school-item/add-edit-item.component';

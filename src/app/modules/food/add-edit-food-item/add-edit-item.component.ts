@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Food } from 'server/models';
 import { FoodService } from 'src/app/common/services/api-calls/food.service';
 import { AuthorizationQuery } from 'src/app/state-management/authorization/authorization.query';

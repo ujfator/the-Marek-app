@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material';
-
+import { MatDialog } from '@angular/material/dialog';
 import { FoodService } from '../../common/services/api-calls/food.service';
 import { Food } from 'server/models';
 import { AddEditFoodItemComponent } from './add-edit-food-item/add-edit-item.component';

@@ -1,7 +1,7 @@
 import { BaseController } from '../base.controller';
 import { BaseInterface } from '../base.interface';
-import { UserSchema } from 'schema/user.schema';
-import { User } from 'models/user.model';
+import { UserSchema } from '../../schema/user.schema';
+import { User } from '../../models/user.model';
 
 export class UserController extends BaseController {
 

@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { AddEditItemComponent } from './add-edit-item.component';
-import { MAT_DIALOG_DATA } from '@angular/material';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 describe('AddEditItemComponent', () => {
   let component: AddEditItemComponent;

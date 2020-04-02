@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { Money, Budget } from 'server/models';
 import { MoneyService } from '../../common/services/api-calls/money.service';
 import { BudgetService } from '../../common/services/api-calls/budget.service';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { MoneyDialogComponent } from './money-dialog/money-dialog.component';
 
 interface Items {

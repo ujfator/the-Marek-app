@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { Quality } from 'server/models';
 import { QualityService } from '../../common/services/api-calls/quality.service';
 import { AddEditQualityItemComponent } from './add-edit-quality-item/add-edit-item.component';

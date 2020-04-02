@@ -5,7 +5,7 @@ import { Workflow } from 'server/models';
 import { ItemToSave } from '../../common/interfaces';
 import { WorkflowService } from '../../common/services/api-calls/workflow.service';
 import { DifficultyService } from '../../common/services/api-calls/difficulty.service';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { AddEditWorkflowItemComponent } from './add-edit-workflow-item/add-edit-workflow-item.component';
 import { AuthorizationQuery } from 'src/app/state-management/authorization/authorization.query';
 
