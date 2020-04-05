@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({ providedIn: 'root' })
 export class WorkflowService extends BaseService {
 
-	route = `${environment.apiHost || ''}/workflow`;
+	route = `${environment.apiHost}/workflow`;
  	items: Subject<Workflow[]> = new BehaviorSubject<Workflow[]>(null);
 
 	constructor(private http: HttpClient) {

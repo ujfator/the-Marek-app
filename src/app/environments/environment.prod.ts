@@ -1,5 +1,5 @@
 export const environment = {
-	apiHost: '',
+	apiHost: '/api',
 	localStorageVersion: 1,
 	production: true,
 };

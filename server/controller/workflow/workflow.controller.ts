@@ -13,27 +13,27 @@ export class WorkflowController extends BaseController {
 		this.schema = WorkflowSchema;
 	}
 
-	deleteWorkflowItem(workflowItemId: string): Promise<Workflow> {
+	async deleteWorkflowItem(workflowItemId: string): Promise<Workflow> {
 		return this.model.findByIdAndDelete(workflowItemId).then((resp) => resp);
 	}
 
-	getWorkflowItem(workflowItemId: string): Promise<Workflow> {
+	async getWorkflowItem(workflowItemId: string): Promise<Workflow> {
 		return this.model.findById(workflowItemId).then((resp) => new Workflow(resp));
 	}
 
-	getWorkflowItems(): Promise<Workflow[]> {
+	async getWorkflowItems(): Promise<Workflow[]> {
 		return this.model.find().then((resp) => {
 			return resp.map((row) => new Workflow(row));
 		});
 	}
 
-	setWorkflowItems(workflowItems: Workflow[]): Promise<Workflow[]> {
+	async setWorkflowItems(workflowItems: Workflow[]): Promise<Workflow[]> {
 		return this.model.insertMany(workflowItems).then((resp) => {
 			return resp.map((row) => new Workflow(row));
 		});
 	}
 
-	patchWorkflowItem(workflowItem: Workflow): Promise<Workflow> {
+	async patchWorkflowItem(workflowItem: Workflow): Promise<Workflow> {
 		return this.model.findByIdAndUpdate(workflowItem.id, workflowItem).then((resp) => new Workflow(resp));
 	}
 }

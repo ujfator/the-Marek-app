@@ -31,6 +31,10 @@ export class AppComponent {
 			this.authorizationQuery.users.subscribe((users) => this.users = users);
 	}
 
+	logout() {
+		this.authorizationService.authorizeOrInvalidateSession(false);
+	}
+
 	toggleSidenav() {
 		this.opened = !this.opened;
 	}

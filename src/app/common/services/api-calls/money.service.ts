@@ -18,7 +18,7 @@ export class MoneyService extends BaseService {
 	}
 
 	addItem(item: Money): void {
-		this.http.post<Money>(`${environment.apiHost || ''}/money`, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems());
+		this.http.post<Money>(`${environment.apiHost}/money`, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems());
 	}
 
 	deleteItem(id: string): void {
@@ -31,7 +31,7 @@ export class MoneyService extends BaseService {
 
 	loadItems(): void {
 		console.log('hej')
-		this.http.get<Money[]>(`${environment.apiHost || ''}/money`).subscribe((items) => {
+		this.http.get<Money[]>(`${environment.apiHost}/money`).subscribe((items) => {
 			console.log(items);
 			this.items.next(items);
 			this._buildIndex(items);
@@ -39,7 +39,7 @@ export class MoneyService extends BaseService {
 	}
 
 	patchItem(item: Money): void {
-		this.http.patch<Money>(`${environment.apiHost || ''}/money`, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems())
+		this.http.patch<Money>(`${environment.apiHost}/money`, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems())
 	}
 
 	private _buildIndex(items: Money[]): void {

@@ -22,7 +22,6 @@ import { LoginComponent } from './login/login.component';
 import { MoneyComponent } from './modules/money/money.component';
 import { MoneyTileComponent } from './modules/money/money-tile/money-tile.component';
 import { MoneyDialogComponent } from './modules/money/money-dialog/money-dialog.component';
-import { DxGanttModule } from 'devextreme-angular';
 import { HttpCallsInterceptor } from './common/http-interceptor/http-interceptor';
 
 const imports =  [
@@ -34,7 +33,6 @@ const imports =  [
 	CoreModule,
 	BrowserModule,
 	BrowserAnimationsModule,
-	DxGanttModule,
 ];
 
 @NgModule({

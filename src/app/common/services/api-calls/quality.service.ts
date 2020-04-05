@@ -18,7 +18,7 @@ export class QualityService extends BaseService {
 	}
 
 	addItem(item: Quality): void {
-		this.http.post<Quality>(`${environment.apiHost || ''}/quality`, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems());
+		this.http.post<Quality>(`${environment.apiHost}/quality`, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems());
 	}
 
 	deleteItem(id: string): void {
@@ -30,14 +30,14 @@ export class QualityService extends BaseService {
 	}
 
 	loadItems(): void {
-		this.http.get<Quality[]>(`${environment.apiHost || ''}/quality`).subscribe((items) => {
+		this.http.get<Quality[]>(`${environment.apiHost}/quality`).subscribe((items) => {
 			this.items.next(items);
 			this._buildIndex(items);
 		});
 	}
 
 	patchItem(item: Quality): void {
-		this.http.patch<Quality>(`${environment.apiHost || ''}/quality`, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems())
+		this.http.patch<Quality>(`${environment.apiHost}/quality`, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems())
 	}
 
 	private _buildIndex(items: Quality[]): void {

@@ -18,7 +18,7 @@ export class FoodService extends BaseService {
 	}
 
 	addItem(item: Food): void {
-		this.http.post<Food>(`${environment.apiHost || ''}/food`, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems());
+		this.http.post<Food>(`${environment.apiHost}/food`, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems());
 	}
 
 	deleteItem(id: string): void {
@@ -30,14 +30,14 @@ export class FoodService extends BaseService {
 	}
 
 	loadItems(): void {
-		this.http.get<Food[]>(`${environment.apiHost || ''}/food`).subscribe((items) => {
+		this.http.get<Food[]>(`${environment.apiHost}/food`).subscribe((items) => {
 			this.items.next(items);
 			this._buildIndex(items);
 		});
 	}
 
 	patchItem(item: Food): void {
-		this.http.patch<Food>(`${environment.apiHost || ''}/food`, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems())
+		this.http.patch<Food>(`${environment.apiHost}/food`, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems())
 	}
 
 	private _buildIndex(items: Food[]): void {

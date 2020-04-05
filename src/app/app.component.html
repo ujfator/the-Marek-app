@@ -24,6 +24,9 @@
 			<button mat-menu-item (click)="onSetTheme('Dark')">Dark</button>
 			<button mat-menu-item (click)="onSetTheme('Light')">Light</button>
 		</mat-menu>
+		<button mat-button matTooltip="Logout" (click)="logout()">
+			<mat-icon>power_settings_new</mat-icon>
+		</button>
 	</mat-toolbar>
 	<mat-divider></mat-divider>
 	<mat-sidenav-container class="side-navigation-container" fxFlex>

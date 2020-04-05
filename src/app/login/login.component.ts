@@ -26,12 +26,19 @@ export class LoginComponent {
 		this.authorizationQuery.users.subscribe((users) => this.users = users);
 	}
 
+	// create() {
+	// 	this.authorizationService.setUser({login: '', password: ''})
+	// }
+
 	checkForUser(e) {
+		console.log(e);
 		if (this.users.find(user => user === e)) this.showPassword = true;
 	}
 
 	logIn(): void {
-		this.authorizationService.getUser(this.password).then((res) => this.authorizationService.authorizeOrInvalidateSession(true));
+		this.authorizationService.login({login: this.login, password: this.password}).then((res) => {
+			if (res) this.authorizationService.authorizeOrInvalidateSession(true);
+		});
 	}
 
 }

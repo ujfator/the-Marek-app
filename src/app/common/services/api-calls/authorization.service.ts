@@ -22,8 +22,12 @@ export class AuthorizationService extends BaseService {
 		this.authorizationStore.update({selectedUser: author})
 	}
 
+	async login(user: User): Promise<boolean> {
+		return this.http.post<boolean>(`${environment.apiHost}/users/login`, user, this.jsonHeaders).toPromise().then(res => res);
+	}
+
 	getUsers(): void {
-		this.http.get<User[]>(`${environment.apiHost || ''}/users`, this.jsonHeaders).subscribe((users: User[]) => {
+		this.http.get<User[]>(`${environment.apiHost}/users`, this.jsonHeaders).subscribe((users: User[]) => {
 			const userNames = users.reduce((acc, user) => {
 				acc.push(user.login);
 				return acc;
@@ -32,17 +36,22 @@ export class AuthorizationService extends BaseService {
 		});
 	}
 
-	async getUser(login: string): Promise<User> {
-		return this.http.get<User>(`${environment.apiHost || ''}/users/${login}`, this.jsonHeaders).toPromise().then((user) => user);
+	async getUser(user: User): Promise<User> {
+		return this.http.get<User>(`${environment.apiHost}/users/${user.login}|${user.password}`, this.jsonHeaders).toPromise().then((user) => user);
+	}
+
+	createUser(user: User): void {
+		this.http.post<User[]>(`${environment.apiHost}/users`, user, this.jsonHeaders).subscribe();
 	}
 
 	setUser(user: User): void {
-		this.http.post<User>(`${environment.apiHost || ''}/users`, JSON.stringify(user), this.jsonHeaders).subscribe();
+		this.http.post<User>(`${environment.apiHost}/users`, JSON.stringify(user), this.jsonHeaders).subscribe();
 	}
 
 	authorizeOrInvalidateSession(isAuthorized: boolean) {
 		this.authorizationStore.update({isAuthorized: isAuthorized});
-		this.router.navigate(['workflow-tab']);
+		if (isAuthorized) this.router.navigate(['workflow-tab']);
+		else this.router.navigate(['login']);
 	}
 
 }

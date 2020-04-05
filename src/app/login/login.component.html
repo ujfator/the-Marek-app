@@ -7,15 +7,15 @@
 		<mat-card-content fxLayout="column">
 				<mat-form-field>
 					<mat-label>Login</mat-label>
-					<input [(ngModel)]="login" required matInput placeholder="login" (ngModelChange)="checkForUser($event)">
+					<input [(ngModel)]="login" required matInput placeholder="login">
 				</mat-form-field>
-				<mat-form-field *ngIf="showPassword">
+				<mat-form-field>
 					<mat-label>Password</mat-label>
 					<input [(ngModel)]="password" required matInput placeholder="password" (ngModelChange)="checkForUser($event)">
 				</mat-form-field>
 		</mat-card-content>
 		<mat-card-actions>
-			<button mat-button (click)="logIn()" *ngIf="showPassword">Mellon</button>
+			<button mat-button (click)="logIn()">Mellon</button>
 			<button mat-button>Gate of the Elves, open now for me</button>
 		</mat-card-actions>
 	</mat-card>
