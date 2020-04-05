@@ -49,9 +49,9 @@ export class AddEditSchoolItemComponent implements OnInit {
 				typeOfTest: this.form.value.typeOfTest,
 				id: this.data ? this.data.id : '',
 				author: this.form.value.author ? this.form.value.author : '',
-			}
+			};
+			newOrUpdatedItem.id ? this.schoolService.patchItem(newOrUpdatedItem) : this.schoolService.addItem(newOrUpdatedItem);
 			this.dialogRef.close();
-			(newOrUpdatedItem && newOrUpdatedItem.id) ? this.schoolService.patchItem(newOrUpdatedItem) : this.schoolService.addItem(newOrUpdatedItem)
       	}
 	}
 }

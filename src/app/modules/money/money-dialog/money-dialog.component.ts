@@ -35,6 +35,7 @@ export class MoneyDialogComponent implements OnInit {
 				author: localStorage.getItem('author'),
 			};
 			this.budgetService.addItem(newItem);
+			this.dialogRef.close();
 		}
 	}
 }

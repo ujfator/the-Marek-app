@@ -46,6 +46,7 @@ export class AddEditWorkflowItemComponent implements OnInit {
 				difficulty: this.form.value.difficulty,
 			  };
 			  newOrUpdatedItem.id ? this.workflowService.patchItem(newOrUpdatedItem) : this.workflowService.addItem(newOrUpdatedItem);
+			  this.dialogRef.close();
 		}
   	}
 }

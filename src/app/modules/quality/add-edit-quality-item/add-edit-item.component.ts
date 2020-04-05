@@ -53,6 +53,7 @@ export class AddEditQualityItemComponent implements OnInit {
 				author: this.form.value.author ? this.form.value.author : '',
       		};
 			newOrUpdatedItem.id ? this.qualityService.patchItem(newOrUpdatedItem) : this.qualityService.addItem(newOrUpdatedItem);
+			this.dialogRef.close();
 		}
   	}
 }

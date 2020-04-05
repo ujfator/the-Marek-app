@@ -47,6 +47,7 @@ export class AddEditFoodItemComponent implements OnInit {
 				author: this.form.value.author ? this.form.value.author : '',
 			};
 			(newOrUpdatedItem && newOrUpdatedItem.id) ? this.foodService.patchItem(newOrUpdatedItem) : this.foodService.addItem(newOrUpdatedItem);
+			this.dialogRef.close();
 		}
 	}
 }
