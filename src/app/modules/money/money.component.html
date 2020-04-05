@@ -1,11 +1,11 @@
 <div fxLayout="column" fxFill>
-	<mat-toolbar style="height: 50px">
+	<mat-toolbar style="height: 60px">
 		<span class="fill-remaining-space"></span>
 		<button matTooltip="Add item" dir="rtl" mat-raised-button (click)="add()">
 			<mat-icon>add</mat-icon>
 		</button>
 	</mat-toolbar>
-	<div fxLayout="row" fxLayoutAlign="space-around center" style="height: calc(100% - 50px);">
+	<div fxLayout="row" fxLayoutAlign="space-around center" style="height: calc(100% - 60px);">
 		<div *ngFor="let key of objectKeys(items)"  style="height: 100%;">
 			<app-money-tile [items]="items[key]" *ngIf="items[key].length"></app-money-tile>
 		</div>
