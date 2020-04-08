@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 import { DifficultyService } from '../../../common/services/api-calls/difficulty.service';
 import { WorkflowService } from 'src/app/common/services/api-calls/workflow.service';
+import { AuthorizationQuery } from 'src/app/state-management/authorization/authorization.query';
 
 @Component({
 	selector: 'app-add-edit-workflow-item',
@@ -12,18 +13,21 @@ import { WorkflowService } from 'src/app/common/services/api-calls/workflow.serv
 })
 export class AddEditWorkflowItemComponent implements OnInit {
 
-	public form: FormGroup;
-	public difficulties: string[] = [];
+	form: FormGroup;
+	difficulties: string[] = [];
+	authors: string[];
 
 	constructor(
 		public dialogRef: MatDialogRef<AddEditWorkflowItemComponent>,
 		public difficultyService: DifficultyService,
 		private workflowService: WorkflowService,
+		private authorizationQuery: AuthorizationQuery,
 		@Inject(MAT_DIALOG_DATA) public data: any,
 	) {
 		this.difficultyService.difficulties.subscribe((items)=>{
 			if (items) this.difficulties = [...items];
 		});
+		this.authorizationQuery.users.subscribe((users) => this.authors = users);
 	}
 
 	public ngOnInit(): void {

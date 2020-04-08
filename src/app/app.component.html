@@ -4,7 +4,7 @@
 			<mat-icon>menu</mat-icon>
 		</button>
 		<div class="header-menu-breadcrum">
-				<div fxLayout="row" fxLayoutAlign="space-around center" >
+				<div fxLayout="row" fxLayoutAlign="space-around center" *ngIf="false">
 					<button *ngIf="author" mat-button class="navigation-button" [matMenuTriggerFor]="menu" matTooltip="Toggle user">
 						The {{ author }} App
 					</button>

@@ -18,16 +18,16 @@
   </mat-form-field>
 
   <mat-autocomplete #author="matAutocomplete">
-    <mat-option *ngFor="let author of data.authors" [value]="author">{{author}}</mat-option>
+    <mat-option *ngFor="let author of authors" [value]="author">{{author}}</mat-option>
   </mat-autocomplete>
 
   <mat-form-field>
     <mat-label>Difficulty</mat-label>
-    <input name="difficulty" type="string" formControlName="difficulty" 
+    <input name="difficulty" type="string" formControlName="difficulty"
       matInput [matAutocomplete]="difficulty" placeholder="Difficulty">
     <mat-error>ERROR</mat-error>
   </mat-form-field>
-  
+
   <mat-autocomplete #difficulty="matAutocomplete">
     <mat-option *ngFor="let difficulty of difficulties" [value]="difficulty">{{difficulty}}</mat-option>
   </mat-autocomplete>

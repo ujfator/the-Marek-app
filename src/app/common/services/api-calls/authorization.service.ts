@@ -27,12 +27,8 @@ export class AuthorizationService extends BaseService {
 	}
 
 	getUsers(): void {
-		this.http.get<User[]>(`${environment.apiHost}/users`, this.jsonHeaders).subscribe((users: User[]) => {
-			const userNames = users.reduce((acc, user) => {
-				acc.push(user.login);
-				return acc;
-			}, []);
-			this.authorizationStore.update({users: userNames});
+		this.http.get<string[]>(`${environment.apiHost}/users`, this.jsonHeaders).subscribe((users: string[]) => {
+			this.authorizationStore.update({users: users});
 		});
 	}
 

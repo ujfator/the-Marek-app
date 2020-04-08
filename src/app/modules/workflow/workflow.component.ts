@@ -39,9 +39,9 @@ export class WorkflowComponent implements OnInit{
 	) {
 		this.workflowService.items.subscribe((items) => {
 			if (items) this.workflowItems = items;
-			if (!localStorage.getItem('author')) {
+			// if (!localStorage.getItem('author')) {
 				this.createDataSource();
-			} else this.createDataSource(localStorage.getItem('author'));
+			// } else this.createDataSource(localStorage.getItem('author'));
 		});
 
 		this.authorizationQuery.selectedUser.subscribe((author) => this.createDataSource(author));
