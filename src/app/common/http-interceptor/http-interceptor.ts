@@ -3,7 +3,7 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators'
 import { Router } from '@angular/router';
-import notify from "devextreme/ui/notify";
+// import notify from "devextreme/ui/notify";
 
 @Injectable()
 export class HttpCallsInterceptor implements HttpInterceptor {
@@ -26,12 +26,12 @@ export class HttpCallsInterceptor implements HttpInterceptor {
 						// server-side error
 						if (error && error.error) errorMessage = error.error.message;
 					}
-					notify({
-						message: error.message,
-						type: "error",
-						displayTime: 3000,
-						width: 450,
-					});
+					// notify({
+					// 	message: error.message,
+					// 	type: "error",
+					// 	displayTime: 3000,
+					// 	width: 450,
+					// });
 					return throwError(errorMessage);
 			})
 		);
