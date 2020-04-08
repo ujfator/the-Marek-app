@@ -22,7 +22,7 @@ export class MoneyService extends BaseService {
 	}
 
 	deleteItem(id: string): void {
-		this.http.delete<Money>(`${environment.apiHost|| '' }/money/${id}`, this.jsonHeaders).subscribe(() => this.loadItems());
+		this.http.delete<Money>(`${environment.apiHost}/money/${id}`, this.jsonHeaders).subscribe(() => this.loadItems());
 	}
 
 	getMoneyItemById(id: string): Money {

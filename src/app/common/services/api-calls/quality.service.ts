@@ -22,7 +22,7 @@ export class QualityService extends BaseService {
 	}
 
 	deleteItem(id: string): void {
-		this.http.delete<Quality>(`${environment.apiHost|| '' }/quality/${id}`, this.jsonHeaders).subscribe(() => this.loadItems());
+		this.http.delete<Quality>(`${environment.apiHost}/quality/${id}`, this.jsonHeaders).subscribe(() => this.loadItems());
 	}
 
 	getQualityItemById(id: string): Quality {

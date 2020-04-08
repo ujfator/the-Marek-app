@@ -22,7 +22,7 @@ export class SchoolService extends BaseService {
 	}
 
 	deleteItem(id: string): void {
-		this.http.delete<School>(`${environment.apiHost|| '' }/school/${id}`, this.jsonHeaders).subscribe(() => this.loadItems());
+		this.http.delete<School>(`${environment.apiHost}/school/${id}`, this.jsonHeaders).subscribe(() => this.loadItems());
 	}
 
 	getItemById(id: string): School {
