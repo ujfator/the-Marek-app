@@ -43,7 +43,7 @@ export class WorkflowService extends BaseService {
 
 	patchItem(item: Workflow): void {
 		if (item.container === 'done') {
-			item.finished = new Date()
+			item.finished = new Date();
 		} else item.finished = null;
 		this.http.patch<Workflow>(this.route, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems())
 	}

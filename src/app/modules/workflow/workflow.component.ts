@@ -92,7 +92,7 @@ export class WorkflowComponent implements OnInit{
 		this.workflowService.deleteItem(id);
 	}
 
-	drop(e: CdkDragDrop<string[]>): void {
+	drop(e: CdkDragDrop<any[]>): void {
 		let newContainer: string;
 		let movedItem: any;
 		if (e.previousContainer === e.container) {
@@ -101,10 +101,10 @@ export class WorkflowComponent implements OnInit{
 			transferArrayItem(e.previousContainer.data, e.container.data, e.previousIndex, e.currentIndex);
 			newContainer = this.changeContainerName(e.container.id);
 			e.container.data.forEach((element) => {
-				if (element['container'] === newContainer) {} else {
-				movedItem = element;
-				movedItem.container = newContainer;
-				this.workflowService.patchItem(movedItem);
+				if (newContainer && element['container'] !== newContainer) {
+					movedItem = {...element, container: newContainer};
+					movedItem.container = newContainer;
+					this.workflowService.patchItem(movedItem);
 				}
 			});
 		}
