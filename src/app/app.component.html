@@ -29,7 +29,7 @@
 		</button>
 	</mat-toolbar>
 	<mat-divider></mat-divider>
-	<mat-sidenav-container class="side-navigation-container" fxFlex>
+	<mat-sidenav-container class="side-navigation-container">
 		<mat-sidenav #sideNavigation [opened]="opened" mode="side" *ngIf="isAuthorized">
 			<div fxLayout="column" fxLayoutAlign="start space-between" fxFlex>
 				<mat-nav-list fxLayout="column" fxLayoutAlign="start stretch" fxFill>
@@ -41,7 +41,7 @@
 				</mat-nav-list>
 			</div>
 		</mat-sidenav>
-		<mat-sidenav-content style="height: calc(100% - 65px);">
+		<mat-sidenav-content>
 			<router-outlet></router-outlet>
 		</mat-sidenav-content>
 	</mat-sidenav-container>

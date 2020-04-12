@@ -34,9 +34,9 @@ export class MoneyTileComponent {
 
 	}
 
-	accumulator(source: Budget[]): number {
+	accumulator(source: Budget[], amountOrMax: string): number {
 		return source.reduce((acc, item) => {
-			acc = Math.round((acc + item.amount) * 100) / 100;
+			acc = Math.round((acc + (amountOrMax === 'amount' ? item.amount : item.maximum)) * 100) / 100;
 			return acc;;
 		}, 0)
 	}

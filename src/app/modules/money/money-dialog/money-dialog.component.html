@@ -13,14 +13,14 @@
 
 	<mat-form-field *ngIf="form.value.nature === 'adjustables'">
 		<mat-label>Maximum</mat-label>
-		<input name="max" type="number" formControlName="max" required matInput placeholder="Maximum">
+		<input name="maximum" type="number" formControlName="maximum" required matInput placeholder="Maximum">
 		<mat-error>ERROR</mat-error>
 	</mat-form-field>
 
 	<mat-form-field>
 		<mat-label>Nature</mat-label>
 		<mat-select name="nature" formControlName="nature" required matInput placeholder="Nature">
-			<mat-option *ngFor="let nature of data" [value]="nature">
+			<mat-option *ngFor="let nature of natures" [value]="nature">
 			  {{nature}}
 			</mat-option>
 		</mat-select>

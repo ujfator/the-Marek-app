@@ -2,15 +2,21 @@
     <mat-card-header class="header">
       	<div mat-card-avatar class="{{image}}"></div>
 		<mat-card-title fxLayout="row">
-			<div>{{header}} {{accumulator(items)}} CZK</div>
+			<div  *ngIf="items[0].nature !== 'adjustables'">{{header}} {{accumulator(items, 'amount')}} CZK</div>
+			<div  *ngIf="items[0].nature === 'adjustables'">{{header}} {{accumulator(items, 'amount')}} - {{accumulator(items, 'maximum')}} CZK</div>
 		</mat-card-title>
       	<mat-card-subtitle>List of {{header}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
 		<mat-list *ngFor="let item of items">
 			<mat-list-item fxLayout="row">
-				<div fxLayout="column" style="padding-right: 0.5rem;">
-					<div (click)="showEditingInput(item)" *ngIf="!item.isBeingEdited" style="cursor: pointer;">{{item.name}} {{item.amount}}</div>
+				<div fxLayout="column" style="padding-right: 0.5rem;" fxFlex>
+					<div (click)="showEditingInput(item)" *ngIf="!item.isBeingEdited && item.nature === 'adjustables'" style="cursor: pointer;">
+						{{item.name}} {{item.amount}} - {{item.maximum}}
+					</div>
+					<div (click)="showEditingInput(item)" *ngIf="!item.isBeingEdited && item.nature !== 'adjustables'" style="cursor: pointer;">
+						{{item.name}} {{item.amount}}
+					</div>
 					<mat-form-field *ngIf="item.isBeingEdited" fxLayout="row" fxFlex>
 						<input name="item" type="text" [(ngModel)]="changedItem" (ngModelChange)="valChanged($event)" matInput>
 					</mat-form-field>

@@ -62,6 +62,7 @@ export class MoneyComponent {
 	}
 
 	add() {
+		console.log(this.natures)
 		const dialogRef = this.dialog.open(MoneyDialogComponent, {
 			width: '500px',
 			data: this.natures,
