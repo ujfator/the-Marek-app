@@ -66,7 +66,7 @@ export class MoneyTileComponent {
 		const nameAndAmount = this.changedItem.split(' ');
 		const name = nameAndAmount.length > 2 ? (nameAndAmount[0] + ' ' + nameAndAmount[1]) : nameAndAmount[0];
 		const amount = parseFloat(nameAndAmount[nameAndAmount.length-1]);
-		this.service.patchItem({...item, name, amount})
+		this.service.patchItem({...item, name, amount});
 	}
 
 }

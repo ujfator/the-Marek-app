@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { BudgetService } from 'src/app/common/services/api-calls/budget.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { BudgetService } from 'src/app/common/services/api-calls/budget.service'
 export class MoneyDialogComponent implements OnInit {
 
 	form: FormGroup;
-	natures = ['expenses', 'savings', 'loans', 'properties'];
+	@Inject(MAT_DIALOG_DATA) public data: string[];
 
 	constructor(
 		public dialogRef: MatDialogRef<MoneyDialogComponent>,

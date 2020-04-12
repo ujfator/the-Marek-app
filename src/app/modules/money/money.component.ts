@@ -29,6 +29,7 @@ export class MoneyComponent {
 		loans: [],
 	};
 	objectKeys = Object.keys;
+	natures: string[] = [];
 
 	constructor(
 		public dialog: MatDialog,
@@ -61,10 +62,17 @@ export class MoneyComponent {
 	}
 
 	add() {
-		const dialogRef = this.dialog.open(MoneyDialogComponent);
+		const dialogRef = this.dialog.open(MoneyDialogComponent, {
+			width: '500px',
+			data: this.natures,
+		});
 	}
 
 	emptyColumns(): void {
-		for (const key in this.items) this.items[key] = [];
+		this.natures = [];
+		for (const key in this.items) {
+			this.natures.push(key);
+			this.items[key] = [];
+		}
 	};
 }
