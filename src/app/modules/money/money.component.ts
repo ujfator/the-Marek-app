@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 
 import { Money, Budget } from 'server/models';
-import { MoneyService } from '../../common/services/api-calls/money.service';
 import { BudgetService } from '../../common/services/api-calls/budget.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MoneyDialogComponent } from './money-dialog/money-dialog.component';
 
 interface Items {
 	expenses: Budget[],
+	adjustables: Budget[],
 	savings: Budget[],
 	properties: Budget[],
 	loans: Budget[],
@@ -23,6 +23,7 @@ export class MoneyComponent {
 	moneyItems: Money[];
 	items: Items = {
 		expenses: [],
+		adjustables: [],
 		savings: [],
 		properties: [],
 		loans: [],
@@ -40,6 +41,9 @@ export class MoneyComponent {
 					switch(item.nature) {
 						case 'expenses':
 							this.items.expenses.push(item);
+							break;
+						case 'adjustables':
+							this.items.adjustables.push(item);
 							break;
 						case 'savings':
 							this.items.savings.push(item);
