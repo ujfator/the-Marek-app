@@ -2,7 +2,7 @@ import { Component, Input, SimpleChanges } from '@angular/core';
 import { Budget } from 'server/models';
 import { MatDialog } from '@angular/material/dialog';
 import { BudgetService } from 'src/app/common/services/api-calls/budget.service';
-import { MoneyDialogComponent } from '../money-dialog/money-dialog.component';
+
 
 @Component({
   selector: 'app-money-tile',
@@ -13,6 +13,7 @@ export class MoneyTileComponent {
 
 	header: string;
 	image: string;
+	changedItem: string;
 
 	@Input() items: Budget[];
 
@@ -22,8 +23,11 @@ export class MoneyTileComponent {
 		) {}
 
 	ngOnChanges(changes: SimpleChanges): void {
-		console.log(this.items)
 		if (this.items && this.items.length) {
+			this.items = this.items.reduce((acc, item) => {
+				acc.push({...item, isBeingEdited: false});
+				return acc;
+			}, [])
 			this.header = this.items[0].nature;
 			this.image = this.header + '-image';
 		};
@@ -39,6 +43,30 @@ export class MoneyTileComponent {
 
 	delete(id: string) {
 		this.service.deleteItem(id);
+	}
+
+	showEditingInput(itemBeingChanged) {
+		this.changedItem = itemBeingChanged.name + ' ' + itemBeingChanged.amount;
+		const stateChanged = this.items.reduce((acc, item) => {
+			if (item.id === itemBeingChanged.id) {
+				acc.push({...itemBeingChanged, isBeingEdited: true});
+			} else acc.push({...item, isBeingEdited: false});
+			return acc;
+		}, [])
+		this.items = stateChanged;
+	}
+
+	valChanged(e) {
+		console.log(e);
+	}
+
+
+	editItem(item: Budget) {
+		console.log(item);
+		const nameAndAmount = this.changedItem.split(' ');
+		const name = nameAndAmount.length > 2 ? (nameAndAmount[0] + ' ' + nameAndAmount[1]) : nameAndAmount[0];
+		const amount = parseFloat(nameAndAmount[nameAndAmount.length-1]);
+		this.service.patchItem({...item, name, amount})
 	}
 
 }

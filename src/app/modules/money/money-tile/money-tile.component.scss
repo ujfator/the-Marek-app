@@ -1,3 +1,37 @@
-.money-card {
-	margin: 1rem;
+
+.expenses-image {
+    background-image: url('../../../pics/bill.png');
+    background-size: cover;
 }
+
+.savings-image {
+	background-image: url('../../../pics/savings-image.png');
+    background-size: cover;
+}
+
+.properties-image {
+    background-image: url('../../../pics/car.jpg');
+    background-size: cover;
+}
+
+.loans-image {
+    background-image: url('../../../pics/loan.jpg');
+    background-size: cover;
+}
+
+:host::ng-deep .mat-card-header-text {
+    width: 100% !important;
+}
+
+:host::ng-deep .mat-list-item-content {
+    width: 100% !important;
+}
+
+.header {
+    width: 100%;
+}
+
+.money-card {
+    margin: 5px; overflow-y: auto
+}
+
