@@ -45,11 +45,11 @@ export class MoneyTileComponent {
 		this.service.deleteItem(id);
 	}
 
-	showEditingInput(itemBeingChanged) {
-		this.changedItem = itemBeingChanged.name + ' ' + itemBeingChanged.amount;
+	showEditingInput(changed: Budget) {
+		this.changedItem = changed.name + ' ' + changed.amount.toString() + (changed.nature === 'adjustables' ? changed.maximum.toString() : '');
 		const stateChanged = this.items.reduce((acc, item) => {
-			if (item.id === itemBeingChanged.id) {
-				acc.push({...itemBeingChanged, isBeingEdited: true});
+			if (item.id === changed.id) {
+				acc.push({...changed, isBeingEdited: true});
 			} else acc.push({...item, isBeingEdited: false});
 			return acc;
 		}, [])
@@ -65,8 +65,9 @@ export class MoneyTileComponent {
 		console.log(item);
 		const nameAndAmount = this.changedItem.split(' ');
 		const name = nameAndAmount.length > 2 ? (nameAndAmount[0] + ' ' + nameAndAmount[1]) : nameAndAmount[0];
-		const amount = parseFloat(nameAndAmount[nameAndAmount.length-1]);
-		this.service.patchItem({...item, name, amount});
+		const amount = item.nature === 'adjustables' ? parseFloat(nameAndAmount[nameAndAmount.length-2]) : parseFloat(nameAndAmount[nameAndAmount.length-1]);
+		const maximum = item.nature === 'adjustables' ? parseFloat(nameAndAmount[nameAndAmount.length-1]) : null;
+		this.service.patchItem({...item, name, amount, maximum});
 	}
 
 }
