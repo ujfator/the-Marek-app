@@ -57,19 +57,16 @@ export class MoneyTileComponent {
 	}
 
 	valChanged(e) {
-		console.log(e);
 	}
 
 
 	editItem(item: Budget) {
 		const nameAndAmount = this.changedItem.split(' ');
-		console.log(nameAndAmount)
 		let i = 0;
 		let name = '';
 		while (i < (item.nature === 'adjustables' ? nameAndAmount.length-3 : nameAndAmount.length-1)) {
 			name += (' ' + nameAndAmount[i]);
 			i++;
-			console.log(name)
 		}
 		const amount = item.nature === 'adjustables' ? parseFloat(nameAndAmount[nameAndAmount.length-3]) : parseFloat(nameAndAmount[nameAndAmount.length-1]);
 		const maximum = item.nature === 'adjustables' ? parseFloat(nameAndAmount[nameAndAmount.length-1]) : null;
