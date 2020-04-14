@@ -46,7 +46,7 @@ export class MoneyTileComponent {
 	}
 
 	showEditingInput(changed: Budget) {
-		this.changedItem = changed.name + ' ' + changed.amount.toString() + (changed.nature === 'adjustables' ? changed.maximum.toString() : '');
+		this.changedItem = changed.name + ' ' + changed.amount.toString() + (changed.nature === 'adjustables' ? (' - ' + changed.maximum.toString()) : '');
 		const stateChanged = this.items.reduce((acc, item) => {
 			if (item.id === changed.id) {
 				acc.push({...changed, isBeingEdited: true});
@@ -62,10 +62,16 @@ export class MoneyTileComponent {
 
 
 	editItem(item: Budget) {
-		console.log(item);
 		const nameAndAmount = this.changedItem.split(' ');
-		const name = nameAndAmount.length > 2 ? (nameAndAmount[0] + ' ' + nameAndAmount[1]) : nameAndAmount[0];
-		const amount = item.nature === 'adjustables' ? parseFloat(nameAndAmount[nameAndAmount.length-2]) : parseFloat(nameAndAmount[nameAndAmount.length-1]);
+		console.log(nameAndAmount)
+		let i = 0;
+		let name = '';
+		while (i < (item.nature === 'adjustables' ? nameAndAmount.length-3 : nameAndAmount.length-1)) {
+			name += (' ' + nameAndAmount[i]);
+			i++;
+			console.log(name)
+		}
+		const amount = item.nature === 'adjustables' ? parseFloat(nameAndAmount[nameAndAmount.length-3]) : parseFloat(nameAndAmount[nameAndAmount.length-1]);
 		const maximum = item.nature === 'adjustables' ? parseFloat(nameAndAmount[nameAndAmount.length-1]) : null;
 		this.service.patchItem({...item, name, amount, maximum});
 	}
