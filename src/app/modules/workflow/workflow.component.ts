@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 import { Workflow } from 'server/models';
-import { ItemToSave } from '../../common/interfaces';
 import { WorkflowService } from '../../common/services/api-calls/workflow.service';
 import { DifficultyService } from '../../common/services/api-calls/difficulty.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -21,7 +20,7 @@ interface Columns {
 	templateUrl: './workflow.component.html',
 	styleUrls: ['./workflow.component.scss']
 })
-export class WorkflowComponent implements OnInit{
+export class WorkflowComponent {
 
 	workflowItems: Workflow[];
 	columns: Columns = {
@@ -30,6 +29,7 @@ export class WorkflowComponent implements OnInit{
 		today: [],
 		done: []
 	};
+	author: string;
 
 	constructor(
 		protected workflowService: WorkflowService,
@@ -38,19 +38,15 @@ export class WorkflowComponent implements OnInit{
 		public dialog: MatDialog,
 	) {
 		this.workflowService.items.subscribe((items) => {
-			if (items) this.workflowItems = items;
-			// if (!localStorage.getItem('author')) {
-				this.createDataSource();
-			// } else this.createDataSource(localStorage.getItem('author'));
+			if (items) {
+				this.workflowItems = items;
+				this.createDataSource(this.author);
+			};
 		});
-
-		this.authorizationQuery.selectedUser.subscribe((author) => this.createDataSource(author));
-	}
-
-	ngOnInit(): void {
-		if (!localStorage.getItem('author')) {
-			this.createDataSource();
-		} else this.createDataSource(localStorage.getItem('author'))
+		this.authorizationQuery.selectedUser.subscribe((author) => {
+			this.author = author;
+			this.createDataSource(author);
+		});
 	}
 
 	filler(item: Workflow) {
@@ -73,7 +69,7 @@ export class WorkflowComponent implements OnInit{
 	createDataSource (author?: string): void {
 		this.emptyColumns();
 		this.workflowItems && this.workflowItems.forEach(item => {
-			if (author && author !== 'Oba') {
+			if (author) {
 				if (item.author === author) this.filler(item);
 			} else this.filler(item);
 		});

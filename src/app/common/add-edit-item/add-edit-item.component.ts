@@ -22,7 +22,7 @@ export class AddEditItemComponent implements OnInit {
 		this.form = new FormGroup({
 			name: new FormControl(this.data.item ? this.data.item.name : ''),
 			amount: new FormControl(),
-			author: new FormControl(this.data.item ? this.data.item.author : localStorage.getItem('author')),
+			author: new FormControl(this.data.item ? this.data.item.author : ''),
 		});
 	}
 

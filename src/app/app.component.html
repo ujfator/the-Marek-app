@@ -3,18 +3,19 @@
 		<button mat-icon-button (click)="toggleSidenav()" label="Toggle Menu" class="header-menu-button">
 			<mat-icon>menu</mat-icon>
 		</button>
-		<div class="header-menu-breadcrum">
-				<div fxLayout="row" fxLayoutAlign="space-around center" *ngIf="false">
-					<button *ngIf="author" mat-button class="navigation-button" [matMenuTriggerFor]="menu" matTooltip="Toggle user">
-						The {{ author }} App
-					</button>
-					<button *ngIf="!author" mat-button class="navigation-button" [matMenuTriggerFor]="users" matTooltip="Toggle user">
-						Pick user
-					</button>
-					<mat-menu #users="matMenu" *ngFor="let user of users">
-						<button mat-menu-item (click)="chooseAuthor(user)">{{user}}</button>
-					</mat-menu>
-				</div>
+		<div>
+			<div fxLayout="row" fxLayoutAlign="space-around center">
+				<button mat-button class="navigation-button" [matMenuTriggerFor]="menu" matTooltip="Toggle user">
+					<span *ngIf="author">The {{ author }} App</span>
+					<span *ngIf="!author">Pick user</span>
+				</button>
+				<mat-menu #menu="matMenu">
+					<button [mat-menu-item] (click)="chooseAuthor(null)">Unset user</button>
+					<div *ngFor="let user of users">
+						<button [mat-menu-item] (click)="chooseAuthor(user)">{{user}}</button>
+					</div>
+				</mat-menu>
+			</div>
 		</div>
 		<span class="fill-remaining-space"></span>
 		<button class="navigation-button" mat-button [matMenuTriggerFor]="themes" matTooltip="Toggle theme">

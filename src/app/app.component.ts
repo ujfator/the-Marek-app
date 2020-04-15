@@ -1,4 +1,4 @@
-import { Component, HostBinding, NgZone  } from '@angular/core';
+import { Component, HostBinding, NgZone, ViewChild  } from '@angular/core';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { akitaDevtools } from '@datorama/akita';
 import { AuthorizationQuery } from './state-management/authorization/authorization.query';
@@ -16,7 +16,7 @@ export class AppComponent {
 	author: string;
 	isAuthorized: boolean = false;
 	opened: boolean = true;
-	users: string[];
+	users: string[] = [];
 
 	constructor(
 		private overlayContainer: OverlayContainer,
