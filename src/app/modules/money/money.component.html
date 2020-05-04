@@ -5,9 +5,9 @@
 			<mat-icon>add</mat-icon>
 		</button>
 	</mat-toolbar>
-	<div fxLayout="row" fxLayoutAlign="space-around center" style="height: calc(100% - 60px);">
+	<div fxLayout="row" fxLayoutAlign="space-around center" style="height: calc(100% - 60px); overflow: auto;">
 		<div *ngFor="let key of objectKeys(items)" style="height: 100%;">
-			<app-money-tile [items]="items[key]" *ngIf="items[key].length" fxFill></app-money-tile>
+			<app-money-tile [items]="items[key]" *ngIf="items[key].length"></app-money-tile>
 		</div>
 	</div>
 </div>
