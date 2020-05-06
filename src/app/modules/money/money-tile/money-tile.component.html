@@ -16,7 +16,7 @@
 		<mat-list *ngFor="let item of items">
 			<mat-list-item fxLayout="row" fxFlex>
 				<div fxLayout="column" style="padding-right: 0.5rem;" fxFlex>
-					<div (click)="showEditingInput(item)" *ngIf="!item.isBeingEdited" class="pointer"">
+					<div (click)="showEditingInput(item)" *ngIf="!item.isBeingEdited" class="pointer">
 						{{item.name}} {{item.amount}}
 					</div>
 					<mat-form-field *ngIf="item.isBeingEdited" fxLayout="row" fxFlex>
