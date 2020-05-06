@@ -1,8 +1,12 @@
 @import '../../../app.component.scss';
 
-.expenses-image {
+.fixedExpenses-image {
     background-image: url('../../../pics/bill.png');
     background-size: cover;
+}
+
+.pointer {
+	cursor: pointer;
 }
 
 .savings-image {
@@ -10,7 +14,7 @@
     background-size: cover;
 }
 
-.adjustables-image {
+.adjustableExpenses-image {
 	background-image: url('../../../pics/adjustables.jpg');
     background-size: cover;
 }

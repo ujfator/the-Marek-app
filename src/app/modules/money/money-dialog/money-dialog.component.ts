@@ -12,7 +12,7 @@ export class MoneyDialogComponent implements OnInit {
 
 	form: FormGroup;
 	@Inject(MAT_DIALOG_DATA) public data: string[];
-	natures: string[] = ['expenses', 'adjustables', 'loans', 'properties', 'savings'];
+	natures: string[] = ['fixedExpenses', 'adjustableExpenses', 'loans', 'properties', 'savings'];
 
 	constructor(
 		public dialogRef: MatDialogRef<MoneyDialogComponent>,

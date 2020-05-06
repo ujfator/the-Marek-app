@@ -6,8 +6,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { MoneyDialogComponent } from './money-dialog/money-dialog.component';
 
 interface Items {
-	expenses: Budget[],
-	adjustables: Budget[],
+	fixedExpenses: Budget[],
+	adjustableExpenses: Budget[],
 	savings: Budget[],
 	properties: Budget[],
 	loans: Budget[],
@@ -22,8 +22,8 @@ export class MoneyComponent {
 
 	moneyItems: Money[];
 	items: Items = {
-		expenses: [],
-		adjustables: [],
+		fixedExpenses: [],
+		adjustableExpenses: [],
 		savings: [],
 		properties: [],
 		loans: [],
@@ -40,11 +40,11 @@ export class MoneyComponent {
 			if (items) {
 				items.forEach(item => {
 					switch(item.nature) {
-						case 'expenses':
-							this.items.expenses.push(item);
+						case 'fixedExpenses':
+							this.items.fixedExpenses.push(item);
 							break;
-						case 'adjustables':
-							this.items.adjustables.push(item);
+						case 'adjustableExpenses':
+							this.items.adjustableExpenses.push(item);
 							break;
 						case 'savings':
 							this.items.savings.push(item);
