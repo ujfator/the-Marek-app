@@ -2,11 +2,10 @@
     <mat-card-header class="header">
       	<div mat-card-avatar class="{{image}}"></div>
 		<mat-card-title fxLayout="row">
-			<div  *ngIf="items[0].nature !== 'adjustables'">{{header}} {{accumulator(items, 'amount')}} CZK</div>
-			<div  *ngIf="items[0].nature === 'adjustables'">{{header}} {{accumulator(items, 'amount')}} - {{accumulator(items, 'maximum')}} CZK</div>
+			<div>{{header}} {{accumulator(items, 'amount')}} CZK</div>
 		</mat-card-title>
 		  	<mat-card-subtitle  *ngIf="items[0].nature === 'adjustables'" (click)="editAdjustablesFrom()">
-			  <div   style="cursor: pointer;" *ngIf="!adjustablesFrom.isBeingEdited">List of {{header}} - from {{adjustablesFrom.date | date: 'dd.MM.yyyy'}}</div>
+			  <div style="cursor: pointer;" *ngIf="!adjustablesFrom.isBeingEdited">List of {{header}} - from {{adjustablesFrom.date | date: 'dd.MM.yyyy'}}</div>
 			  <mat-form-field *ngIf="adjustablesFrom.isBeingEdited" fxLayout="row" fxFlex>
 				<input name="adjustablesFrom" type="date" [(ngModel)]="adjustablesFrom.date" (ngModelChange)="setAdjustablesFrom($event)" matInput>
 			</mat-form-field>
@@ -17,10 +16,7 @@
 		<mat-list *ngFor="let item of items">
 			<mat-list-item fxLayout="row" fxFlex>
 				<div fxLayout="column" style="padding-right: 0.5rem;" fxFlex>
-					<div (click)="showEditingInput(item)" *ngIf="!item.isBeingEdited && item.nature === 'adjustables'" style="cursor: pointer;">
-						{{item.name}} {{item.amount}} - {{item.maximum}}
-					</div>
-					<div (click)="showEditingInput(item)" *ngIf="!item.isBeingEdited && item.nature !== 'adjustables'" style="cursor: pointer;">
+					<div (click)="showEditingInput(item)" *ngIf="!item.isBeingEdited" style="cursor: pointer;">
 						{{item.name}} {{item.amount}}
 					</div>
 					<mat-form-field *ngIf="item.isBeingEdited" fxLayout="row" fxFlex>

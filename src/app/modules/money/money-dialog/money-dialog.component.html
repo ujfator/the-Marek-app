@@ -11,12 +11,6 @@
 		<mat-error>ERROR</mat-error>
 	</mat-form-field>
 
-	<mat-form-field *ngIf="form.value.nature === 'adjustables'">
-		<mat-label>Maximum</mat-label>
-		<input name="maximum" type="number" formControlName="maximum" required matInput placeholder="Maximum">
-		<mat-error>ERROR</mat-error>
-	</mat-form-field>
-
 	<mat-form-field>
 		<mat-label>Nature</mat-label>
 		<mat-select name="nature" formControlName="nature" required matInput placeholder="Nature">

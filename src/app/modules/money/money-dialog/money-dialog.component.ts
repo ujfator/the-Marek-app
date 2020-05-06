@@ -22,7 +22,6 @@ export class MoneyDialogComponent implements OnInit {
 	ngOnInit(): void {
 		this.form = new FormGroup({
 			name: new FormControl(),
-			maximum: new FormControl(),
 			amount: new FormControl(),
 			nature: new FormControl(),
 		});
@@ -34,7 +33,6 @@ export class MoneyDialogComponent implements OnInit {
 				name: this.form.value.name,
 				amount: this.form.value.amount,
 				nature: this.form.value.nature,
-				maximum: this.form.value.maximum,
 				author: localStorage.getItem('author'),
 			};
 			this.budgetService.addItem(newItem);

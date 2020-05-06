@@ -49,7 +49,7 @@ export class MoneyTileComponent {
 
 	accumulator(source: Budget[], amountOrMax: string): number {
 		return source.reduce((acc, item) => {
-			acc = Math.round((acc + (amountOrMax === 'amount' ? item.amount : item.maximum)) * 100) / 100;
+			acc = Math.round((acc + item.amount) * 100) / 100;
 			return acc;;
 		}, 0)
 	}
@@ -59,7 +59,7 @@ export class MoneyTileComponent {
 	}
 
 	showEditingInput(changed: Budget) {
-		this.changedItem = changed.name + ' ' + changed.amount.toString() + (changed.nature === 'adjustables' ? (' - ' + changed.maximum.toString()) : '');
+		this.changedItem = changed.name + ' ' + changed.amount.toString();
 		const stateChanged = this.items.reduce((acc, item) => {
 			if (item.id === changed.id) {
 				acc.push({...changed, isBeingEdited: true});
@@ -82,9 +82,8 @@ export class MoneyTileComponent {
 			name += (' ' + nameAndAmount[i]);
 			i++;
 		}
-		const amount = item.nature === 'adjustables' ? parseFloat(nameAndAmount[nameAndAmount.length-3]) : parseFloat(nameAndAmount[nameAndAmount.length-1]);
-		const maximum = item.nature === 'adjustables' ? parseFloat(nameAndAmount[nameAndAmount.length-1]) : null;
-		this.service.patchItem({...item, name, amount, maximum});
+		const amount = parseFloat(nameAndAmount[nameAndAmount.length-1]);
+		this.service.patchItem({...item, name, amount});
 	}
 
 }

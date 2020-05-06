@@ -3,7 +3,6 @@ import { Base } from './base.model';
 export class Budget extends Base {
 	name: string = null;
 	amount: number = null;
-	maximum?: number = null;
 	nature: string = null;
 	author: string = null;
 
