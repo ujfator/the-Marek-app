@@ -26,10 +26,6 @@ export class LoginComponent {
 		this.authorizationQuery.users.subscribe((users) => this.users = users);
 	}
 
-	// create() {
-	// 	this.authorizationService.setUser({login: '', password: ''})
-	// }
-
 	checkForUser(e) {
 		console.log(e);
 		if (this.users.find(user => user === e)) this.showPassword = true;
