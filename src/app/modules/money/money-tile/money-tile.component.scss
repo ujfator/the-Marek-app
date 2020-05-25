@@ -42,8 +42,17 @@
     width: 100%;
 }
 
+.expansion-padding {
+	padding-top: 10px;
+}
+
 .money-card {
-	margin: 5px;
-	overflow-y: auto;
+	min-width: 320px;
+}
+
+.ellipsis {
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 

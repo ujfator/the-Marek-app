@@ -8,3 +8,16 @@
 .header {
     width: 100%;
 }
+
+.tile {
+	display: flex;
+	max-height: 100%;
+	padding: 8px;
+}
+
+.tiles {
+	height: calc(100% - 60px);
+	overflow-x: auto;
+    flex-direction: row;
+    display: flex;
+}

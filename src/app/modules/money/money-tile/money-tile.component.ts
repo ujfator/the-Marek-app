@@ -38,6 +38,10 @@ export class MoneyTileComponent {
 		};
 	}
 
+	adjustableContent() {
+		return this.items && this.items[0].nature.includes('adjustable');
+	}
+
 	editAdjustablesFrom() {
 		this.adjustablesFrom.isBeingEdited = true;
 	}
@@ -72,8 +76,6 @@ export class MoneyTileComponent {
 	valChanged(e) {
 	}
 
-
-
 	editItem(item: Budget) {
 		const nameAndAmount = this.changedItem.split(' ');
 		let i = 0;
@@ -83,7 +85,7 @@ export class MoneyTileComponent {
 			i++;
 		}
 		const amount = parseFloat(nameAndAmount[nameAndAmount.length-1]);
-		this.service.patchItem({...item, name, amount});
+		this.service.patchItem({...item, name: name.trim(), amount});
 	}
 
 }

@@ -1,13 +1,13 @@
-<div fxLayout="column" fxFill style="max-height: 100%; overflow: hidden">
+<div fxLayout="column" style="max-height: 100%; max-width: 100%; overflow: hidden">
 	<mat-toolbar style="height: 60px">
 		<span class="fill-remaining-space"></span>
 		<button matTooltip="Add item" dir="rtl" mat-raised-button (click)="add()">
 			<mat-icon>add</mat-icon>
 		</button>
 	</mat-toolbar>
-	<div fxLayout="row" fxLayoutAlign="space-around center" style="height: calc(100% - 60px); overflow: auto;">
-		<div *ngFor="let key of objectKeys(items)" style="height: 100%;">
-			<app-money-tile [items]="items[key]" *ngIf="items[key].length"></app-money-tile>
+	<div class="tiles">
+		<div *ngFor="let key of objectKeys(items)" class="tile">
+			<app-money-tile [items]="items[key]" *ngIf="items[key].length" style="max-height: 100%; width: 100%; overflow: auto;"></app-money-tile>
 		</div>
 	</div>
 </div>
