@@ -1,5 +1,14 @@
 @import '../../../app.component.scss';
 
+::ng-deep {
+	.mat-list-item-content {
+		overflow: hidden;
+	}
+	.mat-card-header-text {
+		margin: 0 !important;
+	}
+}
+
 .fixedExpenses-image {
     background-image: url('../../../pics/bill.png');
     background-size: cover;
@@ -47,7 +56,7 @@
 }
 
 .money-card {
-	min-width: 320px;
+	// min-width: 300px;
 }
 
 .ellipsis {

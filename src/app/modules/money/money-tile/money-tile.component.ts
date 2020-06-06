@@ -19,6 +19,8 @@ export class MoneyTileComponent {
 		date: new Date(localStorage.getItem('adjustablesFrom')),
 	};
 
+	collapsed: boolean = false;
+
 	@Input() items: Budget[];
 
 	constructor(
