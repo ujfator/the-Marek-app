@@ -28,12 +28,13 @@
 			<div fxLayout="row" fxFlex>
 				<div fxLayout="column" fxFill class="content">
 					Duben - 23 tisíc, chorela 2300
+					Květen - cca 26 tisíc
 				</div>
 			</div>
 		</mat-expansion-panel>
 		<mat-list *ngFor="let item of items">
 			<mat-list-item fxLayout="row" fxFlex title="edit item {{item.name}}" fxLayoutAlign="space-between center" style="overflow-hidden;">
-				<div fxLayout="column" style="padding-right: 0.5rem;" fxFlex>
+				<div fxLayout="column" style="padding-right: 0.5rem" fxFlex>
 					<div (click)="showEditingInput(item)" *ngIf="!item.isBeingEdited" class="pointer ellipsis">
 						{{item.name}} {{item.amount}}
 					</div>
