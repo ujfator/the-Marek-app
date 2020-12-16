@@ -1,15 +1,25 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>YouApp</title>
-  <base href="/">
-
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-</head>
-<body fxFill>
-  <app-root fxFill></app-root>
+  <head>
+    <meta charset="utf-8">
+    <title>MarekApp</title>
+    <base href="/">
+    <a href="javascript:
+  
+      var title = window.location.href;
+  
+      if (title.indexOf('http://yourwebsite/bookmarklet/') == 0) {
+          '<head><link rel=\'shortcut icon\' href=\'favicon.ico\'></head>Bookmarklet';
+      } else {
+          (function(){document.body.appendChild(document.createElement('script')).src='http://yourwebsite/bookmarklet.js';})();
+      }">Click Me!
+    </a>
+  
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.jpeg">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  </head>
+<body>
+  <app-root></app-root>
 </body>
 </html>
