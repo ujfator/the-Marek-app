@@ -1,6 +1,6 @@
 <mat-card class="money-card">
 	<mat-card-header class="header" fxLayout="row" fxLayoutAlign="space-between center">
-		<button (click)="collapsed = !collapsed" style="padding: 0; height: 30px; width: 30px;" title="collapse">
+		<button (click)="collapsed = !collapsed" mat-button style="padding: 0; height: 30px; width: 30px;" title="collapse">
 			<mat-icon *ngIf="collapsed">chevron_right</mat-icon>
 			<mat-icon *ngIf="!collapsed">chevron_left</mat-icon>
 		</button>

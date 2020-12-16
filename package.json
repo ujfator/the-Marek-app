@@ -16,8 +16,8 @@
     "postinstall": "ng build --configuration=production --output-path dist && cd server && tsc"
   },
   "engines": {
-    "node": "10.16.0",
-    "npm": "6.9.0"
+    "node": "14.15.2",
+    "npm": "6.14.9"
   },
   "private": true,
   "dependencies": {
@@ -55,7 +55,7 @@
     "stream": "^0.0.2",
     "tslib": "^1.11.1",
     "typescript": "^3.8.3",
-    "yarn": "^1.22.4",
+    "yarn": "^1.22.10",
     "zone.js": "~0.10.3"
   },
   "devDependencies": {
