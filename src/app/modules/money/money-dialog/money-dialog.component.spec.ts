@@ -8,9 +8,8 @@ describe('MoneyDialogComponent', () => {
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [ MoneyDialogComponent ]
-		})
-		.compileComponents();
+			declarations: [MoneyDialogComponent],
+		}).compileComponents();
 	}));
 
 	beforeEach(() => {

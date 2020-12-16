@@ -1,32 +1,36 @@
 .fill-remaining-space {
-  /* This fills the remaining space, by using flexbox.
+	/* This fills the remaining space, by using flexbox.
      Every toolbar row uses a flexbox row layout. */
-  	flex: 1 1 auto;
+	flex: 1 1 auto;
 }
 .header {
-  	height: 65px;
+	height: 65px;
 }
 
 .blue-text {
-  	color: #3f51b5;
+	color: #3f51b5;
 }
 
 .red-text {
-  	color: #e91e63;
+	color: #e91e63;
 }
 
 .header-menu-button {
-  	margin-bottom: 3px;
+	margin-bottom: 3px;
 }
 
 .navigation-button {
-  	font-size: 22px !important;
+	font-size: 22px !important;
 }
 
 .manager-toolbar {
- 	height: 50px;
+	height: 50px;
 }
 
-.side-navigation-container {
-  	height: calc(100% - 65px);
+.side-navigation-container-app {
+	height: calc(100% - 65px);
+}
+
+.side-navigation-container-login {
+	height: 100%;
 }

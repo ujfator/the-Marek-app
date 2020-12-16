@@ -8,7 +8,6 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
 export class FoodService extends BaseService {
-
 	items: Subject<Food[]> = new BehaviorSubject<Food[]>(null);
 	private _index: object;
 
@@ -18,7 +17,9 @@ export class FoodService extends BaseService {
 	}
 
 	addItem(item: Food): void {
-		this.http.post<Food>(`${environment.apiHost}/food`, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems());
+		this.http
+			.post<Food>(`${environment.apiHost}/food`, JSON.stringify(item), this.jsonHeaders)
+			.subscribe(() => this.loadItems());
 	}
 
 	deleteItem(id: string): void {
@@ -37,7 +38,9 @@ export class FoodService extends BaseService {
 	}
 
 	patchItem(item: Food): void {
-		this.http.patch<Food>(`${environment.apiHost}/food`, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems())
+		this.http
+			.patch<Food>(`${environment.apiHost}/food`, JSON.stringify(item), this.jsonHeaders)
+			.subscribe(() => this.loadItems());
 	}
 
 	private _buildIndex(items: Food[]): void {
@@ -48,6 +51,6 @@ export class FoodService extends BaseService {
 				return acc;
 			}, {});
 		};
- 		this._index = flattenHelper(items);
+		this._index = flattenHelper(items);
 	}
 }

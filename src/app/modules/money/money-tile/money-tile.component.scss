@@ -10,8 +10,8 @@
 }
 
 .fixedExpenses-image {
-    background-image: url('../../../pics/bill.png');
-    background-size: cover;
+	background-image: url('../../../pics/bill.png');
+	background-size: cover;
 }
 
 .pointer {
@@ -20,35 +20,34 @@
 
 .savings-image {
 	background-image: url('../../../pics/savings-image.jpg');
-    background-size: cover;
+	background-size: cover;
 }
 
 .adjustableExpenses-image {
 	background-image: url('../../../pics/adjustables.jpg');
-    background-size: cover;
+	background-size: cover;
 }
 
-
 .properties-image {
-    background-image: url('../../../pics/car.jpg');
-    background-size: cover;
+	background-image: url('../../../pics/car.jpg');
+	background-size: cover;
 }
 
 .loans-image {
-    background-image: url('../../../pics/loan.jpg');
-    background-size: cover;
+	background-image: url('../../../pics/loan.jpg');
+	background-size: cover;
 }
 
 :host::ng-deep .mat-card-header-text {
-    width: 100% !important;
+	width: 100% !important;
 }
 
 :host::ng-deep .mat-list-item-content {
-    width: 100% !important;
+	width: 100% !important;
 }
 
 .header {
-    width: 100%;
+	width: 100%;
 }
 
 .expansion-padding {
@@ -61,7 +60,6 @@
 
 .ellipsis {
 	overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
-

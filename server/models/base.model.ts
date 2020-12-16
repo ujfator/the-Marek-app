@@ -13,5 +13,5 @@ export class Base {
 				this[property] = args[property];
 			}
 		}
-	}
+	};
 }

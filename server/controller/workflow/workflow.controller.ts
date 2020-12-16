@@ -4,7 +4,6 @@ import { BaseController } from '../base.controller';
 import { BaseInterface } from '../base.interface';
 
 export class WorkflowController extends BaseController {
-
 	constructor(args: BaseInterface) {
 		super(args);
 

@@ -12,7 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { QualityComponent } from './modules/quality/quality.component';
 import { FoodComponent } from './modules/food/food.component';
 import { WorkflowComponent } from './modules/workflow/workflow.component';
-import { AddEditWorkflowItemComponent } from './modules/workflow/add-edit-workflow-item/add-edit-workflow-item.component'
+import { AddEditWorkflowItemComponent } from './modules/workflow/add-edit-workflow-item/add-edit-workflow-item.component';
 import { CoreModule } from './common/core.module';
 import { AddEditFoodItemComponent } from './modules/food/add-edit-food-item/add-edit-item.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
@@ -24,7 +24,7 @@ import { MoneyTileComponent } from './modules/money/money-tile/money-tile.compon
 import { MoneyDialogComponent } from './modules/money/money-dialog/money-dialog.component';
 import { HttpCallsInterceptor } from './common/http-interceptor/http-interceptor';
 
-const imports =  [
+const imports = [
 	AppRoutingModule,
 	DragDropModule,
 	FormsModule,
@@ -59,12 +59,16 @@ const imports =  [
 		AddEditQualityItemComponent,
 		AddEditFoodItemComponent,
 		AddEditSchoolItemComponent,
-		MoneyDialogComponent
+		MoneyDialogComponent,
 	],
 	imports,
 	providers: [
 		{ provide: LocationStrategy, useClass: HashLocationStrategy },
-		{ provide: HTTP_INTERCEPTORS, useClass: HttpCallsInterceptor, multi: true },
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: HttpCallsInterceptor,
+			multi: true,
+		},
 	],
 })
-export class AppModule { }
+export class AppModule {}

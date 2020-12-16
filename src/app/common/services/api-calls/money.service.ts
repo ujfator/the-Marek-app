@@ -8,21 +8,24 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
 export class MoneyService extends BaseService {
-
 	items: Subject<Money[]> = new BehaviorSubject<Money[]>(null);
 	private _index: object;
 
-	constructor( private http: HttpClient) {
+	constructor(private http: HttpClient) {
 		super();
 		this.loadItems();
 	}
 
 	addItem(item: Money): void {
-		this.http.post<Money>(`${environment.apiHost}/money`, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems());
+		this.http
+			.post<Money>(`${environment.apiHost}/money`, JSON.stringify(item), this.jsonHeaders)
+			.subscribe(() => this.loadItems());
 	}
 
 	deleteItem(id: string): void {
-		this.http.delete<Money>(`${environment.apiHost}/money/${id}`, this.jsonHeaders).subscribe(() => this.loadItems());
+		this.http
+			.delete<Money>(`${environment.apiHost}/money/${id}`, this.jsonHeaders)
+			.subscribe(() => this.loadItems());
 	}
 
 	getMoneyItemById(id: string): Money {
@@ -30,7 +33,7 @@ export class MoneyService extends BaseService {
 	}
 
 	loadItems(): void {
-		console.log('hej')
+		console.log('hej');
 		this.http.get<Money[]>(`${environment.apiHost}/money`).subscribe((items) => {
 			console.log(items);
 			this.items.next(items);
@@ -39,7 +42,9 @@ export class MoneyService extends BaseService {
 	}
 
 	patchItem(item: Money): void {
-		this.http.patch<Money>(`${environment.apiHost}/money`, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems())
+		this.http
+			.patch<Money>(`${environment.apiHost}/money`, JSON.stringify(item), this.jsonHeaders)
+			.subscribe(() => this.loadItems());
 	}
 
 	private _buildIndex(items: Money[]): void {
@@ -50,6 +55,6 @@ export class MoneyService extends BaseService {
 				return acc;
 			}, {});
 		};
- 		this._index = flattenHelper(items);
+		this._index = flattenHelper(items);
 	}
 }

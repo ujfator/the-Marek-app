@@ -3,23 +3,22 @@ import { AddEditItemComponent } from './add-edit-item.component';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 describe('AddEditItemComponent', () => {
-  let component: AddEditItemComponent;
-  let fixture: ComponentFixture<AddEditItemComponent>;
+	let component: AddEditItemComponent;
+	let fixture: ComponentFixture<AddEditItemComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ AddEditItemComponent ]
-    })
-    .compileComponents();
-  }));
+	beforeEach(async(() => {
+		TestBed.configureTestingModule({
+			declarations: [AddEditItemComponent],
+		}).compileComponents();
+	}));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(AddEditItemComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+	beforeEach(() => {
+		fixture = TestBed.createComponent(AddEditItemComponent);
+		component = fixture.componentInstance;
+		fixture.detectChanges();
+	});
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+	it('should create', () => {
+		expect(component).toBeTruthy();
+	});
 });

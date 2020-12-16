@@ -8,7 +8,6 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
 export class SchoolService extends BaseService {
-
 	items: Subject<School[]> = new BehaviorSubject<School[]>(null);
 	private _index: object;
 
@@ -18,11 +17,15 @@ export class SchoolService extends BaseService {
 	}
 
 	addItem(item: School): void {
-		this.http.post<School>(`${environment.apiHost}/school`, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems());
+		this.http
+			.post<School>(`${environment.apiHost}/school`, JSON.stringify(item), this.jsonHeaders)
+			.subscribe(() => this.loadItems());
 	}
 
 	deleteItem(id: string): void {
-		this.http.delete<School>(`${environment.apiHost}/school/${id}`, this.jsonHeaders).subscribe(() => this.loadItems());
+		this.http
+			.delete<School>(`${environment.apiHost}/school/${id}`, this.jsonHeaders)
+			.subscribe(() => this.loadItems());
 	}
 
 	getItemById(id: string): School {
@@ -37,7 +40,9 @@ export class SchoolService extends BaseService {
 	}
 
 	patchItem(item: School): void {
-		this.http.patch<School>(`${environment.apiHost}/school`, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems())
+		this.http
+			.patch<School>(`${environment.apiHost}/school`, JSON.stringify(item), this.jsonHeaders)
+			.subscribe(() => this.loadItems());
 	}
 
 	private _buildIndex(items: School[]): void {
@@ -48,6 +53,6 @@ export class SchoolService extends BaseService {
 				return acc;
 			}, {});
 		};
- 		this._index = flattenHelper(items);
+		this._index = flattenHelper(items);
 	}
 }

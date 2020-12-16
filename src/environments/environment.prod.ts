@@ -1,5 +1,5 @@
 export const environment = {
-  	auth_database: 'marekApp',
+	auth_database: 'marekApp',
 	database: 'marekApp',
 	database_passwd: 'marek',
 	database_port: '27017',

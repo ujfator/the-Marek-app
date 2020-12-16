@@ -1,67 +1,99 @@
 <form [formGroup]="form" fxLayout="column" fxLayoutAlign="start stretch" (ngSubmit)="onSubmit()">
-  <div fxLayout=row>
-      <div fxFlex="50">
-          <mat-form-field>
-            <mat-label>Date</mat-label>
-            <input name="date" [matDatepicker]="picker" formControlName="date" matInput placeholder="Choose date">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-            <mat-error>ERROR</mat-error>
-          </mat-form-field>
+	<div fxLayout="row">
+		<div fxFlex="50">
+			<mat-form-field>
+				<mat-label>Date</mat-label>
+				<input name="date" [matDatepicker]="picker" formControlName="date" matInput placeholder="Choose date" />
+				<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+				<mat-datepicker #picker></mat-datepicker>
+				<mat-error>ERROR</mat-error>
+			</mat-form-field>
 
-          <mat-form-field>
-            <mat-label>Day Quality</mat-label>
-            <input name="dayQuality" min="-2" max="2" type="number" formControlName="dayQuality"
-              matInput placeholder="day quality">
-            <mat-error>ERROR</mat-error>
-          </mat-form-field>
+			<mat-form-field>
+				<mat-label>Day Quality</mat-label>
+				<input
+					name="dayQuality"
+					min="-2"
+					max="2"
+					type="number"
+					formControlName="dayQuality"
+					matInput
+					placeholder="day quality"
+				/>
+				<mat-error>ERROR</mat-error>
+			</mat-form-field>
 
-          <mat-form-field>
-            <mat-label>Wake up</mat-label>
-            <input type="datetime-local" name="wakeUp" type="string" formControlName="wakeUp"
-              matInput placeholder="start date">
-            <mat-error>ERROR</mat-error>
-          </mat-form-field>
+			<mat-form-field>
+				<mat-label>Wake up</mat-label>
+				<input
+					type="datetime-local"
+					name="wakeUp"
+					type="string"
+					formControlName="wakeUp"
+					matInput
+					placeholder="start date"
+				/>
+				<mat-error>ERROR</mat-error>
+			</mat-form-field>
 
-          <mat-form-field>
-            <mat-label>Go to bed</mat-label>
-            <input type="datetime-local" name="goToBed" type="string" formControlName="goToBed" matInput placeholder="Go to bed">
-            <mat-error>ERROR</mat-error>
-          </mat-form-field>
-      </div>
+			<mat-form-field>
+				<mat-label>Go to bed</mat-label>
+				<input
+					type="datetime-local"
+					name="goToBed"
+					type="string"
+					formControlName="goToBed"
+					matInput
+					placeholder="Go to bed"
+				/>
+				<mat-error>ERROR</mat-error>
+			</mat-form-field>
+		</div>
 
-      <div fxFlex="50">
-          <mat-form-field>
-            <mat-label>Sleep time</mat-label>
-            <input name="sleepTime" formControlName="sleepTime" matInput placeholder="Sleep time">
-            <mat-error>ERROR</mat-error>
-          </mat-form-field>
+		<div fxFlex="50">
+			<mat-form-field>
+				<mat-label>Sleep time</mat-label>
+				<input name="sleepTime" formControlName="sleepTime" matInput placeholder="Sleep time" />
+				<mat-error>ERROR</mat-error>
+			</mat-form-field>
 
-          <mat-form-field>
-            <mat-label>Deep work time</mat-label>
-            <input name="deepWorkTime" type="string" formControlName="deepWorkTime" matInput placeholder="Deep work time">
-            <mat-error>ERROR</mat-error>
-          </mat-form-field>
+			<mat-form-field>
+				<mat-label>Deep work time</mat-label>
+				<input
+					name="deepWorkTime"
+					type="string"
+					formControlName="deepWorkTime"
+					matInput
+					placeholder="Deep work time"
+				/>
+				<mat-error>ERROR</mat-error>
+			</mat-form-field>
 
-          <mat-form-field>
-              <mat-label>Author</mat-label>
-              <input type="text" matInput formControlName="author" [matAutocomplete]="author">
-          </mat-form-field>
+			<mat-form-field>
+				<mat-label>Author</mat-label>
+				<input type="text" matInput formControlName="author" [matAutocomplete]="author" />
+			</mat-form-field>
 
-          <mat-autocomplete #author="matAutocomplete">
-            <mat-option *ngFor="let author of authors" [value]="author">{{author}}</mat-option>
-          </mat-autocomplete>
+			<mat-autocomplete #author="matAutocomplete">
+				<mat-option *ngFor="let author of authors" [value]="author">{{ author }}</mat-option>
+			</mat-autocomplete>
 
-          <mat-form-field>
-            <mat-label>Meaningful activity</mat-label>
-            <input name="meaningfulActivity" type="string" formControlName="meaningfulActivity" matInput placeholder="Meaningful activity">
-            <mat-error>ERROR</mat-error>
-          </mat-form-field>
-      </div>
-  </div>
+			<mat-form-field>
+				<mat-label>Meaningful activity</mat-label>
+				<input
+					name="meaningfulActivity"
+					type="string"
+					formControlName="meaningfulActivity"
+					matInput
+					placeholder="Meaningful activity"
+				/>
+				<mat-error>ERROR</mat-error>
+			</mat-form-field>
+		</div>
+	</div>
 
-  <div mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
-    <button mat-stroked-button type="reset" color="warn" (click)="dialogRef.close()">Cancel</button>
-    <button mat-stroked-button color="primary" fxFlexOffset="15px" type="submit">Submit</button>
-  </div>
+	<div mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+		<button mat-stroked-button type="reset" color="warn" (click)="dialogRef.close()">Cancel</button>
+		<button mat-stroked-button color="primary" fxFlexOffset="15px" type="submit">Submit</button>
+	</div>
 </form>

@@ -9,25 +9,24 @@ import { AddEditWorkflowItemComponent } from './add-edit-workflow-item/add-edit-
 import { AuthorizationQuery } from 'src/app/state-management/authorization/authorization.query';
 
 interface Columns {
-	new: Workflow[],
-	thisWeek: Workflow[],
-	today: Workflow[],
-	done: Workflow[]
+	new: Workflow[];
+	thisWeek: Workflow[];
+	today: Workflow[];
+	done: Workflow[];
 }
 
 @Component({
 	selector: 'app-workflow',
 	templateUrl: './workflow.component.html',
-	styleUrls: ['./workflow.component.scss']
+	styleUrls: ['./workflow.component.scss'],
 })
 export class WorkflowComponent {
-
 	workflowItems: Workflow[];
 	columns: Columns = {
 		new: [],
 		thisWeek: [],
 		today: [],
-		done: []
+		done: [],
 	};
 	author: string;
 
@@ -41,7 +40,7 @@ export class WorkflowComponent {
 			if (items) {
 				this.workflowItems = items;
 				this.createDataSource(this.author);
-			};
+			}
 		});
 		this.authorizationQuery.selectedUser.subscribe((author) => {
 			this.author = author;
@@ -50,7 +49,7 @@ export class WorkflowComponent {
 	}
 
 	filler(item: Workflow) {
-		switch(item.container) {
+		switch (item.container) {
 			case 'new':
 				this.columns.new.push(item);
 				break;
@@ -66,25 +65,30 @@ export class WorkflowComponent {
 		}
 	}
 
-	createDataSource (author?: string): void {
+	createDataSource(author?: string): void {
 		this.emptyColumns();
-		this.workflowItems && this.workflowItems.forEach(item => {
-			if (author) {
-				if (item.author === author) this.filler(item);
-			} else this.filler(item);
-		});
- 	}
+		this.workflowItems &&
+			this.workflowItems.forEach((item) => {
+				if (author) {
+					if (item.author === author) this.filler(item);
+				} else this.filler(item);
+			});
+	}
 
-	changeContainerName (name: string): string {
+	changeContainerName(name: string): string {
 		switch (name) {
-			case 'cdk-drop-list-0': return 'new';
-			case 'cdk-drop-list-1': return 'thisWeek';
-			case 'cdk-drop-list-2': return 'today';
-			case 'cdk-drop-list-3': return 'done';
+			case 'cdk-drop-list-0':
+				return 'new';
+			case 'cdk-drop-list-1':
+				return 'thisWeek';
+			case 'cdk-drop-list-2':
+				return 'today';
+			case 'cdk-drop-list-3':
+				return 'done';
 		}
 	}
 
-	delete (id: string): void {
+	delete(id: string): void {
 		this.workflowService.deleteItem(id);
 	}
 
@@ -98,13 +102,12 @@ export class WorkflowComponent {
 			newContainer = this.changeContainerName(e.container.id);
 			e.container.data.forEach((element) => {
 				if (newContainer && element['container'] !== newContainer) {
-					movedItem = {...element, container: newContainer};
+					movedItem = { ...element, container: newContainer };
 					movedItem.container = newContainer;
 					this.workflowService.patchItem(movedItem);
 				}
 			});
 		}
-
 	}
 
 	addEditItem(item?: Workflow): void {
@@ -114,10 +117,10 @@ export class WorkflowComponent {
 		});
 	}
 
-	emptyColumns (): void {
+	emptyColumns(): void {
 		this.columns.new = [];
 		this.columns.thisWeek = [];
 		this.columns.today = [];
 		this.columns.done = [];
-	};
+	}
 }

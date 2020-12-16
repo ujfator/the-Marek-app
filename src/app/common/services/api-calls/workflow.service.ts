@@ -8,9 +8,8 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
 export class WorkflowService extends BaseService {
-
 	route = `${environment.apiHost}/workflow`;
- 	items: Subject<Workflow[]> = new BehaviorSubject<Workflow[]>(null);
+	items: Subject<Workflow[]> = new BehaviorSubject<Workflow[]>(null);
 
 	constructor(private http: HttpClient) {
 		super();
@@ -24,11 +23,11 @@ export class WorkflowService extends BaseService {
 		if (now - finishedDate > week) this.deleteItem(item.id);
 	}
 
-	deleteItem (id: string): void {
+	deleteItem(id: string): void {
 		this.http.delete<any>(this.route + '/' + id, this.jsonHeaders).subscribe(() => this.loadItems());
 	}
 
-  	addItem(item: Workflow): void {
+	addItem(item: Workflow): void {
 		this.http.post<Workflow>(this.route, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems());
 	}
 
@@ -45,7 +44,6 @@ export class WorkflowService extends BaseService {
 		if (item.container === 'done') {
 			item.finished = new Date();
 		} else item.finished = null;
-		this.http.patch<Workflow>(this.route, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems())
+		this.http.patch<Workflow>(this.route, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems());
 	}
-
 }

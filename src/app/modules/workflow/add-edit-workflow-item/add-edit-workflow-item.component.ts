@@ -9,10 +9,9 @@ import { AuthorizationQuery } from 'src/app/state-management/authorization/autho
 @Component({
 	selector: 'app-add-edit-workflow-item',
 	templateUrl: './add-edit-workflow-item.component.html',
-	styleUrls: ['./add-edit-workflow-item.component.scss']
+	styleUrls: ['./add-edit-workflow-item.component.scss'],
 })
 export class AddEditWorkflowItemComponent implements OnInit {
-
 	form: FormGroup;
 	difficulties: string[] = [];
 	authors: string[];
@@ -24,10 +23,10 @@ export class AddEditWorkflowItemComponent implements OnInit {
 		private authorizationQuery: AuthorizationQuery,
 		@Inject(MAT_DIALOG_DATA) public data: any,
 	) {
-		this.difficultyService.difficulties.subscribe((items)=>{
+		this.difficultyService.difficulties.subscribe((items) => {
 			if (items) this.difficulties = [...items];
 		});
-		this.authorizationQuery.users.subscribe((users) => this.authors = users);
+		this.authorizationQuery.users.subscribe((users) => (this.authors = users));
 	}
 
 	public ngOnInit(): void {
@@ -41,16 +40,18 @@ export class AddEditWorkflowItemComponent implements OnInit {
 
 	public onSubmit(): void {
 		if (this.form.valid) {
-			const newOrUpdatedItem =  {
+			const newOrUpdatedItem = {
 				name: this.form.value.name,
 				author: this.form.value.author,
 				content: this.form.value.content,
-				container: (this.data && this.data.container) ? this.data.container : 'new',
+				container: this.data && this.data.container ? this.data.container : 'new',
 				id: this.data && this.data.id,
 				difficulty: this.form.value.difficulty,
-			  };
-			  newOrUpdatedItem.id ? this.workflowService.patchItem(newOrUpdatedItem) : this.workflowService.addItem(newOrUpdatedItem);
-			  this.dialogRef.close();
+			};
+			newOrUpdatedItem.id
+				? this.workflowService.patchItem(newOrUpdatedItem)
+				: this.workflowService.addItem(newOrUpdatedItem);
+			this.dialogRef.close();
 		}
-  	}
+	}
 }

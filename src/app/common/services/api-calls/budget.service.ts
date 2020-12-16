@@ -8,21 +8,24 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
 export class BudgetService extends BaseService {
-
 	items: Subject<Budget[]> = new BehaviorSubject<Budget[]>(null);
 	private _index: object;
 
-	constructor( private http: HttpClient) {
+	constructor(private http: HttpClient) {
 		super();
-		this.loadItems()
+		this.loadItems();
 	}
 
 	addItem(item: Budget): void {
-		this.http.post<Budget>(`${environment.apiHost}/budget`, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems());
+		this.http
+			.post<Budget>(`${environment.apiHost}/budget`, JSON.stringify(item), this.jsonHeaders)
+			.subscribe(() => this.loadItems());
 	}
 
 	deleteItem(id: string): void {
-		this.http.delete<Budget>(`${environment.apiHost}/budget/${id}`, this.jsonHeaders).subscribe(() => this.loadItems());
+		this.http
+			.delete<Budget>(`${environment.apiHost}/budget/${id}`, this.jsonHeaders)
+			.subscribe(() => this.loadItems());
 	}
 
 	getBudgetById(id: string): Budget {
@@ -37,7 +40,9 @@ export class BudgetService extends BaseService {
 	}
 
 	patchItem(item: Budget): void {
-		this.http.patch<Budget>(`${environment.apiHost}/budget`, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems())
+		this.http
+			.patch<Budget>(`${environment.apiHost}/budget`, JSON.stringify(item), this.jsonHeaders)
+			.subscribe(() => this.loadItems());
 	}
 
 	private _buildIndex(items: Budget[]): void {
@@ -48,6 +53,6 @@ export class BudgetService extends BaseService {
 				return acc;
 			}, {});
 		};
- 		this._index = flattenHelper(items);
+		this._index = flattenHelper(items);
 	}
 }

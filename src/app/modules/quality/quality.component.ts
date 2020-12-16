@@ -5,17 +5,24 @@ import { QualityService } from '../../common/services/api-calls/quality.service'
 import { AddEditQualityItemComponent } from './add-edit-quality-item/add-edit-item.component';
 import { AuthorizationQuery } from 'src/app/state-management/authorization/authorization.query';
 
-
 @Component({
 	selector: 'app-quality',
 	templateUrl: './quality.component.html',
-	styleUrls: ['./quality.component.scss']
+	styleUrls: ['./quality.component.scss'],
 })
-
 export class QualityComponent {
-
-	displayedColumns: string[] = ['date', 'dayQuality', 'wakeUp', 'goToBed', 'sleepTime',
-	'excercise', 'deepWorkTime', 'meaningfulActivity' ,'author', 'edit'];
+	displayedColumns: string[] = [
+		'date',
+		'dayQuality',
+		'wakeUp',
+		'goToBed',
+		'sleepTime',
+		'excercise',
+		'deepWorkTime',
+		'meaningfulActivity',
+		'author',
+		'edit',
+	];
 	qualities: Quality[] = [];
 	allItems: Quality[] = [];
 
@@ -25,12 +32,12 @@ export class QualityComponent {
 		private authorizationQuery: AuthorizationQuery,
 	) {
 		this.qualityService.items.subscribe((items) => {
-		if (items) {
-			this.allItems = items;
-			if (localStorage.getItem('author')) {
-				this.createDataSource(localStorage.getItem('author'))
-			} else this.qualities = [...items];
-		}
+			if (items) {
+				this.allItems = items;
+				if (localStorage.getItem('author')) {
+					this.createDataSource(localStorage.getItem('author'));
+				} else this.qualities = [...items];
+			}
 		});
 
 		this.authorizationQuery.selectedUser.subscribe((author) => {
@@ -52,11 +59,12 @@ export class QualityComponent {
 		return 'no';
 	}
 
-	createDataSource (author?: string) {
+	createDataSource(author?: string) {
 		this.qualities = [];
-		this.allItems && this.allItems.forEach(element => {
-			if (element.author === author) this.qualities.push(element);
-		});
+		this.allItems &&
+			this.allItems.forEach((element) => {
+				if (element.author === author) this.qualities.push(element);
+			});
 	}
 
 	delete(entry: Quality) {
@@ -66,9 +74,8 @@ export class QualityComponent {
 	minutes(element): string {
 		if (element) {
 			if (element.duration > 1) {
-				return 'minutes'
-			} else return 'minute'
+				return 'minutes';
+			} else return 'minute';
 		}
 	}
-
 }

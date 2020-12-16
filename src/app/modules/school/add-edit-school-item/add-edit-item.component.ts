@@ -7,28 +7,27 @@ import { SchoolService } from 'src/app/common/services/api-calls/school.service'
 import { AuthorizationQuery } from 'src/app/state-management/authorization/authorization.query';
 
 @Component({
-  selector: 'app-add-edit-item',
-  templateUrl: './add-edit-item.component.html',
-  styleUrls: ['./add-edit-item.component.scss']
+	selector: 'app-add-edit-item',
+	templateUrl: './add-edit-item.component.html',
+	styleUrls: ['./add-edit-item.component.scss'],
 })
 export class AddEditSchoolItemComponent implements OnInit {
-
 	form: FormGroup;
 	difficulties: string[];
 	authors: string[];
 
-  constructor(
+	constructor(
 		public dialogRef: MatDialogRef<AddEditSchoolItemComponent>,
 		@Inject(MAT_DIALOG_DATA) public data: School,
 		private authorizationQuery: AuthorizationQuery,
 		private difficultyService: DifficultyService,
 		private schoolService: SchoolService,
-  	) {
-		this.difficultyService.difficulties.subscribe((items)=>{
+	) {
+		this.difficultyService.difficulties.subscribe((items) => {
 			if (items) this.difficulties = [...items];
 		});
-		this.authorizationQuery.users.subscribe((authors) => this.authors = authors);
- 	}
+		this.authorizationQuery.users.subscribe((authors) => (this.authors = authors));
+	}
 
 	ngOnInit(): void {
 		this.form = new FormGroup({
@@ -38,11 +37,11 @@ export class AddEditSchoolItemComponent implements OnInit {
 			typeOfTest: new FormControl(this.data ? this.data.typeOfTest : ''),
 			author: new FormControl(this.data ? this.data.author : ''),
 		});
- 	}
+	}
 
 	public onSubmit(): void {
 		if (this.form.valid) {
-			const newOrUpdatedItem =  {
+			const newOrUpdatedItem = {
 				date: this.form.value.date,
 				subject: this.form.value.subject,
 				difficulty: this.form.value.lunch,
@@ -50,8 +49,10 @@ export class AddEditSchoolItemComponent implements OnInit {
 				id: this.data ? this.data.id : '',
 				author: this.form.value.author ? this.form.value.author : '',
 			};
-			newOrUpdatedItem.id ? this.schoolService.patchItem(newOrUpdatedItem) : this.schoolService.addItem(newOrUpdatedItem);
+			newOrUpdatedItem.id
+				? this.schoolService.patchItem(newOrUpdatedItem)
+				: this.schoolService.addItem(newOrUpdatedItem);
 			this.dialogRef.close();
-      	}
+		}
 	}
 }

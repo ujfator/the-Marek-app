@@ -4,20 +4,16 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { BudgetService } from 'src/app/common/services/api-calls/budget.service';
 
 @Component({
-  selector: 'app-money-dialog',
-  templateUrl: './money-dialog.component.html',
-  styleUrls: ['./money-dialog.component.scss']
+	selector: 'app-money-dialog',
+	templateUrl: './money-dialog.component.html',
+	styleUrls: ['./money-dialog.component.scss'],
 })
 export class MoneyDialogComponent implements OnInit {
-
 	form: FormGroup;
 	@Inject(MAT_DIALOG_DATA) public data: string[];
 	natures: string[] = ['fixedExpenses', 'adjustableExpenses', 'loans', 'properties', 'savings'];
 
-	constructor(
-		public dialogRef: MatDialogRef<MoneyDialogComponent>,
-		private budgetService: BudgetService,
-	) { }
+	constructor(public dialogRef: MatDialogRef<MoneyDialogComponent>, private budgetService: BudgetService) {}
 
 	ngOnInit(): void {
 		this.form = new FormGroup({

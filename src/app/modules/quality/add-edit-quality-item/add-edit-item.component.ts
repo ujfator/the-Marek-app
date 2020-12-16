@@ -8,10 +8,9 @@ import { AuthorizationQuery } from 'src/app/state-management/authorization/autho
 @Component({
 	selector: 'app-add-edit-item',
 	templateUrl: './add-edit-item.component.html',
-	styleUrls: ['./add-edit-item.component.scss']
+	styleUrls: ['./add-edit-item.component.scss'],
 })
 export class AddEditQualityItemComponent implements OnInit {
-
 	form: FormGroup;
 	authors: string[];
 
@@ -21,7 +20,7 @@ export class AddEditQualityItemComponent implements OnInit {
 		private qualityService: QualityService,
 		@Optional() @Inject(MAT_DIALOG_DATA) public data: Quality,
 	) {
-		this.authorizationQuery.users.subscribe((authors) => this.authors = authors);
+		this.authorizationQuery.users.subscribe((authors) => (this.authors = authors));
 	}
 
 	ngOnInit(): void {
@@ -40,7 +39,7 @@ export class AddEditQualityItemComponent implements OnInit {
 
 	onSubmit(): void {
 		if (this.form.valid) {
-			const newOrUpdatedItem =  {
+			const newOrUpdatedItem = {
 				date: this.form.value.date,
 				dayQuality: this.form.value.dayQuality,
 				wakeUp: this.form.value.wakeUp,
@@ -51,9 +50,11 @@ export class AddEditQualityItemComponent implements OnInit {
 				meaningfulActivity: this.form.value.meaningfulActivity,
 				deepWorkTime: this.form.value.deepWorkTime,
 				author: this.form.value.author ? this.form.value.author : '',
-      		};
-			newOrUpdatedItem.id ? this.qualityService.patchItem(newOrUpdatedItem) : this.qualityService.addItem(newOrUpdatedItem);
+			};
+			newOrUpdatedItem.id
+				? this.qualityService.patchItem(newOrUpdatedItem)
+				: this.qualityService.addItem(newOrUpdatedItem);
 			this.dialogRef.close();
 		}
-  	}
+	}
 }

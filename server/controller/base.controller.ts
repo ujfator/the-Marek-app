@@ -4,7 +4,6 @@ import { BaseInterface } from './base.interface';
 import { DbiController } from './dbi/dbi.controller';
 
 export class BaseController {
-
 	protected get __dbi(): DbiController {
 		return this._dbi;
 	}
@@ -54,7 +53,7 @@ export class BaseController {
 			dbi: this.__dbi,
 			options,
 			router: this.__router,
-			server: this.__server
+			server: this.__server,
 		});
 	}
 }

@@ -8,10 +8,11 @@ import { environment } from './environments/environment';
 import { persistState } from '@datorama/akita';
 
 if (environment.production) {
-  enableProdMode();
+	enableProdMode();
 }
 
-persistState({storage: sessionStorage});
+persistState({ storage: sessionStorage });
 
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+platformBrowserDynamic()
+	.bootstrapModule(AppModule)
+	.catch((err) => console.error(err));

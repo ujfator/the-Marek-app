@@ -5,7 +5,6 @@ import { User } from '../../models/user.model';
 import * as bcrypt from 'bcrypt';
 
 export class UserController extends BaseController {
-
 	constructor(args: BaseInterface) {
 		super(args);
 
@@ -18,20 +17,23 @@ export class UserController extends BaseController {
 		if (!user.login || !user.password) {
 			return false;
 		} else {
-			const savedUser = await this.model.find({login: user.login});
-			const match = await bcrypt.compare(user.password, savedUser[0].password);
+			const savedUser = await this.model.find({ login: user.login });
+			let match = false;
+			if (savedUser && savedUser.length) {
+				match = await bcrypt.compare(user.password, savedUser[0].password);
+			}
 			return match;
 		}
 	}
 
 	async setUser(user: User): Promise<string> {
 		const hashedPassword = await bcrypt.hash(user.password, 10);
-		return this.model.create(
-			{
+		return this.model
+			.create({
 				login: user.login,
 				password: hashedPassword,
-			}
-			).then((resp) => 'User saved.');
+			})
+			.then((resp) => 'User saved.');
 	}
 
 	async getUsers(): Promise<User[]> {
@@ -42,12 +44,10 @@ export class UserController extends BaseController {
 
 	async getUser(data: string): Promise<boolean> {
 		const userData = data.split('|');
-		return this.model.find({login: userData[0]}).then((resp: User) => {
-			bcrypt.compare(userData[1], resp.password, function(err, result) {
+		return this.model.find({ login: userData[0] }).then((resp: User) => {
+			bcrypt.compare(userData[1], resp.password, function (err, result) {
 				return true;
 			});
 		});
 	}
-
-
 }

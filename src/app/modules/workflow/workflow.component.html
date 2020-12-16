@@ -1,151 +1,196 @@
 <div fxFill fxLayout="column">
-  <mat-divider horizontal></mat-divider>
-  <div fxLayout="row" fxFlex>
-    <mat-card cdkDropList
-      #newList="cdkDropList"
-      [cdkDropListData]="columns.new"
-      [cdkDropListConnectedTo]="[newList, thisWeekList, todayList, doneList]"
-      class="workflow-manager-list"
-      (cdkDropListDropped)="drop($event)"
-      fxLayout="column">
-      <mat-card-header>
-        <div mat-card-avatar>
-          <mat-icon>hourglass_full</mat-icon>
-        </div>
-        <mat-card-title>New</mat-card-title>
-        <div fxFlex dir="rtl" style="margin-right: 6px">
-          <button matTooltip="Create item" mat-raised-button (click)="addEditItem()">
-              <mat-icon>add</mat-icon>
-          </button>          
-        </div>
-      </mat-card-header>
-      <mat-expansion-panel class="expansion-panel" cdkDrag *ngFor="let item of columns.new">
-        <mat-expansion-panel-header>
-          <mat-panel-title matTooltip="{{item.name}}" class="panel-title">
-            <div>{{item.name}}</div> <div fxFlex dir="rtl" 
-            [ngClass]="{'blue-text': item.author === 'Marek', 'red-text' : item.author === 'Terezka' }" 
-            style="font-style: italic">{{item.author}}</div>
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <div fxLayout="row" fxFlex>
-          <div fxLayout="column" fxFill class="content">
-            <div fxFlex>
-              {{item.content}}
-            </div>
-            <hr>
-            <div class="date"> Created on: {{item.created | date: 'dd.MM.yyyy'}}</div>
-            <div fxFlex fxFlexAlign="end">
-              <button matTooltip="Edit item" (click)="addEditItem(item)" mat-raised-button>
-                <mat-icon>edit</mat-icon>
-              </button>
-            </div>
-          </div>
-        </div>
-      </mat-expansion-panel>
-    </mat-card>
-    <mat-card cdkDropList
-    #thisWeekList="cdkDropList"
-    [cdkDropListData]="columns.thisWeek"
-    [cdkDropListConnectedTo]="[newList, thisWeekList, todayList, doneList]"
-    class="workflow-manager-list"
-    (cdkDropListDropped)="drop($event)">
-    <mat-card-header>
-      <div mat-card-avatar>
-          <mat-icon>home_work</mat-icon>
-        </div>
-      <mat-card-title>This week</mat-card-title>
-    </mat-card-header>
-    <mat-expansion-panel class="expansion-panel" *ngFor="let item of columns.thisWeek" cdkDrag>
-      <mat-expansion-panel-header>
-        <mat-panel-title matTooltip="{{item.name}}" class="panel-title">
-          <div>{{item.name}}</div> <div fxFlex dir="rtl" 
-            [ngClass]="{'blue-text': item.author === 'Marek', 'red-text' : item.author === 'Terezka' }" 
-            style="font-style: italic">{{item.author}}</div>
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <div fxLayout="row" fxFlex>
-        <div fxLayout="column" fxFill class="content">
-          <div fxFlex>{{item.content}}</div>
-          <hr>
-          <div class="date"> Created on: {{item.created | date: 'dd.MM.yyyy'}}</div>
-          <div fxFlex fxFlexAlign="end">
-            <button matTooltip="Edit item" (click)="addEditItem(item)" mat-raised-button>
-              <mat-icon>edit</mat-icon>
-            </button>
-          </div>
-        </div>
-      </div>
-    </mat-expansion-panel>
-  </mat-card>
-  <mat-card cdkDropList
-    #todayList="cdkDropList"
-    [cdkDropListData]="columns.today"
-    [cdkDropListConnectedTo]="[newList, thisWeekList, todayList, doneList]"
-    class="workflow-manager-list"
-    (cdkDropListDropped)="drop($event)">
-    <mat-card-header>
-      <div mat-card-avatar>
-          <mat-icon>alarm</mat-icon>
-        </div>
-      <mat-card-title>Today</mat-card-title>
-    </mat-card-header>
-    <mat-expansion-panel class="expansion-panel" *ngFor="let item of columns.today" cdkDrag>
-      <mat-expansion-panel-header>
-        <mat-panel-title matTooltip="{{item.name}}" class="panel-title">
-          <div>{{item.name}}</div> <div fxFlex dir="rtl" 
-            [ngClass]="{'blue-text': item.author === 'Marek', 'red-text' : item.author === 'Terezka' }" 
-            style="font-style: italic">{{item.author}}</div>
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <div fxLayout="row" fxFlex>
-        <div fxLayout="column" fxFill class="content">
-          <div fxFlex>{{item.content}}</div>
-          <hr>
-          <div class="date"> Created on: {{item.created | date: 'dd.MM.yyyy'}}</div>
-          <div fxFlex fxFlexAlign="end">
-            <button matTooltip="Edit item" (click)="addEditItem(item)" mat-raised-button>
-              <mat-icon>edit</mat-icon>
-            </button>
-          </div>
-        </div>
-      </div>
-    </mat-expansion-panel>
-  </mat-card>
-  <mat-card cdkDropList
-    #doneList="cdkDropList"
-    [cdkDropListData]="columns.done"
-    [cdkDropListConnectedTo]="[newList, thisWeekList, todayList, doneList]"
-    class="workflow-manager-list"
-    (cdkDropListDropped)="drop($event)">
-    <mat-card-header>
-      <div mat-card-avatar>
-          <mat-icon>done</mat-icon>
-        </div>
-      <mat-card-title>Done</mat-card-title>
-    </mat-card-header>
-    <mat-expansion-panel class="expansion-panel" *ngFor="let item of columns.done" cdkDrag>
-      <mat-expansion-panel-header>
-        <mat-panel-title matTooltip="{{item.name}}" class="panel-title">
-          <div>{{item.name}}</div> <div fxFlex dir="rtl" 
-            [ngClass]="{'blue-text': item.author === 'Marek', 'red-text' : item.author === 'Terezka' }" 
-            style="font-style: italic">{{item.author}}</div>
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <div fxLayout="row" fxFlex>
-        <div fxLayout="column" fxFill class="content">
-          <div fxFlex>{{item.content}}</div>
-          <hr>
-          <div class="date"> Finished on: {{item.finished | date: 'dd.MM.yyyy'}}</div>
-          <div fxFlex fxFlexAlign="end">
-            <button matTooltip="Delete item" (click)="delete(item.id)" mat-raised-button>
-              <mat-icon>delete</mat-icon>
-            </button>
-          </div>
-        </div>
-      </div>
-    </mat-expansion-panel>
-  </mat-card>
-  </div>
+	<mat-divider horizontal></mat-divider>
+	<div fxLayout="row" fxFlex>
+		<mat-card
+			cdkDropList
+			#newList="cdkDropList"
+			[cdkDropListData]="columns.new"
+			[cdkDropListConnectedTo]="[newList, thisWeekList, todayList, doneList]"
+			class="workflow-manager-list"
+			(cdkDropListDropped)="drop($event)"
+			fxLayout="column"
+		>
+			<mat-card-header>
+				<div mat-card-avatar>
+					<mat-icon>hourglass_full</mat-icon>
+				</div>
+				<mat-card-title>New</mat-card-title>
+				<div fxFlex dir="rtl" style="margin-right: 6px">
+					<button matTooltip="Create item" mat-raised-button (click)="addEditItem()">
+						<mat-icon>add</mat-icon>
+					</button>
+				</div>
+			</mat-card-header>
+			<mat-expansion-panel class="expansion-panel" cdkDrag *ngFor="let item of columns.new">
+				<mat-expansion-panel-header>
+					<mat-panel-title matTooltip="{{ item.name }}" class="panel-title">
+						<div>{{ item.name }}</div>
+						<div
+							fxFlex
+							dir="rtl"
+							[ngClass]="{
+								'blue-text': item.author === 'Marek',
+								'red-text': item.author === 'Terezka'
+							}"
+							style="font-style: italic"
+						>
+							{{ item.author }}
+						</div>
+					</mat-panel-title>
+				</mat-expansion-panel-header>
+				<div fxLayout="row" fxFlex>
+					<div fxLayout="column" fxFill class="content">
+						<div fxFlex>
+							{{ item.content }}
+						</div>
+						<hr />
+						<div class="date">Created on: {{ item.created | date: 'dd.MM.yyyy' }}</div>
+						<div fxFlex fxFlexAlign="end">
+							<button matTooltip="Edit item" (click)="addEditItem(item)" mat-raised-button>
+								<mat-icon>edit</mat-icon>
+							</button>
+						</div>
+					</div>
+				</div>
+			</mat-expansion-panel>
+		</mat-card>
+		<mat-card
+			cdkDropList
+			#thisWeekList="cdkDropList"
+			[cdkDropListData]="columns.thisWeek"
+			[cdkDropListConnectedTo]="[newList, thisWeekList, todayList, doneList]"
+			class="workflow-manager-list"
+			(cdkDropListDropped)="drop($event)"
+		>
+			<mat-card-header>
+				<div mat-card-avatar>
+					<mat-icon>home_work</mat-icon>
+				</div>
+				<mat-card-title>This week</mat-card-title>
+			</mat-card-header>
+			<mat-expansion-panel class="expansion-panel" *ngFor="let item of columns.thisWeek" cdkDrag>
+				<mat-expansion-panel-header>
+					<mat-panel-title matTooltip="{{ item.name }}" class="panel-title">
+						<div>{{ item.name }}</div>
+						<div
+							fxFlex
+							dir="rtl"
+							[ngClass]="{
+								'blue-text': item.author === 'Marek',
+								'red-text': item.author === 'Terezka'
+							}"
+							style="font-style: italic"
+						>
+							{{ item.author }}
+						</div>
+					</mat-panel-title>
+				</mat-expansion-panel-header>
+				<div fxLayout="row" fxFlex>
+					<div fxLayout="column" fxFill class="content">
+						<div fxFlex>{{ item.content }}</div>
+						<hr />
+						<div class="date">Created on: {{ item.created | date: 'dd.MM.yyyy' }}</div>
+						<div fxFlex fxFlexAlign="end">
+							<button matTooltip="Edit item" (click)="addEditItem(item)" mat-raised-button>
+								<mat-icon>edit</mat-icon>
+							</button>
+						</div>
+					</div>
+				</div>
+			</mat-expansion-panel>
+		</mat-card>
+		<mat-card
+			cdkDropList
+			#todayList="cdkDropList"
+			[cdkDropListData]="columns.today"
+			[cdkDropListConnectedTo]="[newList, thisWeekList, todayList, doneList]"
+			class="workflow-manager-list"
+			(cdkDropListDropped)="drop($event)"
+		>
+			<mat-card-header>
+				<div mat-card-avatar>
+					<mat-icon>alarm</mat-icon>
+				</div>
+				<mat-card-title>Today</mat-card-title>
+			</mat-card-header>
+			<mat-expansion-panel class="expansion-panel" *ngFor="let item of columns.today" cdkDrag>
+				<mat-expansion-panel-header>
+					<mat-panel-title matTooltip="{{ item.name }}" class="panel-title">
+						<div>{{ item.name }}</div>
+						<div
+							fxFlex
+							dir="rtl"
+							[ngClass]="{
+								'blue-text': item.author === 'Marek',
+								'red-text': item.author === 'Terezka'
+							}"
+							style="font-style: italic"
+						>
+							{{ item.author }}
+						</div>
+					</mat-panel-title>
+				</mat-expansion-panel-header>
+				<div fxLayout="row" fxFlex>
+					<div fxLayout="column" fxFill class="content">
+						<div fxFlex>{{ item.content }}</div>
+						<hr />
+						<div class="date">Created on: {{ item.created | date: 'dd.MM.yyyy' }}</div>
+						<div fxFlex fxFlexAlign="end">
+							<button matTooltip="Edit item" (click)="addEditItem(item)" mat-raised-button>
+								<mat-icon>edit</mat-icon>
+							</button>
+						</div>
+					</div>
+				</div>
+			</mat-expansion-panel>
+		</mat-card>
+		<mat-card
+			cdkDropList
+			#doneList="cdkDropList"
+			[cdkDropListData]="columns.done"
+			[cdkDropListConnectedTo]="[newList, thisWeekList, todayList, doneList]"
+			class="workflow-manager-list"
+			(cdkDropListDropped)="drop($event)"
+		>
+			<mat-card-header>
+				<div mat-card-avatar>
+					<mat-icon>done</mat-icon>
+				</div>
+				<mat-card-title>Done</mat-card-title>
+			</mat-card-header>
+			<mat-expansion-panel class="expansion-panel" *ngFor="let item of columns.done" cdkDrag>
+				<mat-expansion-panel-header>
+					<mat-panel-title matTooltip="{{ item.name }}" class="panel-title">
+						<div>{{ item.name }}</div>
+						<div
+							fxFlex
+							dir="rtl"
+							[ngClass]="{
+								'blue-text': item.author === 'Marek',
+								'red-text': item.author === 'Terezka'
+							}"
+							style="font-style: italic"
+						>
+							{{ item.author }}
+						</div>
+					</mat-panel-title>
+				</mat-expansion-panel-header>
+				<div fxLayout="row" fxFlex>
+					<div fxLayout="column" fxFill class="content">
+						<div fxFlex>{{ item.content }}</div>
+						<hr />
+						<div class="date">
+							Finished on:
+							{{ item.finished | date: 'dd.MM.yyyy' }}
+						</div>
+						<div fxFlex fxFlexAlign="end">
+							<button matTooltip="Delete item" (click)="delete(item.id)" mat-raised-button>
+								<mat-icon>delete</mat-icon>
+							</button>
+						</div>
+					</div>
+				</div>
+			</mat-expansion-panel>
+		</mat-card>
+	</div>
 </div>
-
-

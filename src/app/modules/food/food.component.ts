@@ -5,15 +5,12 @@ import { Food } from 'server/models';
 import { AddEditFoodItemComponent } from './add-edit-food-item/add-edit-item.component';
 import { AuthorizationQuery } from 'src/app/state-management/authorization/authorization.query';
 
-
 @Component({
 	selector: 'app-food',
 	templateUrl: './food.component.html',
-	styleUrls: ['./food.component.scss']
+	styleUrls: ['./food.component.scss'],
 })
-
 export class FoodComponent {
-
 	displayedColumns: string[] = ['date', 'breakfast', 'lunch', 'dinner', 'junkFood', 'author', 'edit'];
 	foodItems: Food[] = [];
 	allItems: Food[] = [];
@@ -27,7 +24,7 @@ export class FoodComponent {
 			if (items) {
 				this.allItems = await [...items];
 				if (localStorage.getItem('author')) {
-					this.createDataSource(localStorage.getItem('author'))
+					this.createDataSource(localStorage.getItem('author'));
 				} else this.foodItems = [...items];
 			}
 		});
@@ -37,8 +34,7 @@ export class FoodComponent {
 				this.createDataSource(author);
 			} else if (author === 'Oba') this.foodItems = [...this.allItems];
 		});
-	  }
-
+	}
 
 	addOrEditEntry(item: Food) {
 		const dialogRef = this.dialog.open(AddEditFoodItemComponent, {
@@ -47,15 +43,15 @@ export class FoodComponent {
 		});
 	}
 
-	createDataSource (author?: string) {
+	createDataSource(author?: string) {
 		this.foodItems = [];
-		this.allItems && this.allItems.forEach(element => {
-			if (element.author === author) this.foodItems.push(element);
-		});
+		this.allItems &&
+			this.allItems.forEach((element) => {
+				if (element.author === author) this.foodItems.push(element);
+			});
 	}
 
 	delete(entry: Food) {
 		this.foodService.deleteItem(entry.id);
 	}
-
 }

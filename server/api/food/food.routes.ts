@@ -14,26 +14,29 @@ export class FoodRoutes extends BaseController {
 
 		this.__router.get('/', (req: Request, res: Response) => this._getAll(req, res));
 		this.__router.post('/', (req: Request, res: Response) => this._set(req, res));
-
 	}
-
-
 
 	private _getAll = (req: Request, res: Response): void => {
-		this._foodController.getFoods().then((foods: Food[]) => {
-			res.jsonp(foods);
-		}).catch((e: any) => {
-			res.status(500).send(e);
-			console.warn(e);
-		});
-	}
+		this._foodController
+			.getFoods()
+			.then((foods: Food[]) => {
+				res.jsonp(foods);
+			})
+			.catch((e: any) => {
+				res.status(500).send(e);
+				console.warn(e);
+			});
+	};
 
 	private _set = (req: Request, res: Response): void => {
-		this._foodController.setFood(req.body).then((food: Food) => {
-			res.jsonp(food);
-		}).catch((e: any) => {
-			res.status(500).send(e);
-			console.warn(e);
-		});
-	}
+		this._foodController
+			.setFood(req.body)
+			.then((food: Food) => {
+				res.jsonp(food);
+			})
+			.catch((e: any) => {
+				res.status(500).send(e);
+				console.warn(e);
+			});
+	};
 }

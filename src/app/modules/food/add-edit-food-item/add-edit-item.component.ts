@@ -6,12 +6,11 @@ import { FoodService } from 'src/app/common/services/api-calls/food.service';
 import { AuthorizationQuery } from 'src/app/state-management/authorization/authorization.query';
 
 @Component({
-  selector: 'app-add-edit-item',
-  templateUrl: './add-edit-item.component.html',
-  styleUrls: ['./add-edit-item.component.scss']
+	selector: 'app-add-edit-item',
+	templateUrl: './add-edit-item.component.html',
+	styleUrls: ['./add-edit-item.component.scss'],
 })
 export class AddEditFoodItemComponent implements OnInit {
-
 	form: FormGroup;
 	authors: string[];
 
@@ -21,7 +20,7 @@ export class AddEditFoodItemComponent implements OnInit {
 		private foodService: FoodService,
 		@Inject(MAT_DIALOG_DATA) public data: Food,
 	) {
-		this.authorizationQuery.users.subscribe((authors) => this.authors = authors)
+		this.authorizationQuery.users.subscribe((authors) => (this.authors = authors));
 	}
 
 	ngOnInit(): void {
@@ -37,7 +36,7 @@ export class AddEditFoodItemComponent implements OnInit {
 
 	onSubmit(): void {
 		if (this.form.valid) {
-			const newOrUpdatedItem =  {
+			const newOrUpdatedItem = {
 				date: this.form.value.date,
 				breakfast: this.form.value.breakfast,
 				lunch: this.form.value.lunch,
@@ -46,7 +45,9 @@ export class AddEditFoodItemComponent implements OnInit {
 				junkFood: this.form.value.junkFood,
 				author: this.form.value.author ? this.form.value.author : '',
 			};
-			(newOrUpdatedItem && newOrUpdatedItem.id) ? this.foodService.patchItem(newOrUpdatedItem) : this.foodService.addItem(newOrUpdatedItem);
+			newOrUpdatedItem && newOrUpdatedItem.id
+				? this.foodService.patchItem(newOrUpdatedItem)
+				: this.foodService.addItem(newOrUpdatedItem);
 			this.dialogRef.close();
 		}
 	}

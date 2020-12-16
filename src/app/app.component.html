@@ -12,7 +12,9 @@
 				<mat-menu #menu="matMenu">
 					<button [mat-menu-item] (click)="chooseAuthor(null)">Unset user</button>
 					<div *ngFor="let user of users">
-						<button [mat-menu-item] (click)="chooseAuthor(user)">{{user}}</button>
+						<button [mat-menu-item] (click)="chooseAuthor(user)">
+							{{ user }}
+						</button>
 					</div>
 				</mat-menu>
 			</div>
@@ -30,7 +32,7 @@
 		</button>
 	</mat-toolbar>
 	<mat-divider></mat-divider>
-	<mat-sidenav-container class="side-navigation-container">
+	<mat-sidenav-container class="{{ sidenavWidthClass }}">
 		<mat-sidenav #sideNavigation [opened]="opened" mode="side" *ngIf="isAuthorized">
 			<div fxLayout="column" fxLayoutAlign="start space-between" fxFlex>
 				<mat-nav-list fxLayout="column" fxLayoutAlign="start stretch" fxFill>

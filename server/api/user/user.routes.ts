@@ -19,38 +19,50 @@ export class UserRoutes extends BaseController {
 	}
 
 	private _login = (req: Request, res: Response): void => {
-		this._userController.login(req.body).then((isValid: boolean): void => {
-			res.json(isValid)
-		}).catch((e: any) => {
-			res.status(500).send(e);
-			console.warn(e);
-		});
-	}
+		this._userController
+			.login(req.body)
+			.then((isValid: boolean): void => {
+				res.json(isValid);
+			})
+			.catch((e: any) => {
+				res.status(500).send(e);
+				console.warn(e);
+			});
+	};
 
 	private _setUser = (req: Request, res: Response): void => {
-		this._userController.setUser(req.body).then((res: string): string => {
-			return res;
-		}).catch((e: any) => {
-			res.status(500).send(e);
-			console.warn(e);
-		});
-	}
+		this._userController
+			.setUser(req.body)
+			.then((res: string): string => {
+				return res;
+			})
+			.catch((e: any) => {
+				res.status(500).send(e);
+				console.warn(e);
+			});
+	};
 
 	private _getUsers = (req: Request, res: Response): void => {
-		this._userController.getUsers().then((users: User[]) => {
-			res.jsonp(users);
-		}).catch((e: any) => {
-			res.status(500).send(e);
-			console.warn(e);
-		});
-	}
+		this._userController
+			.getUsers()
+			.then((users: User[]) => {
+				res.jsonp(users);
+			})
+			.catch((e: any) => {
+				res.status(500).send(e);
+				console.warn(e);
+			});
+	};
 
 	private _getUser = (req: Request, res: Response): void => {
-		this._userController.getUser(req.params.data).then((isValid: boolean) => {
-			res.jsonp(isValid);
-		}).catch((e: any) => {
-			res.status(500).send(e);
-			console.warn(e);
-		});
-	}
+		this._userController
+			.getUser(req.params.data)
+			.then((isValid: boolean) => {
+				res.jsonp(isValid);
+			})
+			.catch((e: any) => {
+				res.status(500).send(e);
+				console.warn(e);
+			});
+	};
 }

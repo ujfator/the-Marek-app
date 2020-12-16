@@ -1,8 +1,17 @@
 @import '../../app.component';
 
-
 :host::ng-deep .mat-list-item-content {
-    width: 100% !important;
+	width: 100% !important;
+}
+
+.tiles-container {
+	max-height: 100%;
+	max-width: 100%;
+	overflow: hidden;
+}
+
+.tile-hidden {
+	display: none;
 }
 
 .add-button {
@@ -12,10 +21,11 @@
 }
 
 .header {
-    width: 100%;
+	width: 100%;
 }
 
 .tile {
+	min-width: 300px;
 	padding: 8px;
 	height: 100%;
 	overflow: hidden;

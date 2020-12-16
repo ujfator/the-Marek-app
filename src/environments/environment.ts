@@ -5,5 +5,5 @@ export const environment = {
 	database_port: '27017',
 	database_url: '127.0.0.1',
 	database_user: 'marek',
-	production: false
+	production: false,
 };

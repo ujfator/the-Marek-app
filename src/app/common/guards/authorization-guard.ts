@@ -1,24 +1,15 @@
 import { Injectable } from '@angular/core';
-import {
-	ActivatedRouteSnapshot,
-	CanActivate,
-	Router,
-	RouterStateSnapshot
-} from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 import { AuthorizationQuery } from 'src/app/state-management/authorization/authorization.query';
 
 @Injectable({
-  	providedIn: 'root'
+	providedIn: 'root',
 })
 export class AuthorizationGuard implements CanActivate {
-
 	isAuthorized: boolean = false;
 
-	constructor(
-		private router: Router,
-		private authorizationQuery: AuthorizationQuery,
-		) {
-			this.authorizationQuery.isAuthorized.subscribe((isAuthorized) => this.isAuthorized = isAuthorized);
+	constructor(private router: Router, private authorizationQuery: AuthorizationQuery) {
+		this.authorizationQuery.isAuthorized.subscribe((isAuthorized) => (this.isAuthorized = isAuthorized));
 	}
 
 	canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {

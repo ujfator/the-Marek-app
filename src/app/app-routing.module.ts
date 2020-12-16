@@ -12,23 +12,45 @@ import { AuthorizationGuard } from './common/guards/authorization-guard';
 
 const routes: Routes = [
 	{ path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
-	{ path: 'food', component: FoodComponent, canActivate: [AuthorizationGuard] },
-	{ path: 'day-quality-tab', component: QualityComponent, canActivate: [AuthorizationGuard] },
-	{ path: 'money-tab', component: MoneyComponent, canActivate: [AuthorizationGuard] },
-	{ path: 'workflow-tab', component: WorkflowComponent, canActivate: [AuthorizationGuard] },
-	{ path: 'food-tab', component: FoodComponent, canActivate: [AuthorizationGuard] },
-	{ path: 'school-tab', component: SchoolComponent, canActivate: [AuthorizationGuard] },
+	{
+		path: 'food',
+		component: FoodComponent,
+		canActivate: [AuthorizationGuard],
+	},
+	{
+		path: 'day-quality-tab',
+		component: QualityComponent,
+		canActivate: [AuthorizationGuard],
+	},
+	{
+		path: 'money-tab',
+		component: MoneyComponent,
+		canActivate: [AuthorizationGuard],
+	},
+	{
+		path: 'workflow-tab',
+		component: WorkflowComponent,
+		canActivate: [AuthorizationGuard],
+	},
+	{
+		path: 'food-tab',
+		component: FoodComponent,
+		canActivate: [AuthorizationGuard],
+	},
+	{
+		path: 'school-tab',
+		component: SchoolComponent,
+		canActivate: [AuthorizationGuard],
+	},
 	{
 		redirectTo: 'login',
 		path: '',
-		pathMatch: 'full'
+		pathMatch: 'full',
 	},
 ];
 
 @NgModule({
-	imports: [
-		RouterModule.forRoot(routes),
-	],
-  	exports: [RouterModule]
+	imports: [RouterModule.forRoot(routes)],
+	exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

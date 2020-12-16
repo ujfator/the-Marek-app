@@ -3,20 +3,21 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-add-edit-item',
-  templateUrl: './add-edit-item.component.html',
-  styleUrls: ['./add-edit-item.component.scss']
+	selector: 'app-add-edit-item',
+	templateUrl: './add-edit-item.component.html',
+	styleUrls: ['./add-edit-item.component.scss'],
 })
 export class AddEditItemComponent implements OnInit {
-
 	form: FormGroup;
 
 	constructor(
 		public dialogRef: MatDialogRef<AddEditItemComponent>,
-		@Inject(MAT_DIALOG_DATA) public data: {
-			item: any, origin: string
+		@Inject(MAT_DIALOG_DATA)
+		public data: {
+			item: any;
+			origin: string;
 		},
-	) { }
+	) {}
 
 	ngOnInit(): void {
 		this.form = new FormGroup({
@@ -36,7 +37,7 @@ export class AddEditItemComponent implements OnInit {
 					author: this.form.value.author,
 				},
 				origin: 'money',
-			}
+			};
 			this.dialogRef.close(newOrUpdatedItem);
 		}
 	}

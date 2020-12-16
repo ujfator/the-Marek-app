@@ -4,7 +4,6 @@ import { BaseController } from '../base.controller';
 import { BaseInterface } from '../base.interface';
 
 export class SchoolController extends BaseController {
-
 	constructor(args: BaseInterface) {
 		super(args);
 
@@ -28,7 +27,7 @@ export class SchoolController extends BaseController {
 	}
 
 	setItem(item: School): Promise<School> {
-		return this.model.insertMany(item).then((resp) =>  new School(resp));
+		return this.model.insertMany(item).then((resp) => new School(resp));
 	}
 
 	patchItem(item: School): Promise<School> {

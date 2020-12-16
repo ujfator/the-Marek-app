@@ -1,11 +1,9 @@
-
 import { BaseController } from '../base.controller';
 import { BaseInterface } from '../base.interface';
 import { DifficultySchema } from '../../schema/difficulty.schema';
 import { Difficulty } from '../../models';
 
 export class DifficultyController extends BaseController {
-
 	constructor(args: BaseInterface) {
 		super(args);
 

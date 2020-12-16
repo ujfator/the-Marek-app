@@ -6,20 +6,19 @@ import { MatDialog } from '@angular/material/dialog';
 import { MoneyDialogComponent } from './money-dialog/money-dialog.component';
 
 interface Items {
-	fixedExpenses: Budget[],
-	adjustableExpenses: Budget[],
-	savings: Budget[],
-	properties: Budget[],
-	loans: Budget[],
+	fixedExpenses: Budget[];
+	adjustableExpenses: Budget[];
+	savings: Budget[];
+	properties: Budget[];
+	loans: Budget[];
 }
 
 @Component({
 	selector: 'app-money',
 	templateUrl: './money.component.html',
-	styleUrls: ['./money.component.scss']
+	styleUrls: ['./money.component.scss'],
 })
 export class MoneyComponent {
-
 	moneyItems: Money[];
 	items: Items = {
 		fixedExpenses: [],
@@ -31,15 +30,12 @@ export class MoneyComponent {
 	objectKeys = Object.keys;
 	natures: string[] = [];
 
-	constructor(
-		public dialog: MatDialog,
-		private service: BudgetService,
-	) {
+	constructor(public dialog: MatDialog, private service: BudgetService) {
 		this.service.items.subscribe((items) => {
 			this.emptyColumns();
 			if (items) {
-				items.forEach(item => {
-					switch(item.nature) {
+				items.forEach((item) => {
+					switch (item.nature) {
 						case 'fixedExpenses':
 							this.items.fixedExpenses.push(item);
 							break;
@@ -55,14 +51,14 @@ export class MoneyComponent {
 						case 'properties':
 							this.items.properties.push(item);
 							break;
-					};
+					}
 				});
-			};
+			}
 		});
 	}
 
 	add() {
-		console.log(this.natures)
+		console.log(this.natures);
 		const dialogRef = this.dialog.open(MoneyDialogComponent, {
 			width: '500px',
 			data: this.natures,
@@ -75,5 +71,5 @@ export class MoneyComponent {
 			this.natures.push(key);
 			this.items[key] = [];
 		}
-	};
+	}
 }

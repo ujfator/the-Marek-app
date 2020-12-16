@@ -16,4 +16,3 @@ export class Quality extends Base {
 		this.__init(args);
 	}
 }
-

@@ -1,8 +1,16 @@
 import { Component } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { AuthorizationService } from '../common/services/api-calls/authorization.service';
 import { AuthorizationQuery } from '../state-management/authorization/authorization.query';
 import { WorkflowService } from '../common/services/api-calls/workflow.service';
+import { ErrorStateMatcher } from '@angular/material/core';
+
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+	isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+		const isSubmitted = form && form.submitted;
+		return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+	}
+}
 
 @Component({
 	selector: 'app-login',
@@ -10,12 +18,15 @@ import { WorkflowService } from '../common/services/api-calls/workflow.service';
 	styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
+	loginForm = new FormGroup({
+		username: new FormControl('', Validators.required),
+		password: new FormControl('', Validators.required),
+	});
 
-	form: FormGroup;
-	login: string;
-	password: string;
 	users: string[];
 	showPassword: boolean;
+	validLogin: boolean = true;
+	matcher = new MyErrorStateMatcher();
 
 	constructor(
 		private authorizationService: AuthorizationService,
@@ -23,18 +34,24 @@ export class LoginComponent {
 		private service: WorkflowService,
 	) {
 		this.service.loadItems();
-		this.authorizationQuery.users.subscribe((users) => this.users = users);
+		this.authorizationQuery.users.subscribe((users) => (this.users = users));
 	}
 
 	checkForUser(e) {
-		console.log(e);
-		if (this.users.find(user => user === e)) this.showPassword = true;
+		if (this.users.find((user) => user === e)) this.showPassword = true;
+	}
+
+	clearInput(field: string): void {
+		this.loginForm.controls[field].reset();
 	}
 
 	logIn(): void {
-		this.authorizationService.login({login: this.login, password: this.password}).then((res) => {
-			if (res) this.authorizationService.authorizeOrInvalidateSession(true);
-		});
+		const formValue = this.loginForm.value;
+		this.authorizationService
+			.login({ login: formValue.username, password: formValue.password })
+			.then((res: boolean) => {
+				this.validLogin = res;
+				this.authorizationService.authorizeOrInvalidateSession(res);
+			});
 	}
-
 }

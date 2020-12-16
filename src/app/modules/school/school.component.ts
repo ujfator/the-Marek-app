@@ -5,15 +5,12 @@ import { School } from 'server/models';
 import { AddEditSchoolItemComponent } from './add-edit-school-item/add-edit-item.component';
 import { AuthorizationQuery } from 'src/app/state-management/authorization/authorization.query';
 
-
 @Component({
-  selector: 'app-school',
-  templateUrl: './school.component.html',
-  styleUrls: ['./school.component.scss']
+	selector: 'app-school',
+	templateUrl: './school.component.html',
+	styleUrls: ['./school.component.scss'],
 })
-
 export class SchoolComponent {
-
 	displayedColumns: string[] = ['date', 'subject', 'typeOfTest', 'difficulty', 'author', 'edit'];
 	dataSource: School[] = [];
 	allItems: School[] = [];
@@ -27,7 +24,7 @@ export class SchoolComponent {
 			if (items) {
 				this.allItems = [...items];
 				if (localStorage.getItem('author')) {
-					this.createDataSource(localStorage.getItem('author'))
+					this.createDataSource(localStorage.getItem('author'));
 				} else this.dataSource = [...items];
 			}
 		});
@@ -36,21 +33,21 @@ export class SchoolComponent {
 			this.createDataSource(author);
 			// this.dataSource = [...this.allItems];
 		});
-  	}
+	}
 
 	addOrEditEntry(entry?: School) {
 		const dialogRef = this.dialog.open(AddEditSchoolItemComponent);
 	}
 
-	createDataSource (author?: string) {
+	createDataSource(author?: string) {
 		this.dataSource = [];
-		this.allItems && this.allItems.forEach(element => {
-			if (element.author === author) this.dataSource.push(element);
-		});
+		this.allItems &&
+			this.allItems.forEach((element) => {
+				if (element.author === author) this.dataSource.push(element);
+			});
 	}
 
 	delete(entry: School) {
 		this.schoolService.deleteItem(entry.id);
 	}
-
 }

@@ -13,26 +13,29 @@ export class DifficultyRoutes extends BaseController {
 
 		this.__router.get('/', (req: Request, res: Response) => this._getAll(req, res));
 		this.__router.post('/', (req: Request, res: Response) => this._set(req, res));
-
 	}
-
-
 
 	private _getAll = (req: Request, res: Response): void => {
-		this._difficultyController.getDifficulties().then((difficulties: string[]) => {
-			res.jsonp(difficulties);
-		}).catch((e: any) => {
-			res.status(500).send(e);
-			console.warn(e);
-		});
-	}
+		this._difficultyController
+			.getDifficulties()
+			.then((difficulties: string[]) => {
+				res.jsonp(difficulties);
+			})
+			.catch((e: any) => {
+				res.status(500).send(e);
+				console.warn(e);
+			});
+	};
 
 	private _set = (req: Request, res: Response): void => {
-		this._difficultyController.setDifficulty(req.body).then((difficulty: string) => {
-			res.jsonp(difficulty);
-		}).catch((e: any) => {
-			res.status(500).send(e);
-			console.warn(e);
-		});
-	}
+		this._difficultyController
+			.setDifficulty(req.body)
+			.then((difficulty: string) => {
+				res.jsonp(difficulty);
+			})
+			.catch((e: any) => {
+				res.status(500).send(e);
+				console.warn(e);
+			});
+	};
 }

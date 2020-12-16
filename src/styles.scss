@@ -2,10 +2,10 @@
 @include mat-core();
 
 @mixin material-icon-size($size: 24px) {
-    font-size: $size;
-    height: $size;
-    width: $size;
-    line-height: $size;
+	font-size: $size;
+	height: $size;
+	width: $size;
+	line-height: $size;
 }
 
 // light theme - set as default
@@ -23,28 +23,28 @@ $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
 @include angular-material-theme($light-theme);
 
 .light-theme {
-    @include angular-material-theme($light-theme);
+	@include angular-material-theme($light-theme);
 }
 
 .dark-theme {
-    @include angular-material-theme($dark-theme);
+	@include angular-material-theme($dark-theme);
 }
 
 html,
 body {
-  display: block;
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  font-family: 'Roboto', sans-serif;
-  font-weight:300;
+	display: block;
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 300;
 }
 
 a,
 a:hover,
 a:active {
-    text-decoration: none;
+	text-decoration: none;
 }
 
 // @font-face {
@@ -60,62 +60,61 @@ a:active {
 // }
 
 [mat-dialog-title] {
-    margin: -24px -24px 0px -24px !important;
-    padding: 10px 24px;
-    color: $light-primary-text;
-    cursor: move;
+	margin: -24px -24px 0px -24px !important;
+	padding: 10px 24px;
+	color: $light-primary-text;
+	cursor: move;
 }
 
 .material-icons {
-    font-family: 'Material Icons';
-    font-weight: normal;
-    font-style: normal;
-    font-size: 24px;  /* Preferred icon size */
-    display: inline-block;
-    line-height: 1;
-    text-transform: none;
-    letter-spacing: normal;
-    word-wrap: normal;
-    white-space: nowrap;
-    direction: ltr;
+	font-family: 'Material Icons';
+	font-weight: normal;
+	font-style: normal;
+	font-size: 24px; /* Preferred icon size */
+	display: inline-block;
+	line-height: 1;
+	text-transform: none;
+	letter-spacing: normal;
+	word-wrap: normal;
+	white-space: nowrap;
+	direction: ltr;
 
-    /* Support for all WebKit browsers. */
-    -webkit-font-smoothing: antialiased;
-    /* Support for Safari and Chrome. */
-    text-rendering: optimizeLegibility;
+	/* Support for all WebKit browsers. */
+	-webkit-font-smoothing: antialiased;
+	/* Support for Safari and Chrome. */
+	text-rendering: optimizeLegibility;
 
-    /* Support for Firefox. */
-    -moz-osx-font-smoothing: grayscale;
+	/* Support for Firefox. */
+	-moz-osx-font-smoothing: grayscale;
 
-    /* Support for IE. */
-    font-feature-settings: 'liga';
+	/* Support for IE. */
+	font-feature-settings: 'liga';
 }
 
 .green-icon {
-    color: mat-color($mat-green, 600);
+	color: mat-color($mat-green, 600);
 
-    svg {
-        fill: mat-color($mat-green, 600);
-    }
+	svg {
+		fill: mat-color($mat-green, 600);
+	}
 }
 
 .grey-icon {
-    color: mat-color($mat-grey, 600);
+	color: mat-color($mat-grey, 600);
 
-    svg {
-        fill: mat-color($mat-grey, 600);
-    }
+	svg {
+		fill: mat-color($mat-grey, 600);
+	}
 }
 
 .red-text {
-    color: mat-color($mat-red, 600);
+	color: mat-color($mat-red, 600);
 }
 
 .green-text {
-    color: mat-color($mat-green, 600);
+	color: mat-color($mat-green, 600);
 }
 
 .primary-text {
-    color: mat-color($mat-indigo, 600);
+	color: mat-color($mat-indigo, 600);
 }
-

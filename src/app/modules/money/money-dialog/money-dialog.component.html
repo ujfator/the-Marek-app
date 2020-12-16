@@ -1,13 +1,13 @@
 <form [formGroup]="form" fxLayout="column" fxLayoutAlign="start stretch" (ngSubmit)="onSubmit()">
 	<mat-form-field>
 		<mat-label>Name</mat-label>
-		<input name="title" type="text" formControlName="name" required matInput placeholder="title">
+		<input name="title" type="text" formControlName="name" required matInput placeholder="title" />
 		<mat-error>ERROR</mat-error>
 	</mat-form-field>
 
 	<mat-form-field>
 		<mat-label>Amount</mat-label>
-		<input name="amount" type="number" formControlName="amount" required matInput placeholder="Amount">
+		<input name="amount" type="number" formControlName="amount" required matInput placeholder="Amount" />
 		<mat-error>ERROR</mat-error>
 	</mat-form-field>
 
@@ -15,7 +15,7 @@
 		<mat-label>Nature</mat-label>
 		<mat-select name="nature" formControlName="nature" required matInput placeholder="Nature">
 			<mat-option *ngFor="let nature of natures" [value]="nature">
-			  {{nature}}
+				{{ nature }}
 			</mat-option>
 		</mat-select>
 		<mat-error>ERROR</mat-error>
