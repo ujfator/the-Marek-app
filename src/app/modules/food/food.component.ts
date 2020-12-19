@@ -11,7 +11,15 @@ import { AuthorizationQuery } from 'src/app/state-management/authorization/autho
 	styleUrls: ['./food.component.scss'],
 })
 export class FoodComponent {
-	displayedColumns: string[] = ['date', 'breakfast', 'lunch', 'dinner', 'junkFood', 'author', 'edit'];
+	displayedColumns: string[] = [
+		'date',
+		'breakfast',
+		'lunch',
+		'dinner',
+		'junkFood',
+		'author',
+		'edit',
+	];
 	foodItems: Food[] = [];
 	allItems: Food[] = [];
 

@@ -46,7 +46,11 @@
 						<hr />
 						<div class="date">Created on: {{ item.created | date: 'dd.MM.yyyy' }}</div>
 						<div fxFlex fxFlexAlign="end">
-							<button matTooltip="Edit item" (click)="addEditItem(item)" mat-raised-button>
+							<button
+								matTooltip="Edit item"
+								(click)="addEditItem(item)"
+								mat-raised-button
+							>
 								<mat-icon>edit</mat-icon>
 							</button>
 						</div>
@@ -68,7 +72,11 @@
 				</div>
 				<mat-card-title>This week</mat-card-title>
 			</mat-card-header>
-			<mat-expansion-panel class="expansion-panel" *ngFor="let item of columns.thisWeek" cdkDrag>
+			<mat-expansion-panel
+				class="expansion-panel"
+				*ngFor="let item of columns.thisWeek"
+				cdkDrag
+			>
 				<mat-expansion-panel-header>
 					<mat-panel-title matTooltip="{{ item.name }}" class="panel-title">
 						<div>{{ item.name }}</div>
@@ -91,7 +99,11 @@
 						<hr />
 						<div class="date">Created on: {{ item.created | date: 'dd.MM.yyyy' }}</div>
 						<div fxFlex fxFlexAlign="end">
-							<button matTooltip="Edit item" (click)="addEditItem(item)" mat-raised-button>
+							<button
+								matTooltip="Edit item"
+								(click)="addEditItem(item)"
+								mat-raised-button
+							>
 								<mat-icon>edit</mat-icon>
 							</button>
 						</div>
@@ -136,7 +148,11 @@
 						<hr />
 						<div class="date">Created on: {{ item.created | date: 'dd.MM.yyyy' }}</div>
 						<div fxFlex fxFlexAlign="end">
-							<button matTooltip="Edit item" (click)="addEditItem(item)" mat-raised-button>
+							<button
+								matTooltip="Edit item"
+								(click)="addEditItem(item)"
+								mat-raised-button
+							>
 								<mat-icon>edit</mat-icon>
 							</button>
 						</div>
@@ -184,7 +200,11 @@
 							{{ item.finished | date: 'dd.MM.yyyy' }}
 						</div>
 						<div fxFlex fxFlexAlign="end">
-							<button matTooltip="Delete item" (click)="delete(item.id)" mat-raised-button>
+							<button
+								matTooltip="Delete item"
+								(click)="delete(item.id)"
+								mat-raised-button
+							>
 								<mat-icon>delete</mat-icon>
 							</button>
 						</div>

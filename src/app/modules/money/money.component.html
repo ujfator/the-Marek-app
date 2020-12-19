@@ -1,6 +1,13 @@
-<div fxLayout="row" class="tiles-container">
-	<div *ngFor="let key of objectKeys(items)" class="tile" [ngClass]="{ 'tile-hidden': !items[key].length }">
-		<app-money-tile [items]="items[key]" *ngIf="items[key].length" fxFill fxFlex></app-money-tile>
+<div class="tiles-container">
+	<div
+		*ngFor="let key of objectKeys(items)"
+		class="tile"
+		[ngClass]="{ 'tile-hidden': !items[key].length}"
+	>
+		<app-money-tile
+			[items]="items[key]"
+			*ngIf="items[key].length"
+		></app-money-tile>
 	</div>
 	<button matTooltip="Add item" dir="rtl" mat-raised-button (click)="add()" class="add-button">
 		<mat-icon>add</mat-icon>

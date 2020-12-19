@@ -75,7 +75,10 @@ export class MoneyTileComponent {
 		const nameAndAmount = this.changedItem.split(' ');
 		let i = 0;
 		let name = '';
-		while (i < (item.nature === 'adjustables' ? nameAndAmount.length - 3 : nameAndAmount.length - 1)) {
+		while (
+			i <
+			(item.nature === 'adjustables' ? nameAndAmount.length - 3 : nameAndAmount.length - 1)
+		) {
 			name += ' ' + nameAndAmount[i];
 			i++;
 		}

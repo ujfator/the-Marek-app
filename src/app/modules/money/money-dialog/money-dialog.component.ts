@@ -13,7 +13,10 @@ export class MoneyDialogComponent implements OnInit {
 	@Inject(MAT_DIALOG_DATA) public data: string[];
 	natures: string[] = ['fixedExpenses', 'adjustableExpenses', 'loans', 'properties', 'savings'];
 
-	constructor(public dialogRef: MatDialogRef<MoneyDialogComponent>, private budgetService: BudgetService) {}
+	constructor(
+		public dialogRef: MatDialogRef<MoneyDialogComponent>,
+		private budgetService: BudgetService,
+	) {}
 
 	ngOnInit(): void {
 		this.form = new FormGroup({

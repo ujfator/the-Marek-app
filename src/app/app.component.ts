@@ -27,7 +27,8 @@ export class AppComponent {
 		akitaDevtools(this.ngZone); // this makes the store available
 		this.authorizationQuery.isAuthorized.subscribe((isAuthorized) => {
 			this.isAuthorized = isAuthorized;
-			this.sidenavWidthClass = 'side-navigation-container-' + (isAuthorized ? 'app' : 'login');
+			this.sidenavWidthClass =
+				'side-navigation-container-' + (isAuthorized ? 'app' : 'login');
 		});
 		if (localStorage.getItem('theme')) this.onSetTheme(localStorage.getItem('theme'));
 		this.authorizationQuery.selectedUser.subscribe((author) => (this.author = author));

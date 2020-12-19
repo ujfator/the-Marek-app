@@ -98,7 +98,12 @@ export class WorkflowComponent {
 		if (e.previousContainer === e.container) {
 			moveItemInArray(e.container.data, e.previousIndex, e.currentIndex);
 		} else {
-			transferArrayItem(e.previousContainer.data, e.container.data, e.previousIndex, e.currentIndex);
+			transferArrayItem(
+				e.previousContainer.data,
+				e.container.data,
+				e.previousIndex,
+				e.currentIndex,
+			);
 			newContainer = this.changeContainerName(e.container.id);
 			e.container.data.forEach((element) => {
 				if (newContainer && element['container'] !== newContainer) {

@@ -23,7 +23,9 @@ export class FoodService extends BaseService {
 	}
 
 	deleteItem(id: string): void {
-		this.http.delete<Food>(`${environment.apiHost}/food/${id}`, this.jsonHeaders).subscribe(() => this.loadItems());
+		this.http
+			.delete<Food>(`${environment.apiHost}/food/${id}`, this.jsonHeaders)
+			.subscribe(() => this.loadItems());
 	}
 
 	getItemById(id: string): Food {

@@ -12,7 +12,12 @@
 			<form [formGroup]="loginForm" fxLayout="column">
 				<mat-form-field>
 					<mat-label>Login</mat-label>
-					<input formControlName="username" matInput placeholder="login" [errorStateMatcher]="matcher" />
+					<input
+						formControlName="username"
+						matInput
+						placeholder="login"
+						[errorStateMatcher]="matcher"
+					/>
 					<button
 						mat-button
 						*ngIf="loginForm.value.username"
@@ -23,7 +28,9 @@
 					>
 						<mat-icon>close</mat-icon>
 					</button>
-					<mat-error *ngIf="!validLogin"> User is not <strong>registered</strong>. </mat-error>
+					<mat-error *ngIf="!validLogin">
+						User is not <strong>registered</strong>.
+					</mat-error>
 				</mat-form-field>
 				<mat-form-field>
 					<mat-label>Password</mat-label>
@@ -44,7 +51,9 @@
 					>
 						<mat-icon>close</mat-icon>
 					</button>
-					<mat-error *ngIf="!validLogin"> User is not <strong>registered</strong>. </mat-error>
+					<mat-error *ngIf="!validLogin">
+						User is not <strong>registered</strong>.
+					</mat-error>
 				</mat-form-field>
 			</form>
 		</mat-card-content>

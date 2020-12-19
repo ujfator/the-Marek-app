@@ -5,13 +5,23 @@
 			<mat-icon *ngIf="!collapsed">chevron_left</mat-icon>
 		</button>
 		<div mat-card-avatar class="{{ image }}" title="{{ header }}" *ngIf="!collapsed"></div>
-		<mat-card-title fxLayout="column" *ngIf="!collapsed" style="padding: 0 6px 0 6px; margin: 0px">
+		<mat-card-title
+			fxLayout="column"
+			*ngIf="!collapsed"
+			style="padding: 0 6px 0 6px; margin: 0px"
+		>
 			<div class="ellipsis" title="{{ header }} {{ accumulator(items, 'amount') }} CZK">
 				{{ header }}
 			</div>
-			<div class="ellipsis" *ngIf="!adjustableContent()">{{ accumulator(items, 'amount') }} CZK</div>
+			<div class="ellipsis" *ngIf="!adjustableContent()">
+				{{ accumulator(items, 'amount') }} CZK
+			</div>
 			<div *ngIf="adjustableContent()">
-				<div class="pointer ellipsis" *ngIf="!adjustablesFrom.isBeingEdited" (click)="editAdjustablesFrom()">
+				<div
+					class="pointer ellipsis"
+					*ngIf="!adjustablesFrom.isBeingEdited"
+					(click)="editAdjustablesFrom()"
+				>
 					{{ accumulator(items, 'amount') }} from
 					{{ adjustablesFrom.date | date: 'dd.MM.yyyy' }}
 				</div>
@@ -33,7 +43,9 @@
 				<mat-panel-title class="panel-title"> Previous months </mat-panel-title>
 			</mat-expansion-panel-header>
 			<div fxLayout="row" fxFlex>
-				<div fxLayout="column" fxFill class="content">Duben - 23 tisíc, chorela 2300 Květen - cca 26 tisíc</div>
+				<div fxLayout="column" fxFill class="content">
+					Duben - 23 tisíc, chorela 2300 Květen - cca 26 tisíc
+				</div>
 			</div>
 		</mat-expansion-panel>
 		<mat-list *ngFor="let item of items">
@@ -44,8 +56,12 @@
 				fxLayoutAlign="space-between center"
 				style="overflow-hidden;"
 			>
-				<div fxLayout="column" style="padding-right: 0.5rem" fxFlex>
-					<div (click)="showEditingInput(item)" *ngIf="!item.isBeingEdited" class="pointer ellipsis">
+				<div fxLayout="column" fxFlex>
+					<div
+						(click)="showEditingInput(item)"
+						*ngIf="!item.isBeingEdited"
+						class="pointer ellipsis"
+					>
 						{{ item.name }} {{ item.amount }}
 					</div>
 					<mat-form-field *ngIf="item.isBeingEdited" fxLayout="row" fxFlex>
@@ -59,6 +75,7 @@
 					</mat-form-field>
 				</div>
 				<button
+					fxFlex="25"
 					dir="rtl"
 					matTooltip="Delete item"
 					mat-button

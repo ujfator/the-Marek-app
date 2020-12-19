@@ -33,6 +33,8 @@ export class BudgetController extends BaseController {
 	}
 
 	patchBudget(budgetItem: Budget): Promise<Budget> {
-		return this.model.findByIdAndUpdate(budgetItem.id, budgetItem).then((resp) => new Budget(resp));
+		return this.model
+			.findByIdAndUpdate(budgetItem.id, budgetItem)
+			.then((resp) => new Budget(resp));
 	}
 }

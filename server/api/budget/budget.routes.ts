@@ -17,7 +17,9 @@ export class BudgetRoutes extends BaseController {
 		this.__router.get('/', (req: Request, res: Response) => this._getAll(req, res));
 		this.__router.post('/', (req: Request, res: Response) => this._set(req, res));
 		this.__router.patch('/', (req: Request, res: Response) => this._patch(req, res));
-		this.__router.delete('/:budgetItemId', (req: Request, res: Response) => this._delete(req, res));
+		this.__router.delete('/:budgetItemId', (req: Request, res: Response) =>
+			this._delete(req, res),
+		);
 	}
 
 	private _delete = (req: Request, res: Response): void => {

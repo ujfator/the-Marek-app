@@ -33,6 +33,8 @@ export class WorkflowController extends BaseController {
 	}
 
 	async patchWorkflowItem(workflowItem: Workflow): Promise<Workflow> {
-		return this.model.findByIdAndUpdate(workflowItem.id, workflowItem).then((resp) => new Workflow(resp));
+		return this.model
+			.findByIdAndUpdate(workflowItem.id, workflowItem)
+			.then((resp) => new Workflow(resp));
 	}
 }

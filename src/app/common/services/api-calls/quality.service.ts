@@ -41,7 +41,11 @@ export class QualityService extends BaseService {
 
 	patchItem(item: Quality): void {
 		this.http
-			.patch<Quality>(`${environment.apiHost}/quality`, JSON.stringify(item), this.jsonHeaders)
+			.patch<Quality>(
+				`${environment.apiHost}/quality`,
+				JSON.stringify(item),
+				this.jsonHeaders,
+			)
 			.subscribe(() => this.loadItems());
 	}
 

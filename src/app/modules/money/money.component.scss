@@ -7,7 +7,9 @@
 .tiles-container {
 	max-height: 100%;
 	max-width: 100%;
-	overflow: hidden;
+	overflow-x: hidden;
+	flex-wrap: wrap;
+	display: flex;
 }
 
 .tile-hidden {
@@ -25,7 +27,6 @@
 }
 
 .tile {
-	min-width: 300px;
 	padding: 8px;
 	height: 100%;
 	overflow: hidden;
