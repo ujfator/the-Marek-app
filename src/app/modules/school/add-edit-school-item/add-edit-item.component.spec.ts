@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { AddEditFoodItemComponent } from './add-edit-item.component';
+import { AddEditSchoolItemComponent } from './add-edit-item.component';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-describe('AddEditFoodItemComponent', () => {
-	let component: AddEditFoodItemComponent;
-	let fixture: ComponentFixture<AddEditFoodItemComponent>;
+describe('AddEditSchoolItemComponent', () => {
+	let component: AddEditSchoolItemComponent;
+	let fixture: ComponentFixture<AddEditSchoolItemComponent>;
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [AddEditFoodItemComponent],
+			declarations: [AddEditSchoolItemComponent],
 		}).compileComponents();
 	}));
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(AddEditFoodItemComponent);
+		fixture = TestBed.createComponent(AddEditSchoolItemComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});

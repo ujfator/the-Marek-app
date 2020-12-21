@@ -1,12 +1,12 @@
 <mat-card class="money-card">
 	<mat-card-header class="header" fxLayout="row" fxLayoutAlign="space-between center">
-		<button (click)="collapsed = !collapsed" mat-button title="collapse">
+		<button (click)="collapsed = !collapsed" mat-button matTooltip="collapse">
 			<mat-icon *ngIf="collapsed">chevron_right</mat-icon>
 			<mat-icon *ngIf="!collapsed">chevron_left</mat-icon>
 		</button>
-		<div mat-card-avatar class="{{ image }}" title="{{ header }}" *ngIf="!collapsed"></div>
+		<div mat-card-avatar class="{{ image }}" matTooltip="{{ image }}" *ngIf="!collapsed"></div>
 		<mat-card-title fxLayout="column" *ngIf="!collapsed" style="padding: 0 6px 0 6px; margin: 0px">
-			<div class="ellipsis" title="{{ header }} {{ accumulator(items, 'amount') }} CZK">
+			<div class="ellipsis" matTooltip="{{ header }} {{ accumulator(items, 'amount') }} CZK">
 				{{ header }}
 			</div>
 			<div class="ellipsis" *ngIf="!adjustableContent()">{{ accumulator(items, 'amount') }} CZK</div>
@@ -40,11 +40,11 @@
 			<mat-list-item
 				fxLayout="row"
 				fxFlex
-				title="edit item {{ item.name }}"
+				matTooltip="Click to edit item {{ item.name }}"
 				fxLayoutAlign="space-between center"
 				style="overflow-hidden;"
 			>
-				<div fxLayout="column" style="padding-right: 0.5rem" fxFlex>
+				<div fxLayout="column" style="padding-right: 0.5rem;" fxFlex>
 					<div (click)="showEditingInput(item)" *ngIf="!item.isBeingEdited" class="pointer ellipsis">
 						{{ item.name }} {{ item.amount }}
 					</div>
