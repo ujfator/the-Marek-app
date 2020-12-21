@@ -8,7 +8,11 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
 export class AuthorizationService extends BaseService {
-	constructor(private authorizationStore: AuthorizationStore, private router: Router, private http: HttpClient) {
+	constructor(
+		private authorizationStore: AuthorizationStore,
+		private router: Router,
+		private http: HttpClient,
+	) {
 		super();
 		this.getUsers();
 	}
@@ -25,14 +29,19 @@ export class AuthorizationService extends BaseService {
 	}
 
 	getUsers(): void {
-		this.http.get<string[]>(`${environment.apiHost}/users`, this.jsonHeaders).subscribe((users: string[]) => {
-			this.authorizationStore.update({ users: users });
-		});
+		this.http
+			.get<string[]>(`${environment.apiHost}/users`, this.jsonHeaders)
+			.subscribe((users: string[]) => {
+				this.authorizationStore.update({ users: users });
+			});
 	}
 
 	async getUser(user: User): Promise<User> {
 		return this.http
-			.get<User>(`${environment.apiHost}/users/${user.login}|${user.password}`, this.jsonHeaders)
+			.get<User>(
+				`${environment.apiHost}/users/${user.login}|${user.password}`,
+				this.jsonHeaders,
+			)
 			.toPromise()
 			.then((user) => user);
 	}
@@ -42,7 +51,9 @@ export class AuthorizationService extends BaseService {
 	}
 
 	setUser(user: User): void {
-		this.http.post<User>(`${environment.apiHost}/users`, JSON.stringify(user), this.jsonHeaders).subscribe();
+		this.http
+			.post<User>(`${environment.apiHost}/users`, JSON.stringify(user), this.jsonHeaders)
+			.subscribe();
 	}
 
 	authorizeOrInvalidateSession(isAuthorized: boolean) {

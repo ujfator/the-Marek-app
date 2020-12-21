@@ -9,7 +9,9 @@ export class AuthorizationGuard implements CanActivate {
 	isAuthorized: boolean = false;
 
 	constructor(private router: Router, private authorizationQuery: AuthorizationQuery) {
-		this.authorizationQuery.isAuthorized.subscribe((isAuthorized) => (this.isAuthorized = isAuthorized));
+		this.authorizationQuery.isAuthorized.subscribe(
+			(isAuthorized) => (this.isAuthorized = isAuthorized),
+		);
 	}
 
 	canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {

@@ -24,11 +24,15 @@ export class WorkflowService extends BaseService {
 	}
 
 	deleteItem(id: string): void {
-		this.http.delete<any>(this.route + '/' + id, this.jsonHeaders).subscribe(() => this.loadItems());
+		this.http
+			.delete<any>(this.route + '/' + id, this.jsonHeaders)
+			.subscribe(() => this.loadItems());
 	}
 
 	addItem(item: Workflow): void {
-		this.http.post<Workflow>(this.route, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems());
+		this.http
+			.post<Workflow>(this.route, JSON.stringify(item), this.jsonHeaders)
+			.subscribe(() => this.loadItems());
 	}
 
 	loadItems(): void {
@@ -44,6 +48,8 @@ export class WorkflowService extends BaseService {
 		if (item.container === 'done') {
 			item.finished = new Date();
 		} else item.finished = null;
-		this.http.patch<Workflow>(this.route, JSON.stringify(item), this.jsonHeaders).subscribe(() => this.loadItems());
+		this.http
+			.patch<Workflow>(this.route, JSON.stringify(item), this.jsonHeaders)
+			.subscribe(() => this.loadItems());
 	}
 }

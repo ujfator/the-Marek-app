@@ -1,7 +1,15 @@
 <form [formGroup]="form" fxLayout="column" fxLayoutAlign="start stretch" (ngSubmit)="onSubmit()">
 	<mat-form-field>
 		<mat-label>Name</mat-label>
-		<input maxlength="25" name="title" type="text" formControlName="name" required matInput placeholder="title" />
+		<input
+			maxlength="25"
+			name="title"
+			type="text"
+			formControlName="name"
+			required
+			matInput
+			placeholder="title"
+		/>
 		<mat-error>ERROR</mat-error>
 	</mat-form-field>
 
@@ -41,11 +49,15 @@
 	</mat-form-field>
 
 	<mat-autocomplete #difficulty="matAutocomplete">
-		<mat-option *ngFor="let difficulty of difficulties" [value]="difficulty">{{ difficulty }}</mat-option>
+		<mat-option *ngFor="let difficulty of difficulties" [value]="difficulty">{{
+			difficulty
+		}}</mat-option>
 	</mat-autocomplete>
 
 	<div mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
-		<button mat-stroked-button type="reset" color="warn" (click)="dialogRef.close()">Cancel</button>
+		<button mat-stroked-button type="reset" color="warn" (click)="dialogRef.close()">
+			Cancel
+		</button>
 		<button mat-stroked-button color="primary" fxFlexOffset="15px" type="submit">Submit</button>
 	</div>
 </form>

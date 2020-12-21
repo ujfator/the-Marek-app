@@ -1,6 +1,14 @@
 import * as express from 'express';
 import { BaseController, BaseInterface } from '../controller';
-import { WorkflowRoutes, MoneyRoutes, QualityRoutes, BudgetRoutes, DifficultyRoutes, FoodRoutes, UserRoutes } from './';
+import {
+	WorkflowRoutes,
+	MoneyRoutes,
+	QualityRoutes,
+	BudgetRoutes,
+	DifficultyRoutes,
+	FoodRoutes,
+	UserRoutes,
+} from './';
 import { SchoolRoutes } from './school/school.routes';
 
 export class Api extends BaseController {

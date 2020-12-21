@@ -3,7 +3,8 @@ import * as mongo from 'mongoose';
 import { MongoClient } from 'mongodb';
 
 export class DbiController {
-	uri: string = 'mongodb+srv://marek:marek@cluster0-jkdd5.azure.mongodb.net/marekApp?retryWrites=true&w=majority';
+	uri: string =
+		'mongodb+srv://marek:marek@cluster0-jkdd5.azure.mongodb.net/marekApp?retryWrites=true&w=majority';
 	get dbh(): mongo.Connection {
 		return this._dbh;
 	}

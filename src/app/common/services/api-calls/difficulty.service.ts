@@ -30,9 +30,11 @@ export class DifficultyService extends BaseService {
 	}
 
 	loadDifficulties(): void {
-		this.http.get<Difficulty[]>(`${environment.apiHost}/difficulty`).subscribe((items: Difficulty[]) => {
-			this.buildIndex(items);
-		});
+		this.http
+			.get<Difficulty[]>(`${environment.apiHost}/difficulty`)
+			.subscribe((items: Difficulty[]) => {
+				this.buildIndex(items);
+			});
 	}
 
 	private buildIndex(items: Difficulty[]): void {

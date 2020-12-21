@@ -1,11 +1,22 @@
 <div fxFill fxLayout="column" class="main-container">
 	<mat-toolbar color="primary" class="header" *ngIf="isAuthorized">
-		<button mat-icon-button (click)="toggleSidenav()" label="Toggle Menu" class="header-menu-button">
+		<button
+			mat-icon-button
+			(click)="toggleSidenav()"
+			label="Toggle Menu"
+			class="header-menu-button"
+			matTooltip="Toggle sidenav"
+		>
 			<mat-icon>menu</mat-icon>
 		</button>
 		<div>
 			<div fxLayout="row" fxLayoutAlign="space-around center">
-				<button mat-button class="navigation-button" [matMenuTriggerFor]="menu" matTooltip="Toggle user">
+				<button
+					mat-button
+					class="navigation-button"
+					[matMenuTriggerFor]="menu"
+					matTooltip="Toggle user"
+				>
 					<span *ngIf="author">The {{ author }} App</span>
 					<span *ngIf="!author">Pick user</span>
 				</button>
@@ -20,7 +31,12 @@
 			</div>
 		</div>
 		<span class="fill-remaining-space"></span>
-		<button class="navigation-button" mat-button [matMenuTriggerFor]="themes" matTooltip="Toggle theme">
+		<button
+			class="navigation-button"
+			mat-button
+			[matMenuTriggerFor]="themes"
+			matTooltip="Toggle theme"
+		>
 			<mat-icon>format_color_fill</mat-icon>
 		</button>
 		<mat-menu #themes="matMenu">
