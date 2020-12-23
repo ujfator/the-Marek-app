@@ -26,10 +26,8 @@ export class AddEditFoodItemComponent implements OnInit {
 	ngOnInit(): void {
 		this.form = new FormGroup({
 			date: new FormControl(this.data ? this.data.date : new Date()),
-			breakfast: new FormControl(this.data ? this.data.breakfast : ''),
-			lunch: new FormControl(this.data ? this.data.lunch : ''),
-			dinner: new FormControl(this.data ? this.data.dinner : ''),
-			junkFood: new FormControl(this.data ? this.data.junkFood : ''),
+			firstFood: new FormControl(this.data ? this.data.firstFood : ''),
+			lastFood: new FormControl(this.data ? this.data.lastFood : ''),
 			author: new FormControl(this.data ? this.data.author : ''),
 		});
 	}
@@ -38,11 +36,9 @@ export class AddEditFoodItemComponent implements OnInit {
 		if (this.form.valid) {
 			const newOrUpdatedItem = {
 				date: this.form.value.date,
-				breakfast: this.form.value.breakfast,
-				lunch: this.form.value.lunch,
-				dinner: this.form.value.dinner,
+				firstFood: this.form.value.firstFood,
+				lastFood: this.form.value.lastFood,
 				id: this.data ? this.data.id : '',
-				junkFood: this.form.value.junkFood,
 				author: this.form.value.author ? this.form.value.author : '',
 			};
 			newOrUpdatedItem && newOrUpdatedItem.id

@@ -13,10 +13,8 @@ import { AuthorizationQuery } from 'src/app/state-management/authorization/autho
 export class FoodComponent {
 	displayedColumns: string[] = [
 		'date',
-		'breakfast',
-		'lunch',
-		'dinner',
-		'junkFood',
+		'firstFood',
+		'lastFood',
 		'author',
 		'edit',
 	];

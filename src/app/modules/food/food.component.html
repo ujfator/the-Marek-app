@@ -4,24 +4,14 @@
 		<td mat-cell *matCellDef="let element">{{ element.date | date }}</td>
 	</ng-container>
 
-	<ng-container matColumnDef="breakfast">
-		<th mat-header-cell *matHeaderCellDef>Breakfast</th>
-		<td mat-cell *matCellDef="let element">{{ element.breakfast }}</td>
+	<ng-container matColumnDef="firstFood">
+		<th mat-header-cell *matHeaderCellDef>First food</th>
+		<td mat-cell *matCellDef="let element">{{ element.firstFood }}</td>
 	</ng-container>
 
-	<ng-container matColumnDef="lunch">
-		<th mat-header-cell *matHeaderCellDef>Lunch</th>
-		<td mat-cell *matCellDef="let element">{{ element.lunch }}</td>
-	</ng-container>
-
-	<ng-container matColumnDef="dinner">
-		<th mat-header-cell *matHeaderCellDef>Dinner</th>
-		<td mat-cell *matCellDef="let element">{{ element.dinner }}</td>
-	</ng-container>
-
-	<ng-container matColumnDef="junkFood">
-		<th mat-header-cell *matHeaderCellDef>Junk Food</th>
-		<td mat-cell *matCellDef="let element">{{ element.junkFood }}</td>
+	<ng-container matColumnDef="lastFood">
+		<th mat-header-cell *matHeaderCellDef>Last food</th>
+		<td mat-cell *matCellDef="let element">{{ element.lastFood }}</td>
 	</ng-container>
 
 	<ng-container matColumnDef="author">
