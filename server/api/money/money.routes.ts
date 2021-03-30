@@ -31,6 +31,7 @@ export class MoneyRoutes extends BaseController {
 				console.warn(e);
 			});
 	};
+	
 	private _get = (req: Request, res: Response): void => {
 		this._moneyController
 			.getMoneyItem(req.params.id)
