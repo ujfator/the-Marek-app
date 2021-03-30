@@ -33,7 +33,7 @@ export class UserController extends BaseController {
 				login: user.login,
 				password: hashedPassword,
 			})
-			.then((resp) => 'User saved.');
+			.then(() => 'User saved.');
 	}
 
 	async getUsers(): Promise<User[]> {

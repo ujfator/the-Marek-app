@@ -6,18 +6,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AddEditItemComponent } from './common/add-edit-item/add-edit-item.component';
-import { AddEditQualityItemComponent } from './modules/quality/add-edit-quality-item/add-edit-item.component';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { QualityComponent } from './modules/quality/quality.component';
-import { FoodComponent } from './modules/food/food.component';
 import { WorkflowComponent } from './modules/workflow/workflow.component';
 import { AddEditWorkflowItemComponent } from './modules/workflow/add-edit-workflow-item/add-edit-workflow-item.component';
 import { CoreModule } from './common/core.module';
-import { AddEditFoodItemComponent } from './modules/food/add-edit-food-item/add-edit-item.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { SchoolComponent } from './modules/school/school.component';
-import { AddEditSchoolItemComponent } from './modules/school/add-edit-school-item/add-edit-item.component';
 import { LoginComponent } from './login/login.component';
 import { MoneyComponent } from './modules/money/money.component';
 import { MoneyTileComponent } from './modules/money/money-tile/money-tile.component';
@@ -39,14 +33,8 @@ const imports = [
 	bootstrap: [AppComponent],
 	declarations: [
 		AppComponent,
-		FoodComponent,
-		SchoolComponent,
-		QualityComponent,
 		AddEditItemComponent,
 		AddEditWorkflowItemComponent,
-		AddEditQualityItemComponent,
-		AddEditFoodItemComponent,
-		AddEditSchoolItemComponent,
 		WorkflowComponent,
 		MoneyComponent,
 		LoginComponent,
@@ -56,9 +44,6 @@ const imports = [
 	entryComponents: [
 		AddEditItemComponent,
 		AddEditWorkflowItemComponent,
-		AddEditQualityItemComponent,
-		AddEditFoodItemComponent,
-		AddEditSchoolItemComponent,
 		MoneyDialogComponent,
 	],
 	imports,

@@ -1,6 +1,6 @@
 <mat-card class="money-card">
 	<mat-card-header class="header" fxLayout="row" fxLayoutAlign="space-between center">
-		<button (click)="collapsed = !collapsed" mat-button matTooltip="collapse">
+		<button (click)="collapsed = !collapsed" mat-button matTooltip="Collapse tile">
 			<mat-icon *ngIf="collapsed">chevron_right</mat-icon>
 			<mat-icon *ngIf="!collapsed">chevron_left</mat-icon>
 		</button>
@@ -10,57 +10,25 @@
 			*ngIf="!collapsed"
 			style="padding: 0 6px 0 6px; margin: 0px"
 		>
-			<div class="ellipsis" matTooltop="{{ header }} {{ accumulator(items, 'amount') }} CZK">
-				{{ header }}
-			</div>
-			<div class="ellipsis" *ngIf="!adjustableContent()">
+			<div class="ellipsis">
 				{{ accumulator(items, 'amount') }} CZK
-			</div>
-			<div *ngIf="adjustableContent()">
-				<div
-					class="pointer ellipsis"
-					*ngIf="!adjustablesFrom.isBeingEdited"
-					(click)="editAdjustablesFrom()"
-				>
-					{{ accumulator(items, 'amount') }} from
-					{{ adjustablesFrom.date | date: 'dd.MM.yyyy' }}
-				</div>
-				<mat-form-field *ngIf="adjustablesFrom.isBeingEdited" fxLayout="row" fxFlex>
-					<input
-						name="adjustablesFrom"
-						type="date"
-						[(ngModel)]="adjustablesFrom.date"
-						(ngModelChange)="setAdjustablesFrom($event)"
-						matInput
-					/>
-				</mat-form-field>
 			</div>
 		</mat-card-title>
 	</mat-card-header>
-	<mat-card-content [ngClass]="{ 'expansion-padding': adjustableContent() }" *ngIf="!collapsed">
-		<mat-expansion-panel class="expansion-panel" *ngIf="adjustableContent()">
-			<mat-expansion-panel-header>
-				<mat-panel-title class="panel-title"> Previous months </mat-panel-title>
-			</mat-expansion-panel-header>
-			<div fxLayout="row" fxFlex>
-				<div fxLayout="column" fxFill class="content">
-					Duben - 23 tisíc, chorela 2300 Květen - cca 26 tisíc
-				</div>
-			</div>
-		</mat-expansion-panel>
+	<mat-card-content  *ngIf="!collapsed">
 		<mat-list *ngFor="let item of items">
 			<mat-list-item
 				fxLayout="row"
 				fxFlex
-				matTooltip="Click to edit item {{ item.name }}"
 				fxLayoutAlign="space-between center"
-				style="overflow-hidden;"
+				style="overflow-hidden"
 			>
 				<div fxLayout="column" fxFlex>
 					<div
 						(click)="showEditingInput(item)"
 						*ngIf="!item.isBeingEdited"
 						class="pointer ellipsis"
+						matTooltip="Click to edit item {{ item.name }}"
 					>
 						{{ item.name }} {{ item.amount }}
 					</div>

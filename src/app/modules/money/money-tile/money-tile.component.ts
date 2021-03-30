@@ -34,19 +34,6 @@ export class MoneyTileComponent {
 		}
 	}
 
-	adjustableContent() {
-		return this.items && this.items[0].nature.includes('adjustable');
-	}
-
-	editAdjustablesFrom() {
-		this.adjustablesFrom.isBeingEdited = true;
-	}
-
-	setAdjustablesFrom(e) {
-		localStorage.setItem('adjustablesFrom', e);
-		this.adjustablesFrom.isBeingEdited = false;
-	}
-
 	accumulator(source: Budget[], amountOrMax: string): number {
 		return source.reduce((acc, item) => {
 			acc = Math.round((acc + item.amount) * 100) / 100;

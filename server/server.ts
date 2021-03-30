@@ -1,13 +1,14 @@
 import * as express from 'express';
-import * as bodyParser from 'body-parser';
 import * as commandLineArgs from 'command-line-args';
 
 import { Api } from './api';
 
 const server = express();
 
-server.use(bodyParser.urlencoded({ extended: true }));
-server.use(bodyParser.json());
+server.use(express.json());
+server.use(express.urlencoded({
+  extended: true
+}));
 
 const optionDefinitions = [
 	{
