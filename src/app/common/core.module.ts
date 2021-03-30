@@ -72,7 +72,7 @@ const materialModules = [
 ];
 
 @NgModule({
-	declarations: [],
+	declarations: [MarekCommon],
 	entryComponents: [],
 	exports: [...materialModules, FlexLayoutModule, MarekCommon],
 	imports: [CommonModule, ...materialModules, FlexLayoutModule, FormsModule, ReactiveFormsModule],
