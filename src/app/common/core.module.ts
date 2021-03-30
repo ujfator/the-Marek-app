@@ -25,6 +25,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MarekCommon } from './components/common.component';
 
 const materialModules = [
 	A11yModule, // ARIA accessibility
@@ -73,7 +74,7 @@ const materialModules = [
 @NgModule({
 	declarations: [],
 	entryComponents: [],
-	exports: [...materialModules, FlexLayoutModule],
+	exports: [...materialModules, FlexLayoutModule, MarekCommon],
 	imports: [CommonModule, ...materialModules, FlexLayoutModule, FormsModule, ReactiveFormsModule],
 	providers: [],
 })

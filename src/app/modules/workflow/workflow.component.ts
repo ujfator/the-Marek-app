@@ -7,6 +7,8 @@ import { DifficultyService } from '../../common/services/api-calls/difficulty.se
 import { MatDialog } from '@angular/material/dialog';
 import { AddEditWorkflowItemComponent } from './add-edit-workflow-item/add-edit-workflow-item.component';
 import { AuthorizationQuery } from 'src/app/state-management/authorization/authorization.query';
+import { MarekCommon } from 'src/app/common/components/common.component';
+import { takeUntil } from 'rxjs/operators';
 
 interface Columns {
 	new: Workflow[];
@@ -20,7 +22,7 @@ interface Columns {
 	templateUrl: './workflow.component.html',
 	styleUrls: ['./workflow.component.scss'],
 })
-export class WorkflowComponent {
+export class WorkflowComponent extends MarekCommon {
 	workflowItems: Workflow[];
 	columns: Columns = {
 		new: [],
@@ -36,13 +38,14 @@ export class WorkflowComponent {
 		protected difficultyService: DifficultyService,
 		public dialog: MatDialog,
 	) {
-		this.workflowService.items.subscribe((items) => {
+		super();
+		this.workflowService.items.pipe(takeUntil(this.destroyed)).subscribe((items) => {
 			if (items) {
 				this.workflowItems = items;
 				this.createDataSource(this.author);
 			}
 		});
-		this.authorizationQuery.selectedUser.subscribe((author) => {
+		this.authorizationQuery.selectedUser.pipe(takeUntil(this.destroyed)).subscribe((author) => {
 			this.author = author;
 			this.createDataSource(author);
 		});

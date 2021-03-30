@@ -4,11 +4,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { MoneyComponent } from './modules/money/money.component';
 import { WorkflowComponent } from './modules/workflow/workflow.component';
 import { LoginComponent } from './login/login.component';
-import { LoginGuard } from './common/guards/login-guard';
 import { AuthorizationGuard } from './common/guards/authorization-guard';
 
 const routes: Routes = [
-	{ path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
+	{ path: 'login', component: LoginComponent },
 	{
 		path: 'money-tab',
 		component: MoneyComponent,

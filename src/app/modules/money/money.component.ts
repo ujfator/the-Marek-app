@@ -4,6 +4,8 @@ import { Money, Budget } from 'server/models';
 import { BudgetService } from '../../common/services/api-calls/budget.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MoneyDialogComponent } from './money-dialog/money-dialog.component';
+import { MarekCommon } from 'src/app/common/components/common.component';
+import { takeUntil } from 'rxjs/operators';
 
 interface Items {
 	fixedExpenses: Budget[];
@@ -18,7 +20,7 @@ interface Items {
 	templateUrl: './money.component.html',
 	styleUrls: ['./money.component.scss'],
 })
-export class MoneyComponent {
+export class MoneyComponent extends MarekCommon {
 	moneyItems: Money[];
 	items: Items = {
 		fixedExpenses: [],
@@ -31,7 +33,8 @@ export class MoneyComponent {
 	natures: string[] = [];
 
 	constructor(public dialog: MatDialog, private service: BudgetService) {
-		this.service.items.subscribe((items) => {
+		super();
+		this.service.items.pipe(takeUntil(this.destroyed)).subscribe((items) => {
 			this.emptyColumns();
 			if (items) {
 				items.forEach((item) => {

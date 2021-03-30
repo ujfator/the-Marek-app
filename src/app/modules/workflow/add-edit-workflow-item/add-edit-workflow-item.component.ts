@@ -5,13 +5,15 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DifficultyService } from '../../../common/services/api-calls/difficulty.service';
 import { WorkflowService } from 'src/app/common/services/api-calls/workflow.service';
 import { AuthorizationQuery } from 'src/app/state-management/authorization/authorization.query';
+import { MarekCommon } from 'src/app/common/components/common.component';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
 	selector: 'app-add-edit-workflow-item',
 	templateUrl: './add-edit-workflow-item.component.html',
 	styleUrls: ['./add-edit-workflow-item.component.scss'],
 })
-export class AddEditWorkflowItemComponent implements OnInit {
+export class AddEditWorkflowItemComponent extends MarekCommon implements OnInit {
 	form: FormGroup;
 	difficulties: string[] = [];
 	authors: string[];
@@ -23,10 +25,11 @@ export class AddEditWorkflowItemComponent implements OnInit {
 		private authorizationQuery: AuthorizationQuery,
 		@Inject(MAT_DIALOG_DATA) public data: any,
 	) {
-		this.difficultyService.difficulties.subscribe((items) => {
+		super();
+		this.difficultyService.difficulties.pipe(takeUntil(this.destroyed)).subscribe((items) => {
 			if (items) this.difficulties = [...items];
 		});
-		this.authorizationQuery.users.subscribe((users) => (this.authors = users));
+		this.authorizationQuery.users.pipe(takeUntil(this.destroyed)).subscribe((users) => (this.authors = users));
 	}
 
 	public ngOnInit(): void {

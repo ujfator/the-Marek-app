@@ -5,7 +5,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { AddEditItemComponent } from './common/add-edit-item/add-edit-item.component';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { WorkflowComponent } from './modules/workflow/workflow.component';
@@ -33,7 +32,6 @@ const imports = [
 	bootstrap: [AppComponent],
 	declarations: [
 		AppComponent,
-		AddEditItemComponent,
 		AddEditWorkflowItemComponent,
 		WorkflowComponent,
 		MoneyComponent,
@@ -42,7 +40,6 @@ const imports = [
 		MoneyDialogComponent,
 	],
 	entryComponents: [
-		AddEditItemComponent,
 		AddEditWorkflowItemComponent,
 		MoneyDialogComponent,
 	],
