@@ -1,7 +1,5 @@
 import * as mongo from 'mongoose';
 
-import { MongoClient } from 'mongodb';
-
 export class DbiController {
 	uri: string =
 		'mongodb+srv://marek:marek@cluster0-jkdd5.azure.mongodb.net/marekApp?retryWrites=true&w=majority';

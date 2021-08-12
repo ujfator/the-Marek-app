@@ -5,6 +5,7 @@ import { MoneyComponent } from './modules/money/money.component';
 import { WorkflowComponent } from './modules/workflow/workflow.component';
 import { LoginComponent } from './login/login.component';
 import { AuthorizationGuard } from './common/guards/authorization-guard';
+import { BrewingComponent } from './modules/brewing.component';
 
 const routes: Routes = [
 	{ path: 'login', component: LoginComponent },
@@ -16,6 +17,11 @@ const routes: Routes = [
 	{
 		path: 'workflow-tab',
 		component: WorkflowComponent,
+		canActivate: [AuthorizationGuard],
+	},
+	{
+		path: 'brewing',
+		component: BrewingComponent,
 		canActivate: [AuthorizationGuard],
 	},
 	{

@@ -16,6 +16,7 @@ import { MoneyComponent } from './modules/money/money.component';
 import { MoneyTileComponent } from './modules/money/money-tile/money-tile.component';
 import { MoneyDialogComponent } from './modules/money/money-dialog/money-dialog.component';
 import { HttpCallsInterceptor } from './common/http-interceptor/http-interceptor';
+import { BrewingComponent } from './modules/brewing.component';
 
 const imports = [
 	AppRoutingModule,
@@ -38,6 +39,7 @@ const imports = [
 		LoginComponent,
 		MoneyTileComponent,
 		MoneyDialogComponent,
+		BrewingComponent,
 	],
 	entryComponents: [
 		AddEditWorkflowItemComponent,
