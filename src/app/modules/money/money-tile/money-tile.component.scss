@@ -1,0 +1,65 @@
+@import '../../../app.component.scss';
+
+::ng-deep {
+	.mat-list-item-content {
+		overflow: hidden;
+	}
+	.mat-card-header-text {
+		margin: 0 !important;
+	}
+}
+
+.fixedExpenses-image {
+	background-image: url('../../../pics/bill.png');
+	background-size: cover;
+}
+
+.pointer {
+	cursor: pointer;
+}
+
+.savings-image {
+	background-image: url('../../../pics/savings-image.jpg');
+	background-size: cover;
+}
+
+.adjustableExpenses-image {
+	background-image: url('../../../pics/adjustables.jpg');
+	background-size: cover;
+}
+
+.properties-image {
+	background-image: url('../../../pics/car.jpg');
+	background-size: cover;
+}
+
+.loans-image {
+	background-image: url('../../../pics/loan.jpg');
+	background-size: cover;
+}
+
+:host::ng-deep .mat-card-header-text {
+	width: 100% !important;
+}
+
+:host::ng-deep .mat-list-item-content {
+	width: 100% !important;
+}
+
+.header {
+	width: 100%;
+}
+
+.expansion-padding {
+	padding-top: 10px;
+}
+
+.money-card {
+	min-width: auto;
+}
+
+.ellipsis {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}

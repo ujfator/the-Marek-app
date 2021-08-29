@@ -1,0 +1,63 @@
+<form [formGroup]="form" fxLayout="column" fxLayoutAlign="start stretch" (ngSubmit)="onSubmit()">
+	<mat-form-field>
+		<mat-label>Name</mat-label>
+		<input
+			maxlength="25"
+			name="title"
+			type="text"
+			formControlName="name"
+			required
+			matInput
+			placeholder="title"
+		/>
+		<mat-error>ERROR</mat-error>
+	</mat-form-field>
+
+	<mat-form-field>
+		<mat-label>Content</mat-label>
+		<textarea
+			name="content"
+			type="text"
+			formControlName="content"
+			required
+			matInput
+			placeholder="Content"
+		></textarea>
+		<mat-error>ERROR</mat-error>
+	</mat-form-field>
+
+	<mat-form-field>
+		<mat-label>Author</mat-label>
+		<input type="text" matInput formControlName="author" [matAutocomplete]="author" />
+	</mat-form-field>
+
+	<mat-autocomplete #author="matAutocomplete">
+		<mat-option *ngFor="let author of authors" [value]="author">{{ author }}</mat-option>
+	</mat-autocomplete>
+
+	<mat-form-field>
+		<mat-label>Difficulty</mat-label>
+		<input
+			name="difficulty"
+			type="string"
+			formControlName="difficulty"
+			matInput
+			[matAutocomplete]="difficulty"
+			placeholder="Difficulty"
+		/>
+		<mat-error>ERROR</mat-error>
+	</mat-form-field>
+
+	<mat-autocomplete #difficulty="matAutocomplete">
+		<mat-option *ngFor="let difficulty of difficulties" [value]="difficulty">{{
+			difficulty
+		}}</mat-option>
+	</mat-autocomplete>
+
+	<div mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+		<button mat-stroked-button type="reset" color="warn" (click)="dialogRef.close()">
+			Cancel
+		</button>
+		<button mat-stroked-button color="primary" fxFlexOffset="15px" type="submit">Submit</button>
+	</div>
+</form>

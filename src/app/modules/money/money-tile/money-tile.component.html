@@ -1,0 +1,68 @@
+<mat-card class="money-card">
+	<mat-card-header class="header" fxLayout="row" fxLayoutAlign="space-between center">
+		<button (click)="collapsed = !collapsed" mat-button matTooltip="Collapse tile">
+			<mat-icon *ngIf="collapsed">chevron_right</mat-icon>
+			<mat-icon *ngIf="!collapsed">chevron_left</mat-icon>
+		</button>
+		<div mat-card-avatar class="{{ image }}" matTooltop="{{ header }}" *ngIf="!collapsed"></div>
+		<mat-card-title
+			fxLayout="column"
+			*ngIf="!collapsed"
+			style="padding: 0 6px 0 6px; margin: 0px"
+		>
+			<div class="ellipsis">
+				{{ accumulator(items, 'amount') }} CZK
+			</div>
+		</mat-card-title>
+	</mat-card-header>
+	<mat-card-content  *ngIf="!collapsed">
+		<mat-list *ngFor="let item of items">
+			<mat-list-item
+				fxLayout="row"
+				fxFlex
+				fxLayoutAlign="space-between center"
+				style="overflow-hidden"
+			>
+				<div fxLayout="column" fxFlex>
+					<div
+						(click)="showEditingInput(item)"
+						*ngIf="!item.isBeingEdited"
+						class="pointer ellipsis"
+						matTooltip="Click to edit item {{ item.name }}"
+					>
+						{{ item.name }} {{ item.amount }}
+					</div>
+					<mat-form-field *ngIf="item.isBeingEdited" fxLayout="row" fxFlex>
+						<input
+							name="item"
+							type="text"
+							[(ngModel)]="changedItem"
+							(ngModelChange)="valChanged($event)"
+							matInput
+						/>
+					</mat-form-field>
+				</div>
+				<button
+					fxFlex="25"
+					dir="rtl"
+					matTooltip="Delete item"
+					mat-button
+					(click)="delete(item.id)"
+					*ngIf="!item.isBeingEdited"
+				>
+					<mat-icon>delete</mat-icon>
+				</button>
+				<button
+					dir="rtl"
+					matTooltip="Save changes"
+					mat-button
+					(click)="editItem(item)"
+					*ngIf="item.isBeingEdited"
+				>
+					<mat-icon>save</mat-icon>
+				</button>
+			</mat-list-item>
+			<mat-divider></mat-divider>
+		</mat-list>
+	</mat-card-content>
+</mat-card>

@@ -1,23 +1,60 @@
 <div fxFill fxLayout="column" class="main-container">
-	<mat-toolbar class="header">
-		<button mat-icon-button (click)="sideNavigation.toggle()" label="Toggle Menu" class="header-menu-button">
+	<mat-toolbar color="primary" class="header" *ngIf="isAuthorized">
+		<button
+			mat-icon-button
+			(click)="toggleSidenav()"
+			label="Toggle Menu"
+			class="header-menu-button"
+			matTooltip="Toggle sidenav"
+		>
 			<mat-icon>menu</mat-icon>
 		</button>
-		<div class="header-menu-breadcrum">
-			<h4>The Marek App</h4>
+		<div>
+			<div fxLayout="row" fxLayoutAlign="space-around center">
+				<button
+					mat-button
+					class="navigation-button"
+					[matMenuTriggerFor]="menu"
+					matTooltip="Toggle user"
+				>
+					<span *ngIf="author">The {{ author }} App</span>
+					<span *ngIf="!author">Pick user</span>
+				</button>
+				<mat-menu #menu="matMenu">
+					<button [mat-menu-item] (click)="chooseAuthor(null)">Unset user</button>
+					<div *ngFor="let user of users">
+						<button [mat-menu-item] (click)="chooseAuthor(user)">
+							{{ user }}
+						</button>
+					</div>
+				</mat-menu>
+			</div>
 		</div>
-		<span class="example-fill-remaining-space"></span>
-		<button mat-raised-button color="primary" (click)="onSetTheme('dark-theme')">{{theme}}</button>
+		<span class="fill-remaining-space"></span>
+		<button
+			class="navigation-button"
+			mat-button
+			[matMenuTriggerFor]="themes"
+			matTooltip="Toggle theme"
+		>
+			<mat-icon>format_color_fill</mat-icon>
+		</button>
+		<mat-menu #themes="matMenu">
+			<button mat-menu-item (click)="onSetTheme('Dark')">Dark</button>
+			<button mat-menu-item (click)="onSetTheme('Light')">Light</button>
+		</mat-menu>
+		<button mat-button matTooltip="Logout" (click)="logout()">
+			<mat-icon>power_settings_new</mat-icon>
+		</button>
 	</mat-toolbar>
 	<mat-divider></mat-divider>
-	<mat-sidenav-container class="side-navigation-container" fxFlex>
-		<mat-sidenav class="side-navigation" #sideNavigation opened mode="side">
+	<mat-sidenav-container class="{{ sidenavWidthClass }}">
+		<mat-sidenav #sideNavigation [opened]="opened" mode="side" *ngIf="isAuthorized">
 			<div fxLayout="column" fxLayoutAlign="start space-between" fxFlex>
-				<mat-nav-list fxLayout="column" fxLayoutAlign="start stretch">
-          <a mat-list-item [routerLink]="['/food']">Food</a>
-					<a mat-list-item [routerLink]="['/device-control']">Running & Meditation</a>
-					<a mat-list-item [routerLink]="['/firmware-control']">School & Books</a>
-					<a mat-list-item [routerLink]="['/software-center']">Long term goals</a>
+				<mat-nav-list fxLayout="column" fxLayoutAlign="start stretch" fxFill>
+					<a mat-list-item [routerLink]="['/money-tab']">Money</a>
+					<a mat-list-item [routerLink]="['/workflow-tab']">Kanban</a>
+					<a mat-list-item [routerLink]="['/brewing']">Brewing</a>
 				</mat-nav-list>
 			</div>
 		</mat-sidenav>

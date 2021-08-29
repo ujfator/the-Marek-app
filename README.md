@@ -1,10 +1,10 @@
-# MarekApp
+# YouApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.2.
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `npm run watch-ts` to build server, then `npm run watch-node` to run server from dist, and finally `npm run web-app` to run web app (inluding proxy that directs http calls to api)
 
 ## Code scaffolding
 

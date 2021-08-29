@@ -1,0 +1,38 @@
+@import '../../../app.component';
+
+.expense-image {
+	background-image: url('../../../pics/bill.png');
+	background-size: cover;
+}
+
+.asset-image {
+	background-image: url('../../../pics/car.jpg');
+	background-size: cover;
+}
+
+.loans-image {
+	background-image: url('../../../pics/loan.jpg');
+	background-size: cover;
+}
+
+:host::ng-deep .mat-card-header-text {
+	width: 100% !important;
+}
+
+:host::ng-deep .mat-list-item-content {
+	width: 100% !important;
+}
+
+.header {
+	width: 100%;
+}
+
+.money-card {
+	margin: 5px;
+	overflow-y: auto;
+}
+
+.title {
+	width: 100%;
+	margin: 0px !important;
+}
