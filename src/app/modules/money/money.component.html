@@ -1,4 +1,5 @@
-<div class="tiles-container">
+<mat-button-toggle (click)="changeView()">Toggle chart/tile view</mat-button-toggle>
+<div class="tiles-container" *ngIf="!chartView">
 	<div
 		*ngFor="let key of objectKeys(items)"
 		class="tile"
@@ -12,4 +13,8 @@
 	<button matTooltip="Add item" dir="rtl" mat-raised-button (click)="add()" class="add-button">
 		<mat-icon>add</mat-icon>
 	</button>
+</div>
+<div class="chart-container" *ngIf="chartView">
+	<h1>Total: {{chartData.all}}, Dangerous: {{chartData.dangerous}}, Mixed: {{chartData.mixed}}, Safe: {{chartData.safe}} </h1>
+    <div class="pie-chart" [attr.style]="sanitizer.bypassSecurityTrustStyle(chartBackground)"></div>
 </div>

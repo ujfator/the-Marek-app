@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 
 import { Money, Budget } from 'server/models';
 import { BudgetService } from '../../common/services/api-calls/budget.service';
@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MoneyDialogComponent } from './money-dialog/money-dialog.component';
 import { MarekCommon } from 'src/app/common/components/common.component';
 import { takeUntil } from 'rxjs/operators';
+import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 
 interface Items {
 	fixedExpenses: Budget[];
@@ -31,8 +32,16 @@ export class MoneyComponent extends MarekCommon {
 	};
 	objectKeys = Object.keys;
 	natures: string[] = [];
+	chartView: boolean = false;
+	chartBackground: SafeStyle;
+	chartData: {
+		all: number,
+		dangerous: number,
+		safe: number,
+		mixed: number
+	}
 
-	constructor(public dialog: MatDialog, private service: BudgetService) {
+	constructor(public dialog: MatDialog, private service: BudgetService, private cdr: ChangeDetectorRef, public sanitizer: DomSanitizer) {
 		super();
 		this.service.items.pipe(takeUntil(this.destroyed)).subscribe((items) => {
 			this.emptyColumns();
@@ -56,8 +65,39 @@ export class MoneyComponent extends MarekCommon {
 							break;
 					}
 				});
-			}
+			};
+			setTimeout(() => {
+				this.generateChart();
+			}, 1000)
 		});
+	}
+
+	changeView() {
+		this.chartView = !this.chartView;
+	}
+
+	generateChart() {
+		this.chartData = {
+			all: 0,
+			dangerous: 0,
+			safe: 0,
+			mixed: 0
+		};
+		for (const saving of this.items.savings) {
+			this.chartData.all += saving.amount;
+			if (saving.name.includes('akcie')) {
+				this.chartData.mixed += saving.amount;
+			} else if (saving.name.includes('crypto')) {
+				this.chartData.dangerous += saving.amount;
+			} else {
+				this.chartData.safe += saving.amount;
+			}
+		};
+		this.chartBackground = 
+		`background: conic-gradient(#dd521c 0 ${this.chartData.dangerous/(this.chartData.all/100)}%,
+		#d1d50b 0 ${this.chartData.mixed/(this.chartData.all/100)}%,
+		#0aab1e 0 ${this.chartData.safe/(this.chartData.all/100)}%);`;
+		this.cdr.detectChanges();
 	}
 
 	add() {
