@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MoneyDialogComponent } from './money-dialog/money-dialog.component';
 import { MarekCommon } from 'src/app/common/components/common.component';
 import { takeUntil } from 'rxjs/operators';
+import { GoogleTagManagerService } from 'angular-google-tag-manager';
 
 interface Items {
 	fixedExpenses: Budget[];
@@ -32,7 +33,11 @@ export class MoneyComponent extends MarekCommon {
 	objectKeys = Object.keys;
 	natures: string[] = [];
 
-	constructor(public dialog: MatDialog, private service: BudgetService) {
+	constructor(
+		public dialog: MatDialog, 
+		private service: BudgetService,
+		private gtmService: GoogleTagManagerService,
+		) {
 		super();
 		this.service.items.pipe(takeUntil(this.destroyed)).subscribe((items) => {
 			this.emptyColumns();
@@ -58,9 +63,19 @@ export class MoneyComponent extends MarekCommon {
 				});
 			}
 		});
+		const gtmTag = {
+			event: 'money-loaded',
+			data: 'it is loaded',
+		  };
+		this.gtmService.pushTag(gtmTag);
 	}
 
 	add() {
+		const gtmTag = {
+			event: 'adding-money',
+			data: 'opening-dialog',
+		};
+		this.gtmService.pushTag(gtmTag);
 		console.log(this.natures);
 		const dialogRef = this.dialog.open(MoneyDialogComponent, {
 			width: '500px',

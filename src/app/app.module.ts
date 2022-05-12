@@ -17,6 +17,7 @@ import { MoneyTileComponent } from './modules/money/money-tile/money-tile.compon
 import { MoneyDialogComponent } from './modules/money/money-dialog/money-dialog.component';
 import { HttpCallsInterceptor } from './common/http-interceptor/http-interceptor';
 import { BrewingComponent } from './modules/brewing.component';
+import { GoogleTagManagerModule } from 'angular-google-tag-manager';
 
 const imports = [
 	AppRoutingModule,
@@ -27,6 +28,9 @@ const imports = [
 	CoreModule,
 	BrowserModule,
 	BrowserAnimationsModule,
+	GoogleTagManagerModule.forRoot({
+		id:  'GTM-5G63346',
+	})
 ];
 
 @NgModule({

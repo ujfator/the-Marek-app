@@ -1519,6 +1519,13 @@ angular-draggable-droppable@^4.3.10:
     dom-autoscroller "^2.3.4"
     tslib "^1.9.0"
 
+angular-google-tag-manager@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/angular-google-tag-manager/-/angular-google-tag-manager-1.5.0.tgz#5debfdc42db2f3055cd135f85acc4896714d98d4"
+  integrity sha512-Gc2f5/HJDFZk2uoiwBUA/T+u0jncRwB/zPRKCnQ0tIyyebRtNTBgI28qRxIS5GDoBgIwaMzJEJQ1JQD1U1vFPQ==
+  dependencies:
+    tslib "^2.3.0"
+
 animation-frame-polyfill@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/animation-frame-polyfill/-/animation-frame-polyfill-1.0.1.tgz#5f5ad993a78794bd176acde5b6dce62867410c9d"
@@ -9341,6 +9348,11 @@ tslib@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.1.0.tgz#da60860f1c2ecaa5703ab7d39bc05b6bf988b97a"
   integrity sha512-hcVC3wYEziELGGmEEXue7D75zbwIIVUMWAVbHItGPx0ziyXxrOMQx4rQEVEV45Ut/1IotuEvwqPopzIOkDMf0A==
+
+tslib@^2.3.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.4.0.tgz#7cecaa7f073ce680a05847aa77be941098f36dc3"
+  integrity sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==
 
 tslint@~6.1.1:
   version "6.1.1"
